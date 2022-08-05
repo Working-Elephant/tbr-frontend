@@ -1,12 +1,12 @@
-import React from 'react'
-import Footer from '../components/shared/Footer'
+import React from "react";
+
 
 const Home = () => {
   return (
-    <div>
-        <Footer/>
+    <div className="bg-white">
+     
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

@@ -5,7 +5,8 @@ import {FaFacebookF, FaInstagram, FaTwitter, FaLinkedinIn} from 'react-icons/fa'
 
 const Footer = () => {
   return (
-    <footer className="bg-black p-8">
+    <footer className="bg-black w-full py-12 px-6 md:px-10 lg:px-15">
+      <div className="">
       <div className="sm:grid md:grid-cols-5 gap-8">
         <div className="sm:col-span-2 flex justify-center  mb-4 md:mb-0 ">
           <div className=""> 
@@ -63,8 +64,8 @@ const Footer = () => {
         </div>
       </div>
       <div className="text-white opacity-20 text-start pl-12">
-        <p className="ml-6">POWERED BY WORKING ELEPHANT</p>
-      </div>
+        <p className="ml-12">POWERED BY WORKING ELEPHANT</p>
+      </div></div>
     </footer>
   );
 };

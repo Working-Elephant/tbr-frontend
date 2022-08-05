@@ -5,7 +5,9 @@ module.exports = {
     colors: {
       black: "#101011",
       dark: "#2B2B2B",
-      mute: "rgba(255, 255, 255, 1)",
+      muted: "#EFEFEF",
+      borderGrey:"#CCCCCC",
+      grey:"#9CA3AF",
       yellow: "#F9CB40",
       success: "#03B839",
       white: "#FFFFFF",
@@ -13,8 +15,19 @@ module.exports = {
     fontFamily: {
       sans: ["Poppins", "sans-serif"],
     },
+    borderWidth: {
+      DEFAULT: '1px',
+      '0': '0',
+      '.5':'0.5px',
+      '2': '2px',
+      '3': '3px',
+      '4': '4px',
+      '6': '6px',
+    },
     extend: {
-      
+      spacing: {
+        '15': '4rem',
+      }
     },
   },
   plugins: [],
