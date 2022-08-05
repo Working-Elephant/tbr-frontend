@@ -2,8 +2,7 @@
 This project is about 
 
 ## Test Url
-Open [texas-bully-registry-9g7zv4wgv-envisio.vercel.app](texas-bully-registry-9g7zv4wgv-envisio.vercel.app) to view it in your browser.
-
+Open [http://texas-bully-registry-9g7zv4wgv-envisio.vercel.app](http://texas-bully-registry-9g7zv4wgv-envisio.vercel.app) to view it in your browser.
 
 ## Available Scripts
 
