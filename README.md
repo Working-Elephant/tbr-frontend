@@ -1,6 +1,10 @@
 # Texas Bully Registry
 This project is about 
 
+## Test Url
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+
 ## Available Scripts
 
 In the project directory, you can run:
