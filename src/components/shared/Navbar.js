@@ -13,11 +13,11 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="w-full bg-transparent px-6 md:px-10 lg:px-15  border-.5 border-borderGrey mb-5">
+    <nav className="w-full bg-transparent  px-6 md:px-10 lg:px-15  border-.5 border-borderGrey ">
       <div className="  mx-auto flex justify-between items-center  text-sm  md:text-xs xl:text-sm">
         <div className="">
           <Link className="flex items-center  " to="/">
-            <img src={Logo} alt="logo" />
+            <img src={Logo} alt="logo" className="w-3/4" />
           </Link>
         </div>
 
@@ -40,7 +40,7 @@ const Navbar = () => {
         </ul>
 
         <div className="hidden md:block text-sm  md:text-xs xl:text-sm">
-          <div className="bg-muted flex items-center py-3 px-5 rounded-xl ">
+          <div className="bg-muted flex items-center justify-between py-3 px-5 rounded-xl ">
             <input
               className="bg-muted w-100 focus:outline-none"
               placeholder="Search"
@@ -51,8 +51,8 @@ const Navbar = () => {
           </div>
         </div>
         <div className=" hidden md:flex items-center ">
-          <span className="mr-5">Login</span>
-          <button className="bg-yellow py-3 px-8 rounded ">Sign Up</button>
+          <span className="mr-5"><Link to="/login">Login</Link></span>
+          <button className="bg-yellow py-3 px-8 rounded "><Link to="/register">Sign Up</Link></button>
         </div>
 
         {/*  mobile menu icon */}

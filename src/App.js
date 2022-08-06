@@ -12,7 +12,7 @@ import Navbar from './components/shared/Navbar';
 
 const App = () => {
   return (
-    <div className="App">
+    <div className="bg-white">
       <Navbar/>
        <Routes>
         <Route path="/" element={<Home />} />
