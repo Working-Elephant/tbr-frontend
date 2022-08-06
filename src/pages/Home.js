@@ -1,10 +1,36 @@
 import React from "react";
 import Header from "../components/shared/Header";
+import BullyNewsCard from "../components/home/BullyNewsCard";
+import IndicatorIcon from "../components/home/IndicatorIcon";
 import { HiUser } from "react-icons/hi";
 import User from "../assets/images/user.svg";
 import AdImage from "../assets/images/header1.jpeg";
+import Doggo1 from "../assets/images/trophy.jpeg";
+import Doggo2 from "../assets/images/peopleTalking.jpeg";
+import Doggo3 from "../assets/images/doggo3.jpeg";
+import Carousel from "react-material-ui-carousel";
 
 const Home = () => {
+  const carouselImages = [
+    {
+      title: "Our Latest Shows",
+      text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd",
+      image: Doggo1,
+      link: "",
+    },
+    {
+      title: "Bully News",
+      text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd",
+      image: Doggo2,
+      link: "",
+    },
+    {
+      title: "More Bully News",
+      text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd",
+      image: Doggo3,
+      link: "",
+    },
+  ];
   return (
     <div className="bg-white">
       <Header />
@@ -68,19 +94,51 @@ const Home = () => {
       >
         <div className="md:w-5/6 lg:w-4/6 xl:w-3/6 bg-black bg-opacity-50 p-10 rounded-lg mx-auto text-white text-center">
           <div className=" md:w-4/6 mx-auto">
-          <h2 className="font-bold text-4xl ">Bully For Sale?</h2>
-          <p className="my-4">Get your bullies seen by many local buyers and increase your selling potential by advertising with us today</p>
-          <div>
-          <button className=" bg-yellow py-4 px-12 rounded text-sm text-dark font-semibold ">
-              Submit Ad
-            </button>
-          </div></div>
+            <h2 className="font-bold text-4xl ">Bully For Sale?</h2>
+            <p className="my-4">
+              Get your bullies seen by many local buyers and increase your
+              selling potential by advertising with us today
+            </p>
+            <div>
+              <button className=" bg-yellow py-4 px-12 rounded text-sm text-dark font-semibold ">
+                Submit Ad
+              </button>
+            </div>
+          </div>
         </div>
       </section>
       {/* dog show preview section */}
       <section></section>
       {/* bully new section */}
-      <section></section>
+      <section className="py-10">
+        <div className="w-5/6  mx-auto text-center">
+          <div className="mb-8">
+            <h6 className=" text-lg md:text-xl my-1">Bully News</h6>
+            <p className=" py-0 text-grey">
+              Lorem ipsum dolor sit amet, consetetur
+            </p>
+          </div>
+          <div>
+            <Carousel
+              IndicatorIcon={<IndicatorIcon />}
+              indicatorContainerProps=" bg-yellow flex justify-end"
+              activeIndicatorProps="opacity-20 bg-black text-dark "
+              interval={6000}
+            >
+             
+              {carouselImages.map((item, i) => (
+                <BullyNewsCard
+                  key={i}
+                  item={item}
+                  title={item.title}
+                  image={item.image}
+                  text={item.text}
+                />
+              ))}
+            </Carousel>
+          </div>
+        </div>
+      </section>
       {/* testimonial section */}
       <section className="py-6">
         <div></div>

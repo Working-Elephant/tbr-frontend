@@ -11,9 +11,19 @@ const Login = () => {
       >
         <div>
           <div className="w-2/3 mx-auto flex flex-col uppercase text-center">
-            <input className="border-.5 border-borderGrey  mb-5 py-2 px-3 text-sm focus:outline-none placeholder:text-sm placeholder:text-dark" placeholder="Email" />
-            <input className="border-.5 border-borderGrey  mb-5 py-2 px-3 text-sm focus:outline-none placeholder:text-sm placeholder:text-dark" placeholder="Password" />
-            <Link to="/forgot-password"><span className="uppercase text-xs underline ">Forgot Password?</span></Link>
+            <input
+              className="border-.5 border-borderGrey  mb-5 py-2 px-3 text-sm focus:outline-none placeholder:text-sm placeholder:text-dark"
+              placeholder="Email"
+            />
+            <input
+              className="border-.5 border-borderGrey  mb-5 py-2 px-3 text-sm focus:outline-none placeholder:text-sm placeholder:text-dark"
+              placeholder="Password"
+            />
+            <Link to="/forgot-password">
+              <span className="uppercase text-xs underline ">
+                Forgot Password?
+              </span>
+            </Link>
           </div>
           <div className="my-8 text-center">
             <button className=" bg-yellow py-4 px-10 rounded text-sm">

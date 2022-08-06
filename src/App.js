@@ -7,6 +7,11 @@ import SignUp from './pages/auth/SignUp';
 import ForgotPassword from './pages/auth/ForgotPassword';
 import Notfound from './pages/NotFound';
 import Navbar from './components/shared/Navbar';
+import Cart from './pages/shop/Cart';
+import Shipping from './pages/shop/Shipping';
+import Billing from './pages/shop/Billing';
+import Confirmation from './pages/shop/Confirmation';
+
 
 
 
@@ -19,6 +24,10 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<SignUp />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/cart/shipping" element={<Shipping />} />
+        <Route path="/cart/shipping/billing" element={<Billing />} />
+        <Route path="/cart/shipping/billing/confirmation" element={<Confirmation />} />
         <Route path="*" exact={true} element={<Notfound />}/>
       </Routes>
       <Footer/>
