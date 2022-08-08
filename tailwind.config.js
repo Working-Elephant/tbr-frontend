@@ -5,12 +5,14 @@ module.exports = {
     colors: {
       black: "#101011",
       dark: "#2B2B2B",
-      muted: "#EFEFEF",
-      borderGrey: "#CCCCCC",
-      lightGrey:"#E8E8E8",
+      textMuted: "#212B36",
+      inputBgGrey: "#FEFCFC",
+      borderGrey: "#ECECEC",
+      lightGrey: "#E8E8E8",
       grey: "#9CA3AF",
       yellow: "#F9CB40",
       success: "#03B839",
+      blue: "#3B54F5",
       white: "#FFFFFF",
     },
     fontFamily: {

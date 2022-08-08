@@ -11,6 +11,7 @@ import Cart from './pages/shop/Cart';
 import Shipping from './pages/shop/Shipping';
 import Billing from './pages/shop/Billing';
 import Confirmation from './pages/shop/Confirmation';
+import PostAd from './pages/ads/PostAd';
 
 
 
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/cart/shipping" element={<Shipping />} />
         <Route path="/cart/shipping/billing" element={<Billing />} />
         <Route path="/cart/shipping/billing/confirmation" element={<Confirmation />} />
+        <Route path="/ad/post-ad" element={<PostAd />} />
         <Route path="*" exact={true} element={<Notfound />}/>
       </Routes>
       <Footer/>
