@@ -12,6 +12,7 @@ import Shipping from './pages/shop/Shipping';
 import Billing from './pages/shop/Billing';
 import Confirmation from './pages/shop/Confirmation';
 import PostAd from './pages/ads/PostAd';
+import Dashboard from './pages/Dashboard';
 
 
 
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<SignUp />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/cart/shipping" element={<Shipping />} />
         <Route path="/cart/shipping/billing" element={<Billing />} />

@@ -40,9 +40,9 @@ const Navbar = () => {
         </ul>
 
         <div className="hidden md:block text-sm  md:text-xs xl:text-sm">
-          <div className="bg-muted flex items-center justify-between py-3 px-5 rounded-xl ">
+          <div className="bg-lightGrey flex items-center justify-between py-3 px-5 rounded-xl ">
             <input
-              className="bg-muted w-100 focus:outline-none"
+              className="bg-lightGrey w-100 focus:outline-none"
               placeholder="Search"
             />
             <i className="text-grey">
@@ -57,7 +57,7 @@ const Navbar = () => {
 
         {/*  mobile menu icon */}
         <div className="md:hidden text-end ">
-          <button class="outline-none p-2 rounded ">
+          <button className="outline-none p-2 rounded ">
             {mobileMenu ? (
               <i className="text-xl" onClick={toggleMenu}>
                 <MdClose />

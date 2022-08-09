@@ -3,12 +3,15 @@ import Header from "../components/shared/Header";
 import BullyNewsCard from "../components/home/BullyNewsCard";
 import IndicatorIcon from "../components/home/IndicatorIcon";
 import { HiUser } from "react-icons/hi";
+import { IoIosArrowForward } from "react-icons/io";
 import User from "../assets/images/user.svg";
 import AdImage from "../assets/images/header1.jpeg";
 import Doggo1 from "../assets/images/trophy.jpeg";
 import Doggo2 from "../assets/images/peopleTalking.jpeg";
 import Doggo3 from "../assets/images/doggo3.jpeg";
 import Carousel from "react-material-ui-carousel";
+import FeaturedAdsCard from "../components/home/FeaturedAdsCard";
+import { featuredAdsData } from "../mockData/mockData";
 
 const Home = () => {
   const carouselImages = [
@@ -34,6 +37,33 @@ const Home = () => {
   return (
     <div className="bg-white">
       <Header />
+      {/* Featured Sellers section */}
+      <section className="py-5">
+        <div className="w-9/12 mx-auto">
+        <div className="flex items-center justify-between mb-3">
+          <div>
+            <h3 className="text-2xl">Featured Sellers</h3>
+            <p className="text-grey">Shop our featured Sellers</p>
+          </div>
+          <div className="text-blue flex items-center">
+            <span className="">View More</span>
+            <i className="ml-1 text-xl">
+              <IoIosArrowForward />
+            </i>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 gap-3 lg:grid-cols-3   ">
+              {featuredAdsData.map((item, i) => {
+                return <FeaturedAdsCard key={i} item={item} />;
+              })}
+            </div>
+        </div>
+        <div className="mt-10 text-center">
+              <button className="py-3 px-5  bg-black text-white text-sm rounded-md">
+                Load More Featured Ads
+              </button>
+            </div>
+      </section>
       {/* how it works section */}
       <section className="my-10">
         <div className="w-5/6  mx-auto text-center">
@@ -125,7 +155,6 @@ const Home = () => {
               activeIndicatorProps="opacity-20 bg-black text-dark "
               interval={6000}
             >
-             
               {carouselImages.map((item, i) => (
                 <BullyNewsCard
                   key={i}
