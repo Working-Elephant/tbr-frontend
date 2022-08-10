@@ -1,0 +1,65 @@
+import React from "react";
+import { BsPlusCircle, BsStar, BsHeart } from "react-icons/bs";
+import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
+import { GoPrimitiveDot } from "react-icons/go";
+import UserAvatar from "../shared/UserAvatar";
+
+const SellerInfo = (props) => {
+  return (
+    <div className="bg-[#FEFFD9] p-4">
+      <div className="flex items-center">
+        <div className="w-auto mr-3 ">
+          <UserAvatar image={props.image} />
+        </div>
+        <div className=" w-auto flex flex-col justify-between ">
+          <div className="flex items-center justify-between">
+            <span className="text-sm">{props.name}</span>
+            <div className="flex items-center text-sm bg-white rounded p-1">
+              <i
+                className={`${
+                  props.status === "online" ? "text-success" : "text-yellow"
+                }`}
+              >
+                <GoPrimitiveDot />
+              </i>
+              <span
+                className={`text-success uppercase text-xs px-1 ${
+                  props.status === "online" ? "text-success" : "text-yellow"
+                }`}
+              >
+                {props.status}
+              </span>
+              <i className="text-dark">
+                <IoIosArrowDown />
+              </i>
+            </div>
+          </div>
+          <div className="flex text-xs ">
+            <i className="mr-2">
+              <BsStar />
+            </i>
+            <span> {props.rating}</span>
+          </div>
+          <p className="text-xs text-blue ">View Full Ratings and Reviews</p>
+        </div>
+      </div>
+      {/* <div className="grid grid-cols-1 md:grid-cols-2 md:gap-3 lg:grid-cols-1"> */}
+        <div className="my-3">
+          <button className="p-3 w-full bg-black text-white text-sm rounded-md flex items-center justify-center">
+            {props.blackBtnIcon ? (
+              <i className="mx-3">{props.blackBtnIcon}</i>
+            ) : null}{" "}
+            {props.blackBtnText}
+          </button>
+        </div>
+        <div className="my-3">
+          <button className="p-3 w-full bg-white text-dark text-sm rounded-md">
+            {props.whiteBtnText}
+          </button>
+        </div>
+      {/* </div> */}
+    </div>
+  );
+};
+
+export default SellerInfo;

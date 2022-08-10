@@ -4,7 +4,7 @@ import { FiChevronRight } from 'react-icons/fi'
 
 const BreadCrumb = () => {
   return (
-    <nav className="bg-grey-light rounded-md w-full">
+    <nav className="bg-grey-light rounded-md w-full text-xs text-grey">
     <ol className="flex items-center mx-5">
       <li className="mr-2">
         <Link to="/" className="text-blue-600 hover:text-blue-700">

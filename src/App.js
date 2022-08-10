@@ -12,6 +12,7 @@ import Shipping from './pages/shop/Shipping';
 import Billing from './pages/shop/Billing';
 import Confirmation from './pages/shop/Confirmation';
 import PostAd from './pages/ads/PostAd';
+import ViewAdDetails from './pages/ads/ViewAdDetails';
 import Dashboard from './pages/Dashboard';
 
 
@@ -32,6 +33,7 @@ const App = () => {
         <Route path="/cart/shipping/billing" element={<Billing />} />
         <Route path="/cart/shipping/billing/confirmation" element={<Confirmation />} />
         <Route path="/ad/post-ad" element={<PostAd />} />
+        <Route path="/ad/view/:id" element={<ViewAdDetails />} />
         <Route path="*" exact={true} element={<Notfound />}/>
       </Routes>
       <Footer/>
