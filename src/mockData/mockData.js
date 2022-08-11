@@ -9,9 +9,6 @@
  import AdDoggo5 from '../assets/images/AdDoggo5@2x.jpg'
  import Trophy from '../assets/images/trophy.jpeg'
  import People from '../assets/images/peopleTalking.jpeg'
-
-
-
  import janeAvatar from '../assets/images/avatar1.jpeg';
 
 export const CartData = [
