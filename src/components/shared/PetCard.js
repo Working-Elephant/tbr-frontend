@@ -4,12 +4,12 @@ import { MdLocationOn } from "react-icons/md";
 const PetCard = ({ item }) => {
   const { name, location, price, image, seller, sellerAvatar } = item;
   return (
-    <div className="p-2 flex flex-col">
+    <div className="p-2 flex flex-col w-full">
       <div className="w-full">
         <img src={image} alt="" className="w-full h-36 rounded-2xl" />
       </div>
       <div className="flex items-center justify-between mt-3">
-        <div className="text-xs">
+        <div className="text-xs mr-8">
           <p className="mb-1">{name}</p>
           <div className="flex items-center text-grey ">
             <i className="mr-2">
@@ -18,7 +18,7 @@ const PetCard = ({ item }) => {
             <p>{location}</p>
           </div>
           {seller ? (
-            <div>
+            <div className="flex text-grey">
               {sellerAvatar ? (
                 <img
                   src={sellerAvatar}

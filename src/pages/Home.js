@@ -2,67 +2,161 @@ import React from "react";
 import Header from "../components/shared/Header";
 import BullyNewsCard from "../components/home/BullyNewsCard";
 import IndicatorIcon from "../components/home/IndicatorIcon";
+import ImageContainer from "../components/shared/ImageContainer";
+import TestimonialCard from "../components/home/TestimonialCard";
 import { HiUser } from "react-icons/hi";
 import { IoIosArrowForward } from "react-icons/io";
 import User from "../assets/images/user.svg";
-import AdImage from "../assets/images/header1.jpeg";
+import AdImage from "../assets/images/dog_banner.jpeg";
 import Doggo1 from "../assets/images/trophy.jpeg";
 import Doggo2 from "../assets/images/peopleTalking.jpeg";
 import Doggo3 from "../assets/images/doggo3.jpeg";
-import Carousel from "react-material-ui-carousel";
+// import Carousel from "react-material-ui-carousel";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 import FeaturedAdsCard from "../components/home/FeaturedAdsCard";
-import { featuredAdsData } from "../mockData/mockData";
+import {
+  featuredAdsData,
+  categoriesData,
+  bullyNewsData,
+  testimonialData,
+} from "../mockData/mockData";
 
 const Home = () => {
-  const carouselImages = [
-    {
-      title: "Our Latest Shows",
-      text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd",
-      image: Doggo1,
-      link: "",
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1023 },
+      items: 3,
+      partialVisibilityGutter: 40, // this is needed to tell the amount of px that should be visible.
     },
-    {
-      title: "Bully News",
-      text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd",
-      image: Doggo2,
-      link: "",
+    tablet: {
+      breakpoint: { max: 1023, min: 700 },
+      items: 2,
+      partialVisibilityGutter: 50, // this is needed to tell the amount of px that should be visible.
     },
-    {
-      title: "More Bully News",
-      text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd",
-      image: Doggo3,
-      link: "",
+    mobile: {
+      breakpoint: { max: 700, min: 0 },
+      items: 1,
+      partialVisibilityGutter: 50, // this is needed to tell the amount of px that should be visible.
     },
-  ];
+  };
+  const newsResponsive = {
+    largeDesktop: {
+      breakpoint: { max: 3000, min: 1439 },
+      items: 1,
+      partialVisibilityGutter: 500,
+    },
+    desktop: {
+      breakpoint: { max: 1439, min: 1023 },
+      items: 1,
+      partialVisibilityGutter: 300, // this is needed to tell the amount of px that should be visible.
+    },
+    tablet: {
+      breakpoint: { max: 1023, min: 700 },
+      items: 1,
+      partialVisibilityGutter: 20, // this is needed to tell the amount of px that should be visible.
+    },
+    mobile: {
+      breakpoint: { max: 700, min: 0 },
+      items: 1,
+      partialVisibilityGutter: 0, // this is needed to tell the amount of px that should be visible.
+    },
+  };
+  const testimonialResponsive = {
+    largeDesktop: {
+      breakpoint: { max: 3000, min: 1439 },
+      items: 2,
+      partialVisibilityGutter: 50,
+    },
+    desktop: {
+      breakpoint: { max: 1439, min: 1023 },
+      items: 2,
+      partialVisibilityGutter: 30, // this is needed to tell the amount of px that should be visible.
+    },
+    tablet: {
+      breakpoint: { max: 1023, min: 700 },
+      items: 1,
+      partialVisibilityGutter: 20, // this is needed to tell the amount of px that should be visible.
+    },
+    mobile: {
+      breakpoint: { max: 700, min: 0 },
+      items: 1,
+      partialVisibilityGutter: 0, // this is needed to tell the amount of px that should be visible.
+    },
+  };
   return (
     <div className="bg-white">
       <Header />
-      {/* Featured Sellers section */}
-      <section className="py-5">
-        <div className="w-9/12 mx-auto">
-        <div className="flex items-center justify-between mb-3">
-          <div>
-            <h3 className="text-2xl">Featured Sellers</h3>
-            <p className="text-grey">Shop our featured Sellers</p>
+      {/* Popular categories */}
+      <section className="p-5 ">
+        <div className="md:w-10/12   mx-auto">
+          <div className="mb-3">
+            <h3 className="text-2xl">Popular Categories</h3>
+            <p className="text-grey">Our Most Popular Categories</p>
           </div>
-          <div className="text-blue flex items-center">
-            <span className="">View More</span>
-            <i className="ml-1 text-xl">
-              <IoIosArrowForward />
-            </i>
+          <div className="relative ">
+            <Carousel
+              swipeable={true}
+              draggable={true}
+              showDots
+              customDot={<IndicatorIcon data={categoriesData} />}
+              arrows={false}
+              responsive={responsive}
+              partialVisible={true}
+              infinite={true}
+              focusOnSelect={true}
+              autoPlaySpeed={1000}
+              keyBoardControl={true}
+              customTransition="all .5"
+              transitionDuration={500}
+              containerClass="pb-10 "
+              sliderClass=""
+              dotListClass=""
+              itemClass="carousel-item-padding-40-px"
+              renderDotsOutside={true}
+            >
+              {categoriesData.map((item, i) => (
+                <div className="mx-4 rounded-[60px] relative">
+                  <ImageContainer
+                    key={item.id}
+                    image={item.img}
+                    rounded="rounded-[3rem]"
+                  />
+                  <p className="absolute bottom-4 left-8 uppercase text-white text-xl">
+                    {item.name}
+                  </p>
+                </div>
+              ))}
+            </Carousel>
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-3 lg:grid-cols-3   ">
-              {featuredAdsData.map((item, i) => {
-                return <FeaturedAdsCard key={i} item={item} />;
-              })}
+      </section>
+      {/* Featured Sellers section */}
+      <section className="p-5 ">
+        <div className=" md:w-10/12 lg:w-8/12  mx-auto">
+          <div className="flex items-center justify-between mb-3">
+            <div>
+              <h3 className="text-2xl">Featured Sellers</h3>
+              <p className="text-grey">Shop our featured Sellers</p>
             </div>
+            <div className="text-blue flex items-center">
+              <span className="">View More</span>
+              <i className="ml-1 text-xl">
+                <IoIosArrowForward />
+              </i>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-3 lg:grid-cols-3   ">
+            {featuredAdsData.map((item, i) => {
+              return <FeaturedAdsCard key={i} item={item} />;
+            })}
+          </div>
         </div>
         <div className="mt-10 text-center">
-              <button className="py-3 px-5  bg-black text-white text-sm rounded-md">
-                Load More Featured Ads
-              </button>
-            </div>
+          <button className="py-3 px-5  bg-black text-white text-sm rounded-md">
+            Load More Featured Ads
+          </button>
+        </div>
       </section>
       {/* how it works section */}
       <section className="my-10">
@@ -138,10 +232,67 @@ const Home = () => {
         </div>
       </section>
       {/* dog show preview section */}
-      <section></section>
+      <section className="p-5">
+        <div className="w-full md:w-5/6  mx-auto">
+          <div className="grid grid-col-1 lg:grid-cols-2 gap-3">
+            <div className="col-span-1">
+              <h2 className="text-xl  md:text-2xl lg:text-3xl">
+                A preview of Our Dog Shows
+              </h2>
+              <p className="text-textMuted my-4 text-sm md:text-lg">
+                Interested in watching our dogs shows? Go right ahead to our
+                Bully News. You can watch our pervious dog shows or live stream
+                our events as they happen. With membership access you remain in
+                the loop with our company's updates and changes.
+              </p>
+              {/* <div className="">
+             
+                <Carousel
+                  swipeable={true}
+                  draggable={true}
+                  showDots={false}
+                  arrows={false}
+                  responsive={responsive}
+                  partialVisible={true}
+                  infinite={false}
+                  // focusOnSelect={true}
+                  autoPlay={false}
+                  keyBoardControl={true}
+                  customTransition="all .5"
+                  transitionDuration={500}
+                  containerClass="bg-grey py-2 max-h-24"
+                  sliderClass=""
+                  dotListClass=""
+                  itemClass=""
+                >
+                  {categoriesData.map((item, i) => (
+                    <div className="mx-1 ">
+                      <ImageContainer
+                        key={item.id}
+                        image={item.img}
+                        fullHeight={false}
+                      />
+                    </div>
+                  ))}
+                </Carousel>
+               
+              </div> */}
+
+              <div className="my-5">
+                <button className="bg-yellow py-3 w-1/2 text-dark ">
+                  Learn More
+                </button>
+              </div>
+            </div>
+            <div className="col-span-1">
+              
+            </div>
+          </div>
+        </div>
+      </section>
       {/* bully new section */}
-      <section className="py-10">
-        <div className="w-5/6  mx-auto text-center">
+      <section className="py-10 px-5">
+        <div className=" md:w-5/6  mx-auto text-center">
           <div className="mb-8">
             <h6 className=" text-lg md:text-xl my-1">Bully News</h6>
             <p className=" py-0 text-grey">
@@ -150,31 +301,86 @@ const Home = () => {
           </div>
           <div>
             <Carousel
-              IndicatorIcon={<IndicatorIcon />}
-              indicatorContainerProps=" bg-yellow flex justify-end"
-              activeIndicatorProps="opacity-20 bg-black text-dark "
-              interval={6000}
+              swipeable={true}
+              draggable={true}
+              showDots={true}
+              customDot={<IndicatorIcon data={categoriesData} />}
+              arrows={false}
+              responsive={newsResponsive}
+              partialVisbile={true}
+              infinite={true}
+              focusOnSelect={true}
+              // autoPlaySpeed={1000}
+              autoPlay={false}
+              keyBoardControl={true}
+              customTransition="all .5"
+              transitionDuration={500}
+              containerClass="pb-10"
+              dotListClass="react-multi-carousel-dot-list"
+              itemClass="carousel-item-padding-40-px"
+              // renderDotsOutside={true}
             >
-              {carouselImages.map((item, i) => (
-                <BullyNewsCard
-                  key={i}
-                  item={item}
-                  title={item.title}
-                  image={item.image}
-                  text={item.text}
-                />
+              {bullyNewsData.map((item, i) => (
+                <div className="pr-5">
+                  <BullyNewsCard key={i} item={item} />
+                </div>
               ))}
             </Carousel>
           </div>
         </div>
       </section>
       {/* testimonial section */}
-      <section className="py-6">
-        <div></div>
+      <section className="py-6 lg:py-12 px-5">
+        <div>
+          <div className="mb-10 pl-12">
+            <Carousel
+              swipeable={true}
+              draggable={true}
+              arrows={false}
+              responsive={testimonialResponsive}
+              partialVisbile={true}
+              infinite={false}
+              autoPlay={false}
+              keyBoardControl={true}
+              customTransition="all .5"
+              transitionDuration={500}
+              containerClass="mb-5"
+              itemClass="carousel-item-padding-40-px"
+            >
+              {testimonialData.slice(0, 4).map((item, i) => (
+                <div className=" pl-4 md:pl-6 lg:pl-12">
+                  <TestimonialCard key={i} item={item} />
+                </div>
+              ))}
+            </Carousel>
+          </div>
+          <div className="">
+            <Carousel
+              swipeable={true}
+              draggable={true}
+              arrows={false}
+              responsive={testimonialResponsive}
+              partialVisbile={true}
+              infinite={false}
+              autoPlay={false}
+              keyBoardControl={true}
+              customTransition="all .5"
+              transitionDuration={500}
+              containerClass="mb-5"
+              itemClass="carousel-item-padding-40-px"
+            >
+              {testimonialData.slice(4, 8).map((item, i) => (
+                <div className="pr-6">
+                  <TestimonialCard key={i} item={item} />
+                </div>
+              ))}
+            </Carousel>
+          </div>
+        </div>
       </section>
       {/* Newsletter section */}
-      <section className="py-12 ">
-        <div className="w-5/6 md:w-4/6 mx-auto text-center">
+      <section className="py-4 px-4 lg:py-12 ">
+        <div className=" md:w-5/6 lg:4/6 mx-auto text-center">
           <h4 className="font-bold text-2xl md:text-3xl my-4">
             Subscribe to Our Newsletter
           </h4>

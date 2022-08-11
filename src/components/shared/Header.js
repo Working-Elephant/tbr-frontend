@@ -1,19 +1,21 @@
 import React from "react";
-import HeaderImage from "../../assets/images/header1.jpeg";
+import HeaderImage from "../../assets/images/dog_banner2.jpeg";
 import { FiSearch } from "react-icons/fi";
 import { FaSearch } from "react-icons/fa";
+import {IoPawOutline,IoLockClosedOutline} from "react-icons/io5"
 
 const Header = () => {
   return (
+    <div className=" h-screen ">
     <div
-      className="w-full h-full  bg-no-repeat bg-cover text-center py-4"
+      className="w-full h-5/6  bg-no-repeat bg-cover text-center py-3 flex flex-col justify-end"
       style={{ backgroundImage: `url('${HeaderImage}')` }}
     >
-      <div className="mt-15">
-      <h2 className="text-2xl md:text-3xl font-bold text-yellow">
+      <div className=" ">
+      <h2 className="text-xl md:text-3xl font-bold text-yellow">
         The Texas Bully Registry
       </h2>
-      <h3 className="text-3xl  md:text-4xl font-bold text-white">
+      <h3 className="text-2xl  md:text-4xl font-bold text-white">
         Bully clasifies at your Paws
       </h3>
       <div className="w-5/6 lg:w-4/6 mx-auto my-4">
@@ -43,7 +45,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <div className="w-5/6 mx-auto my-4">
+      <div className="px-4 lg:w-5/6 mx-auto my-4 ">
         <ul className=" grid grid-cols-2 gap-2   lg:gap-4 lg:grid-cols-4">
           <li className="mx-4 mb-4 ">
             <div className="flex items-center">
@@ -58,8 +60,8 @@ const Header = () => {
           </li>
           <li className="mx-4 mb-4">
             <div className="flex items-center">
-              <div className="bg-white text-dark rounded-3xl p-4">
-                <FaSearch />
+              <div className="bg-white text-dark rounded-3xl p-2">
+               <i className="text-3xl"> <IoPawOutline /></i>
               </div>
               <div className="flex flex-col mx-2 text-start text-white">
                 <p className="text-sm font-semibold mb-2">Pedigree Certificates</p>
@@ -69,8 +71,8 @@ const Header = () => {
           </li>
           <li className="mx-4 mb-4">
             <div className="flex items-center">
-              <div className="bg-white text-dark rounded-3xl p-4">
-                <FaSearch />
+            <div className="bg-white text-dark rounded-3xl p-2">
+               <i className="text-3xl"> <IoLockClosedOutline /></i>
               </div>
               <div className="flex flex-col mx-2 text-start text-white">
                 <p className="text-sm font-semibold mb-2">Secure Payment</p>
@@ -92,7 +94,7 @@ const Header = () => {
         </ul>
       </div>
       </div>
-    </div>
+    </div></div>
   );
 };
 

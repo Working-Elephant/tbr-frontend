@@ -1,11 +1,13 @@
 import React, { useRef,useState } from "react";
 import SellerInfo from "../../components/ads/SellerInfo";
 import BreadCrumb from "../../components/shared/BreadCrumb";
+import SimilarProducts from "../../components/ads/SimilarProducts";
+import RecentlyViewed from "../../components/ads/RecentlyViewed";
 import Doggo2 from "../../assets/images/doggo2.jpeg";
 import Doggo3 from "../../assets/images/doggo3.jpeg";
 import Doggo1 from "../../assets/images/doggo1.jpeg";
 import SellerAvatar1 from "../../assets/images/avatar1.jpeg";
-import Carousel from "react-material-ui-carousel";
+import { carouselImages } from "../../mockData/mockData";
 import {
   BsChatText,
   BsPlus,
@@ -30,16 +32,16 @@ const ViewAdDetails = () => {
       }
     }, speed);
   };
-  const carouselImages = [
-    { id: 1, img: Doggo2 },
-    { id: 2, img: Doggo3 },
-    { id: 3, img: Doggo1 },
-    { id: 4, img: Doggo2 },
-    { id: 5, img: Doggo3 },
-    { id: 6, img: Doggo2 },
-    { id: 7, img: Doggo1 },
-    { id: 8, img: Doggo3 },
-  ];
+//   const carouselImages = [
+//     { id: 1, img: Doggo2 },
+//     { id: 2, img: Doggo3 },
+//     { id: 3, img: Doggo1 },
+//     { id: 4, img: Doggo2 },
+//     { id: 5, img: Doggo3 },
+//     { id: 6, img: Doggo2 },
+//     { id: 7, img: Doggo1 },
+//     { id: 8, img: Doggo3 },
+//   ];
 
   const setImage=(i)=>{
     setImageInView(i)
@@ -49,11 +51,11 @@ const ViewAdDetails = () => {
       <div>
         <BreadCrumb />
       </div>
-      <div className="grid grid-cols-12 gap-4">
-        <div className="md:col-span-7 lg:col-span-8 xl:col-span-9  px-4">
+      <div className="grid grid-cols-12 gap-y-8 mb-6">
+        <div className=" col-span-12  md:col-span-7 lg:col-span-8 xl:col-span-9  px-4">
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-            <div className="  px-2">
-                <div className="w-full h-5/6 mb-4 relative">
+            <div className=" flex flex-col px-2">
+                <div className="w-full mb-4 relative">
                   <div className="absolute top-4 right-3 px-2 py-0.5 bg-black opacity-50 text-white text-sm rounded">
                     <div className="flex items-center">
                       <i className="mr-2">
@@ -76,8 +78,7 @@ const ViewAdDetails = () => {
                     </div>
                   </div>
                 </div>
-              
-              <div ref={thumbnailsContainer} className="flex items-center h-1/6 ">
+                <div ref={thumbnailsContainer} className="flex items-center  ">
                 <i
                   className=" p-1 border border-dark rounded-full bg-text-grey text-lg"
                   onClick={() =>
@@ -110,16 +111,7 @@ const ViewAdDetails = () => {
                 >
                   <BsArrowRightShort />
                 </i>
-              </div>
-              {/* <div className='h-20 w-full'>
-                            <Carousel
-                             IndicatorIcon={<img src={} />}
-                            >
-                                {carouselImages.map((item, i)=> {
-                                    return (<img key={i} src={item.img} alt=""/>)
-                                })}
-                            </Carousel>
-                        </div> */}
+                </div>
             </div>
             <div className=" px-2 text-xs">
               <p className="">Cane Corso</p>
@@ -192,7 +184,7 @@ const ViewAdDetails = () => {
             </div>
           </div>
         </div>
-        <div className="md:col-span-5 lg:col-span-4 xl:col-span-3 ">
+        <div className="col-span-12  md:col-span-5 lg:col-span-4 xl:col-span-3 ">
           <SellerInfo
             image={SellerAvatar1}
             name="Max Bill"
@@ -203,6 +195,12 @@ const ViewAdDetails = () => {
             whiteBtnText="View Merchant Profile"
           />
         </div>
+      </div>
+      <div className=" my-6">
+        <SimilarProducts/>
+      </div>
+      <div>
+        <RecentlyViewed/>
       </div>
     </div>
   );
