@@ -303,3 +303,5 @@ export  const carouselImages = [
         testimony:'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita.'
     },
   ]
+  export const colors = ["#000000", "#F0B454", "#DBDBDB", "#574106", "#FFA501"];
+ export  const categories=['Pets', `'Pet's Toys`, 'Equipments','Electronics', 'Food', 'Colars', 'Soap']

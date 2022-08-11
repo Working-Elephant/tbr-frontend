@@ -14,6 +14,8 @@ import Confirmation from './pages/shop/Confirmation';
 import PostAd from './pages/ads/PostAd';
 import ViewAdDetails from './pages/ads/ViewAdDetails';
 import Dashboard from './pages/Dashboard';
+import Pets from './pages/Pets';
+import Search from './pages/Search';
 
 
 
@@ -28,6 +30,8 @@ const App = () => {
         <Route path="/register" element={<SignUp />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/pets" element={<Pets />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/cart/shipping" element={<Shipping />} />
         <Route path="/cart/shipping/billing" element={<Billing />} />
