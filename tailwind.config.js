@@ -19,7 +19,7 @@ module.exports = {
       sans: ["Poppins", "sans-serif"],
     },
     fontSize: {
-      xxs: ".5rem",
+      xxs: ".6rem",
       xs: ".75rem",
       sm: ".875rem",
       tiny: ".875rem",
