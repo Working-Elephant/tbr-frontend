@@ -1,7 +1,8 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
 
-const Pagination = ({ total, handlePageClick }) => {
+const Pagination = ({ total, paginate , perPage}) => {
+
   return (
     <div>
       <ReactPaginate
@@ -12,8 +13,8 @@ const Pagination = ({ total, handlePageClick }) => {
         nextClassName="bg-yellow disabled:bg-borderGrey py-1 px-3 text-lg ml-2 text-white shadow-[0px_3px_8px_#F9E78C]"
         breakLabel="..."
         nextLabel=" >"
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={3}
+        onPageChange={paginate}
+        pageRangeDisplayed={perPage}
         pageCount={total}
         previousLabel="< "
         renderOnZeroPageCount={null}

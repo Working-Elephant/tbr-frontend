@@ -10,7 +10,7 @@ const Login = () => {
         text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam"
       >
         <div>
-          <div className="w-2/3 mx-auto flex flex-col uppercase text-center">
+          <div className="w-full lg:w-2/3 mx-auto flex flex-col uppercase text-center">
             <input
               className="border-.5 border-borderGrey  mb-5 py-2 px-3 text-sm focus:outline-none placeholder:text-sm placeholder:text-dark"
               placeholder="Email"

@@ -3,7 +3,7 @@ import BreadCrumb from "../components/shared/BreadCrumb";
 import Pagination from "../components/shared/Pagination";
 import { BsDash } from "react-icons/bs";
 import FeaturedAdsCard from "../components/home/FeaturedAdsCard";
-import { featuredAdsData, colors, categories } from "../mockData/mockData";
+import { featuredAdsData, filterColors, categories } from "../mockData/mockData";
 import { FaCheck } from "react-icons/fa";
 
 const Search = () => {
@@ -109,7 +109,7 @@ const Search = () => {
               </i>
             </div>
             <ul className="list-none my-4 text-xs flex">
-              {colors.map((color, i) => {
+              {filterColors.map((color, i) => {
                 return (
                   <li key={i} className="m-1">
                     <button
