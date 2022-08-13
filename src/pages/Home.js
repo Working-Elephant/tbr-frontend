@@ -147,7 +147,7 @@ const Home = () => {
             </div>
           </div>
           <div className="grid grid-cols-2 gap-3 lg:grid-cols-3   ">
-            {featuredAdsData.map((item, i) => {
+            {featuredAdsData.slice(0,9).map((item, i) => {
               return <FeaturedAdsCard key={i} item={item} />;
             })}
           </div>

@@ -181,6 +181,33 @@ export const dashboardMenu = [
         seller: 'Jane Doe',
         sellerAvatar: janeAvatar
     },
+    {
+        id:9,
+        name: "Cane Corso",
+        location: "Brooklyn",
+        image: AdDoggo4,
+        price: 1000,
+        seller: 'Jane Doe',
+        sellerAvatar: janeAvatar
+    },
+    {
+        id:10,
+        name: "Pitbull",
+        location: "Texas",
+        image: Doggo7,
+        price: 1000,
+        seller: 'Jane Doe',
+        sellerAvatar: janeAvatar
+    },
+    {
+        id:11,
+        name: "Cane Corso",
+        location: "New York",
+        image: AdDoggo3,
+        price: 800,
+        seller: 'Jane Doe',
+        sellerAvatar: janeAvatar
+    },
   ]
 
 export  const carouselImages = [

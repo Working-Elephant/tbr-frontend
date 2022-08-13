@@ -17,9 +17,10 @@ const Pets = () => {
   });
   const { prices, colors, gender, age } = filterView;
 
-  const [perPage, setPerPage] = useState(5);
+  const [perPage, setPerPage] = useState(6);
   const [firstIndex, setFirstIndex] = useState(0);
   const [currentData, setCurrentData] = useState([]);
+  const [selected, setSelected]=useState(0)
 
   const total = Math.ceil(featuredAdsData.length / perPage);
 
@@ -29,8 +30,10 @@ const Pets = () => {
   }, [perPage, firstIndex]);
 
   const paginate = (ev) => {
+    console.log(ev.selected,'selected')
     let newOffSet = (ev.selected * perPage) % featuredAdsData.length;
     setFirstIndex(newOffSet);
+    setSelected(ev.selected)
   };
 
   const togglePriceView = () => {
@@ -258,7 +261,7 @@ const Pets = () => {
         </div>
       </div>
       <div className="flex items-center justify-center my-3">
-        <Pagination total={total} perPage={perPage} paginate={paginate} />
+        <Pagination total={total} perPage={perPage} paginate={paginate} selected={selected} />
       </div>
     </div>
   );
