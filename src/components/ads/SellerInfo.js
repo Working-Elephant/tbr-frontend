@@ -1,6 +1,6 @@
 import React from "react";
-import { BsPlusCircle, BsStar, BsHeart } from "react-icons/bs";
-import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
+import {  BsStar } from "react-icons/bs";
+import { IoIosArrowDown } from "react-icons/io";
 import { GoPrimitiveDot } from "react-icons/go";
 import UserAvatar from "../shared/UserAvatar";
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { MdLocationOn } from "react-icons/md";
 import { FiHeart } from "react-icons/fi";
 import { FaCamera } from "react-icons/fa";

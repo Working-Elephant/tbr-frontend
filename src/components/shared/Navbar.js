@@ -26,14 +26,14 @@ const Navbar = ({ home }) => {
         home ? " absolute top-0 text-white" : "border-b-.5 border-b-borderGrey"
       } `}
     >
-      <div className=" md:w-10/12  mx-auto flex justify-between items-center  text-sm  md:text-xs xl:text-sm">
+      <div className=" md:w-10/12  lg:w-11/12 xl:w-10/12  mx-auto flex justify-between items-center  text-sm  md:text-xs xl:text-sm">
         <div className="">
           <Link className="flex items-center  " to="/">
             <img src={Logo} alt="logo" className="w-4/6" />
           </Link>
         </div>
         {/* nav items */}
-        <ul className="hidden lg:flex text-base ">
+        <ul className="hidden lg:flex xl:text-base ">
           <li className="mx-3">
             <Link to="/">Home</Link>
           </li>
@@ -65,7 +65,7 @@ const Navbar = ({ home }) => {
           </div>
         )}
         {/* login and sign up buttons */}
-        <div className=" hidden lg:flex items-center md:text-base">
+        <div className=" hidden lg:flex items-center xl:text-base">
           <span className="mr-5">
             <Link to="/login">Login</Link>
           </span>

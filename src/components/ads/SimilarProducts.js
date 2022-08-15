@@ -1,7 +1,7 @@
 import React from "react";
 import PetCard from "../shared/PetCard";
 import { IoIosArrowForward } from "react-icons/io";
-import { adsData, featuredAdsData } from "../../mockData/mockData";
+import {  featuredAdsData } from "../../mockData/mockData";
 
 const SimilarProducts = () => {
   return (
