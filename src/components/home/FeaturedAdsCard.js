@@ -1,12 +1,19 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { MdLocationOn } from "react-icons/md";
 import { FiHeart } from "react-icons/fi";
 import { FaCamera } from "react-icons/fa";
 
 const FeaturedAdsCard = ({ item }) => {
-  const { name, location, price, image, seller, sellerAvatar } = item;
+  const { name, location, price, image, seller, sellerAvatar,id } = item;
+
+  const navigate = useNavigate();
+
+  const viewAd=(id)=>{
+    navigate(`/ad/view/${id}`)
+  }
   return (
-    <div className="p-2 flex flex-col ">
+    <div className="p-2 flex flex-col cursor-pointer" onClick={()=>viewAd(id)} >
       <div className="w-full relative h-52 bg-cover bg-center bg-no-repeat rounded-2xl"   style={{ backgroundImage: `url('${image}')` }}>
         <i className="text-white text-lg absolute top-4 right-3"> 
           <FiHeart />

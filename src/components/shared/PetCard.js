@@ -1,10 +1,17 @@
 import React from "react";
 import { MdLocationOn } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const PetCard = ({ item }) => {
-  const { name, location, price, image, seller, sellerAvatar } = item;
+  const navigate = useNavigate();
+
+  const viewAd=(id)=>{
+    navigate(`/ad/view/${id}`)
+  }
+
+  const { name, location, price, image, seller, sellerAvatar, id } = item;
   return (
-    <div className="p-2 flex flex-col w-full">
+    <div className="p-2 flex flex-col w-full cursor-pointer" onClick={()=>viewAd(id)} >
       <div className="w-full">
         <img src={image} alt="" className="w-full h-36 rounded-2xl" />
       </div>

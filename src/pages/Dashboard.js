@@ -1,6 +1,6 @@
 import React from "react";
 import PetCard from "../components/shared/PetCard";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 // import UserAvatar from "../components/shared/UserAvatar";
 import { BsPlusCircle, BsHeart } from "react-icons/bs";
 import { IoIosArrowForward } from "react-icons/io";
@@ -30,17 +30,26 @@ const Dashboard = () => {
                 return (
                   <li
                     key={i}
-                    className="bg-[#F6F6F6] px-5 py-3 rounded-lg my-3 flex items-center justify-between"
+                    // className="bg-[#F6F6F6] px-5 py-3 rounded-lg my-3 flex items-center justify-between"
                   >
-                    <div className="flex items-center">
-                      <i className="mr-6 text-dark">
-                        <BsHeart />
+                    <NavLink
+                      to={`${item.link}`}
+                      className={({ isActive }) =>
+                        isActive
+                          ? "bg-yellow  px-5 py-3 rounded-lg my-3 flex items-center justify-between"
+                          : "bg-[#F6F6F6] px-5 py-3 rounded-lg my-3 flex items-center justify-between"
+                      }
+                    >
+                      <div className="flex items-center">
+                        <i className="mr-6 text-dark">
+                          <BsHeart />
+                        </i>
+                        <span>{item.name}</span>
+                      </div>
+                      <i className="text-lg">
+                        <IoIosArrowForward />
                       </i>
-                      <span>{item.name}</span>
-                    </div>
-                    <i className="text-lg">
-                      <IoIosArrowForward />
-                    </i>
+                    </NavLink>{" "}
                   </li>
                 );
               })}

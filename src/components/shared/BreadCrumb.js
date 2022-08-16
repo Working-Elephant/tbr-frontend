@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { FiChevronRight } from 'react-icons/fi'
 
 const BreadCrumb = () => {
@@ -7,9 +7,9 @@ const BreadCrumb = () => {
     <nav className="bg-grey-light rounded-md w-full text-xs text-grey">
     <ol className="flex items-center mx-5">
       <li className="mr-2">
-        <Link to="/" className="text-blue-600 hover:text-blue-700">
+        <NavLink to="/" className="text-blue-600 hover:text-blue-700">
           Home
-        </Link>
+        </NavLink>
       </li>
       <li className="mr-2">
         <span class="text-gray-500 mx-2">
@@ -17,9 +17,9 @@ const BreadCrumb = () => {
         </span>
       </li>
       <li className="mr-2">
-        <Link to="/pets" className="text-blue-600 hover:text-blue-700">
+        <NavLink to="/pets" className="text-blue-600 hover:text-blue-700">
           Library
-        </Link>
+        </NavLink>
       </li>
       <li className="mr-2">
         <span className="text-gray-500 mx-2">

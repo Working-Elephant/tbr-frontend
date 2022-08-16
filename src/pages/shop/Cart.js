@@ -105,14 +105,15 @@ const Cart = () => {
                 &#163;{(data.itemQuantity * data.unitPrice).toLocaleString()}
               </span>
             </div>
-            <div className="my-3 flex items-center justify-end pr-3"><Link to="/cart/shipping">
-              <button className="bg-yellow flex items-center ">
-                
-                <i className="bg-lightGrey py-4 px-4 text-lg">
-                  <FaWallet />
-                </i>
-                <span className="px-7 font-semibold">BUY NOW</span>
-              </button></Link>
+            <div className="my-3 flex items-center justify-end pr-3">
+              <Link to="/cart/shipping">
+                <button className="bg-yellow flex items-center ">
+                  <i className="bg-lightGrey py-4 px-4 text-lg">
+                    <FaWallet />
+                  </i>
+                  <span className="px-7 font-semibold">BUY NOW</span>
+                </button>
+              </Link>
             </div>
           </div>
         ) : null}

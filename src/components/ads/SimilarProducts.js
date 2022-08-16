@@ -2,6 +2,8 @@ import React from "react";
 import PetCard from "../shared/PetCard";
 import { IoIosArrowForward } from "react-icons/io";
 import {  featuredAdsData } from "../../mockData/mockData";
+// import Carousel from "react-multi-carousel";
+// import "react-multi-carousel/lib/styles.css";
 
 const SimilarProducts = () => {
   return (

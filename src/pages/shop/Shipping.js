@@ -115,8 +115,8 @@ const Shipping = () => {
           </div>
         </div>
       </div>
-      <div className="text-end">
-      <button className="bg-yellow py-4 px-15 rounded font-semibold text-sm "><Link to="/cart/shipping/billing">NEXT</Link></button>
+      <div className="text-end"><Link to="/cart/shipping/billing">
+      <button className="bg-yellow py-4 px-15 rounded font-semibold text-sm ">NEXT</button></Link>
       </div>
     </div>
   );

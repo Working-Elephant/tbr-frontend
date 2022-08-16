@@ -1,4 +1,5 @@
 import React, { useRef,useState } from "react";
+import { Link } from "react-router-dom";
 import SellerInfo from "../../components/ads/SellerInfo";
 import BreadCrumb from "../../components/shared/BreadCrumb";
 import SimilarProducts from "../../components/ads/SimilarProducts";
@@ -164,7 +165,8 @@ const ViewAdDetails = () => {
               </div>
               <div className="py-3 border-b border-b-borderGrey">
                 <button className="w-full rounded-md py-2 bg-blue text-white capitalize">
-                  Make payment
+                  <Link to='/cart'>Make payment</Link>
+                  
                 </button>
               </div>
               <div className=" border-b border-b-borderGrey grid grid-cols-3 text-xs text-blue text-center">

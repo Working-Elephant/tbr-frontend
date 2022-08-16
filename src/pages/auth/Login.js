@@ -27,7 +27,8 @@ const Login = () => {
           </div>
           <div className="my-8 text-center">
             <button className=" bg-yellow py-4 px-10 rounded text-sm">
-              SIGN IN
+              <Link to='/dashboard'>
+              SIGN IN</Link>
             </button>
           </div>
         </div>

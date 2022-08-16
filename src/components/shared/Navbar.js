@@ -26,14 +26,14 @@ const Navbar = ({ home }) => {
         home ? " absolute top-0 text-white" : "border-b-.5 border-b-borderGrey"
       } `}
     >
-      <div className=" md:w-10/12  lg:w-11/12 xl:w-10/12  mx-auto flex justify-between items-center  text-sm  md:text-xs xl:text-sm">
+      <div className=" md:w-10/12  lg:w-11/12 xl:w-10/12  mx-auto flex justify-between items-center  text-xs  md:text-sm lg:text-xs xl:text-sm ">
         <div className="">
           <Link className="flex items-center  " to="/">
             <img src={Logo} alt="logo" className="w-4/6" />
           </Link>
         </div>
         {/* nav items */}
-        <ul className="hidden lg:flex xl:text-base ">
+        <ul className="hidden lg:flex  whitespace-nowrap">
           <li className="mx-3">
             <Link to="/">Home</Link>
           </li>
@@ -52,10 +52,10 @@ const Navbar = ({ home }) => {
         </ul>
         {/* Search */}
         {home ? null : (
-          <div className="hidden md:block text-sm  md:text-xs xl:text-sm">
-            <div className="bg-lightGrey flex items-center justify-between py-3 px-5 rounded-xl ">
+          <div className="hidden px-2 md:block text-xs  xl:text-sm">
+            <div className="bg-lightGrey w-full flex items-center justify-between py-3 px-5 rounded-xl ">
               <input
-                className="bg-lightGrey w-100 focus:outline-none"
+                className="bg-lightGrey w-5/6 focus:outline-none"
                 placeholder="Search"
               />
               <i className="text-grey">
@@ -65,7 +65,7 @@ const Navbar = ({ home }) => {
           </div>
         )}
         {/* login and sign up buttons */}
-        <div className=" hidden lg:flex items-center xl:text-base">
+        <div className=" hidden lg:flex items-center whitespace-nowrap">
           <span className="mr-5">
             <Link to="/login">Login</Link>
           </span>
