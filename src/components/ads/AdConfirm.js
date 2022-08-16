@@ -1,5 +1,6 @@
 import React from "react";
 import { FaCheck } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 const AdConfirm = () => {
   return (
@@ -11,7 +12,7 @@ const AdConfirm = () => {
         <h5 className="my-2 font-semibold">Completed</h5>
         <p className="my-2">Your Ad has been submitted for review</p>
         <div className="text-center my-5">
-      <button className="bg-yellow py-4 px-15 rounded font-semibold text-sm ">FINISH</button>
+      <button className="bg-yellow py-4 px-15 rounded font-semibold text-sm "><Link to="/dashboard"> FINISH</Link></button>
       </div>
       </div>
     </div>

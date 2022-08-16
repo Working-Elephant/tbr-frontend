@@ -4,8 +4,9 @@ import BreadCrumb from "../components/shared/BreadCrumb";
 import Pagination from "../components/shared/Pagination";
 import { BsDash } from "react-icons/bs";
 import FeaturedAdsCard from "../components/home/FeaturedAdsCard";
-import { FaCheck } from "react-icons/fa";
-// import CustomCheckbox from "../components/shared/CustomCheckbox";
+// import { FaCheck } from "react-icons/fa";
+import CustomCheckbox from "../components/shared/CustomCheckbox";
+import CustomColorFilter from "../components/shared/CustomColorFilter";
 import { filterColors, featuredAdsData } from "../mockData/mockData";
 
 const Pets = () => {
@@ -17,7 +18,7 @@ const Pets = () => {
   });
   const { prices, colors, gender, age } = filterView;
 
-  const [perPage, setPerPage] = useState(6);
+  const [perPage] = useState(6);
   const [firstIndex, setFirstIndex] = useState(0);
   const [currentData, setCurrentData] = useState([]);
   const [selected, setSelected]=useState(0)
@@ -76,7 +77,7 @@ const Pets = () => {
       <div className="p-5  w-full lg:w-11/12 xl:w-10/12 mx-auto  lg:grid lg:grid-cols-12 lg:gap-6">
         <div className="hidden lg:block lg:col-span-2">
           <div className="mb-3">
-            <div className="flex items-center justify-between border-b border-b-borderGrey">
+            <div className="flex items-center justify-between border-b border-b-borderGrey text-[#464646]">
               <h6 className="font-semibold  ">PRICES</h6>
               <i className="text-xs" onClick={togglePriceView}>
                 <BsDash />
@@ -86,56 +87,66 @@ const Pets = () => {
               <ul className="list-none my-4 text-xs">
                 <li className="mb-3">
                   <div className="flex items-center ">
-                    <input
+                    {/* <input
                       className="   mr-2 rounded  border-.5 border-borderGrey  checked:bg-yellow  focus:outline-none "
                       type="checkbox"
-                    />
-                    {/* <CustomCheckbox/> */}
+                    /> */}<div className="pr-2">
+                    <CustomCheckbox/></div>
                     <span>Under $50</span>
                   </div>
                 </li>
                 <li className="mb-3">
                   <div className="flex items-center ">
-                    <input
+                    {/* <input
                       className=" p-1  mr-2 rounded  border border-borderGrey   focus:outline-none "
                       type="checkbox"
-                    />
+                    /> */}
+                    <div className="pr-2">
+                    <CustomCheckbox/></div>
                     <span> $50 - $100</span>
                   </div>
                 </li>
                 <li className="mb-3">
                   <div className="flex items-center ">
-                    <input
+                    {/* <input
                       className=" p-1  mr-2 rounded  border border-borderGrey   focus:outline-none "
                       type="checkbox"
-                    />
+                    /> */}
+                    <div className="pr-2">
+                    <CustomCheckbox/></div>
                     <span> $100 - $200</span>
                   </div>
                 </li>
                 <li className="mb-3">
                   <div className="flex items-center ">
-                    <input
+                    {/* <input
                       className=" p-1  mr-2 rounded  border border-borderGrey   focus:outline-none "
                       type="checkbox"
-                    />
+                    /> */}
+                    <div className="pr-2">
+                    <CustomCheckbox/></div>
                     <span> $300 - $400</span>
                   </div>
                 </li>
                 <li className="mb-3">
                   <div className="flex items-center ">
-                    <input
+                    {/* <input
                       className=" p-1  mr-2 rounded  border border-borderGrey   focus:outline-none "
                       type="checkbox"
-                    />
+                    /> */}
+                    <div className="pr-2">
+                    <CustomCheckbox/></div>
                     <span> $400 - $600</span>
                   </div>
                 </li>
                 <li className="mb-3">
                   <div className="flex items-center ">
-                    <input
+                    {/* <input
                       className=" p-1  mr-2 rounded  border border-borderGrey   focus:outline-none "
                       type="checkbox"
-                    />
+                    /> */}
+                    <div className="pr-2">
+                    <CustomCheckbox/></div>
                     <span> $600 - $1000</span>
                   </div>
                 </li>
@@ -154,13 +165,8 @@ const Pets = () => {
                 {filterColors.map((color, i) => {
                   return (
                     <li key={i} className="m-1">
-                      <button
-                        className={`h-6 w-6 text-white text-center bg-[${color}] `}
-                      >
-                        <i className="">
-                          <FaCheck />
-                        </i>
-                      </button>
+                     
+                      <CustomColorFilter className={`bg-[${color}]`} style={{backgroundColor: `${color}`}} />
                     </li>
                   );
                 })}
@@ -178,19 +184,23 @@ const Pets = () => {
               <ul className="list-none my-4 text-xs">
                 <li className="mb-3">
                   <div className="flex items-center ">
-                    <input
+                    {/* <input
                       className="   mr-2 rounded  border-.5 border-borderGrey  checked:bg-yellow  focus:outline-none "
                       type="checkbox"
-                    />
+                    /> */}
+                    <div className="pr-2">
+                    <CustomCheckbox/></div>
                     <span>Male</span>
                   </div>
                 </li>
                 <li className="mb-3">
                   <div className="flex items-center ">
-                    <input
+                    {/* <input
                       className=" p-1  mr-2 rounded  border border-borderGrey   focus:outline-none "
                       type="checkbox"
-                    />
+                    /> */}
+                    <div className="pr-2">
+                    <CustomCheckbox/></div>
                     <span>Female</span>
                   </div>
                 </li>
@@ -208,37 +218,45 @@ const Pets = () => {
               <ul className="list-none my-4 text-xs">
                 <li className="mb-3">
                   <div className="flex items-center ">
-                    <input
+                    {/* <input
                       className="   mr-2 rounded  border-.5 border-borderGrey  checked:bg-yellow  focus:outline-none "
                       type="checkbox"
-                    />
+                    /> */}
+                    <div className="pr-2">
+                    <CustomCheckbox/></div>
                     <span>0 - 3 Months</span>
                   </div>
                 </li>
                 <li className="mb-3">
                   <div className="flex items-center ">
-                    <input
+                    {/* <input
                       className=" p-1  mr-2 rounded  border border-borderGrey   focus:outline-none "
                       type="checkbox"
-                    />
+                    /> */}
+                    <div className="pr-2">
+                    <CustomCheckbox/></div>
                     <span>3 - 6 Months</span>{" "}
                   </div>
                 </li>
                 <li className="mb-3">
                   <div className="flex items-center ">
-                    <input
+                    {/* <input
                       className=" p-1  mr-2 rounded  border border-borderGrey   focus:outline-none "
                       type="checkbox"
-                    />
+                    /> */}
+                    <div className="pr-2">
+                    <CustomCheckbox/></div>
                     <span>6 - 12 Months</span>{" "}
                   </div>
                 </li>
                 <li className="mb-3">
                   <div className="flex items-center ">
-                    <input
+                    {/* <input
                       className=" p-1  mr-2 rounded  border border-borderGrey   focus:outline-none "
                       type="checkbox"
-                    />
+                    /> */}
+                    <div className="pr-2">
+                    <CustomCheckbox/></div>
                     <span>1 - 3 Years</span>{" "}
                   </div>
                 </li>

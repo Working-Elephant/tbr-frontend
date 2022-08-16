@@ -26,27 +26,27 @@ export const dashboardMenu = [
     {
       icon: "",
       name: "Your Ads",
-      link: "",
+      link: "/dashboard",
     },
     {
       icon: "",
       name: "Memberships",
-      link: "",
+      link: "/memberships",
     },
     {
       icon: "",
       name: "Favourites",
-      link: "",
+      link: "/favourites",
     },
     {
       icon: "",
       name: "Your Orders",
-      link: "",
+      link: "/orders",
     },
     {
       icon: "",
       name: "Customer Care",
-      link: "",
+      link: "/customer-care",
     },
   ];
   export const adsData = [
@@ -253,32 +253,38 @@ export  const carouselImages = [
     {
         id:1,
         img: AdDoggo1,
-        name:"Pets"
+        name:"Pets",
+        link:'/pets'
     },
     {
         id:2,
         img: AdDoggo2,
-        name:"Pet Toys"
+        name:"Pet Toys",
+        link:'/pets'
     },
     {
         id:3,
         img: AdDoggo1,
-        name:"Electronics"
+        name:"Electronics",
+        link:'/pets'
     },
     {
         id:4,
         img: AdDoggo5,
-        name:"Equipments"
+        name:"Equipments",
+         link:'/pets'
     },
     {
         id:5,
         img: AdDoggo3,
-        name:"Pets"
+        name:"Pets",
+        link:'/pets'
     },
     {
         id:6,
         img: AdDoggo4,
-        name:"Pets"
+        name:"Pets",
+        link:'/pets'
     },
   ]
 

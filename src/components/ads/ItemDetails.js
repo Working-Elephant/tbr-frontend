@@ -1,7 +1,10 @@
-import React from "react";
+import React, {useContext} from "react";
+import { AdContext } from "../../pages/ads/PostAd";
 import { GoPlusSmall } from "react-icons/go";
 
 const ItemDetails = () => {
+
+  const { nextStep} = useContext(AdContext)
   return (
     <div>
       <div className="md:w-4/6 mx-auto py-3">
@@ -90,7 +93,7 @@ const ItemDetails = () => {
             </div>
           </div>
           <div className="text-center my-5">
-            <button className="bg-yellow py-4 px-15 rounded font-semibold text-sm ">
+            <button className="bg-yellow py-4 px-15 rounded font-semibold text-sm " onClick={nextStep} >
               NEXT
             </button>
           </div>

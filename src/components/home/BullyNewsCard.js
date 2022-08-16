@@ -1,7 +1,7 @@
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 const BullyNewsCard = ({ item }) => {
-  const { image, text, title, link } = item;
+  const { image, text, title } = item;
   return (
     <div className="bg-[#313131] flex ">
       <div className="w-1/3">

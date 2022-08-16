@@ -8,9 +8,9 @@ import { HiUser } from "react-icons/hi";
 import { IoIosArrowForward } from "react-icons/io";
 import User from "../assets/images/user.svg";
 import AdImage from "../assets/images/dog_banner.jpeg";
-import Doggo1 from "../assets/images/trophy.jpeg";
-import Doggo2 from "../assets/images/peopleTalking.jpeg";
-import Doggo3 from "../assets/images/doggo3.jpeg";
+// import Doggo1 from "../assets/images/trophy.jpeg";
+// import Doggo2 from "../assets/images/peopleTalking.jpeg";
+// import Doggo3 from "../assets/images/doggo3.jpeg";
 // import Carousel from "react-material-ui-carousel";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -21,6 +21,7 @@ import {
   bullyNewsData,
   testimonialData,
 } from "../mockData/mockData";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const responsive = {
@@ -104,8 +105,8 @@ const Home = () => {
               responsive={responsive}
               partialVisible={true}
               infinite={true}
-              focusOnSelect={true}
-              autoPlaySpeed={1000}
+              // focusOnSelect={true}
+              // autoPlaySpeed={1000}
               keyBoardControl={true}
               customTransition="all .5"
               transitionDuration={500}
@@ -116,15 +117,15 @@ const Home = () => {
               renderDotsOutside={true}
             >
               {categoriesData.map((item, i) => (
-                <div className="mx-4 rounded-[60px] relative">
+                <div key={item.id} className="mx-4 rounded-[60px] relative">
+                  <Link to={`${item.link}`} >
                   <ImageContainer
-                    key={item.id}
                     image={item.img}
                     rounded="rounded-[3rem]"
                   />
                   <p className="absolute bottom-4 left-8 uppercase text-white text-xl">
                     {item.name}
-                  </p>
+                  </p></Link>
                 </div>
               ))}
             </Carousel>

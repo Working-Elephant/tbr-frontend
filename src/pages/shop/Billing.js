@@ -245,8 +245,8 @@ const Billing = () => {
           </div>
         </div>
       </div>
-      <div className="text-end mt-10">
-      <button className="bg-yellow py-4 px-15 rounded font-semibold text-sm "><Link to="/cart/shipping/billing/confirmation">COMPLETE PURCHASE</Link></button>
+      <div className="text-end mt-10"><Link to="/cart/shipping/billing/confirmation">
+      <button className="bg-yellow py-4 px-15 rounded font-semibold text-sm ">COMPLETE PURCHASE</button></Link>
       </div>
     </div>
   );

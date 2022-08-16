@@ -3,10 +3,10 @@ import React from 'react'
 const IndicatorIcon = ({ data,onClick, ...rest }) => {
   // const CustomDot =  => {
     const {
-      onMove,
-      index,
+      // onMove,
+      // index,
       active,
-      carouselState: { currentSlide, deviceType }
+      // carouselState: { currentSlide, deviceType }
     } = rest;
     // onMove means if dragging or swiping in progress.
     // active is provided by this lib for checking if the item is active or not.
