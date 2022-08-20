@@ -21,7 +21,7 @@ const Pets = () => {
   const [perPage] = useState(6);
   const [firstIndex, setFirstIndex] = useState(0);
   const [currentData, setCurrentData] = useState([]);
-  const [selected, setSelected]=useState(0)
+  const [selected, setSelected] = useState(0)
 
   const total = Math.ceil(featuredAdsData.length / perPage);
 
@@ -31,7 +31,7 @@ const Pets = () => {
   }, [perPage, firstIndex]);
 
   const paginate = (ev) => {
-    console.log(ev.selected,'selected')
+    console.log(ev.selected, 'selected')
     let newOffSet = (ev.selected * perPage) % featuredAdsData.length;
     setFirstIndex(newOffSet);
     setSelected(ev.selected)
@@ -91,7 +91,7 @@ const Pets = () => {
                       className="   mr-2 rounded  border-.5 border-borderGrey  checked:bg-yellow  focus:outline-none "
                       type="checkbox"
                     /> */}<div className="pr-2">
-                    <CustomCheckbox/></div>
+                      <CustomCheckbox /></div>
                     <span>Under $50</span>
                   </div>
                 </li>
@@ -102,7 +102,7 @@ const Pets = () => {
                       type="checkbox"
                     /> */}
                     <div className="pr-2">
-                    <CustomCheckbox/></div>
+                      <CustomCheckbox /></div>
                     <span> $50 - $100</span>
                   </div>
                 </li>
@@ -113,7 +113,7 @@ const Pets = () => {
                       type="checkbox"
                     /> */}
                     <div className="pr-2">
-                    <CustomCheckbox/></div>
+                      <CustomCheckbox /></div>
                     <span> $100 - $200</span>
                   </div>
                 </li>
@@ -124,7 +124,7 @@ const Pets = () => {
                       type="checkbox"
                     /> */}
                     <div className="pr-2">
-                    <CustomCheckbox/></div>
+                      <CustomCheckbox /></div>
                     <span> $300 - $400</span>
                   </div>
                 </li>
@@ -135,7 +135,7 @@ const Pets = () => {
                       type="checkbox"
                     /> */}
                     <div className="pr-2">
-                    <CustomCheckbox/></div>
+                      <CustomCheckbox /></div>
                     <span> $400 - $600</span>
                   </div>
                 </li>
@@ -146,7 +146,7 @@ const Pets = () => {
                       type="checkbox"
                     /> */}
                     <div className="pr-2">
-                    <CustomCheckbox/></div>
+                      <CustomCheckbox /></div>
                     <span> $600 - $1000</span>
                   </div>
                 </li>
@@ -165,8 +165,7 @@ const Pets = () => {
                 {filterColors.map((color, i) => {
                   return (
                     <li key={i} className="m-1">
-                     
-                      <CustomColorFilter className={`bg-[${color}]`} style={{backgroundColor: `${color}`}} />
+                      <CustomColorFilter className={`bg-[${color}]`} color={color} style={{ backgroundColor: `${color}` }} />
                     </li>
                   );
                 })}
@@ -189,7 +188,7 @@ const Pets = () => {
                       type="checkbox"
                     /> */}
                     <div className="pr-2">
-                    <CustomCheckbox/></div>
+                      <CustomCheckbox /></div>
                     <span>Male</span>
                   </div>
                 </li>
@@ -200,7 +199,7 @@ const Pets = () => {
                       type="checkbox"
                     /> */}
                     <div className="pr-2">
-                    <CustomCheckbox/></div>
+                      <CustomCheckbox /></div>
                     <span>Female</span>
                   </div>
                 </li>
@@ -223,7 +222,7 @@ const Pets = () => {
                       type="checkbox"
                     /> */}
                     <div className="pr-2">
-                    <CustomCheckbox/></div>
+                      <CustomCheckbox /></div>
                     <span>0 - 3 Months</span>
                   </div>
                 </li>
@@ -234,7 +233,7 @@ const Pets = () => {
                       type="checkbox"
                     /> */}
                     <div className="pr-2">
-                    <CustomCheckbox/></div>
+                      <CustomCheckbox /></div>
                     <span>3 - 6 Months</span>{" "}
                   </div>
                 </li>
@@ -245,7 +244,7 @@ const Pets = () => {
                       type="checkbox"
                     /> */}
                     <div className="pr-2">
-                    <CustomCheckbox/></div>
+                      <CustomCheckbox /></div>
                     <span>6 - 12 Months</span>{" "}
                   </div>
                 </li>
@@ -256,7 +255,7 @@ const Pets = () => {
                       type="checkbox"
                     /> */}
                     <div className="pr-2">
-                    <CustomCheckbox/></div>
+                      <CustomCheckbox /></div>
                     <span>1 - 3 Years</span>{" "}
                   </div>
                 </li>

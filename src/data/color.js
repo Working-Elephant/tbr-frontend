@@ -1,0 +1,1 @@
+export const filterColors = ["#000000", "#F0B454", "#DBDBDB", "#574106", "#FFA501"];
