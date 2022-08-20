@@ -1,12 +1,9 @@
 import React, { useRef,useState } from "react";
 import { Link } from "react-router-dom";
+import {BreadCrumb} from "../../components/shared";
 import SellerInfo from "../../components/ads/SellerInfo";
-import BreadCrumb from "../../components/shared/BreadCrumb";
 import SimilarProducts from "../../components/ads/SimilarProducts";
 import RecentlyViewed from "../../components/ads/RecentlyViewed";
-// import Doggo2 from "../../assets/images/doggo2.jpeg";
-// import Doggo3 from "../../assets/images/doggo3.jpeg";
-// import Doggo1 from "../../assets/images/doggo1.jpeg";
 import SellerAvatar1 from "../../assets/images/avatar1.jpeg";
 import { carouselImages } from "../../mockData/mockData";
 import {
