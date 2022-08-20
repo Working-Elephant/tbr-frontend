@@ -28,18 +28,18 @@ const SignUp = () => {
             <div className=" mb-5 w-full">
               <Input
                 placeholder={"Full Name"}
-                {...register("fullName", { required: true })}
+                {...register("fullName", { required: "fullName is required" })}
               />
-              {errors.password && (
-                <ErrorMessage>{errors.email?.message}</ErrorMessage>
+              {errors.fullName && (
+                <ErrorMessage>{errors.fullName?.message}</ErrorMessage>
               )}
             </div>
             <div className=" mb-5 w-full">
               <Input
                 placeholder={"Email"}
-                {...register("email", { required: true })}
+                {...register("email", { required: "email is required" })}
               />
-              {errors.password && (
+              {errors.email && (
                 <ErrorMessage>{errors.email?.message}</ErrorMessage>
               )}
             </div>
@@ -57,7 +57,7 @@ const SignUp = () => {
                 placeholder={"Confirm Password"}
                 {...register("confirmpassword", { required: true })}
               />
-              {errors.password && (
+              {errors.confirmpassword && (
                 <ErrorMessage>{errors.confirmpassword?.message}</ErrorMessage>
               )}
             </div>

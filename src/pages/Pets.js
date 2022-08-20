@@ -17,12 +17,10 @@ const Pets = () => {
     age: true,
   });
   const { prices, colors, gender, age } = filterView;
-
   const [perPage] = useState(6);
   const [firstIndex, setFirstIndex] = useState(0);
   const [currentData, setCurrentData] = useState([]);
-  const [selected, setSelected] = useState(0)
-
+  const [selected, setSelected] = useState(0);
   const total = Math.ceil(featuredAdsData.length / perPage);
 
   useEffect(() => {
@@ -31,10 +29,10 @@ const Pets = () => {
   }, [perPage, firstIndex]);
 
   const paginate = (ev) => {
-    console.log(ev.selected, 'selected')
+    console.log(ev.selected, "selected");
     let newOffSet = (ev.selected * perPage) % featuredAdsData.length;
     setFirstIndex(newOffSet);
-    setSelected(ev.selected)
+    setSelected(ev.selected);
   };
 
   const togglePriceView = () => {
@@ -87,55 +85,41 @@ const Pets = () => {
               <ul className="list-none my-4 text-xs">
                 <li className="mb-3">
                   <div className="flex items-center ">
-                    {/* <input
-                      className="   mr-2 rounded  border-.5 border-borderGrey  checked:bg-yellow  focus:outline-none "
-                      type="checkbox"
-                    /> */}<div className="pr-2">
-                      <CustomCheckbox /></div>
+                    <div className="pr-2">
+                      <CustomCheckbox />
+                    </div>
                     <span>Under $50</span>
                   </div>
                 </li>
                 <li className="mb-3">
                   <div className="flex items-center ">
-                    {/* <input
-                      className=" p-1  mr-2 rounded  border border-borderGrey   focus:outline-none "
-                      type="checkbox"
-                    /> */}
                     <div className="pr-2">
-                      <CustomCheckbox /></div>
+                      <CustomCheckbox />
+                    </div>
                     <span> $50 - $100</span>
                   </div>
                 </li>
                 <li className="mb-3">
                   <div className="flex items-center ">
-                    {/* <input
-                      className=" p-1  mr-2 rounded  border border-borderGrey   focus:outline-none "
-                      type="checkbox"
-                    /> */}
                     <div className="pr-2">
-                      <CustomCheckbox /></div>
+                      <CustomCheckbox />
+                    </div>
                     <span> $100 - $200</span>
                   </div>
                 </li>
                 <li className="mb-3">
                   <div className="flex items-center ">
-                    {/* <input
-                      className=" p-1  mr-2 rounded  border border-borderGrey   focus:outline-none "
-                      type="checkbox"
-                    /> */}
                     <div className="pr-2">
-                      <CustomCheckbox /></div>
+                      <CustomCheckbox />
+                    </div>
                     <span> $300 - $400</span>
                   </div>
                 </li>
                 <li className="mb-3">
                   <div className="flex items-center ">
-                    {/* <input
-                      className=" p-1  mr-2 rounded  border border-borderGrey   focus:outline-none "
-                      type="checkbox"
-                    /> */}
                     <div className="pr-2">
-                      <CustomCheckbox /></div>
+                      <CustomCheckbox />
+                    </div>
                     <span> $400 - $600</span>
                   </div>
                 </li>
@@ -146,7 +130,8 @@ const Pets = () => {
                       type="checkbox"
                     /> */}
                     <div className="pr-2">
-                      <CustomCheckbox /></div>
+                      <CustomCheckbox />
+                    </div>
                     <span> $600 - $1000</span>
                   </div>
                 </li>
@@ -165,7 +150,11 @@ const Pets = () => {
                 {filterColors.map((color, i) => {
                   return (
                     <li key={i} className="m-1">
-                      <CustomColorFilter className={`bg-[${color}]`} color={color} style={{ backgroundColor: `${color}` }} />
+                      <CustomColorFilter
+                        className={`bg-[${color}]`}
+                        color={color}
+                        style={{ backgroundColor: `${color}` }}
+                      />
                     </li>
                   );
                 })}
@@ -183,23 +172,17 @@ const Pets = () => {
               <ul className="list-none my-4 text-xs">
                 <li className="mb-3">
                   <div className="flex items-center ">
-                    {/* <input
-                      className="   mr-2 rounded  border-.5 border-borderGrey  checked:bg-yellow  focus:outline-none "
-                      type="checkbox"
-                    /> */}
                     <div className="pr-2">
-                      <CustomCheckbox /></div>
+                      <CustomCheckbox />
+                    </div>
                     <span>Male</span>
                   </div>
                 </li>
                 <li className="mb-3">
                   <div className="flex items-center ">
-                    {/* <input
-                      className=" p-1  mr-2 rounded  border border-borderGrey   focus:outline-none "
-                      type="checkbox"
-                    /> */}
                     <div className="pr-2">
-                      <CustomCheckbox /></div>
+                      <CustomCheckbox />
+                    </div>
                     <span>Female</span>
                   </div>
                 </li>
@@ -217,45 +200,33 @@ const Pets = () => {
               <ul className="list-none my-4 text-xs">
                 <li className="mb-3">
                   <div className="flex items-center ">
-                    {/* <input
-                      className="   mr-2 rounded  border-.5 border-borderGrey  checked:bg-yellow  focus:outline-none "
-                      type="checkbox"
-                    /> */}
                     <div className="pr-2">
-                      <CustomCheckbox /></div>
+                      <CustomCheckbox />
+                    </div>
                     <span>0 - 3 Months</span>
                   </div>
                 </li>
                 <li className="mb-3">
                   <div className="flex items-center ">
-                    {/* <input
-                      className=" p-1  mr-2 rounded  border border-borderGrey   focus:outline-none "
-                      type="checkbox"
-                    /> */}
                     <div className="pr-2">
-                      <CustomCheckbox /></div>
+                      <CustomCheckbox />
+                    </div>
                     <span>3 - 6 Months</span>{" "}
                   </div>
                 </li>
                 <li className="mb-3">
                   <div className="flex items-center ">
-                    {/* <input
-                      className=" p-1  mr-2 rounded  border border-borderGrey   focus:outline-none "
-                      type="checkbox"
-                    /> */}
                     <div className="pr-2">
-                      <CustomCheckbox /></div>
+                      <CustomCheckbox />
+                    </div>
                     <span>6 - 12 Months</span>{" "}
                   </div>
                 </li>
                 <li className="mb-3">
                   <div className="flex items-center ">
-                    {/* <input
-                      className=" p-1  mr-2 rounded  border border-borderGrey   focus:outline-none "
-                      type="checkbox"
-                    /> */}
                     <div className="pr-2">
-                      <CustomCheckbox /></div>
+                      <CustomCheckbox />
+                    </div>
                     <span>1 - 3 Years</span>{" "}
                   </div>
                 </li>
@@ -278,7 +249,12 @@ const Pets = () => {
         </div>
       </div>
       <div className="flex items-center justify-center my-3">
-        <Pagination total={total} perPage={perPage} paginate={paginate} selected={selected} />
+        <Pagination
+          total={total}
+          perPage={perPage}
+          paginate={paginate}
+          selected={selected}
+        />
       </div>
     </div>
   );

@@ -3,3 +3,5 @@ export { CartData, dashboardMenu, adsData, featuredAdsData, carouselImages, cate
 export { filterColors } from "./color"
 
 export { categories } from "./categories"
+
+export {sex, breed} from "./select"

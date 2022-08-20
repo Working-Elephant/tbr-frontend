@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 import FormBody from "../../components/auth/FormBody";
 import { useForm } from "react-hook-form";
 import { Input, ErrorMessage } from "../../components/shared";
-
-
 
 const ForgotPassword = () => {
   const {
@@ -26,17 +24,17 @@ const ForgotPassword = () => {
       >
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="w-full lg:w-2/3 mx-auto flex flex-col uppercase">
-          <div className=" mb-5 w-full">
+            <div className=" mb-5 w-full">
               <Input
                 placeholder={"Email"}
                 {...register("email", { required: true })}
               />
-              {errors.password && (
+              {errors.email && (
                 <ErrorMessage>{errors.email?.message}</ErrorMessage>
               )}
             </div>
           </div>
-          <div className="my-8 text-center" type="submit" >
+          <div className="my-8 text-center" type="submit">
             <button className=" bg-yellow py-4 px-10 rounded text-sm">
               Reset Password
             </button>
@@ -44,7 +42,7 @@ const ForgotPassword = () => {
         </form>
       </FormBody>
     </div>
-  )
-}
+  );
+};
 
-export default ForgotPassword
+export default ForgotPassword;

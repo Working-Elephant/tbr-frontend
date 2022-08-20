@@ -31,7 +31,7 @@ const Login = () => {
                 placeholder={"Email"}
                 {...register("email", { required: true })}
               />
-              {errors.password && (
+              {errors.email && (
                 <ErrorMessage>{errors.email?.message}</ErrorMessage>
               )}
             </div>

@@ -3,11 +3,9 @@ import Checkbox from "react-custom-checkbox";
 import { FiCheck } from "react-icons/fi";
 
 const CustomColorFilter = ({ name, className, color }) => {
-  console.log(color, name)
   return (
     <>
       <Checkbox
-        // checked={true}
         icon={
           <div
             style={{
@@ -17,18 +15,16 @@ const CustomColorFilter = ({ name, className, color }) => {
               alignSelf: "stretch",
             }}
           >
-            <FiCheck color="blue" size={18} />
+            <FiCheck color="white" size={18} />
           </div>
         }
         name={name}
         className={className}
-        // onChange={handleChange}
-        borderColor="#BEBEBE"
+        borderColor="#FFFFFF"
         borderWidth={1}
         borderRadius={2}
         style={{ overflow: "hidden", backgroundColor: color }}
         size={20}
-      //   label={label}
       />
     </>
   )
