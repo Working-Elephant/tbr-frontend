@@ -2,7 +2,8 @@ import React from "react";
 // import { Link } from "react-router-dom";
 import FormBody from "../../components/auth/FormBody";
 import { useForm } from "react-hook-form";
-// import Input from "../../components/shared/Input";
+import { Input, ErrorMessage } from "../../components/shared";
+
 import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
@@ -48,17 +49,10 @@ const SignUp = () => {
               )}
             </div>
             <div className=" mb-5 w-full">
-              <input
-                className="border-.5 border-borderGrey w-full py-2 px-3 text-sm focus:outline-none placeholder:text-sm placeholder:text-dark"
-                placeholder="Password"
-                {...register("password", { required: true })}
-              />
-              {errors.password && (
-                <p className="text-error text-xxs mt-1">
-                  Password is required.
-                </p>
-              )}
+              <Input placeholder={"Password"} {...register("password", { required: true })} />
+              {errors.password && (<ErrorMessage>{errors.password?.message}</ErrorMessage>)}
             </div>
+            
             <div className=" mb-5 w-full">
               <input
                 className="border-.5 border-borderGrey w-full py-2 px-3 text-sm focus:outline-none placeholder:text-sm placeholder:text-dark"
