@@ -1,1 +1,1 @@
-export const categories = ['Pets', `'Pet's Toys`, 'Equipments', 'Electronics', 'Food', 'Colars', 'Soap']
+export const categories = ['Pets', `'Pet Toys`, 'Equipment', 'Electronics', 'Pet Food', 'Random', 'Soap', 'Pets']

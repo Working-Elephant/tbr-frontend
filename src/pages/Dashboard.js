@@ -8,6 +8,8 @@ import Avatar1 from "../assets/images/avatar1.jpeg";
 import { dashboardMenu } from "../mockData/mockData";
 import { adsData } from "../mockData/mockData";
 import SellerInfo from "../components/ads/SellerInfo";
+import Ads from "../components/dashboard/Ads";
+import Messages from "../components/dashboard/Messages";
 
 const Dashboard = () => {
   return (
@@ -28,10 +30,7 @@ const Dashboard = () => {
             <ul className="list-none my-4 text-sm">
               {dashboardMenu.map((item, i) => {
                 return (
-                  <li
-                    key={i}
-                    // className="bg-[#F6F6F6] px-5 py-3 rounded-lg my-3 flex items-center justify-between"
-                  >
+                  <li key={i}>
                     <NavLink
                       to={`${item.link}`}
                       className={({ isActive }) =>
@@ -49,7 +48,7 @@ const Dashboard = () => {
                       <i className="text-lg">
                         <IoIosArrowForward />
                       </i>
-                    </NavLink>{" "}
+                    </NavLink>
                   </li>
                 );
               })}
@@ -70,11 +69,8 @@ const Dashboard = () => {
             </Link>
           </div>
           <div className="border-l border-l-borderGrey px-3">
-            <div className="grid grid-cols-2 gap-3 lg:grid-cols-3  xl:grid-cols-4 ">
-              {adsData.map((item, i) => {
-                return <PetCard key={i} item={item} />;
-              })}
-            </div>
+            <Ads />
+            {/* <Messages/> */}
           </div>
         </div>
       </div>

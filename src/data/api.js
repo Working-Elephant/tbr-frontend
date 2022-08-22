@@ -286,6 +286,18 @@ export const categoriesData = [
         name: "Pets",
         link: '/pets'
     },
+    {
+        id: 7,
+        img: AdDoggo1,
+        name: "Pets",
+        link: '/pets'
+    },
+    {
+        id: 8,
+        img: AdDoggo3,
+        name: "Pets",
+        link: '/pets'
+    },
 ]
 
 export const bullyNewsData = [

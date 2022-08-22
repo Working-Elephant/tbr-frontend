@@ -14,6 +14,7 @@ import Confirmation from "./pages/shop/Confirmation";
 import PostAd from "./pages/ads/PostAd";
 import ViewAdDetails from "./pages/ads/ViewAdDetails";
 import Dashboard from "./pages/Dashboard";
+import Categories from "./pages/Categories";
 import Pets from "./pages/Pets";
 import Search from "./pages/Search";
 import { useMatch } from "react-router-dom";
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/pets" element={<Pets />} />
+        <Route path="/categories" element={<Categories />} />
         <Route path="/search" element={<Search />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/cart/shipping" element={<Shipping />} />

@@ -6,7 +6,7 @@ import { Input, ErrorMessage, SelectInput } from "../../components/shared";
 import { sex, breed } from "../../data";
 
 const ItemDetails = () => {
-  const { nextStep } = useContext(AdContext);
+  const { nextStep, updateStep2 } = useContext(AdContext);
   const {
     register,
     handleSubmit,
@@ -16,6 +16,7 @@ const ItemDetails = () => {
   // function to submit form
   const onSubmit = (data) => {
     console.log(data);
+    updateStep2(data)
     nextStep();
   };
   return (
@@ -38,7 +39,7 @@ const ItemDetails = () => {
               <option>Male</option>
               <option>Female</option>
             </select>
-            <div className=" mb-4 w-full">
+            {/* <div className=" mb-4 w-full">
               <SelectInput
                 options={sex}
                 defaultOption="Select Date"
@@ -47,7 +48,7 @@ const ItemDetails = () => {
               {errors.dateofBirth && (
                 <ErrorMessage>{errors.dateofBirth?.message}</ErrorMessage>
               )}
-            </div>
+            </div> */}
             <div className=" mb-4 w-full">
               <SelectInput
                 options={sex}
