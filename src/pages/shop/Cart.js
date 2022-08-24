@@ -7,6 +7,20 @@ import logo from "../../assets/images/doggo1.jpeg";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
+  const crumbs = [
+    {
+      name: "Home",
+      link: "",
+    },
+    {
+      name: "Pets",
+      link: "pets",
+    },
+    {
+      name: "Cart",
+      link: "cart",
+    },
+  ];
   const data = {
     itemImage: logo,
     itemCategory: "Bull Dog",
@@ -17,10 +31,10 @@ const Cart = () => {
   };
   return (
     <div className="w-5/6 md:w-5/6 mx-auto  my-5">
-      <div>
-        <BreadCrumb />
+      <div className="my-3">
+        <BreadCrumb crumbs={crumbs} />
       </div>
-      <div>
+      <div className="mt-6">
         {CartData && CartData.length > 0 ? (
           <table class="table-fixed">
             <thead>

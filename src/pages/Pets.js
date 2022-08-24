@@ -10,6 +10,17 @@ import CustomColorFilter from "../components/shared/CustomColorFilter";
 import { filterColors, featuredAdsData } from "../mockData/mockData";
 
 const Pets = () => {
+  const crumbs = [
+    {
+      name: "Home",
+      link: "",
+    },
+    {
+      name: "Pets",
+      link: "pets",
+    },
+  ];
+
   const [filterView, setFilterView] = useState({
     prices: true,
     colors: true,
@@ -69,8 +80,8 @@ const Pets = () => {
           <h2 className="text-3xl md:text-5xl font-bold text-white">Pets</h2>
         </div>
       </div>
-      <div>
-        <BreadCrumb />
+      <div className="my-4 px-5 lg:w-11/12 xl:w-10/12 mx-auto ">
+        <BreadCrumb crumbs={crumbs} />
       </div>
       <div className="p-5  w-full lg:w-11/12 xl:w-10/12 mx-auto  lg:grid lg:grid-cols-12 lg:gap-6">
         <div className="hidden lg:block lg:col-span-2">

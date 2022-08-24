@@ -3,10 +3,28 @@ import BreadCrumb from "../../components/shared/BreadCrumb";
 import { Link } from "react-router-dom";
 
 const Shipping = () => {
+  const crumbs = [
+    {
+      name: "Home",
+      link: "",
+    },
+    {
+      name: "Pets",
+      link: "pets",
+    },
+    {
+      name: "Cart",
+      link: "cart",
+    },
+    {
+      name: "Shipping",
+      link: "cart/shipping",
+    },
+  ];
   return (
     <div className="w-full lg:w-5/6 mx-auto my-5">
-      <div>
-        <BreadCrumb />
+      <div >
+        <BreadCrumb crumbs={crumbs} />
       </div>
       <div className="grid grid-cols-1   lg:grid-cols-2 lg:gap-6 ">
         <div className="grid grid-cols-3 px-4 md:px-8 lg:px-4">

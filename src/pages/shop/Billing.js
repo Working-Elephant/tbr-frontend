@@ -6,10 +6,32 @@ import { FaWallet, FaPaypal } from "react-icons/fa";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 
 const Billing = () => {
+  const crumbs = [
+    {
+      name: "Home",
+      link: "",
+    },
+    {
+      name: "Pets",
+      link: "pets",
+    },
+    {
+      name: "Cart",
+      link: "cart",
+    },
+    {
+      name: "Shipping",
+      link: "cart/shipping",
+    },
+    {
+      name: "Billing",
+      link: "cart/shipping/billing",
+    },
+  ];
   return (
     <div className="w-full px-6 lg:px-0 md:w-5/6 lg:w-9/12 mx-auto">
-      <div>
-        <BreadCrumb />
+      <div className="my-4">
+        <BreadCrumb crumbs={crumbs} />
       </div>
       <div className="">
         {/* order summary */}
