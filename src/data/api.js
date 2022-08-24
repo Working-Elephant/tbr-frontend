@@ -10,6 +10,8 @@ import AdDoggo5 from '../assets/images/AdDoggo5@2x.jpg'
 import Trophy from '../assets/images/trophy.jpeg'
 import People from '../assets/images/peopleTalking.jpeg'
 import janeAvatar from '../assets/images/avatar1.jpeg';
+import User from "../assets/images/avatar2.jpeg";
+
 
 export const CartData = [
     {
@@ -375,3 +377,213 @@ export const testimonialData = [
         testimony: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita.'
     },
 ]
+
+export const userMessages =[
+    {
+      id: "f7fha",
+      image: User,
+      name: "Tyler Gibson",
+      messages: [
+        {
+          sent: false,
+          message:
+            "Lorem ipsum dolor sit amet,consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua.At vero eos et accusam et justo duo dolores et ea rebum.Stet clita kasd gubergren,no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet",
+        },
+        {
+          sent: true,
+          message: "lorem ipsum dsvanb cjafgjca",
+        },
+        {
+          sent: false,
+          message:
+            "Lorem ipsum dolor sit amet,consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua.At vero eos et accusam et justo duo dolores et ea rebum.Stet clita kasd gubergren,no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet",
+        },
+        {
+          sent: true,
+          message: "lorem ipsum dsvanb cjafgjca",
+        },
+        {
+          sent: true,
+          message: "lorem ipsum dsvanb cjafgjca",
+        },
+        {
+          sent: true,
+          message: "lorem ipsum dsvanb cjafgjca",
+        },
+      ],
+    },
+    {
+      id: "f7fhb",
+      image: User,
+      name: "Tyler Meridan",
+      messages: [
+        {
+          sent: true,
+          message:
+            "Lorem ipsum dolor sit ainvidunt ut labore et dolore magna aliquyam erat,sed diam voluptua.At vero eos et accusam et justo duo dolores et",
+        },
+        {
+          sent: true,
+          message: "lorem ipsum dsvanb cjafgjca",
+        },
+        {
+          sent: false,
+          message:
+            "Lorem ipsulores et ea rebum.Stet clita kasd gubergren,no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet",
+        },
+        {
+          sent: true,
+          message: "lorem ipsum dsvanb cjafgjca",
+        },
+      ],
+    },
+    {
+      id: "g7fhb",
+      image: User,
+      name: "Vera green",
+      messages: [
+        {
+          sent: true,
+          message: "Lorem ipsum dolor sit amet",
+        },
+        {
+          sent: true,
+          message: "lorem ipsum dsvanb cjafgjca",
+        },
+        {
+          sent: false,
+          message:
+            "Lorem ipsum dojusto duo dolores et ea rebum.Stet clita kasd gubergren,no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet",
+        },
+        {
+          sent: false,
+          message: "lorem ipsum dsvanb cjafgjca",
+        },
+      ],
+    },
+    {
+      id: "f3fhb",
+      image: User,
+      name: "Olu Forth",
+      messages: [
+        {
+          sent: false,
+          message:
+            "Lorem cing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua.At vero eos et accusam et justo duo dolores et ea rebum.Stet clita kasd gubergren,no sea takpsum dolor sit amet.Lorem ipsum dolor sit amet",
+        },
+        {
+          sent: true,
+          message: "lorem ipsum dsvanb cjafgjca",
+        },
+        {
+          sent: true,
+          message:
+            "Lorem ipsum dolor sit amet,consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua.At vero eos et accusam et justo duo dolores et ea rebum.Stet clita kasd gubergren,no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet",
+        },
+        {
+          sent: true,
+          message: "lorem ipsum dsvanb cjafgjca",
+        },
+      ],
+    },
+    {
+      id: "f75hc",
+      image: User,
+      name: "Jane Doe",
+      messages: [
+        {
+          sent: false,
+          message:
+            "Lorem ipsum dolor sit amet,consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt utm et justo duo dolores et ea rebum.Stet clita kasd gubergren,no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet",
+        },
+        {
+          sent: true,
+          message: "lorem ipsum dsvanb cjafgjca",
+        },
+        {
+          sent: false,
+          message:
+            "Lorem ipsum dolor sit amet,consetetur sadipscing ey eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua.At vero eos et accusam et justo duo dolores et ea rebum.Stet clita kasd gubergren,no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet",
+        },
+        {
+          sent: true,
+          message: "lorem ipsum dsvanb cjafgjca",
+        },
+      ],
+    },
+    {
+      id: "f7fyb",
+      image: User,
+      name: "Selah Gison",
+      messages: [
+        {
+          sent: false,
+          message:
+            "Lorem ipsum dolor sit amet,consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua.At vero eos et accusam et justo duo dolores et ea rebum.Stet clita kasd gubergren,no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet",
+        },
+        {
+          sent: true,
+          message: "lorem ipsum dsvanb cjafgjca",
+        },
+        {
+          sent: false,
+          message:
+            "Lorem ipsum dolor sit amet,consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua.At vero eos et accusam et justo duo dolores et ea rebum.Stet clita kasd gubergren,no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet",
+        },
+        {
+          sent: true,
+          message: "lorem ipsum dsvanb cjafgjca",
+        },
+      ],
+    },
+    {
+      id: "f2fhg",
+      image: User,
+      name: "Selah Giwrson",
+      messages: [
+        {
+          sent: false,
+          message:
+            "Lorem ipsum dolor sit amet,consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua.At vero eos et accusam et justo duo dolores et ea rebum.Stet clita kasd gubergren,no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet",
+        },
+        {
+          sent: true,
+          message: "lorem ipsum dsvanb cjafgjca",
+        },
+        {
+          sent: false,
+          message:
+            "Lorem ipsum dolor sit amet,consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua.At vero eos et accusam et justo duo dolores et ea rebum.Stet clita kasd gubergren,no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet",
+        },
+        {
+          sent: true,
+          message: "lorem ipsum dsvanb cjafgjca",
+        },
+      ],
+    },
+    {
+      id: "f7fhg",
+      image: User,
+      name: "Selah Gibson",
+      messages: [
+        {
+          sent: false,
+          message:
+            "Lorem ipsum dolor sit amet,consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua.At vero eos et accusam et justo duo dolores et ea rebum.Stet clita kasd gubergren,no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet",
+        },
+        {
+          sent: true,
+          message: "lorem ipsum dsvanb cjafgjca",
+        },
+        {
+          sent: false,
+          message:
+            "Lorem ipsum dolor sit amet,consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua.At vero eos et accusam et justo duo dolores et ea rebum.Stet clita kasd gubergren,no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet",
+        },
+        {
+          sent: true,
+          message: "lorem ipsum dsvanb cjafgjca",
+        },
+      ],
+    },
+  ]

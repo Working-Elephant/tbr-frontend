@@ -26,7 +26,7 @@ export const dashboardMenu = [
     {
       icon: "",
       name: "Your Ads",
-      link: "/dashboard",
+      link: "/dashboard/ads",
     },
     {
       icon: "",

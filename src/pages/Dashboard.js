@@ -1,15 +1,12 @@
 import React from "react";
-import PetCard from "../components/shared/PetCard";
 import { Link, NavLink } from "react-router-dom";
-// import UserAvatar from "../components/shared/UserAvatar";
 import { BsPlusCircle, BsHeart } from "react-icons/bs";
 import { IoIosArrowForward } from "react-icons/io";
 import Avatar1 from "../assets/images/avatar1.jpeg";
 import { dashboardMenu } from "../mockData/mockData";
 import { adsData } from "../mockData/mockData";
 import SellerInfo from "../components/ads/SellerInfo";
-import Ads from "../components/dashboard/Ads";
-import Messages from "../components/dashboard/Messages";
+// import Messages from "../components/dashboard/Messages";
 
 const Dashboard = () => {
   return (
@@ -69,8 +66,7 @@ const Dashboard = () => {
             </Link>
           </div>
           <div className="border-l border-l-borderGrey px-3">
-            <Ads />
-            {/* <Messages/> */}
+           
           </div>
         </div>
       </div>
