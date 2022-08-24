@@ -9,11 +9,11 @@ const SellerInfo = (props) => {
     <div className="bg-[#FEFFD9] p-4">
       <div className="flex items-center">
         <div className="w-auto mr-3 ">
-          <UserAvatar image={props.image} />
+          <UserAvatar image={props.image} width="w-16" height="h-16" />
         </div>
-        <div className=" w-auto flex flex-col justify-between ">
-          <div className="flex items-center justify-between">
-            <span className="text-sm">{props.name}</span>
+        <div className=" w-full flex flex-col justify-between ">
+          <div className="flex items-center justify-between ">
+            <span className="text-xs lg:text-sm">{props.name}</span>
             <div className="flex items-center text-sm bg-white rounded p-1">
               <i
                 className={`${
@@ -40,7 +40,7 @@ const SellerInfo = (props) => {
             </i>
             <span> {props.rating}</span>
           </div>
-          <p className="text-xs text-blue ">View Full Ratings and Reviews</p>
+          <p className="text-xxs text-blue ">View Full Ratings and Reviews</p>
         </div>
       </div>
       {/* <div className="grid grid-cols-1 md:grid-cols-2 md:gap-3 lg:grid-cols-1"> */}

@@ -26,22 +26,27 @@ export const dashboardMenu = [
     {
       icon: "",
       name: "Your Ads",
-      link: "/dashboard",
+      link: "/dashboard/ads",
+    },
+    {
+      icon: "",
+      name: "Messages",
+      link: "/dashboard/messages",
     },
     {
       icon: "",
       name: "Memberships",
-      link: "/memberships",
+      link: "/dashboard/memberships",
     },
     {
       icon: "",
       name: "Favourites",
-      link: "/favourites",
+      link: "/dashboard/favourites",
     },
     {
       icon: "",
       name: "Your Orders",
-      link: "/orders",
+      link: "/dashboard//orders",
     },
     {
       icon: "",

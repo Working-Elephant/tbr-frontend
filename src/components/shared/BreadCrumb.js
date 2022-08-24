@@ -1,35 +1,35 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import { FiChevronRight } from 'react-icons/fi'
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { FiChevronRight } from "react-icons/fi";
 
-const BreadCrumb = () => {
+const BreadCrumb = (props) => {
+  function isLast(index) {
+    let val = index === props.crumbs.length - 1;
+    console.log(val);
+    return val;
+  }
   return (
     <nav className="bg-grey-light rounded-md w-full text-xs text-grey">
-    <ol className="flex items-center mx-5">
-      <li className="mr-2">
-        <NavLink to="/" className="text-blue-600 hover:text-blue-700">
-          Home
-        </NavLink>
-      </li>
-      <li className="mr-2">
-        <span class="text-gray-500 mx-2">
-          <FiChevronRight />
-        </span>
-      </li>
-      <li className="mr-2">
-        <NavLink to="/pets" className="text-blue-600 hover:text-blue-700">
-          Library
-        </NavLink>
-      </li>
-      <li className="mr-2">
-        <span className="text-gray-500 mx-2">
-          <FiChevronRight />
-        </span>
-      </li>
-      <li className="text-gray-500">Data</li>
-    </ol>
-  </nav>
-  )
-}
+      <ol className="flex items-center mx-5">
+        {props.crumbs?.map((crumb, i) => {
+          const lastCrumb = isLast(i) ? "py-2 px-3 bg-borderGrey rounded-lg" : "";
 
-export default BreadCrumb
+          return (
+            <li className="mr-2 flex items-center" key={i}>
+              <NavLink to={`/${crumb.link}`} className={lastCrumb}>
+                {crumb.name}
+              </NavLink>
+              {!lastCrumb && (
+                <span class="text-gray-500 mx-2">
+                  <FiChevronRight />
+                </span>
+              )}
+            </li>
+          );
+        })}
+      </ol>
+    </nav>
+  );
+};
+
+export default BreadCrumb;
