@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import FormBody from "../../components/auth/FormBody";
 import { Input, ErrorMessage } from "../../components/shared";
+import { isValidEmail } from "../../utils/Index";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -15,7 +16,11 @@ const Login = () => {
   // function to submit form
   const onSubmit = (data) => {
     console.log(data);
-    navigate("/dashboard");
+    if (!isValidEmail(data.email)) {
+      return;
+    } else {
+      navigate("/dashboard");
+    }
   };
 
   return (
@@ -28,12 +33,13 @@ const Login = () => {
           <div className="w-full lg:w-2/3 mx-auto flex flex-col uppercase text-center">
             <div className=" mb-5 w-full">
               <Input
+                type="email"
                 placeholder={"Email"}
-                {...register("email", { required: true })}
+                {...register("email", {
+                  required: { value: true, message: " Email is required" },
+                })}
               />
-              {errors.email && (
-                <ErrorMessage>{errors.email?.message}</ErrorMessage>
-              )}
+              {errors.email && <ErrorMessage message={errors.email?.message} />}
             </div>
             <div className=" mb-5 w-full">
               <Input
@@ -41,7 +47,7 @@ const Login = () => {
                 {...register("password", { required: true })}
               />
               {errors.password && (
-                <ErrorMessage>{errors.password?.message}</ErrorMessage>
+                <ErrorMessage message={errors.password?.message} />
               )}
             </div>
 

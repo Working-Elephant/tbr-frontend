@@ -52,7 +52,7 @@ const Confirmation = () => {
           </div>
           <table class="table-fixed">
             <thead className="">
-              <tr className="border-y-.5 border-borderGrey uppercase ">
+              <tr className="border-y border-borderGrey uppercase ">
                 <th className=" text-start font-normal py-5 w-4/12">Item</th>
                 <th className=" text-center font-normal py-5 w-1/12">
                   Quantity
@@ -106,7 +106,7 @@ const Confirmation = () => {
               ))}
             </tbody>
           </table>
-          <div className=" ml-auto border-b-.5 border-borderGrey  text-end mb-5 ">
+          <div className=" ml-auto border-b border-borderGrey  text-end mb-5 ">
             <div className="border-b-.5 border-borderGrey flex items-center justify-end text-xs py-5 pr-3">
               <div>
                 <span className="mr-15 font-semibold">TOTAL</span>
@@ -124,11 +124,11 @@ const Confirmation = () => {
         </div>
         
         </div>
-        <div className="border-l-.5 border-borderGrey pl-10">
+        <div className="border-l border-borderGrey pl-10">
         <h3 className="font-bold mb-2">SHIPPING DETAILS</h3>
         <p className="my-8 text-sm">Your will receive your order in 3-4 business days</p>
         <div className="my-1">
-            <button className="uppercase border-.5 border-borderGrey text-sm px-8 py-3 rounded">
+            <button className="uppercase border border-borderGrey text-sm px-8 py-3 rounded">
                 Track Order
             </button>
         </div>

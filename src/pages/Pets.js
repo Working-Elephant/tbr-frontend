@@ -4,10 +4,9 @@ import BreadCrumb from "../components/shared/BreadCrumb";
 import Pagination from "../components/shared/Pagination";
 import { BsDash } from "react-icons/bs";
 import FeaturedAdsCard from "../components/home/FeaturedAdsCard";
-// import { FaCheck } from "react-icons/fa";
-import CustomCheckbox from "../components/shared/CustomCheckbox";
-import CustomColorFilter from "../components/shared/CustomColorFilter";
+import { Filter ,CustomColorFilter,CustomCheckbox} from "../components/shared";
 import { filterColors, featuredAdsData } from "../mockData/mockData";
+import { categories } from '../data/categories';
 
 const Pets = () => {
   const crumbs = [
@@ -85,165 +84,8 @@ const Pets = () => {
       </div>
       <div className="p-5  w-full lg:w-11/12 xl:w-10/12 mx-auto  lg:grid lg:grid-cols-12 lg:gap-6">
         <div className="hidden lg:block lg:col-span-2">
-          <div className="mb-3">
-            <div className="flex items-center justify-between border-b border-b-borderGrey text-[#464646]">
-              <h6 className="font-semibold  ">PRICES</h6>
-              <i className="text-xs" onClick={togglePriceView}>
-                <BsDash />
-              </i>
-            </div>
-            {prices && (
-              <ul className="list-none my-4 text-xs">
-                <li className="mb-3">
-                  <div className="flex items-center ">
-                    <div className="pr-2">
-                      <CustomCheckbox />
-                    </div>
-                    <span>Under $50</span>
-                  </div>
-                </li>
-                <li className="mb-3">
-                  <div className="flex items-center ">
-                    <div className="pr-2">
-                      <CustomCheckbox />
-                    </div>
-                    <span> $50 - $100</span>
-                  </div>
-                </li>
-                <li className="mb-3">
-                  <div className="flex items-center ">
-                    <div className="pr-2">
-                      <CustomCheckbox />
-                    </div>
-                    <span> $100 - $200</span>
-                  </div>
-                </li>
-                <li className="mb-3">
-                  <div className="flex items-center ">
-                    <div className="pr-2">
-                      <CustomCheckbox />
-                    </div>
-                    <span> $300 - $400</span>
-                  </div>
-                </li>
-                <li className="mb-3">
-                  <div className="flex items-center ">
-                    <div className="pr-2">
-                      <CustomCheckbox />
-                    </div>
-                    <span> $400 - $600</span>
-                  </div>
-                </li>
-                <li className="mb-3">
-                  <div className="flex items-center ">
-                    {/* <input
-                      className=" p-1  mr-2 rounded  border border-borderGrey   focus:outline-none "
-                      type="checkbox"
-                    /> */}
-                    <div className="pr-2">
-                      <CustomCheckbox />
-                    </div>
-                    <span> $600 - $1000</span>
-                  </div>
-                </li>
-              </ul>
-            )}
-          </div>
-          <div className="mb-3">
-            <div className="flex items-center justify-between border-b border-b-borderGrey">
-              <h6 className="font-semibold  ">COLORS</h6>
-              <i className="text-xs" onClick={toggleColorView}>
-                <BsDash />
-              </i>
-            </div>
-            {colors && (
-              <ul className="list-none my-4 text-xs flex">
-                {filterColors.map((color, i) => {
-                  return (
-                    <li key={i} className="m-1">
-                      <CustomColorFilter
-                        className={`bg-[${color}]`}
-                        color={color}
-                        style={{ backgroundColor: `${color}` }}
-                      />
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
-          </div>
-          <div className="mb-3">
-            <div className="flex items-center justify-between border-b border-b-borderGrey">
-              <h6 className="font-semibold  ">GENDER</h6>
-              <i className="text-xs" onClick={toggleGenderView}>
-                <BsDash />
-              </i>
-            </div>
-            {gender && (
-              <ul className="list-none my-4 text-xs">
-                <li className="mb-3">
-                  <div className="flex items-center ">
-                    <div className="pr-2">
-                      <CustomCheckbox />
-                    </div>
-                    <span>Male</span>
-                  </div>
-                </li>
-                <li className="mb-3">
-                  <div className="flex items-center ">
-                    <div className="pr-2">
-                      <CustomCheckbox />
-                    </div>
-                    <span>Female</span>
-                  </div>
-                </li>
-              </ul>
-            )}
-          </div>
-          <div className="mb-3">
-            <div className="flex items-center justify-between border-b border-b-borderGrey">
-              <h6 className="font-semibold  ">AGE</h6>
-              <i className="text-xs" onClick={toggleAgeView}>
-                <BsDash />
-              </i>
-            </div>
-            {age && (
-              <ul className="list-none my-4 text-xs">
-                <li className="mb-3">
-                  <div className="flex items-center ">
-                    <div className="pr-2">
-                      <CustomCheckbox />
-                    </div>
-                    <span>0 - 3 Months</span>
-                  </div>
-                </li>
-                <li className="mb-3">
-                  <div className="flex items-center ">
-                    <div className="pr-2">
-                      <CustomCheckbox />
-                    </div>
-                    <span>3 - 6 Months</span>{" "}
-                  </div>
-                </li>
-                <li className="mb-3">
-                  <div className="flex items-center ">
-                    <div className="pr-2">
-                      <CustomCheckbox />
-                    </div>
-                    <span>6 - 12 Months</span>{" "}
-                  </div>
-                </li>
-                <li className="mb-3">
-                  <div className="flex items-center ">
-                    <div className="pr-2">
-                      <CustomCheckbox />
-                    </div>
-                    <span>1 - 3 Years</span>{" "}
-                  </div>
-                </li>
-              </ul>
-            )}
-          </div>
+          <Filter showCategory={false}/>
+          
         </div>
         <div className=" lg:col-span-10 mt-4">
           <div className="text-end">

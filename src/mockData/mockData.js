@@ -369,4 +369,4 @@ export  const carouselImages = [
     },
   ]
   export const filterColors = ["#000000", "#F0B454", "#DBDBDB", "#574106", "#FFA501"];
- export  const categories=['Pets', `'Pet's Toys`, 'Equipments','Electronics', 'Food', 'Colars', 'Soap']
+ export  const categories=['Pets', `Pet's Toys`, 'Equipments','Electronics', 'Food', 'Colars', 'Soap']

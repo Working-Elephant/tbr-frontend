@@ -2,32 +2,33 @@ import React from "react";
 import Checkbox from "react-custom-checkbox";
 import { FiCheck } from "react-icons/fi";
 
-const CustomCheckbox = ({ handleChange, label, name, className }) => {
+const CustomCheckbox = ({ handleChange, label, name, className, bgColor, checkColor, labelStyle, checked }) => {
   return (
     <>
       <Checkbox
-        // checked={true}
+      checked={checked}
         icon={
           <div
             style={{
               display: "flex",
               flex: 1,
-              backgroundColor: "#F9CB40",
+              backgroundColor:bgColor?? "#F9CB40",
               alignSelf: "stretch",
             }}
           >
-            <FiCheck color="white" size={12} />
+            <FiCheck color={`${checkColor ?? "white"}`} size={12} />
           </div>
         }
         name={name}
         className={className}
-        // onChange={handleChange}
+        onChange={handleChange}
         borderColor="#BEBEBE"
         borderWidth={1}
         borderRadius={2}
         style={{ overflow: "hidden" }}
         size={15}
         label={label}
+        labelStyle={labelStyle}
       />
     </>
   );
