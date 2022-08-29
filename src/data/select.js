@@ -4,7 +4,6 @@ export const sex = [
   },
   { value: "Female" },
 ];
-
 export const breed = [
   {
     id: " sarwegrw",
@@ -21,15 +20,12 @@ export const breed = [
 ];
 export const countries = [
   {
-    // id: " n01",
     value: "Nigeria",
   },
   {
-    // id: " n02",
     value: "United States",
   },
   {
-    // id: " n03",
     value: "Algeria",
   },
 ];
@@ -78,7 +74,6 @@ export const year =[
   {value: 2025},
   {value: 2026},
 ]
-
 export const titles = [
   {
     // id: " k01",

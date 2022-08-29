@@ -2,11 +2,9 @@ import React, { useState, useEffect } from "react";
 import PetBannerImage from "../assets/images/dog_banner.jpeg";
 import BreadCrumb from "../components/shared/BreadCrumb";
 import Pagination from "../components/shared/Pagination";
-import { BsDash } from "react-icons/bs";
 import FeaturedAdsCard from "../components/home/FeaturedAdsCard";
-import { Filter ,CustomColorFilter,CustomCheckbox} from "../components/shared";
-import { filterColors, featuredAdsData } from "../mockData/mockData";
-import { categories } from '../data/categories';
+import { Filter } from "../components/shared";
+import {  featuredAdsData } from "../mockData/mockData";
 
 const Pets = () => {
   const crumbs = [
@@ -20,13 +18,6 @@ const Pets = () => {
     },
   ];
 
-  const [filterView, setFilterView] = useState({
-    prices: true,
-    colors: true,
-    gender: true,
-    age: true,
-  });
-  const { prices, colors, gender, age } = filterView;
   const [perPage] = useState(6);
   const [firstIndex, setFirstIndex] = useState(0);
   const [currentData, setCurrentData] = useState([]);
@@ -45,30 +36,6 @@ const Pets = () => {
     setSelected(ev.selected);
   };
 
-  const togglePriceView = () => {
-    setFilterView((filterView) => ({
-      ...filterView,
-      prices: !prices,
-    }));
-  };
-  const toggleColorView = () => {
-    setFilterView((filterView) => ({
-      ...filterView,
-      colors: !colors,
-    }));
-  };
-  const toggleGenderView = () => {
-    setFilterView((filterView) => ({
-      ...filterView,
-      gender: !gender,
-    }));
-  };
-  const toggleAgeView = () => {
-    setFilterView((filterView) => ({
-      ...filterView,
-      age: !age,
-    }));
-  };
   return (
     <div className="">
       <div

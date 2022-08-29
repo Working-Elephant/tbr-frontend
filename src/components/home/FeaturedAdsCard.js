@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MdLocationOn } from "react-icons/md";
-import { FiHeart } from "react-icons/fi";
+// import { FiHeart } from "react-icons/fi";
 import { BsHeart, BsFillHeartFill } from "react-icons/bs";
 import { FaCamera } from "react-icons/fa";
-import Checkbox from "@mui/material/Checkbox";
-import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
-import Favorite from "@mui/icons-material/Favorite";
+// import Checkbox from "@mui/material/Checkbox";
+// import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+// import Favorite from "@mui/icons-material/Favorite";
 
 const FeaturedAdsCard = ({ item }) => {
   const { name, location, price, image, seller, sellerAvatar, id } = item;
