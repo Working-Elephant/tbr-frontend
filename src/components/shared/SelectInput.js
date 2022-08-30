@@ -15,6 +15,9 @@ const SelectInput = forwardRef(function SelectInput(
     onKeyUp,
     defaultOption,
     options,
+    border,
+    paddingX,
+    paddingY,
     ...props
   },
   ref
@@ -22,7 +25,11 @@ const SelectInput = forwardRef(function SelectInput(
   return (
     <React.Fragment>
       <select
-        className="border border-borderGrey  py-2 px-3 text-sm focus:outline-none w-full  "
+        className={`${
+          border ? border : "border border-borderGrey"
+        } w-full py-2 px-3 text-sm focus:outline-none placeholder:text-sm placeholder:text-dark  ${
+          paddingY ? paddingY : "py-2"
+        } ${paddingX ? paddingX : "px-3"}`}
         // type={type}
         // placeholder={placeholder}
         id={id}

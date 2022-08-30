@@ -76,23 +76,46 @@ export const year =[
 ]
 export const titles = [
   {
-    // id: " k01",
     value: "Mr",
   },
   {
-    // id: " k02",
     value: "Mrs",
   },
   {
-    // id: " k03",
     value: "Miss",
   },
   {
-    // id: " k04",
     value: "Dr",
   },
   {
-    // id: " k05",
     value: "Master",
+  },
+];
+export const locations =[
+  {
+    value:"Texas"
+  },
+  {
+    value:"Vales"
+  },
+  {
+    value:"Missouri"
+  },
+  {
+    value:"Pennysylvania"
+  },
+];
+export const searchCategories =[
+  {
+    value:"Pets"
+  },
+  {
+    value:"Pet Toys"
+  },
+  {
+    value:"Equipments"
+  },
+  {
+    value:"Pennysylvania"
   },
 ];

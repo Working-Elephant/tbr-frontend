@@ -4,4 +4,4 @@ export { filterColors } from "./color"
 
 export { categories } from "./categories"
 
-export {sex, breed, countries, titles, months,year} from "./select"
+export {sex, breed, countries, titles, months,year, locations, searchCategories} from "./select"

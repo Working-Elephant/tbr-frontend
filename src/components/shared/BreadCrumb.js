@@ -20,7 +20,7 @@ const BreadCrumb = (props) => {
                 {crumb.name}
               </NavLink>
               {!lastCrumb && (
-                <span class="text-gray-500 mx-2">
+                <span className="text-gray-500 mx-2">
                   <FiChevronRight />
                 </span>
               )}
