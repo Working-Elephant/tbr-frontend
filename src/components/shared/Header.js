@@ -3,8 +3,19 @@ import HeaderImage from "../../assets/images/dog_banner2.jpeg";
 import { FiSearch } from "react-icons/fi";
 import { FaSearch } from "react-icons/fa";
 import { IoPawOutline, IoLockClosedOutline } from "react-icons/io5";
+import { useForm } from "react-hook-form";
+import { searchCategories, locations } from "../../data";
 
 const Header = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({});
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
   return (
     <div className=" h-[100vh] md:h-[92vh] lg:h-[80vh]">
       <div
@@ -19,31 +30,46 @@ const Header = () => {
             Bully clasifies at your Paws
           </h3>
           <div className="w-5/6 lg:w-4/6 mx-auto my-4">
-            <div className=" grid grid-cols-2 gap-1   md:gap-1 md:grid-cols-5 my-4">
-              <input
-                className=" p-3.5 text-sm mx-1 rounded mb-4 md:col-span-1 md:mb-2  focus:outline-none placeholder:text-sm placeholder:text-dark"
-                placeholder="Categories"
-              />
-              <div className="bg-white flex items-center py-3 px-4 mb-4  md:mb-2 rounded col-span-2">
-                <i className="text-grey">
-                  <FiSearch />
-                </i>
-                <input
-                  className="bg-white  focus:outline-none ml-3"
-                  placeholder="Search..."
-                />
-              </div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className=" grid grid-cols-2 gap-1   md:gap-1 md:grid-cols-5 my-4">
+                {/* <input
+                  className=" p-3.5 text-sm mx-1 rounded mb-4 md:col-span-1 md:mb-2  focus:outline-none placeholder:text-sm placeholder:text-dark"
+                  placeholder="Categories"
+                /> */}
+                <select className=" p-3.5 text-sm mx-1 rounded mb-4 md:col-span-1 md:mb-2  focus:outline-none" {...register("category")}>
+                  <option>Category</option>
+                  {searchCategories.map((category, i) => (
+                    <option value={category.value}>{category.value}</option>
+                  ))}
+                </select>
+                <div className="bg-white flex items-center py-3 px-4 mb-4  md:mb-2 rounded col-span-2">
+                  <i className="text-grey">
+                    <FiSearch />
+                  </i>
+                  <input
+                    className="bg-white  focus:outline-none ml-3"
+                    placeholder="Search..."
+                    {...register("searchValue")}
+                  />
+                </div>
 
-              <input
-                className="md:col-span-1 p-3.5 text-sm mx-1 rounded mb-4 md:mb-2  focus:outline-none placeholder:text-sm placeholder:text-dark"
-                placeholder="Location"
-              />
-              <div className="md:col-span-1 mb-4  md:mb-2 mx-1">
-                <button className=" bg-yellow py-4 px-12 rounded text-sm">
-                  SEARCH
-                </button>
+                {/* <input
+                  className="md:col-span-1 p-3.5 text-sm mx-1 rounded mb-4 md:mb-2  focus:outline-none placeholder:text-sm placeholder:text-dark"
+                  placeholder="Location"
+                /> */}
+                <select className=" p-3.5 text-sm mx-1 rounded mb-4 md:col-span-1 md:mb-2  focus:outline-none" {...register("location")} >
+                  <option>Location</option>
+                  {locations.map((location, i) => (
+                    <option value={location.value}>{location.value}</option>
+                  ))}
+                </select>
+                <div className="md:col-span-1 mb-4  md:mb-2 mx-1">
+                  <button className=" bg-yellow py-4 px-12 rounded text-sm" type="submit">
+                    SEARCH
+                  </button>
+                </div>
               </div>
-            </div>
+            </form>
           </div>
           <div className="px-4 lg:w-5/6 mx-auto my-4 ">
             <ul className=" grid grid-cols-2 gap-2   lg:gap-4 lg:grid-cols-4">
