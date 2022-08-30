@@ -39,22 +39,22 @@ const Search = () => {
         <BreadCrumb crumbs={crumbs} />
       </div>
       <div className="p-4  w-full md:w-11/12 xl:w-10/12 mx-auto  md:grid md:grid-cols-12 md:gap-6 ">
-        <div className="hidden md:block md:col-span-4 lg:col-span-2 md:mt-[5rem]">
+        <div className="  lg:block lg:col-span-2 lg:mt-[5rem]">
           <Filter showCategory={true} />
         </div>
-        <div className=" md:col-span-8 lg:col-span-10 mt-4 md:px-6">
+        <div className="md:col-span-12 lg:col-span-10 lg:mt-4">
           <div className="flex items-center justify-between">
             <p className="text-sm">
               <span className="font-bold">{featuredAdsData.length}</span>{" "}
               Results for
-              <span className="font-bold">Bulldog</span>
+              <span className="font-bold"> Bulldog</span>
             </p>
             <select className="border border-borderGrey mb-5 py-2 px-3 text-sm focus:outline-none">
               <option>Sort By</option>
               <option>Price</option>
             </select>
           </div>
-          <div className="grid grid-cols-2 gap-3 lg:grid-cols-3">
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
             {currentData.map((item, i) => {
               return <FeaturedAdsCard key={i} item={item} />;
             })}

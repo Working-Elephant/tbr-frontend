@@ -49,19 +49,19 @@ const Pets = () => {
       <div className="my-4 px-5 lg:w-11/12 xl:w-10/12 mx-auto ">
         <BreadCrumb crumbs={crumbs} />
       </div>
-      <div className="p-5  w-full lg:w-11/12 xl:w-10/12 mx-auto  lg:grid lg:grid-cols-12 lg:gap-6">
-        <div className="hidden lg:block lg:col-span-2">
+      <div className="p-5  w-full lg:w-11/12 xl:w-10/12 mx-auto md:grid md:grid-cols-12 lg:gap-6">
+        <div className=" lg:block lg:col-span-2">
           <Filter showCategory={false}/>
           
         </div>
-        <div className=" lg:col-span-10 mt-4">
+        <div className=" lg:col-span-10 lg:mt-4">
           <div className="text-end">
             <select className="border border-borderGrey mb-8 py-2 px-3 text-sm focus:outline-none">
               <option>Sort By</option>
               <option>Price</option>
             </select>
           </div>
-          <div className="grid grid-cols-2 gap-3 lg:grid-cols-3">
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
             {currentData.map((item, i) => {
               return <FeaturedAdsCard key={i} item={item} />;
             })}

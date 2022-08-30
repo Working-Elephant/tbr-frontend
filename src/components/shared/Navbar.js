@@ -91,35 +91,35 @@ const Navbar = ({ home }) => {
             <div
               className={`${
                 mobileMenu
-                  ? "flex absolute top-0 right-0 bg-white h-full w-1/2 md:w-2/6 text-[#333] shadow-lg rounded-tl-3xl rounded-bl-3xl pl-8  flex-col items-between"
+                  ? "flex absolute top-0 right-0 bg-white h-full w-1/2 md:w-2/6 text-[#333] shadow-lg rounded-tl-3xl rounded-bl-3xl pl-8  flex-col items-between overflow-y-auto"
                   : "hidden"
               } `}
             >
-              <div>
-              <div className="flex items-center justify-end">
-                <i className="text-xl text-end p-4" onClick={toggleMenu}>
-                  <MdClose />
-                </i>
+              <div className="">
+                <div className="flex items-center justify-end">
+                  <i className="text-xl text-end p-4" onClick={toggleMenu}>
+                    <MdClose />
+                  </i>
+                </div>
+                <ul className="text-start  mb-3">
+                  <li className="py-3">
+                    <Link to="/">Home</Link>
+                  </li>
+                  <li className="py-3">
+                    <Link to="/pets">Listing</Link>
+                  </li>
+                  <li className="py-3">
+                    <Link to="/">Services</Link>
+                  </li>
+                  <li className="py-3">
+                    <Link to="/">Bully News</Link>
+                  </li>
+                  <li className="py-3">
+                    <Link to="/">About Us </Link>
+                  </li>
+                </ul>
               </div>
-              <ul className="text-start  mb-3">
-                <li className="py-3">
-                  <Link to="/">Home</Link>
-                </li>
-                <li className="py-3">
-                  <Link to="/pets">Listing</Link>
-                </li>
-                <li className="py-3">
-                  <Link to="/">Services</Link>
-                </li>
-                <li className="py-3">
-                  <Link to="/">Bully News</Link>
-                </li>
-                <li className="py-3">
-                  <Link to="/">About Us </Link>
-                </li>
-              </ul>
-              </div>
-              
+
               <div className=" text-start flex flex-col text-sm pr-8">
                 <span className="mb-5">
                   <Link to="/login">Login</Link>
