@@ -22,7 +22,7 @@ const SelectInput = forwardRef(function SelectInput(
   return (
     <React.Fragment>
       <select
-        className="border-.5 border-borderGrey  py-2 px-3 text-sm focus:outline-none w-full  "
+        className="border border-borderGrey  py-2 px-3 text-sm focus:outline-none w-full  "
         // type={type}
         // placeholder={placeholder}
         id={id}
@@ -38,7 +38,7 @@ const SelectInput = forwardRef(function SelectInput(
         onKeyUp={onKeyUp}
         {...props}
       >
-        <option>{defaultOption}</option>
+        <option value="">{defaultOption}</option>
         {options.map((option, i) => (
           <option key={i} value={option.id ? option.id : option.value}>
             {option.value}

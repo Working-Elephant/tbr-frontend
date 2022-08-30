@@ -5,7 +5,7 @@ import { FiChevronRight } from "react-icons/fi";
 const BreadCrumb = (props) => {
   function isLast(index) {
     let val = index === props.crumbs.length - 1;
-    console.log(val);
+    // console.log(val);
     return val;
   }
   return (

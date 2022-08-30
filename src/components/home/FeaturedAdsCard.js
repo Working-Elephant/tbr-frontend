@@ -1,28 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MdLocationOn } from "react-icons/md";
-import { FiHeart } from "react-icons/fi";
+// import { FiHeart } from "react-icons/fi";
+import { BsHeart, BsFillHeartFill } from "react-icons/bs";
 import { FaCamera } from "react-icons/fa";
+// import Checkbox from "@mui/material/Checkbox";
+// import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+// import Favorite from "@mui/icons-material/Favorite";
 
 const FeaturedAdsCard = ({ item }) => {
-  const { name, location, price, image, seller, sellerAvatar,id } = item;
+  const { name, location, price, image, seller, sellerAvatar, id } = item;
+  const [liked, setLiked] = useState(false);
 
   const navigate = useNavigate();
 
-  const viewAd=(id)=>{
-    navigate(`/ad/view/${id}`)
-  }
+  const toggleLike = () => {
+    setLiked(!liked);
+  };
+
+  const viewAd = (id) => {
+    navigate(`/ad/view/${id}`);
+  };
   return (
-    <div className="p-2 flex flex-col cursor-pointer" onClick={()=>viewAd(id)} >
-      <div className="w-full relative h-52 bg-cover bg-center bg-no-repeat rounded-2xl"   style={{ backgroundImage: `url('${image}')` }}>
-        <i className="text-white text-lg absolute top-4 right-3"> 
-          <FiHeart />
+    <div className="p-2 flex flex-col cursor-pointer">
+      <div
+        className="w-full relative h-52 bg-cover bg-center bg-no-repeat rounded-2xl"
+        onClick={() => viewAd(id)}
+        style={{ backgroundImage: `url('${image}')` }}
+      >
+        <i
+          className="text-white text-lg absolute top-4 right-3"
+          onClick={toggleLike}
+        >
+          {liked ? <BsFillHeartFill color="red" /> : <BsHeart color="white" />}
         </i>
-        {/* <img src={image} alt="" className="w-full h-full rounded-2xl" /> */}
-        <div className="absolute bottom-4 right-3 px-2 py-0.5 bg-black opacity-50 text-white text-xs rounded">
+        <div className="absolute bottom-4 right-3 px-2 py-0.5 bg-black opacity-60 text-white text-xs rounded">
           <div className="flex items-center">
-            <i className="mr-2" >
-              <FaCamera /> 
+            <i className="mr-2">
+              <FaCamera />
             </i>
             <span className="">10</span>
           </div>

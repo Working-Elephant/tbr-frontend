@@ -19,7 +19,7 @@ const Input = forwardRef(function Input(
 ) {
     return (
         <React.Fragment>
-            <input className="border-.5 border-borderGrey w-full py-2 px-3 text-sm focus:outline-none placeholder:text-sm placeholder:text-dark"
+            <input className="border border-borderGrey w-full py-2 px-3 text-sm focus:outline-none placeholder:text-sm placeholder:text-dark"
                 type={type}
                 placeholder={placeholder}
                 id={id}
