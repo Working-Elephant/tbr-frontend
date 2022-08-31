@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { BreadCrumb, ImageModal } from "../../components/shared";
+import {  ImageModal } from "../../components/shared";
 import SellerInfo from "../../components/ads/SellerInfo";
 import SimilarProducts from "../../components/ads/SimilarProducts";
 import RecentlyViewed from "../../components/ads/RecentlyViewed";
