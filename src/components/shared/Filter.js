@@ -255,7 +255,7 @@ const Filter = ({ showCategory }) => {
         <div
           className={`${
             mobileFilter
-              ? "flex absolute top-0 left-0 bg-white h-full w-3/5 md:w-2/6 text-[#333] shadow-lg rounded-tl-3xl rounded-bl-3xl pl-5 pr-2  flex-col items-between"
+              ? "flex absolute top-0 left-0 bg-white h-full w-3/5 md:w-2/6 text-[#333] shadow-lg rounded-tr-3xl rounded-br-3xl pl-5 pr-2  flex-col items-between"
               : "hidden"
           } `}
         >

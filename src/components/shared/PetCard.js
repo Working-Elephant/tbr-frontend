@@ -11,7 +11,7 @@ const PetCard = ({ item }) => {
 
   const { name, location, price, image, seller, sellerAvatar, id } = item;
   return (
-    <div className="p-2 flex flex-col w-full cursor-pointer" onClick={()=>viewAd(id)} >
+    <div className="p-2 flex flex-col  cursor-pointer" onClick={()=>viewAd(id)} >
       <div className="w-full">
         <img src={image} alt="" className="w-full h-36 rounded-2xl" />
       </div>
