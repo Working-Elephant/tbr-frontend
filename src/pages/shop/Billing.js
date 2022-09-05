@@ -63,7 +63,6 @@ const Billing = () => {
         <BreadCrumb crumbs={crumbs} />
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        {" "}
         <div className="">
           {/* order summary */}
           <div className=" pb-8">

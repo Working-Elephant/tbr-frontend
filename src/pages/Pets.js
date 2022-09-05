@@ -49,7 +49,7 @@ const Pets = () => {
       <div className="my-4 px-5 lg:w-11/12 xl:w-10/12 mx-auto ">
         <BreadCrumb crumbs={crumbs} />
       </div>
-      <div className="p-5  w-full lg:w-11/12 xl:w-10/12 mx-auto md:grid md:grid-cols-12 lg:gap-6">
+      <div className="p-5  w-full lg:w-11/12 xl:w-10/12 mx-auto lg:grid lg:grid-cols-12 lg:gap-6">
         <div className=" lg:block lg:col-span-2">
           <Filter showCategory={false}/>
           

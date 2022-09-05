@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { ImageContainer } from "../components/shared";
 import { categoriesData } from "../data";
 
@@ -8,12 +9,13 @@ const Categories = () => {
       <h2 className="font-bold text-2xl m-6">Shop by Category</h2>
       <div className="grid grid-cols-2  gap-x-4 gap-y-12  md:grid-cols-3 xl:grid-cols-4 mb-12">
         {categoriesData.map((data, i) => (
-          <div key={`km${i}`} className="mx-4  relative  lg:h-72" >
+          <Link to={data.link}>
+          <div key={`km${i}`} className="mx-4  relative  lg:h-72"  >
             <ImageContainer image={data.img} rounded="rounded-[2rem]" fullHeight={true} />
             <p className="absolute bottom-4 left-6 uppercase text-white text-lg">
               {data.name}
             </p>
-          </div>
+          </div></Link>
         ))}
       </div>
     </div>

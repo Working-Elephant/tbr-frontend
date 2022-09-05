@@ -140,12 +140,12 @@ const Home = () => {
               <h3 className="text-2xl">Featured Sellers</h3>
               <p className="text-grey">Shop our featured Sellers</p>
             </div>
-            <div className="text-blue flex items-center">
+            <Link to="/categories" className="text-blue flex items-center">
               <span className="">View More</span>
               <i className="ml-1 text-xl">
                 <IoIosArrowForward />
               </i>
-            </div>
+            </Link >
           </div>
           <div className="grid grid-cols-2 gap-3 lg:grid-cols-3   ">
             {featuredAdsData.slice(0,9).map((item, i) => {
