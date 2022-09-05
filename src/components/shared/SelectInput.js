@@ -15,6 +15,8 @@ const SelectInput = forwardRef(function SelectInput(
     onKeyUp,
     defaultOption,
     options,
+    display,
+    selectValue,
     border,
     paddingX,
     paddingY,

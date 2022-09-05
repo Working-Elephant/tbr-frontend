@@ -310,7 +310,7 @@ const Shipping = () => {
             </div>
           </div>
         </div>
-        <div className="text-end">
+        <div className="text-end mt-4 mr-3 md:mr-5 lg:mt-0 lg:mr-0">
           <button
             className="bg-yellow py-4 px-15 rounded font-semibold text-sm "
             type="submit"

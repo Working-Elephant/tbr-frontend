@@ -1,5 +1,7 @@
 import "./App.css";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import "react-datepicker/dist/react-datepicker.css";
+import { CartContextProvider } from "./context/cartContext";
 import Footer from "./components/shared/Footer";
 import Home from "./pages/Home";
 import Login from "./pages/auth/Login";
@@ -46,10 +48,10 @@ const App = () => {
           <Route path="/dashboard" element={<Navigate to="/dashboard/ads" />} />
           <Route path="/dashboard/ads" element={<Ads />} />
           <Route path="/dashboard/messages" element={<Messages />} />
-          <Route path="/pets" element={<Pets />} />
+          <Route path="/categories/pets" element={<Pets />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/search" element={<Search />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<CartContextProvider><Cart /></CartContextProvider>} />
           <Route path="/cart/shipping" element={<Shipping />} />
           <Route path="/cart/shipping/billing" element={<Billing />} />
           <Route

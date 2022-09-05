@@ -6,15 +6,15 @@ export const sex = [
 ];
 export const breed = [
   {
-    id: " sarwegrw",
+    id: " 3",
     value: "Cane Corso",
   },
   {
-    id: " ncbhnsdv",
+    id: " 4",
     value: "PitBull",
   },
   {
-    id: " dsftheab",
+    id: " 6",
     value: "Cane Corso",
   },
 ];
@@ -119,3 +119,8 @@ export const searchCategories =[
     value:"Pennysylvania"
   },
 ];
+export const selectCategories=[
+  {id:1, value:"Pets"},
+  {id:2, value:"Pet Toys"},
+  {id:3, value:"Equipments"},
+]

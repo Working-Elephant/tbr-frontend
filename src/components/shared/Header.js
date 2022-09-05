@@ -17,7 +17,7 @@ const Header = () => {
     console.log(data);
   };
   return (
-    <div className=" h-[100vh] md:h-[92vh] lg:h-[80vh]">
+    <div className="min-h-[90vh] h-[100vh]  md:h-[92vh] lg:h-[80vh]">
       <div
         className="w-full h-full  bg-no-repeat bg-cover text-center py-3 flex flex-col justify-end"
         style={{ backgroundImage: `url('${HeaderImage}')` }}
