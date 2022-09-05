@@ -5,12 +5,16 @@ export const CartContext = createContext();
 
 const initialState = {
   quantity: 1,
-  item: {},
+  items: [],
 };
 
 export const cartReducer = (state, action) => {
   switch (action.type) {
+    case "ADD_TO_CART":
+      return { ...state, item: action.payload };
     case "UPDATE_CART":
+      return { ...state, quantity: action.payload };
+    case "INCREASE":
       return { ...state, quantity: action.payload };
 
     default:

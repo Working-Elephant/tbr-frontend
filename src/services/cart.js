@@ -2,30 +2,35 @@ import axios from "axios";
 
 let baseUrl = process.env.REACT_APP_BACKEND_URL;
 const CartService = {
-  createCart: async (email, password) => {
+  createCart: async (cartData) => {
+    return await axios.post(`${baseUrl}/Cart`, cartData).then((res) => {
+      return res.data;
+    });
+  },
+  createShippingAddress: async (address) => {
     return await axios
-      .post(`${baseUrl}/signUp/${email}`, { email, password })
+      .post(`${baseUrl}/ShippingAddress`, address)
       .then((res) => {
         return res.data;
       });
   },
-  updateCart: async (email, password) => {
+  createBillingAddress: async (address) => {
     return await axios
-      .post(`${baseUrl}/signUp/${email}`, { email, password })
+      .post(`${baseUrl}/BillingAddress`, address)
       .then((res) => {
         return res.data;
       });
   },
-  createShippingAddress: async (email, password) => {
+  createBillingDetails: async (billingDetails) => {
     return await axios
-      .post(`${baseUrl}/signUp/${email}`, { email, password })
+      .post(`${baseUrl}/Billing`, billingDetails)
       .then((res) => {
         return res.data;
       });
   },
-  createBillingAddress: async (email, password) => {
+  createOrderSummary: async (summary) => {
     return await axios
-      .post(`${baseUrl}/signUp/${email}`, { email, password })
+      .post(`${baseUrl}/OrderSummary`, summary)
       .then((res) => {
         return res.data;
       });

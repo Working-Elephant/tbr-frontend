@@ -1,6 +1,6 @@
-import React, { useRef,useState } from "react";
-import { Link } from "react-router-dom";
-import {BreadCrumb} from "../../components/shared";
+import React, { useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import {  ImageModal } from "../../components/shared";
 import SellerInfo from "../../components/ads/SellerInfo";
 import SimilarProducts from "../../components/ads/SimilarProducts";
 import RecentlyViewed from "../../components/ads/RecentlyViewed";
@@ -12,14 +12,13 @@ import {
   BsArrowLeftShort,
   BsArrowRightShort,
 } from "react-icons/bs";
-import { FaCamera, FaBorderAll } from "react-icons/fa";
+import { FaCamera, FaBorderAll, FaArrowLeft } from "react-icons/fa";
 
 const ViewAdDetails = () => {
   const thumbnailsContainer = useRef(null);
-  const [ImageInView, setImageInView] = useState(1)
-//   const scroll = (scrollOffset) => {
-//     thumbnailsContainer.current.scrollLeft += scrollOffset;
-//   };
+  const [ImageInView, setImageInView] = useState(1);
+  const navigate = useNavigate();
+
   const sideScroll = (element, speed, distance, step) => {
     let scrollAmount = 0;
     const slideTimer = setInterval(() => {
@@ -30,53 +29,68 @@ const ViewAdDetails = () => {
       }
     }, speed);
   };
-//   const carouselImages = [
-//     { id: 1, img: Doggo2 },
-//     { id: 2, img: Doggo3 },
-//     { id: 3, img: Doggo1 },
-//     { id: 4, img: Doggo2 },
-//     { id: 5, img: Doggo3 },
-//     { id: 6, img: Doggo2 },
-//     { id: 7, img: Doggo1 },
-//     { id: 8, img: Doggo3 },
-//   ];
 
-  const setImage=(i)=>{
-    setImageInView(i)
-  }
+  const setImage = (i) => {
+    setImageInView(i);
+  };
+
+ const goBack=()=>{
+  navigate(-1)
+ }
+  const [fullImage, setFullImage] = useState(false);
+  // const [viewAge, setViewAge] = useState()
+
+  const handleClose = () => {
+    setFullImage(!fullImage);
+  };
   return (
     <div className="p-5  lg:py-10 lg:px-12">
-      <div>
-        <BreadCrumb />
+      <div className="px-6 mb-4">
+        {/* <BreadCrumb crumbs={crumbs} /> */}
+        <div className="inline-flex cursor-pointer">
+        <div className="py-2 px-3 bg-borderGrey rounded-lg flex items-center text-xs " onClick={goBack}>
+          <i className="mr-3">
+            <FaArrowLeft />
+          </i>
+          <span>Back</span>
+        </div></div>
       </div>
       <div className="grid grid-cols-12 gap-y-8 mb-6">
         <div className=" col-span-12  md:col-span-7 lg:col-span-8 xl:col-span-9  px-4">
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
             <div className=" flex flex-col px-2">
-                <div className="w-full mb-4 relative">
-                  <div className="absolute top-4 right-3 px-2 py-0.5 bg-black opacity-50 text-white text-sm rounded">
-                    <div className="flex items-center">
-                      <i className="mr-2">
-                        <FaCamera />
-                      </i>
-                      <span className="">{carouselImages.length}</span>
-                    </div>
-                  </div>
-                  <img
-                    src={carouselImages[ImageInView].img}
-                    alt=""
-                    className="w-full h-full rounded-lg"
-                  />
-                  <div className="absolute bottom-4 right-3 px-2 py-0.5 bg-black opacity-50 text-white text-sm rounded">
-                    <div className="flex items-center">
-                      <i className="mr-2">
-                        <FaBorderAll />
-                      </i>
-                      <span className="">View Full Size</span>
-                    </div>
+              <div className="w-full mb-4 relative">
+                <div className="absolute top-4 right-3 px-2 py-0.5 bg-black opacity-50 text-white text-sm rounded">
+                  <div className="flex items-center">
+                    <i className="mr-2">
+                      <FaCamera />
+                    </i>
+                    <span className="">{carouselImages.length}</span>
                   </div>
                 </div>
-                <div ref={thumbnailsContainer} className="flex items-center  ">
+                <img
+                  src={carouselImages[ImageInView].img}
+                  alt=""
+                  className="w-full h-full rounded-lg"
+                />
+                <div className="absolute bottom-4 right-3 px-2 py-0.5 bg-black opacity-50 text-white text-sm rounded">
+                  <div
+                    className="flex items-center"
+                    onClick={() => setFullImage(true)}
+                  >
+                    <i className="mr-2">
+                      <FaBorderAll />
+                    </i>
+                    <span className="">View Full Size</span>
+                  </div>
+                </div>
+              </div>
+              <ImageModal
+                image={carouselImages[ImageInView].img}
+                open={fullImage}
+                close={handleClose}
+              />
+              <div ref={thumbnailsContainer} className="flex items-center  ">
                 <i
                   className=" p-1 border border-dark rounded-full bg-text-grey text-lg"
                   onClick={() =>
@@ -96,7 +110,7 @@ const ViewAdDetails = () => {
                         src={item.img}
                         alt=""
                         className="h-15 w-15 rounded-md mx-1"
-                        onClick={()=> setImage(i)}
+                        onClick={() => setImage(i)}
                       />
                     );
                   })}
@@ -109,7 +123,7 @@ const ViewAdDetails = () => {
                 >
                   <BsArrowRightShort />
                 </i>
-                </div>
+              </div>
             </div>
             <div className=" px-2 text-xs">
               <p className="">Cane Corso</p>
@@ -162,8 +176,7 @@ const ViewAdDetails = () => {
               </div>
               <div className="py-3 border-b border-b-borderGrey">
                 <button className="w-full rounded-md py-2 bg-blue text-white capitalize">
-                  <Link to='/cart'>Make payment</Link>
-                  
+                  <Link to="/cart">Make payment</Link>
                 </button>
               </div>
               <div className=" border-b border-b-borderGrey grid grid-cols-3 text-xs text-blue text-center">
@@ -196,10 +209,10 @@ const ViewAdDetails = () => {
         </div>
       </div>
       <div className=" my-6">
-        <SimilarProducts/>
+        <SimilarProducts />
       </div>
       <div>
-        <RecentlyViewed/>
+        <RecentlyViewed />
       </div>
     </div>
   );

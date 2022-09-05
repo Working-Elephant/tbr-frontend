@@ -25,12 +25,15 @@ const ForgotPassword = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="w-full lg:w-2/3 mx-auto flex flex-col uppercase">
             <div className=" mb-5 w-full">
-              <Input
+             <Input
+                type="email"
                 placeholder={"Email"}
-                {...register("email", { required: true })}
+                {...register("email", {
+                  required: { value: true, message: " Email is required" },
+                })}
               />
               {errors.email && (
-                <ErrorMessage>{errors.email?.message}</ErrorMessage>
+                <ErrorMessage message={errors.email?.message}/>
               )}
             </div>
           </div>

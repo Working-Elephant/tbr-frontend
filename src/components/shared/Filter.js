@@ -52,7 +52,7 @@ const Filter = ({ showCategory }) => {
   };
   return (
     <div>
-      <div className="lg:hidden">
+      <div className="lg:hidden mb-[-2.6rem] lg:mb-0">
         <button
           className="px-4 py-2 border border-borderGrey"
           onClick={toggleMenu}
@@ -250,18 +250,18 @@ const Filter = ({ showCategory }) => {
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={mobileFilter}
-        onClick={handleClose}
+        // onClick={handleClose}
       >
         <div
           className={`${
             mobileFilter
-              ? "flex absolute top-0 left-0 bg-white h-full w-3/5 md:w-2/6 text-[#333] shadow-lg rounded-tl-3xl rounded-bl-3xl pl-5 pr-2  flex-col items-between"
+              ? "flex absolute top-0 left-0 bg-white h-full w-3/5 md:w-2/6 text-[#333] shadow-lg rounded-tr-3xl rounded-br-3xl pl-5 pr-2  flex-col items-between"
               : "hidden"
           } `}
         >
           <div className="overflow-auto pb-6">
             <div className="flex items-center justify-end">
-              <i className="text-xl text-end p-4" onClick={toggleMenu}>
+              <i className="text-xl text-end p-4" onClick={handleClose}>
                 <MdClose />
               </i>
             </div>

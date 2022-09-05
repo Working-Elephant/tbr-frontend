@@ -1,5 +1,7 @@
 import "./App.css";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import "react-datepicker/dist/react-datepicker.css";
+import { CartContextProvider } from "./context/cartContext";
 import Footer from "./components/shared/Footer";
 import Home from "./pages/Home";
 import Login from "./pages/auth/Login";
@@ -20,37 +22,48 @@ import Categories from "./pages/Categories";
 import Pets from "./pages/Pets";
 import Search from "./pages/Search";
 import { useMatch } from "react-router-dom";
+import { useLayoutEffect } from "react";
+
+const Wrapper = ({ children }) => {
+  const location = useLocation();
+  useLayoutEffect(() => {
+    document.documentElement.scrollTo(0, 0);
+  }, [location.pathname]);
+  return children;
+};
 
 const App = () => {
   const isHome = useMatch("/" || "/home");
 
   return (
     <div className="bg-white">
-      <Navbar home={isHome} />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<SignUp />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-        <Route path="/dashboard" element={<Navigate to="/dashboard/ads" />} />
-        <Route path="/dashboard/ads" element={<Ads />} />
-        <Route path="/dashboard/messages" element={<Messages />} />
-        <Route path="/pets" element={<Pets />} />
-        <Route path="/categories" element={<Categories />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/cart/shipping" element={<Shipping />} />
-        <Route path="/cart/shipping/billing" element={<Billing />} />
-        <Route
-          path="/cart/shipping/billing/confirmation"
-          element={<Confirmation />}
-        />
-        <Route path="/ad/post-ad" element={<PostAd />} />
-        <Route path="/ad/view/:id" element={<ViewAdDetails />} />
-        <Route path="*" exact={true} element={<Notfound />} />
-      </Routes>
-      <Footer />
+      <Wrapper>
+        <Navbar home={isHome} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<SignUp />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+          <Route path="/dashboard" element={<Navigate to="/dashboard/ads" />} />
+          <Route path="/dashboard/ads" element={<Ads />} />
+          <Route path="/dashboard/messages" element={<Messages />} />
+          <Route path="/categories/pets" element={<Pets />} />
+          <Route path="/categories" element={<Categories />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/cart" element={<CartContextProvider><Cart /></CartContextProvider>} />
+          <Route path="/cart/shipping" element={<Shipping />} />
+          <Route path="/cart/shipping/billing" element={<Billing />} />
+          <Route
+            path="/cart/shipping/billing/confirmation"
+            element={<Confirmation />}
+          />
+          <Route path="/ad/post-ad" element={<PostAd />} />
+          <Route path="/ad/view/:id" element={<ViewAdDetails />} />
+          <Route path="*" exact={true} element={<Notfound />} />
+        </Routes>
+        <Footer />
+      </Wrapper>
     </div>
   );
 };

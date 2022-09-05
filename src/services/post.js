@@ -2,16 +2,16 @@ import axios from "axios";
 
 let baseUrl = process.env.REACT_APP_BACKEND_URL;
 const PostService = {
-  getPosts: async (email, password) => {
+  getPosts: async () => {
     return await axios
-      .post(`${baseUrl}/signUp/${email}`, { email, password })
+      .get(`${baseUrl}/PostAdd`)
       .then((res) => {
         return res.data;
       });
   },
-  addPost: async (email, password) => {
+  addPost: async (post) => {
     return await axios
-      .post(`${baseUrl}/signUp/${email}`, { email, password })
+      .post(`${baseUrl}/PostAdd`, post)
       .then((res) => {
         return res.data;
       });

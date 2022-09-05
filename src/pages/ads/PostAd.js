@@ -17,6 +17,7 @@ const PostAd = () => {
     dogsOwnerName: "",
     address: "",
     city: "",
+    // country: "",
     state: "",
     zip: "",
     telephone: "",
@@ -30,15 +31,21 @@ const PostAd = () => {
   });
   const [step, setStep] = useState(1);
 
+  const updateStep1 = (data) => {
+    setState((state) => ({
+      ...state,
+      categoryId: parseInt(data.category) ,
+      breedId: parseInt(data.breed),
+      pictureUrl: data.pictureUrl,
+    }));
+    setStep(step + 1);
+  };
   const updateStep2 = (data) => {
+    // console.log(data);
     setState((state) => ({
       ...state,
       dogsRegisteredName: data.dogsRegisteredName,
-      // postAddId: 0,
-      // categoryId: 0,
-      // breedId: 0,
-      // pictureUrl: "",
-      dateofBirth: "",
+      dateofBirth: data.dateOfBirth,
       sex: data.sex,
       dogsOwnerName: data.dogsOwnerName,
       address: data.address,
@@ -47,14 +54,15 @@ const PostAd = () => {
       zip: data.zip,
       telephone: data.telephone,
       maleParentName: data.maleParentName,
-      maleParentDob: "",
+      maleParentDob: data.maleParentDob,
       maleBreedId: data.maleBreedId,
       femaleParentName: data.femaleParentName,
-      femaleParentDob: "",
+      femaleParentDob: data.femaleParentDob,
       femaleBreedId: data.femaleBreedId,
       signUpId: 0,
     }));
-    setStep(step + 1);
+    // setStep(step + 1);
+    console.log(state)
   };
   const nextStep = () => {
     if (step >= 3) {
@@ -73,7 +81,9 @@ const PostAd = () => {
 
   return (
     <div>
-      <AdContext.Provider value={{ step, nextStep, prevStep, updateStep2 }}>
+      <AdContext.Provider
+        value={{ step, nextStep, prevStep, updateStep1, updateStep2 }}
+      >
         <div className="w-full p-5 ">
           <div className="w-full border p-4 border-borderGrey md:w-4/6 md:mx-auto md:my-5  ">
             <h4 className="text-center my-4 font-normal text-lg">Post Ad</h4>
