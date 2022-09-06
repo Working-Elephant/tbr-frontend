@@ -8,7 +8,7 @@ const SignUpSlice = createAsyncThunk("auth/SignUpSlice", async (data, { rejectWi
     try {
         const response = await axios({
             method: "post",
-            url: ExternalUrl.signup(data.email),
+            url: ExternalUrl.signup(),
             headers: {
                 "Content-Type": "application/json",
             },
@@ -28,8 +28,8 @@ const SignUpSlice = createAsyncThunk("auth/SignUpSlice", async (data, { rejectWi
 const slice = createSlice({
     name: "auth",
     initialState: {
-        loading: false,
         data: {},
+        loading: false,
     },
     reducers: {},
     extraReducers: {
