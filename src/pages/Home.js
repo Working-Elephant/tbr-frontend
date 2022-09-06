@@ -118,14 +118,12 @@ const Home = () => {
             >
               {categoriesData.map((item, i) => (
                 <div key={item.id} className="mx-4 rounded-[60px] relative">
-                  <Link to={`${item.link}`} >
-                  <ImageContainer
-                    image={item.img}
-                    rounded="rounded-[3rem]"
-                  />
-                  <p className="absolute bottom-4 left-8 uppercase text-white text-xl">
-                    {item.name}
-                  </p></Link>
+                  <Link to={`${item.link}`}>
+                    <ImageContainer image={item.img} rounded="rounded-[3rem]" />
+                    <p className="absolute bottom-4 left-8 uppercase text-white text-xl">
+                      {item.name}
+                    </p>
+                  </Link>
                 </div>
               ))}
             </Carousel>
@@ -145,10 +143,10 @@ const Home = () => {
               <i className="ml-1 text-xl">
                 <IoIosArrowForward />
               </i>
-            </Link >
+            </Link>
           </div>
           <div className="grid grid-cols-2 gap-3 lg:grid-cols-3   ">
-            {featuredAdsData.slice(0,9).map((item, i) => {
+            {featuredAdsData.slice(0, 9).map((item, i) => {
               return <FeaturedAdsCard key={i} item={item} />;
             })}
           </div>
@@ -225,9 +223,11 @@ const Home = () => {
               selling potential by advertising with us today
             </p>
             <div>
-              <button className=" bg-yellow py-4 px-12 rounded text-sm text-dark font-semibold ">
-                Submit Ad
-              </button>
+              <Link to="/ad/post-ad">
+                <button className=" bg-yellow py-4 px-12 rounded text-sm text-dark font-semibold ">
+                  Submit Ad
+                </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -285,9 +285,7 @@ const Home = () => {
                 </button>
               </div>
             </div>
-            <div className="col-span-1">
-              
-            </div>
+            <div className="col-span-1"></div>
           </div>
         </div>
       </section>

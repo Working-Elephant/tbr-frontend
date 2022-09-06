@@ -44,7 +44,7 @@ const Login = () => {
             <div className=" mb-5 w-full">
               <Input
                 placeholder={"Password"}
-                {...register("password", { required: true })}
+                {...register("password", { required: { value: true, message: "Password is required" } })}
               />
               {errors.password && (
                 <ErrorMessage message={errors.password?.message} />
