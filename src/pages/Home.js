@@ -20,7 +20,7 @@ import {
   categoriesData,
   bullyNewsData,
   testimonialData,
-} from "../mockData/mockData";
+} from "../data/api";
 import { Link } from "react-router-dom";
 
 const Home = () => {

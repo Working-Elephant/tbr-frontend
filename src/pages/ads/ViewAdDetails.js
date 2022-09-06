@@ -14,13 +14,16 @@ import {
 } from "react-icons/bs";
 import { FaCamera, FaBorderAll, FaArrowLeft } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
+import { addToCart } from "../../store/features/productSlice";
 
 const ViewAdDetails = () => {
   const { id } = useParams();
+  const dispatch= useDispatch()
+
+  
 
   const products = useSelector((state) => state.product.products);
   const selectedProduct = products.find((product) => product.id === Number(id));
-  // console.log(selectedProduct);
   const thumbnailsContainer = useRef(null);
   const [ImageInView, setImageInView] = useState(1);
   const navigate = useNavigate();
@@ -39,7 +42,6 @@ const ViewAdDetails = () => {
   const setImage = (i) => {
     setImageInView(i);
   };
-
   const goBack = () => {
     navigate(-1);
   };
@@ -49,11 +51,11 @@ const ViewAdDetails = () => {
   const handleClose = () => {
     setFullImage(!fullImage);
   };
-  //  const isNotProduct =!selectedProduct
 
-  // useEffect(() => {
-  //   navigate("/categories");
-  // }, [isNotProduct]);
+const goToCart = ()=>{
+  // dispatch(addToCart(id))
+  navigate('/cart')
+}
 
   return (
     selectedProduct && (
@@ -211,8 +213,8 @@ const ViewAdDetails = () => {
                   </div>
                 </div>
                 <div className="py-3 border-b border-b-borderGrey">
-                  <button className="w-full rounded-md py-2 bg-blue text-white capitalize">
-                    <Link to="/cart">Make payment</Link>
+                  <button className="w-full rounded-md py-2 bg-blue text-white capitalize" onClick={goToCart}>
+                    Make payment
                   </button>
                 </div>
                 <div className=" border-b border-b-borderGrey grid grid-cols-3 text-xs text-blue text-center cursor-pointer">

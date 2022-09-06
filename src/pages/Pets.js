@@ -5,12 +5,19 @@ import Pagination from "../components/shared/Pagination";
 import FeaturedAdsCard from "../components/home/FeaturedAdsCard";
 import { Filter } from "../components/shared";
 // import {  featuredAdsData } from "../mockData/mockData";
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from "react-redux";
+import { fetchPostsSlice } from "../store/features/productSlice";
+import { isResponseSuccess } from "../utils";
 
 const Pets = () => {
+  const dispatch = useDispatch();
 
-  const products = useSelector((state) => state.product.products)
-  
+  useEffect(() => {
+    dispatch(fetchPostsSlice());
+  }, [dispatch]);
+
+  const products = useSelector((state) => state.product.products);
+
   const crumbs = [
     {
       name: "Home",
@@ -30,7 +37,7 @@ const Pets = () => {
   useEffect(() => {
     const lastIndex = firstIndex + perPage;
     setCurrentData(products.slice(firstIndex, lastIndex));
-  }, [perPage, firstIndex]);
+  }, [products, perPage, firstIndex]);
 
   const paginate = (ev) => {
     console.log(ev.selected, "selected");
@@ -54,8 +61,7 @@ const Pets = () => {
       </div>
       <div className="p-5  w-full lg:w-11/12 xl:w-10/12 mx-auto lg:grid lg:grid-cols-12 lg:gap-6">
         <div className=" lg:block lg:col-span-2">
-          <Filter showCategory={false}/>
-          
+          <Filter showCategory={false} />
         </div>
         <div className=" lg:col-span-10 lg:mt-4">
           <div className="text-end">

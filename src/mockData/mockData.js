@@ -112,7 +112,6 @@ export const dashboardMenu = [
         price: 700
     },
   ]
-
   export const featuredAdsData =[
     {
         id:1,
@@ -259,7 +258,7 @@ export  const carouselImages = [
         id:1,
         img: AdDoggo1,
         name:"Pets",
-        link:'/pets'
+        link:'/categories/pets'
     },
     {
         id:2,
