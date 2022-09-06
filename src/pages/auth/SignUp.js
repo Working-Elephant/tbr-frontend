@@ -31,20 +31,18 @@ const SignUp = () => {
                 {...register("fullName", { required: "fullName is required" })}
               />
               {errors.fullName && (
-                <ErrorMessage message={errors.fullName?.message}/>
+                <ErrorMessage message={errors.fullName?.message} />
               )}
             </div>
             <div className=" mb-5 w-full">
-            <Input
+              <Input
                 type="email"
                 placeholder={"Email"}
                 {...register("email", {
                   required: { value: true, message: " Email is required" },
                 })}
               />
-              {errors.email && (
-               <ErrorMessage message={errors.email?.message}/>
-              )}
+              {errors.email && <ErrorMessage message={errors.email?.message} />}
             </div>
             <div className=" mb-5 w-full">
               <Input
@@ -52,7 +50,7 @@ const SignUp = () => {
                 {...register("password", { required: true })}
               />
               {errors.password && (
-                <ErrorMessage message={errors.password?.message}/>
+                <ErrorMessage message={errors.password?.message} />
               )}
             </div>
             <div className=" mb-5 w-full">
@@ -61,7 +59,7 @@ const SignUp = () => {
                 {...register("confirmpassword", { required: true })}
               />
               {errors.confirmpassword && (
-                <ErrorMessage message={errors.confirmpassword?.message}/>
+                <ErrorMessage message={errors.confirmpassword?.message} />
               )}
             </div>
           </div>

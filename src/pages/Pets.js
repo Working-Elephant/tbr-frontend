@@ -4,9 +4,13 @@ import BreadCrumb from "../components/shared/BreadCrumb";
 import Pagination from "../components/shared/Pagination";
 import FeaturedAdsCard from "../components/home/FeaturedAdsCard";
 import { Filter } from "../components/shared";
-import {  featuredAdsData } from "../mockData/mockData";
+// import {  featuredAdsData } from "../mockData/mockData";
+import { useSelector, useDispatch } from 'react-redux'
 
 const Pets = () => {
+
+  const products = useSelector((state) => state.product.products)
+  
   const crumbs = [
     {
       name: "Home",
@@ -17,21 +21,20 @@ const Pets = () => {
       link: "pets",
     },
   ];
-
   const [perPage] = useState(6);
   const [firstIndex, setFirstIndex] = useState(0);
   const [currentData, setCurrentData] = useState([]);
   const [selected, setSelected] = useState(0);
-  const total = Math.ceil(featuredAdsData.length / perPage);
+  const total = Math.ceil(products.length / perPage);
 
   useEffect(() => {
     const lastIndex = firstIndex + perPage;
-    setCurrentData(featuredAdsData.slice(firstIndex, lastIndex));
+    setCurrentData(products.slice(firstIndex, lastIndex));
   }, [perPage, firstIndex]);
 
   const paginate = (ev) => {
     console.log(ev.selected, "selected");
-    let newOffSet = (ev.selected * perPage) % featuredAdsData.length;
+    let newOffSet = (ev.selected * perPage) % products.length;
     setFirstIndex(newOffSet);
     setSelected(ev.selected);
   };

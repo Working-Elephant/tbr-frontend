@@ -32,7 +32,10 @@ const ItemDetails = () => {
             <Input
               border="border-0"
               placeholder={"Dog's Registered Name"}
-              {...register("dogsRegisteredName", { required: true })}
+              {...register("dogsRegisteredName", { required: {
+                value: true,
+                message: "This field is required",
+              }, })}
             />
             {errors.dogsRegisteredName && (
               <ErrorMessage message={errors.dogsRegisteredName?.message} />
@@ -48,7 +51,10 @@ const ItemDetails = () => {
               <Controller
                 name="dateOfBirth"
                 control={control}
-                rules={{ required: true }}
+                rules={{ required: {
+                  value: true,
+                  message: "This field is required",
+                }, }}
                 render={({ field: { onChange, onBlur, value } }) => (
                   <DatePicker
                     dateFormat="dd-MM-yyyy"
