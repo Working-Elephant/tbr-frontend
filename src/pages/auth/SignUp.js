@@ -3,7 +3,7 @@ import FormBody from "../../components/auth/FormBody";
 import { useForm } from "react-hook-form";
 import { Input, ErrorMessage } from "../../components/shared";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { SignUpSlice } from "../../store/features/authSlice"
 import { isResponseSuccess } from "../../utils"
 import { login as LoginUrl } from "../../config/internalUrl"
@@ -11,8 +11,6 @@ import { login as LoginUrl } from "../../config/internalUrl"
 const SignUp = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state);
-  console.log(loading,'loading')
   const {
     register,
     handleSubmit,
@@ -21,7 +19,7 @@ const SignUp = () => {
 
   // function to submit form
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     dispatch(SignUpSlice(data))
       .then((res) => {
         if (res.payload.status && isResponseSuccess(res.payload.status)) {
@@ -82,7 +80,6 @@ const SignUp = () => {
             <button
               type="submit"
               className=" bg-yellow py-4 px-10 rounded text-sm"
-              // disabled={loading}
             >
               REGISTER
             </button>
