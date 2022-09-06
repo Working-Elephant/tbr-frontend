@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import FormBody from "../../components/auth/FormBody";
 import { Input, ErrorMessage } from "../../components/shared";
-import { isValidEmail } from "../../utils/Index";
+import { isValidEmail } from "../../utils";
 
 const Login = () => {
   const navigate = useNavigate();

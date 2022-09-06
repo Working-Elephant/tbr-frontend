@@ -3,9 +3,15 @@ import FormBody from "../../components/auth/FormBody";
 import { useForm } from "react-hook-form";
 import { Input, ErrorMessage } from "../../components/shared";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { SignUpSlice } from "../../store/features/authSlice"
+import { isResponseSuccess } from "../../utils"
+import { login as LoginUrl } from "../../config/internalUrl"
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -15,7 +21,15 @@ const SignUp = () => {
   // function to submit form
   const onSubmit = (data) => {
     console.log(data);
-    navigate("/login");
+    dispatch(SignUpSlice(data))
+      .then((res) => {
+        if (res.payload.status && isResponseSuccess(res.payload.status)) {
+          navigate(LoginUrl);
+        }
+        throw new Error('error submitting form')
+      }).catch((err) => {
+        // return toast.error(err.message);
+      });
   };
   return (
     <div>
