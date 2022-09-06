@@ -256,13 +256,13 @@ export const categoriesData = [
         id: 1,
         img: AdDoggo1,
         name: "Pets",
-        link: '/pets'
+        link: '/categories/pets'
     },
     {
         id: 2,
         img: AdDoggo2,
         name: "Pet Toys",
-        link: '/pets'
+        link: '/categories/pets'
     },
     {
         id: 3,
