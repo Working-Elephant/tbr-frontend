@@ -7,7 +7,7 @@ import { Filter } from "../components/shared";
 // import {  featuredAdsData } from "../mockData/mockData";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchPostsSlice } from "../store/features/productSlice";
-import { isResponseSuccess } from "../utils";
+// import { isResponseSuccess } from "../utils";
 
 const Pets = () => {
   const dispatch = useDispatch();
@@ -16,8 +16,9 @@ const Pets = () => {
     dispatch(fetchPostsSlice());
   }, [dispatch]);
 
-  const products = useSelector((state) => state.product.products);
+  const { loading, products } = useSelector((state) => state.product);
 
+  console.log(loading,'loading')
   const crumbs = [
     {
       name: "Home",

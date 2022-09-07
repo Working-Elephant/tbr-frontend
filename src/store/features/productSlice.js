@@ -22,13 +22,14 @@ const createPostsSlice = createAsyncThunk(
   "product/createPostsSlice",
   async (data, { rejectWithValue }) => {
     try {
+      console.log("called", data);
       const response = await axios({
         method: "post",
-        url: ExternalUrl.post(),
+        url: ExternalUrl.post,
         headers: {
           "Content-Type": "application/json",
         },
-        data,
+        data: { data },
       });
       return response;
     } catch (err) {
@@ -40,7 +41,15 @@ const createPostsSlice = createAsyncThunk(
 const initialState = {
   loading: false,
   products: featuredAdsData,
-  cart: null,
+  cart: {
+    item: null,
+    quantity: 1,
+    subTotal: 0,
+    shipping: 0,
+    duties: 0,
+    tax: 0,
+    total: 0,
+  },
   //   single: null,
 };
 const slice = createSlice({
@@ -53,17 +62,22 @@ const slice = createSlice({
     //   let arr = state.products.find((item) => item.id === parseInt(id));
     //   state.single = arr;
     // },
-    addToCart: (state, action) => {
-      let { id } = action.payload;
-      // Get Product
-      let arr = state.products.find((item) => item.id === Number(id));
-      console.log(arr);
-      // arr.quantity =  1;
-      state.cart = arr;
-      state.cart["quantity"] = 1;
+    addToCart: (state, { payload }) => {
+      let cart = state.cart;
+      cart.item = payload;
+      cart.subTotal = cart.quantity * payload.price;
+      cart.total = cart.subTotal + cart.shipping + cart.tax;
     },
-    updateCart: (state, action) => {
-      state.cart.quantity = action.payload;
+    // filterProducts: (state, { payload }) => {
+    //   state.cart.quantity = payload;
+    // },
+    increaseQuantity: (state, { payload }) => {
+      state.cart.quantity += 1;
+    },
+    decreaseQuantity: (state, { payload }) => {
+      if (state.cart.quantity > 1) {
+        state.cart.quantity -= 1;
+      }
     },
   },
   extraReducers: {
@@ -81,22 +95,21 @@ const slice = createSlice({
     },
     [createPostsSlice.pending]: (state) => {
       state.loading = true;
-      console.log(state.loading, "loading");
+      console.log("called");
     },
     [createPostsSlice.fulfilled]: (state, { payload }) => {
       state.loading = false;
-      console.log(payload.data, "payload");
       // state.products = payload.data;
       // toast.success(payload.message)
     },
     [createPostsSlice.rejected]: (state, { payload }) => {
-      console.log(payload, "rejected");
       state.loading = false;
+      console.log("REJECTED");
       // toast.error(payload.message);
     },
   },
 });
 
 export { fetchPostsSlice, createPostsSlice };
-export const { addToCart } = slice.actions;
+export const { addToCart, increaseQuantity, decreaseQuantity } = slice.actions;
 export default slice.reducer;

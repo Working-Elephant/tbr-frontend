@@ -1,11 +1,11 @@
-import React, { useRef, useState, useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import React, { useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { ImageModal } from "../../components/shared";
 import SellerInfo from "../../components/ads/SellerInfo";
 import SimilarProducts from "../../components/ads/SimilarProducts";
 import RecentlyViewed from "../../components/ads/RecentlyViewed";
 import SellerAvatar1 from "../../assets/images/avatar1.jpeg";
-import { carouselImages } from "../../mockData/mockData";
+// import { carouselImages } from "../../mockData/mockData";
 import {
   BsChatText,
   BsPlus,
@@ -18,10 +18,7 @@ import { addToCart } from "../../store/features/productSlice";
 
 const ViewAdDetails = () => {
   const { id } = useParams();
-  const dispatch= useDispatch()
-
-  
-
+  const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
   const selectedProduct = products.find((product) => product.id === Number(id));
   const thumbnailsContainer = useRef(null);
@@ -52,10 +49,11 @@ const ViewAdDetails = () => {
     setFullImage(!fullImage);
   };
 
-const goToCart = ()=>{
-  // dispatch(addToCart(id))
-  navigate('/cart')
-}
+  const goToCart = () => {
+    // navigate("/cart", { state: { product: selectedProduct, quantity: 1 } });
+    dispatch(addToCart(selectedProduct));
+    navigate("/cart");
+  };
 
   return (
     selectedProduct && (
@@ -115,10 +113,10 @@ const goToCart = ()=>{
                 <ImageModal
                   image={
                     selectedProduct?.images
-                    ? selectedProduct.images[ImageInView]
-                    : selectedProduct.image
-                    ? selectedProduct.image
-                    : null
+                      ? selectedProduct.images[ImageInView]
+                      : selectedProduct.image
+                      ? selectedProduct.image
+                      : null
                   }
                   open={fullImage}
                   close={handleClose}
@@ -213,7 +211,10 @@ const goToCart = ()=>{
                   </div>
                 </div>
                 <div className="py-3 border-b border-b-borderGrey">
-                  <button className="w-full rounded-md py-2 bg-blue text-white capitalize" onClick={goToCart}>
+                  <button
+                    className="w-full rounded-md py-2 bg-blue text-white capitalize"
+                    onClick={goToCart}
+                  >
                     Make payment
                   </button>
                 </div>

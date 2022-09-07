@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { BsHeart } from "react-icons/bs";
 import { IoIosArrowForward } from "react-icons/io";
 import Avatar1 from "../../assets/images/avatar1.jpeg";
-import { dashboardMenu } from "../../mockData/mockData";
+import { dashboardMenu } from "../../data";
 import SellerInfo from "../../components/ads/SellerInfo";
 
 const DashboardLayout = ({ children }) => {

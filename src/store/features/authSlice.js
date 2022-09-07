@@ -48,6 +48,7 @@ const slice = createSlice({
   name: "auth",
   initialState: {
     data: {},
+    isAuthenticated: localStorage.getItem("user") ? true : false,
     loading: false,
   },
   reducers: {},
@@ -75,7 +76,7 @@ const slice = createSlice({
     [LoginSlice.fulfilled]: (state, { payload }) => {
       state.loading = false;
       state.data = payload.data;
-      // localStorage.setItem("token", JSON.stringify(payload.data.token));
+      // localStorage.setItem("user", JSON.stringify(payload.data));
     },
     [LoginSlice.rejected]: (state, { payload }) => {
       state.loading = false;

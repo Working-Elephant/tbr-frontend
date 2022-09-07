@@ -11,3 +11,5 @@ export function isValidEmail(email) {
 export const isResponseSuccess = (code) => {
   return code >= 200 && code <= 300;
 }
+
+

@@ -33,7 +33,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div class=" sm:col-span-3 md:col-span-6 lg:col-span-8  grid grid-cols-2 gap-3   lg:gap-6 lg:grid-cols-3  text-white  ">
+          <div className=" sm:col-span-3 md:col-span-6 lg:col-span-8  grid grid-cols-2 gap-3   lg:gap-6 lg:grid-cols-3  text-white  ">
             <div className="text-left ">
               <h4>QUICK LINKS</h4>
               <ul className="opacity-50 pl-0 list-none text-xs">

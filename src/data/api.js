@@ -118,7 +118,8 @@ export const featuredAdsData = [
         image: AdDoggo3,
         price: 800,
         seller: 'Jane Doe',
-        sellerAvatar: janeAvatar
+        sellerAvatar: janeAvatar,
+        description:"cqvghbvkjuwodbihvgfydh jvb yfcbdhjf yeqgvwdachjkbjhvdgwqajs cfyvg hfdbvkjbefcgu vcbhivdcuvgwhbyeh qudwvytguqwrybi hgvudwabcsvtug wcaug hbwvcwiyda vguwcag byvctgucygdwa"
     },
     {
         id: 2,
