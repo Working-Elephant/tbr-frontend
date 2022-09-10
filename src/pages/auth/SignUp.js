@@ -5,7 +5,7 @@ import { Input, ErrorMessage } from "../../components/shared";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { SignUpSlice } from "../../store/features/authSlice"
-import { isResponseSuccess } from "../../utils/index";
+import { isResponseSuccess } from "../../utils";
 import { login as LoginUrl } from "../../config/internalUrl"
 
 const SignUp = () => {
