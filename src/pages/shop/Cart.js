@@ -1,7 +1,7 @@
 import React from "react";
 import BreadCrumb from "../../components/shared/BreadCrumb";
 import { FiPlus, FiMinus } from "react-icons/fi";
-import { FaWallet } from "react-icons/fa";
+import { ReactComponent as BuyNow } from "../../assets/images/buy_now.svg";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -142,7 +142,7 @@ const Cart = () => {
               <Link to="/cart/shipping">
                 <button className="bg-yellow flex items-center ">
                   <i className="bg-lightGrey py-4 px-4 text-lg">
-                    <FaWallet />
+                    <BuyNow />
                   </i>
                   <span className="px-7 font-semibold">BUY NOW</span>
                 </button>
