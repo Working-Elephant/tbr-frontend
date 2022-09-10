@@ -69,9 +69,11 @@ const Navbar = ({ home }) => {
           <span className="mr-5">
             <Link to="/login">Login</Link>
           </span>
-          <button className="bg-yellow py-3 px-8 lg:px-12 rounded ">
-            <Link to="/register">Sign Up</Link>
-          </button>
+          <Link to="/register">
+            <button className="bg-yellow py-3 px-8 lg:px-12 rounded ">
+              Sign Up
+            </button>
+          </Link>
         </div>
 
         {/*  mobile menu icon */}

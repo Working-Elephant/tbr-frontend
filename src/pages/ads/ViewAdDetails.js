@@ -1,11 +1,11 @@
-import React, { useRef, useState, useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import React, { useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { ImageModal } from "../../components/shared";
 import SellerInfo from "../../components/ads/SellerInfo";
 import SimilarProducts from "../../components/ads/SimilarProducts";
 import RecentlyViewed from "../../components/ads/RecentlyViewed";
 import SellerAvatar1 from "../../assets/images/avatar1.jpeg";
-import { carouselImages } from "../../mockData/mockData";
+// import { carouselImages } from "../../mockData/mockData";
 import {
   BsChatText,
   BsPlus,
@@ -14,13 +14,13 @@ import {
 } from "react-icons/bs";
 import { FaCamera, FaBorderAll, FaArrowLeft } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
+import { addToCart } from "../../store/features/productSlice";
 
 const ViewAdDetails = () => {
   const { id } = useParams();
-
+  const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
   const selectedProduct = products.find((product) => product.id === Number(id));
-  // console.log(selectedProduct);
   const thumbnailsContainer = useRef(null);
   const [ImageInView, setImageInView] = useState(1);
   const navigate = useNavigate();
@@ -39,7 +39,6 @@ const ViewAdDetails = () => {
   const setImage = (i) => {
     setImageInView(i);
   };
-
   const goBack = () => {
     navigate(-1);
   };
@@ -49,11 +48,12 @@ const ViewAdDetails = () => {
   const handleClose = () => {
     setFullImage(!fullImage);
   };
-  //  const isNotProduct =!selectedProduct
 
-  // useEffect(() => {
-  //   navigate("/categories");
-  // }, [isNotProduct]);
+  const goToCart = () => {
+    // navigate("/cart", { state: { product: selectedProduct, quantity: 1 } });
+    dispatch(addToCart(selectedProduct));
+    navigate("/cart");
+  };
 
   return (
     selectedProduct && (
@@ -113,10 +113,10 @@ const ViewAdDetails = () => {
                 <ImageModal
                   image={
                     selectedProduct?.images
-                    ? selectedProduct.images[ImageInView]
-                    : selectedProduct.image
-                    ? selectedProduct.image
-                    : null
+                      ? selectedProduct.images[ImageInView]
+                      : selectedProduct.image
+                      ? selectedProduct.image
+                      : null
                   }
                   open={fullImage}
                   close={handleClose}
@@ -211,8 +211,11 @@ const ViewAdDetails = () => {
                   </div>
                 </div>
                 <div className="py-3 border-b border-b-borderGrey">
-                  <button className="w-full rounded-md py-2 bg-blue text-white capitalize">
-                    <Link to="/cart">Make payment</Link>
+                  <button
+                    className="w-full rounded-md py-2 bg-blue text-white capitalize"
+                    onClick={goToCart}
+                  >
+                    Make payment
                   </button>
                 </div>
                 <div className=" border-b border-b-borderGrey grid grid-cols-3 text-xs text-blue text-center cursor-pointer">

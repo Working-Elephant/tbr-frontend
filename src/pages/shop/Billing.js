@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CartData } from "../../mockData/mockData";
+import { CartData } from "../../data";
 import { FaWallet, FaPaypal } from "react-icons/fa";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 import {

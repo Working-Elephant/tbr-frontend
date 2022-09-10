@@ -11,6 +11,11 @@ import Trophy from '../assets/images/trophy.jpeg'
 import People from '../assets/images/peopleTalking.jpeg'
 import janeAvatar from '../assets/images/avatar1.jpeg';
 import User from "../assets/images/avatar2.jpeg";
+// categories images
+import Pets from "../assets/images/pets.jpg";
+import PetToys from "../assets/images/pet_toys.jpg";
+import Equipments from "../assets/images/equipments.jpg";
+import Electronics from "../assets/images/electronics.jpg";
 
 
 export const CartData = [
@@ -118,7 +123,8 @@ export const featuredAdsData = [
         image: AdDoggo3,
         price: 800,
         seller: 'Jane Doe',
-        sellerAvatar: janeAvatar
+        sellerAvatar: janeAvatar,
+        description:"cqvghbvkjuwodbihvgfydh jvb yfcbdhjf yeqgvwdachjkbjhvdgwqajs cfyvg hfdbvkjbefcgu vcbhivdcuvgwhbyeh qudwvytguqwrybi hgvudwabcsvtug wcaug hbwvcwiyda vguwcag byvctgucygdwa"
     },
     {
         id: 2,
@@ -254,51 +260,51 @@ export const carouselImages = [
 export const categoriesData = [
     {
         id: 1,
-        img: AdDoggo1,
+        img: Pets,
         name: "Pets",
         link: '/categories/pets'
     },
     {
         id: 2,
-        img: AdDoggo2,
+        img: PetToys,
         name: "Pet Toys",
         link: '/categories/pets'
     },
     {
         id: 3,
-        img: AdDoggo1,
+        img: Electronics,
         name: "Electronics",
-        link: '/pets'
+        link: '/categories/pets'
     },
     {
         id: 4,
-        img: AdDoggo5,
+        img: Equipments,
         name: "Equipments",
-        link: '/pets'
+        link: '/categories/pets'
     },
     {
         id: 5,
-        img: AdDoggo3,
+        img: Pets,
         name: "Pets",
-        link: '/pets'
+        link: '/categories/pets'
     },
     {
         id: 6,
-        img: AdDoggo4,
-        name: "Pets",
-        link: '/pets'
+        img: PetToys,
+        name: "Pet Toys",
+        link: '/categories/pets'
     },
     {
         id: 7,
         img: AdDoggo1,
-        name: "Pets",
-        link: '/pets'
+        name: "Pet Food",
+        link: '/categories/pets'
     },
     {
         id: 8,
         img: AdDoggo3,
-        name: "Pets",
-        link: '/pets'
+        name: "Random",
+        link: '/categories/pets'
     },
 ]
 

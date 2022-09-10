@@ -1,7 +1,6 @@
 import React from "react";
 import BreadCrumb from "../../components/shared/BreadCrumb";
-import { CartData } from "../../mockData/mockData";
-
+import { CartData } from "../../data";
 const Confirmation = () => {
   const crumbs = [
     {

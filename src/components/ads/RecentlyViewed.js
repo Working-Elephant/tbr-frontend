@@ -1,5 +1,5 @@
 import React from "react";
-import { carouselImages } from "../../mockData/mockData";
+import { carouselImages } from "../../data";
 
 const RecentlyViewed = () => {
   return (
