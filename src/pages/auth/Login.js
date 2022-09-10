@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import FormBody from "../../components/auth/FormBody";
 import { Input, ErrorMessage } from "../../components/shared";
-import { isValidEmail } from "../../utils";
+import { isValidEmail } from "../../utils/index";
 // import { useDispatch } from "react-redux";
 // import { LoginSlice } from "../../store/features/authSlice";
 // import { isResponseSuccess } from "../../utils";
