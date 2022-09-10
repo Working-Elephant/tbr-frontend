@@ -4,10 +4,11 @@ import BullyNewsCard from "../components/home/BullyNewsCard";
 import IndicatorIcon from "../components/home/IndicatorIcon";
 import ImageContainer from "../components/shared/ImageContainer";
 import TestimonialCard from "../components/home/TestimonialCard";
+import Skeleton from "@mui/material/Skeleton";
 import { HiUser } from "react-icons/hi";
 import { IoIosArrowForward } from "react-icons/io";
 import User from "../assets/images/user.svg";
-import AdImage from "../assets/images/dog_banner.jpeg";
+import AdImage from "../assets/images/home_ad.jpg";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import FeaturedAdsCard from "../components/home/FeaturedAdsCard";
@@ -84,12 +85,93 @@ const Home = () => {
   return (
     <div className="bg-white">
       <Header />
+      <div className="w-full bg-[#E2E2E2] h-28 text-center px-5">
+        <span className="text-textMuted text-xs">Our sponsors</span>
+        <div className="grid grid-cols-4 mx-auto lg:w-4/6">
+          <div className="flex flex-col justify-between">
+            <Skeleton
+              variant="rectangular"
+              animation={false}
+              width={150}
+              height={20}
+              sx={{ bgcolor: "#FFFFFF" }}
+              className="mb-3"
+            />
+            <Skeleton
+              variant="rectangular"
+              animation={false}
+              width={100}
+              height={20}
+              sx={{ bgcolor: "#FFFFFF" }}
+            />
+          </div>
+          <div className="flex flex-col justify-between">
+            <Skeleton
+              variant="rectangular"
+              animation={false}
+              width={150}
+              height={20}
+              sx={{ bgcolor: "#FFFFFF" }}
+              className="mb-3"
+            />
+            <Skeleton
+              variant="rectangular"
+              animation={false}
+              width={100}
+              height={20}
+              sx={{ bgcolor: "#FFFFFF" }}
+            />
+          </div>
+          <div className="flex flex-col justify-between">
+            <Skeleton
+              variant="rectangular"
+              animation={false}
+              width={150}
+              height={20}
+              sx={{ bgcolor: "#FFFFFF" }}
+              className="mb-3"
+            />
+            <Skeleton
+              variant="rectangular"
+              animation={false}
+              width={100}
+              height={20}
+              sx={{ bgcolor: "#FFFFFF" }}
+            />
+          </div>
+          <div className="flex flex-col justify-between">
+            <Skeleton
+              variant="rectangular"
+              animation={false}
+              width={150}
+              height={20}
+              sx={{ bgcolor: "#FFFFFF" }}
+              className="mb-3"
+            />
+            <Skeleton
+              variant="rectangular"
+              animation={false}
+              width={100}
+              height={20}
+              sx={{ bgcolor: "#FFFFFF" }}
+            />
+          </div>
+        </div>
+      </div>
       {/* Popular categories */}
       <section className="p-5 ">
         <div className="md:w-10/12   mx-auto">
-          <div className="mb-3">
-            <h3 className="text-2xl">Popular Categories</h3>
-            <p className="text-grey">Our Most Popular Categories</p>
+          <div className="flex items-center justify-between mb-3">
+            <div>
+              <h3 className="text-2xl">Popular Categories</h3>
+              <p className="text-grey">Our Most Popular Categories</p>
+            </div>
+            <Link to="/categories" className="text-blue flex items-center">
+              <span className="">View All Categories</span>
+              <i className="ml-1 text-xl">
+                <IoIosArrowForward />
+              </i>
+            </Link>
           </div>
           <div className="relative ">
             <Carousel
@@ -101,8 +183,6 @@ const Home = () => {
               responsive={responsive}
               partialVisible={true}
               infinite={true}
-              // focusOnSelect={true}
-              // autoPlaySpeed={1000}
               keyBoardControl={true}
               customTransition="all .5"
               transitionDuration={500}
@@ -134,7 +214,7 @@ const Home = () => {
               <h3 className="text-2xl">Featured Sellers</h3>
               <p className="text-grey">Shop our featured Sellers</p>
             </div>
-            <Link to="/categories" className="text-blue flex items-center">
+            <Link to="/categories/pets" className="text-blue flex items-center">
               <span className="">View More</span>
               <i className="ml-1 text-xl">
                 <IoIosArrowForward />
@@ -208,10 +288,10 @@ const Home = () => {
       </section>
       {/* Ad section */}
       <section
-        className=" p-6 md:p-12 bg-no-repeat bg-cover"
+        className=" p-6 md:p-12 bg-no-repeat bg-cover bg-center "
         style={{ backgroundImage: `url('${AdImage}')` }}
       >
-        <div className="md:w-5/6 lg:w-4/6 xl:w-3/6 bg-black bg-opacity-50 p-10 rounded-lg mx-auto text-white text-center">
+        <div className="md:w-5/6 lg:w-4/6 xl:w-3/6 bg-black bg-opacity-50 p-10 rounded-lg mx-auto lg:my-10 text-white text-center">
           <div className=" md:w-4/6 mx-auto">
             <h2 className="font-bold text-4xl ">Bully For Sale?</h2>
             <p className="my-4">

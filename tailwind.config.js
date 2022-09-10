@@ -14,7 +14,13 @@ module.exports = {
       success: "#03B839",
       blue: "#3B54F5",
       white: "#FFFFFF",
-      error: "#FF0000"
+      error: "#FF0000",
+      darkish: {
+        100: "#cffafe",
+        200: "#a5f3fc",
+        300: "#67e8f9",
+        500: "#22d3ee",
+      },
     },
     fontFamily: {
       sans: ["Poppins", "sans-serif"],
