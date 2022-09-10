@@ -21,6 +21,14 @@ import PetToys2 from "../assets/images/pet_toys.jpg"
 import PetFood from "../assets/images/petfood.jpg"
 import Random from "../assets/images/random.jpg"
 
+// dashboard menu icons
+import AdsIcon from "../assets/images/adsIcon.svg"
+import MessagesIcon from "../assets/images/mesaages.svg"
+import MembershipIcon from "../assets/images/membership.svg"
+import FavouritesIcon from "../assets/images/favourites.svg"
+import OrdersIcon from "../assets/images/orders.svg"
+import CustomerCareIcon from "../assets/images/customer_care.svg"
+
 
 export const CartData = [
     {
@@ -35,29 +43,34 @@ export const CartData = [
 
 export const dashboardMenu = [
     {
-        icon: "",
+        icon: AdsIcon,
         name: "Your Ads",
-        link: "/dashboard",
+        link: "/dashboard/ads",
     },
     {
-        icon: "",
+        icon: MembershipIcon,
         name: "Memberships",
-        link: "/memberships",
+        link: "/dashboard/memberships",
     },
     {
-        icon: "",
+        icon: MessagesIcon,
+        name: "Messages",
+        link: "/dashboard/messages",
+    },
+    {
+        icon: FavouritesIcon,
         name: "Favourites",
-        link: "/favourites",
+        link: "/dashboard/favourites",
     },
     {
-        icon: "",
+        icon: OrdersIcon,
         name: "Your Orders",
-        link: "/orders",
+        link: "/dashboard/orders",
     },
     {
-        icon: "",
+        icon: CustomerCareIcon,
         name: "Customer Care",
-        link: "/customer-care",
+        link: "/dashboard/customer-care",
     },
 ];
 export const adsData = [
