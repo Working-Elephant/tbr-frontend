@@ -4,7 +4,7 @@ import { createContext } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { createPostsSlice } from "../../store/features/productSlice";
-import { isResponseSuccess } from "../../utils";
+// import { isResponseSuccess } from "../../utils";
 import { toast, Slide } from "react-toastify";
 
 export const AdContext = createContext();
@@ -68,7 +68,7 @@ const PostAd = () => {
     }));
     dispatch(createPostsSlice(adData))
       .then((res) => {
-        if (res.payload.status && isResponseSuccess(res.payload.status)) {
+        if (res.payload.status >= 200 && res.payload.status <= 300) {
           nextStep();
         }
         throw new Error("error submitting form");
