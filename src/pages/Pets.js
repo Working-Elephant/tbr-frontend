@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import PetBannerImage from "../assets/images/dog_banner.jpeg";
+import PetBannerImage from "../assets/images/home_header.jpg";
 import BreadCrumb from "../components/shared/BreadCrumb";
 import Pagination from "../components/shared/Pagination";
 import FeaturedAdsCard from "../components/home/FeaturedAdsCard";
@@ -50,8 +50,10 @@ const Pets = () => {
   return (
     <div className="">
       <div
-        className="w-full h-[30vh] bg-no-repeat bg-cover bg-center text-center py-3 flex flex-col justify-end"
-        style={{ backgroundImage: `url('${PetBannerImage}')` }}
+        className="w-full h-[40vh] bg-no-repeat bg-cover bg-center text-center py-3 flex flex-col justify-end"
+        style={{
+          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('${PetBannerImage}')`,
+        }}
       >
         <div className=" m-auto">
           <h2 className="text-3xl md:text-5xl font-bold text-white">Pets</h2>
