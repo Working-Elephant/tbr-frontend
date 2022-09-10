@@ -20,7 +20,9 @@ const Header = () => {
     <div className="min-h-[80vh] h-[100vh]  md:h-[80vh] lg:h-[65vh]">
       <div
         className="w-full h-full  bg-no-repeat bg-cover bg-center bg-gradient-to-r from-black to-black text-center py-3 flex flex-col justify-end"
-        style={{ backgroundImage: `url('${HeaderImage}')` }}
+        style={{
+          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('${HeaderImage}')`,
+        }}
       >
         <div className=" mt-5">
           <h2 className="text-xl md:text-3xl font-bold text-yellow">
