@@ -7,8 +7,10 @@ import TestimonialCard from "../components/home/TestimonialCard";
 import Skeleton from "@mui/material/Skeleton";
 import { HiUser } from "react-icons/hi";
 import { IoIosArrowForward } from "react-icons/io";
-import User from "../assets/images/user.svg";
 import AdImage from "../assets/images/home_ad.jpg";
+import HIW1 from "../assets/images/howitworks1.svg"
+import HIW2 from "../assets/images/howitworks2.svg"
+import HIW3 from "../assets/images/howitworks3.svg"
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import FeaturedAdsCard from "../components/home/FeaturedAdsCard";
@@ -235,16 +237,16 @@ const Home = () => {
       </section>
       {/* how it works section */}
       <section className="my-10">
-        <div className="w-5/6  mx-auto text-center">
+        <div className=" w-11/12 lg:w-9/12  mx-auto text-center">
           <h6 className=" text-lg md:text-xl my-1">How it Works</h6>
           <p className=" py-0 text-grey">
             Register. Search. Communicate. Buy. Sale. Repeat
           </p>
-          <div className="flex flex-wrap lg:flex-nowrap my-4 text-start ">
-            <div className="bg-yellow bg-opacity-20 mb-4 lg:mb-0 rounded-lg mx-2 grow">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 text-start my-5">
+            <div className="bg-yellow bg-opacity-20 mb-4 lg:mb-0 rounded-lg mx-2">
               <div className="flex flex-col  p-4  ">
-                <div className=" bg-black bg-opacity-20 rounded p-4 w-1/5 md:4/6">
-                  <img src={User} alt="" />
+                <div className=" w-16 lg:w-24">
+                  <img src={HIW1} alt="" />
                 </div>
                 <div className="">
                   <p className=" my-3 text-dark opacity-100">Register</p>
@@ -255,10 +257,10 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <div className="bg-yellow bg-opacity-20 mb-4 lg:mb-0 rounded-lg mx-2 grow">
+            <div className="bg-yellow bg-opacity-20 mb-4 lg:mb-0 rounded-lg mx-2">
               <div className="flex flex-col  p-4  ">
-                <div className=" bg-black bg-opacity-20 rounded p-4 w-1/5">
-                  <img src={User} alt="" />
+              <div className=" w-16 lg:w-24">
+                  <img src={HIW2} alt="" />
                 </div>
                 <div className="">
                   <p className="my-3 ">Search Bullies</p>
@@ -269,10 +271,10 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <div className="bg-yellow bg-opacity-20 mb-4 lg:mb-0 rounded-lg mx-2 grow">
+            <div className="bg-yellow bg-opacity-20 mb-4 lg:mb-0 rounded-lg mx-2">
               <div className="flex flex-col  p-4 ">
-                <div className=" bg-black bg-opacity-10 rounded p-4 w-1/5">
-                  <img src={User} alt="" />
+              <div className=" w-16 lg:w-24">
+                  <img src={HIW3} alt="" />
                 </div>
                 <div className="">
                   <p className=" my-3">Make Payment</p>

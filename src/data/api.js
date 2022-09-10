@@ -16,6 +16,10 @@ import Pets from "../assets/images/pets.jpg";
 import PetToys from "../assets/images/pet_toys.jpg";
 import Equipments from "../assets/images/equipments.jpg";
 import Electronics from "../assets/images/electronics.jpg";
+import Pets2 from "../assets/images/pets2.jpg"
+import PetToys2 from "../assets/images/pet_toys.jpg"
+import PetFood from "../assets/images/petfood.jpg"
+import Random from "../assets/images/random.jpg"
 
 
 export const CartData = [
@@ -284,25 +288,25 @@ export const categoriesData = [
     },
     {
         id: 5,
-        img: Pets,
+        img: Pets2,
         name: "Pets",
         link: '/categories/pets'
     },
     {
         id: 6,
-        img: PetToys,
+        img: PetToys2,
         name: "Pet Toys",
         link: '/categories/pets'
     },
     {
         id: 7,
-        img: AdDoggo1,
+        img: PetFood ,
         name: "Pet Food",
         link: '/categories/pets'
     },
     {
         id: 8,
-        img: AdDoggo3,
+        img: Random,
         name: "Random",
         link: '/categories/pets'
     },
