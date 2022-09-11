@@ -62,6 +62,28 @@ const Home = () => {
       partialVisibilityGutter: 0, // this is needed to tell the amount of px that should be visible.
     },
   };
+  const previewResponsive = {
+    largeDesktop: {
+      breakpoint: { max: 3000, min: 1439 },
+      items: 4,
+      partialVisibilityGutter: 50,
+    },
+    desktop: {
+      breakpoint: { max: 1439, min: 1023 },
+      items: 4,
+      partialVisibilityGutter: 30, // this is needed to tell the amount of px that should be visible.
+    },
+    tablet: {
+      breakpoint: { max: 1023, min: 700 },
+      items: 3,
+      partialVisibilityGutter: 20, // this is needed to tell the amount of px that should be visible.
+    },
+    mobile: {
+      breakpoint: { max: 700, min: 0 },
+      items: 2,
+      partialVisibilityGutter: 10, // this is needed to tell the amount of px that should be visible.
+    },
+  };
   const testimonialResponsive = {
     largeDesktop: {
       breakpoint: { max: 3000, min: 1439 },
@@ -314,7 +336,7 @@ const Home = () => {
       <section className="p-5">
         <div className="w-full md:w-5/6  mx-auto">
           <div className="grid grid-col-1 lg:grid-cols-2 gap-3">
-            <div className="col-span-1">
+            <div className="lg:col-span-1">
               <h2 className="text-xl  md:text-2xl lg:text-3xl">
                 A preview of Our Dog Shows
               </h2>
@@ -324,14 +346,14 @@ const Home = () => {
                 our events as they happen. With membership access you remain in
                 the loop with our company's updates and changes.
               </p>
-              {/* <div className="">
+              <div className="bg-[#3D3D3D] p-2">
              
                 <Carousel
                   swipeable={true}
                   draggable={true}
                   showDots={false}
                   arrows={false}
-                  responsive={responsive}
+                  responsive={previewResponsive}
                   partialVisible={true}
                   infinite={false}
                   // focusOnSelect={true}
@@ -339,13 +361,13 @@ const Home = () => {
                   keyBoardControl={true}
                   customTransition="all .5"
                   transitionDuration={500}
-                  containerClass="bg-grey py-2 max-h-24"
+                  containerClass="bg-[#3D3D3D] py-2 max-h-24"
                   sliderClass=""
                   dotListClass=""
-                  itemClass=""
+                  itemClass="bg-transparent"
                 >
                   {categoriesData.map((item, i) => (
-                    <div className="mx-1 ">
+                    <div className="mr-1 ">
                       <ImageContainer
                         key={item.id}
                         image={item.img}
@@ -355,10 +377,10 @@ const Home = () => {
                   ))}
                 </Carousel>
                
-              </div> */}
+              </div>
 
               <div className="my-5">
-                <button className="bg-yellow py-3 w-1/2 text-dark ">
+                <button className="bg-yellow py-3 w-1/2 text-dark font-semibold">
                   Learn More
                 </button>
               </div>
