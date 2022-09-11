@@ -1,11 +1,13 @@
 import React from "react";
 
-const ImageContainer = ({ image, rounded, fullHeight }) => {
+const ImageContainer = ({ image, rounded, width, height }) => {
   return (
     <img
       src={image}
       alt=""
-      className={`w-full ${fullHeight? "h-full" : ""}  ${rounded ? rounded : ""}`}
+      className={`${width ? width : "w-full"}  ${height ? height : "h-full"}  ${
+        rounded ? rounded : ""
+      }`}
     />
   );
 };

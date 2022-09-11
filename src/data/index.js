@@ -1,4 +1,4 @@
-export { CartData, dashboardMenu, adsData, featuredAdsData, carouselImages, categoriesData, bullyNewsData, testimonialData } from "./api";
+export { CartData, dashboardMenu, adsData, featuredAdsData, carouselImages, categoriesData, bullyNewsData, testimonialData, previewData } from "./api";
 
 export { filterColors } from "./color"
 

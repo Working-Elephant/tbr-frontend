@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../components/shared/Header";
 import BullyNewsCard from "../components/home/BullyNewsCard";
 import IndicatorIcon from "../components/home/IndicatorIcon";
@@ -8,9 +8,9 @@ import Skeleton from "@mui/material/Skeleton";
 import { HiUser } from "react-icons/hi";
 import { IoIosArrowForward } from "react-icons/io";
 import AdImage from "../assets/images/home_ad.jpg";
-import HIW1 from "../assets/images/howitworks1.svg"
-import HIW2 from "../assets/images/howitworks2.svg"
-import HIW3 from "../assets/images/howitworks3.svg"
+import HIW1 from "../assets/images/howitworks1.svg";
+import HIW2 from "../assets/images/howitworks2.svg";
+import HIW3 from "../assets/images/howitworks3.svg";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import FeaturedAdsCard from "../components/home/FeaturedAdsCard";
@@ -19,6 +19,7 @@ import {
   categoriesData,
   bullyNewsData,
   testimonialData,
+  previewData,
 } from "../data/api";
 import { Link } from "react-router-dom";
 
@@ -62,28 +63,6 @@ const Home = () => {
       partialVisibilityGutter: 0, // this is needed to tell the amount of px that should be visible.
     },
   };
-  const previewResponsive = {
-    largeDesktop: {
-      breakpoint: { max: 3000, min: 1439 },
-      items: 4,
-      partialVisibilityGutter: 50,
-    },
-    desktop: {
-      breakpoint: { max: 1439, min: 1023 },
-      items: 4,
-      partialVisibilityGutter: 30, // this is needed to tell the amount of px that should be visible.
-    },
-    tablet: {
-      breakpoint: { max: 1023, min: 700 },
-      items: 3,
-      partialVisibilityGutter: 20, // this is needed to tell the amount of px that should be visible.
-    },
-    mobile: {
-      breakpoint: { max: 700, min: 0 },
-      items: 2,
-      partialVisibilityGutter: 10, // this is needed to tell the amount of px that should be visible.
-    },
-  };
   const testimonialResponsive = {
     largeDesktop: {
       breakpoint: { max: 3000, min: 1439 },
@@ -106,13 +85,15 @@ const Home = () => {
       partialVisibilityGutter: 0, // this is needed to tell the amount of px that should be visible.
     },
   };
+
+  const [preview, setPreview] = useState(1);
   return (
     <div className="bg-white">
       <Header />
-      <div className="w-full bg-[#E2E2E2] h-28 text-center px-5">
+      <div className="w-full bg-[#E2E2E2] text-center px-5">
         <span className="text-textMuted text-xs">Our sponsors</span>
-        <div className="grid grid-cols-4 mx-auto lg:w-4/6">
-          <div className="flex flex-col justify-between">
+        <div className="grid grid-cols-2 md:grid-cols-4 mx-auto lg:w-4/6 pb-2">
+          <div className="flex flex-col justify-between mb-5 lg:mb-0">
             <Skeleton
               variant="rectangular"
               animation={false}
@@ -129,7 +110,7 @@ const Home = () => {
               sx={{ bgcolor: "#FFFFFF" }}
             />
           </div>
-          <div className="flex flex-col justify-between">
+          <div className="flex flex-col justify-between mb-5 lg:mb-0">
             <Skeleton
               variant="rectangular"
               animation={false}
@@ -146,7 +127,7 @@ const Home = () => {
               sx={{ bgcolor: "#FFFFFF" }}
             />
           </div>
-          <div className="flex flex-col justify-between">
+          <div className="flex flex-col justify-between mb-5 lg:mb-0">
             <Skeleton
               variant="rectangular"
               animation={false}
@@ -163,7 +144,7 @@ const Home = () => {
               sx={{ bgcolor: "#FFFFFF" }}
             />
           </div>
-          <div className="flex flex-col justify-between">
+          <div className="flex flex-col justify-between mb-5 lg:mb-0">
             <Skeleton
               variant="rectangular"
               animation={false}
@@ -187,10 +168,15 @@ const Home = () => {
         <div className="md:w-10/12   mx-auto">
           <div className="flex items-center justify-between mb-3">
             <div>
-              <h3 className="text-2xl">Popular Categories</h3>
-              <p className="text-grey">Our Most Popular Categories</p>
+              <h3 className="text-xl md:text-2xl">Popular Categories</h3>
+              <p className="text-sm md:text-base text-grey">
+                Our Most Popular Categories
+              </p>
             </div>
-            <Link to="/categories" className="text-blue flex items-center">
+            <Link
+              to="/categories"
+              className="text-blue flex items-center text-sm md:text-base"
+            >
               <span className="">View All Categories</span>
               <i className="ml-1 text-xl">
                 <IoIosArrowForward />
@@ -217,7 +203,7 @@ const Home = () => {
               renderDotsOutside={true}
             >
               {categoriesData.map((item, i) => (
-                <div key={item.id} className="mx-4 rounded-[60px] relative">
+                <div key={i} className="mx-4 rounded-[60px] relative">
                   <Link to={`${item.link}`}>
                     <ImageContainer image={item.img} rounded="rounded-[3rem]" />
                     <p className="absolute bottom-4 left-8 uppercase text-white text-xl">
@@ -235,10 +221,15 @@ const Home = () => {
         <div className=" md:w-10/12 lg:w-8/12  mx-auto">
           <div className="flex items-center justify-between mb-3">
             <div>
-              <h3 className="text-2xl">Featured Sellers</h3>
-              <p className="text-grey">Shop our featured Sellers</p>
+              <h3 className="text-xl md:text-2xl">Featured Sellers</h3>
+              <p className="text-sm md:text-base text-grey">
+                Shop our featured Sellers
+              </p>
             </div>
-            <Link to="/categories/pets" className="text-blue flex items-center">
+            <Link
+              to="/categories/pets"
+              className="text-blue flex items-center text-sm md:text-base"
+            >
               <span className="">View More</span>
               <i className="ml-1 text-xl">
                 <IoIosArrowForward />
@@ -281,7 +272,7 @@ const Home = () => {
             </div>
             <div className="bg-yellow bg-opacity-20 mb-4 lg:mb-0 rounded-lg mx-2">
               <div className="flex flex-col  p-4  ">
-              <div className=" w-16 lg:w-24">
+                <div className=" w-16 lg:w-24">
                   <img src={HIW2} alt="" />
                 </div>
                 <div className="">
@@ -295,7 +286,7 @@ const Home = () => {
             </div>
             <div className="bg-yellow bg-opacity-20 mb-4 lg:mb-0 rounded-lg mx-2">
               <div className="flex flex-col  p-4 ">
-              <div className=" w-16 lg:w-24">
+                <div className=" w-16 lg:w-24">
                   <img src={HIW3} alt="" />
                 </div>
                 <div className="">
@@ -335,8 +326,8 @@ const Home = () => {
       {/* dog show preview section */}
       <section className="p-5">
         <div className="w-full md:w-5/6  mx-auto">
-          <div className="grid grid-col-1 lg:grid-cols-2 gap-3">
-            <div className="lg:col-span-1">
+          <div className="grid grid-col-1 lg:grid-cols-12 gap-3">
+            <div className="col-span-1 lg:col-span-7 overflow-auto">
               <h2 className="text-xl  md:text-2xl lg:text-3xl">
                 A preview of Our Dog Shows
               </h2>
@@ -346,37 +337,23 @@ const Home = () => {
                 our events as they happen. With membership access you remain in
                 the loop with our company's updates and changes.
               </p>
-              <div className="bg-[#3D3D3D] p-2">
-             
-                <Carousel
-                  swipeable={true}
-                  draggable={true}
-                  showDots={false}
-                  arrows={false}
-                  responsive={previewResponsive}
-                  partialVisible={true}
-                  infinite={false}
-                  // focusOnSelect={true}
-                  autoPlay={false}
-                  keyBoardControl={true}
-                  customTransition="all .5"
-                  transitionDuration={500}
-                  containerClass="bg-[#3D3D3D] py-2 max-h-24"
-                  sliderClass=""
-                  dotListClass=""
-                  itemClass="bg-transparent"
-                >
-                  {categoriesData.map((item, i) => (
-                    <div className="mr-1 ">
-                      <ImageContainer
-                        key={item.id}
-                        image={item.img}
-                        fullHeight={false}
-                      />
-                    </div>
-                  ))}
-                </Carousel>
-               
+              <div className="bg-[#3D3D3D] p-2 overflow-auto scroll-smooth snap-x snap-mandatory touch-pan-x no-scrollbar flex gap-1 items-center lg:w-4/5 ">
+                {previewData.map((item, i) => (
+                  <div
+                    key={i}
+                    className={` min-w-[150px] h-28 ${
+                      preview === i ? "border-3 border-white" : ""
+                    }`}
+                    onClick={() => setPreview(i)}
+                  >
+                    <ImageContainer
+                      key={i}
+                      image={item.image}
+                      fullHeight={false}
+                      width="min-w-[144px]"
+                    />
+                  </div>
+                ))}
               </div>
 
               <div className="my-5">
@@ -385,7 +362,13 @@ const Home = () => {
                 </button>
               </div>
             </div>
-            <div className="col-span-1"></div>
+            <div className=" col-span-1 lg:col-span-5">
+              <iframe
+                className="w-full aspect-video lg:aspect-square"
+                title="A preview of our dog shows"
+                src="https://www.youtube.com/watch?v=g3fAq0svJ9g"
+              ></iframe>
+            </div>
           </div>
         </div>
       </section>
@@ -420,8 +403,8 @@ const Home = () => {
               // renderDotsOutside={true}
             >
               {bullyNewsData.map((item, i) => (
-                <div className="pr-5">
-                  <BullyNewsCard key={i} item={item} />
+                <div key={i} className="pr-5">
+                  <BullyNewsCard  item={item} />
                 </div>
               ))}
             </Carousel>
@@ -447,8 +430,8 @@ const Home = () => {
               itemClass="carousel-item-padding-40-px"
             >
               {testimonialData.slice(0, 4).map((item, i) => (
-                <div className=" pl-4 md:pl-6 lg:pl-12">
-                  <TestimonialCard key={i} item={item} />
+                <div key={i}  className=" pl-4 md:pl-6 lg:pl-12">
+                  <TestimonialCard  item={item} />
                 </div>
               ))}
             </Carousel>
@@ -469,8 +452,8 @@ const Home = () => {
               itemClass="carousel-item-padding-40-px"
             >
               {testimonialData.slice(4, 8).map((item, i) => (
-                <div className="pr-6">
-                  <TestimonialCard key={i} item={item} />
+                <div key={i} className="pr-6">
+                  <TestimonialCard  item={item} />
                 </div>
               ))}
             </Carousel>
