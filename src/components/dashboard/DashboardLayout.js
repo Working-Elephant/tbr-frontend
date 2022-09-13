@@ -36,7 +36,7 @@ const DashboardLayout = ({ children }) => {
                       >
                         <div className="flex items-center">
                         <div className="mr-6">
-                          <img src={item.icon} alt="icon" />
+                          <img src={item.icon} alt="icon" className="w-4 h-4" />
                         </div>
                           <span>{item.name}</span>
                         </div>

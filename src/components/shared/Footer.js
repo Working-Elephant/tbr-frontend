@@ -83,11 +83,15 @@ const Footer = () => {
               </ul>
               <div className="flex justify-start my-2 mt-10">
                 <span className="pr-2">
-                  <Link to="/">
+                  <a
+                    href="https://www.facebook.com/thebestmfnbullyshow/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     <i className="text-white">
                       <FaFacebookF />
                     </i>
-                  </Link>
+                  </a>
                 </span>
                 <span className="px-2">
                   <Link to="/">
@@ -104,11 +108,15 @@ const Footer = () => {
                   </Link>
                 </span>
                 <span className="pl-2">
-                  <Link to="/">
+                  <a
+                    href="https://instagram.com/thebestmfnbullyshow?igshid=YmMyMTA2M2Y="
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     <i className="text-white">
                       <FaInstagram />
                     </i>
-                  </Link>
+                  </a>
                 </span>
               </div>
               <div>

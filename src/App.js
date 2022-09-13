@@ -38,7 +38,7 @@ const App = () => {
 
 
   return (
-    <div className="bg-white">
+    <div className="bg-white p-0 m-0">
       <Wrapper>
         <Navbar home={isHome} />
         <Routes>

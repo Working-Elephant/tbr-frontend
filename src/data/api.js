@@ -59,12 +59,12 @@ export const dashboardMenu = [
     },
     {
         icon: FavouritesIcon,
-        name: "Favourites",
+        name: "Favorites",
         link: "/dashboard/favourites",
     },
     {
         icon: OrdersIcon,
-        name: "Your Orders",
+        name: "My Orders",
         link: "/dashboard/orders",
     },
     {
@@ -323,6 +323,36 @@ export const categoriesData = [
         name: "Random",
         link: '/categories/pets'
     },
+]
+export const previewData =[
+  {
+    image: AdDoggo1,
+    link:""
+  },
+  {
+    image: AdDoggo3,
+    link:""
+  },
+  {
+    image: AdDoggo5,
+    link:""
+  },
+  {
+    image: AdDoggo2,
+    link:""
+  },
+  {
+    image: AdDoggo4,
+    link:""
+  },
+  {
+    image: AdDoggo1,
+    link:""
+  },
+  {
+    image: AdDoggo5,
+    link:""
+  },
 ]
 
 export const bullyNewsData = [

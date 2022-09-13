@@ -88,18 +88,33 @@ const ItemDetails = () => {
               {errors.sex && <ErrorMessage message={errors.sex?.message} />}
             </div>
           </div>
-          <div>
-            <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-              <Input
-                border="border-0"
-                placeholder={"Dog owner's Name"}
-                {...register("dogsOwnerName", { required: true })}
-              />
+          <div className="grid grid-cols-1 md:grid-cols-2 md: gap-4">
+            <div>
+              <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                <Input
+                  border="border-0"
+                  placeholder={"Dog owner's First Name"}
+                  {...register("dogOwnersFirstName", { required: true })}
+                />
+              </div>
+              {errors.dogOwnersFirstName && (
+                <ErrorMessage message={errors.dogOwnersFirstName?.message} />
+              )}
             </div>
-            {errors.dogsOwnerName && (
-              <ErrorMessage message={errors.dogsOwnerName?.message} />
-            )}
+            <div>
+              <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                <Input
+                  border="border-0"
+                  placeholder={"Dog owner's Last Name"}
+                  {...register("dogOwnersLastName", { required: true })}
+                />
+              </div>
+              {errors.dogOwnersLastName && (
+                <ErrorMessage message={errors.dogOwnersLastName?.message} />
+              )}
+            </div>
           </div>
+
           <div>
             <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
               <Input
@@ -165,7 +180,7 @@ const ItemDetails = () => {
                 <GoPlusSmall />
               </i>
             </div>
-            <p className="text-blue text-sm my-3">Male Parent</p>
+            <p className="text-blue text-sm my-3">Sire</p>
             <div>
               <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
                 <Input
@@ -221,7 +236,7 @@ const ItemDetails = () => {
                 )}
               </div>
             </div>
-            <p className="text-blue text-sm my-3">Female Parent</p>
+            <p className="text-blue text-sm my-3">Dame</p>
             <div>
               <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
                 <Input
