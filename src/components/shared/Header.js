@@ -26,10 +26,10 @@ const Header = () => {
       >
         <div className=" mt-5">
           <h2 className="text-xl md:text-3xl font-bold text-yellow">
-            The Texas Bully Registry
+            Texas Bully Registry
           </h2>
-          <h3 className="text-2xl  md:text-4xl font-bold text-white">
-            Bully clasifieds at your Paws
+          <h3 className="text-2xl  md:text-4xl font-bold text-white ">
+            Bully Classifieds at Your Paws
           </h3>
           <div className="w-5/6 lg:w-4/6 mx-auto my-4 lg:my-6">
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -82,28 +82,29 @@ const Header = () => {
               </div>
             </form>
           </div>
-          <div className="px-4 lg:w-5/6 mx-auto my-4 ">
-            <ul className=" grid grid-cols-2 gap-2   lg:gap-4 lg:grid-cols-4">
-              <li className="mx-4 mb-4 ">
+          <div className="px-4 xl:w-5/6 mx-auto my-4 ">
+            <ul className=" grid grid-cols-2 gap-2   lg:gap-4 lg:grid-cols-4 md:whitespace-nowrap">
+              <li className="col-span-1 lg:col-span-1 mb-4 ">
                 <div className="flex items-center">
-                  <div className="bg-white text-dark rounded-3xl p-4">
-                    <FaSearch />
+                  <div className="bg-white text-dark rounded-3xl p-2">
+                    <i className="w-10 text-xl">
+                      <FaSearch />
+                    </i>
                   </div>
-                  <div className="flex flex-col mx-2 text-start text-white">
+                  <div className="flex flex-col ml-2 text-start text-white">
                     <p className="text-sm font-semibold mb-2">Bully Services</p>
                     <p className="text-xs font-light">Local Dog Services</p>
                   </div>
                 </div>
               </li>
-              <li className="mx-4 mb-4">
+              <li className="col-span-1 lg:col-span-1 mb-4">
                 <div className="flex items-center">
                   <div className="bg-white text-dark rounded-3xl p-2">
-                    <i className="text-3xl">
-                      {" "}
+                    <i className="w-10 text-xl">
                       <IoPawOutline />
                     </i>
                   </div>
-                  <div className="flex flex-col mx-2 text-start text-white">
+                  <div className="flex flex-col ml-2 text-start text-white">
                     <p className="text-sm font-semibold mb-2">
                       Pedigree Certificates
                     </p>
@@ -113,26 +114,27 @@ const Header = () => {
                   </div>
                 </div>
               </li>
-              <li className="mx-4 mb-4">
+              <li className="col-span-1 lg:col-span-1 mb-4">
                 <div className="flex items-center">
                   <div className="bg-white text-dark rounded-3xl p-2">
-                    <i className="text-3xl">
-                      {" "}
+                    <i className="w-10 text-xl">
                       <IoLockClosedOutline />
                     </i>
                   </div>
-                  <div className="flex flex-col mx-2 text-start text-white">
+                  <div className="flex flex-col ml-2 text-start text-white">
                     <p className="text-sm font-semibold mb-2">Secure Payment</p>
                     <p className="text-xs font-light">100% secure payment</p>
                   </div>
                 </div>
               </li>
-              <li className="mx-4 mb-4">
+              <li className="col-span-1 lg:col-span-1 mb-4">
                 <div className="flex items-center">
-                  <div className="bg-white text-dark rounded-3xl p-4">
-                    <FaSearch />
+                  <div className="bg-white text-dark rounded-3xl p-2">
+                    <i className="w-10 text-xl">
+                      <FaSearch />
+                    </i>
                   </div>
-                  <div className="flex flex-col mx-2 text-start text-white">
+                  <div className="flex flex-col ml-2 text-start text-white">
                     <p className="text-sm font-semibold mb-2">
                       Communication Hub
                     </p>

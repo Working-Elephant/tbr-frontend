@@ -59,12 +59,12 @@ export const dashboardMenu = [
     },
     {
         icon: FavouritesIcon,
-        name: "Favourites",
+        name: "Favorites",
         link: "/dashboard/favourites",
     },
     {
         icon: OrdersIcon,
-        name: "Your Orders",
+        name: "My Orders",
         link: "/dashboard/orders",
     },
     {

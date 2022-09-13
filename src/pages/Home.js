@@ -88,7 +88,7 @@ const Home = () => {
 
   const [preview, setPreview] = useState(1);
   return (
-    <div className="bg-white">
+    <div className="bg-white m-0">
       <Header />
       <div className="w-full bg-[#E2E2E2] text-center px-5">
         <span className="text-textMuted text-xs">Our sponsors</span>
@@ -462,12 +462,12 @@ const Home = () => {
       </section>
       {/* Newsletter section */}
       <section className="py-4 px-4 lg:py-12 ">
-        <div className=" md:w-5/6 lg:4/6 mx-auto text-center">
+        <div className=" md:w-5/6 lg:4/6 xl:3/6 mx-auto text-center">
           <h4 className="font-bold text-2xl md:text-3xl my-4">
             Subscribe to Our Newsletter
           </h4>
-          <p className="text-justify w-5/6 mx-auto md:w-4/6">
-            Sign up to receive Texas registry emails and get first dibs on new
+          <p className=" w-5/6 mx-auto md:w-4/6">
+            Sign up to receive Texas Registry emails, first dibs on new
             arrivals, sales, exclusive content, events and more!
           </p>
           <div className="bg-white border-.5 border-borderGrey flex items-center justify-between py-3 px-5 rounded-xl w-5/6 mx-auto my-4 md:w-4/6 ">
