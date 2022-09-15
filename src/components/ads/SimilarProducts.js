@@ -18,9 +18,9 @@ const SimilarProducts = () => {
           </i>
         </div>
       </div>
-      <div className="flex overflow-auto scroll-m-4 mx-2">
+      <div className="flex overflow-auto no-scrollbar mx-2">
         {featuredAdsData && featuredAdsData.length > 0 ? (
-          featuredAdsData.map((item, i) => {
+          featuredAdsData.slice(0,7).map((item, i) => {
             return (
               <div className="mx-2 min-w-max " style={{ webkitScrollBar: "none" }}>
                 <PetCard key={i} item={item} />

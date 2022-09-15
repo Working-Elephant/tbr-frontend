@@ -4,13 +4,16 @@ import BullyNewsCard from "../components/home/BullyNewsCard";
 import IndicatorIcon from "../components/home/IndicatorIcon";
 import ImageContainer from "../components/shared/ImageContainer";
 import TestimonialCard from "../components/home/TestimonialCard";
-import Skeleton from "@mui/material/Skeleton";
 import { HiUser } from "react-icons/hi";
 import { IoIosArrowForward } from "react-icons/io";
 import AdImage from "../assets/images/home_ad.jpg";
 import HIW1 from "../assets/images/howitworks1.svg";
 import HIW2 from "../assets/images/howitworks2.svg";
 import HIW3 from "../assets/images/howitworks3.svg";
+import Sponsor1 from "../assets/images/sponsor1.png";
+import Sponsor2 from "../assets/images/sponsor2.png";
+import Sponsor3 from "../assets/images/sponsor3.png";
+import Sponsor4 from "../assets/images/sponsor4.png";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import FeaturedAdsCard from "../components/home/FeaturedAdsCard";
@@ -90,77 +93,23 @@ const Home = () => {
   return (
     <div className="bg-white m-0">
       <Header />
-      <div className="w-full bg-[#E2E2E2] text-center px-5">
+      {/* sponsors */}
+      <div className="w-full bg-[#E2E2E2] text-center px-5 ">
         <span className="text-textMuted text-xs">Our sponsors</span>
-        <div className="grid grid-cols-2 md:grid-cols-4 mx-auto lg:w-4/6 pb-2">
-          <div className="flex flex-col justify-between mb-5 lg:mb-0">
-            <Skeleton
-              variant="rectangular"
-              animation={false}
-              width={150}
-              height={20}
-              sx={{ bgcolor: "#FFFFFF" }}
-              className="mb-3"
-            />
-            <Skeleton
-              variant="rectangular"
-              animation={false}
-              width={100}
-              height={20}
-              sx={{ bgcolor: "#FFFFFF" }}
-            />
+        <div className="grid grid-cols-4 md:grid-cols-4 mx-auto lg:w-4/6">
+          <div className="col-span-1">
+            <img src={Sponsor4} alt="sponsor" className="w-20" />
           </div>
-          <div className="flex flex-col justify-between mb-5 lg:mb-0">
-            <Skeleton
-              variant="rectangular"
-              animation={false}
-              width={150}
-              height={20}
-              sx={{ bgcolor: "#FFFFFF" }}
-              className="mb-3"
-            />
-            <Skeleton
-              variant="rectangular"
-              animation={false}
-              width={100}
-              height={20}
-              sx={{ bgcolor: "#FFFFFF" }}
-            />
+          <div className="col-span-1">
+            <img src={Sponsor2} alt="sponsor" className="w-20" />
           </div>
-          <div className="flex flex-col justify-between mb-5 lg:mb-0">
-            <Skeleton
-              variant="rectangular"
-              animation={false}
-              width={150}
-              height={20}
-              sx={{ bgcolor: "#FFFFFF" }}
-              className="mb-3"
-            />
-            <Skeleton
-              variant="rectangular"
-              animation={false}
-              width={100}
-              height={20}
-              sx={{ bgcolor: "#FFFFFF" }}
-            />
+          <div className="col-span-1">
+            <img src={Sponsor1} alt="sponsor" className="w-20" />
           </div>
-          <div className="flex flex-col justify-between mb-5 lg:mb-0">
-            <Skeleton
-              variant="rectangular"
-              animation={false}
-              width={150}
-              height={20}
-              sx={{ bgcolor: "#FFFFFF" }}
-              className="mb-3"
-            />
-            <Skeleton
-              variant="rectangular"
-              animation={false}
-              width={100}
-              height={20}
-              sx={{ bgcolor: "#FFFFFF" }}
-            />
+          <div className="col-span-1">
+            <img src={Sponsor3} alt="sponsor" className="w-20" />
           </div>
+    
         </div>
       </div>
       {/* Popular categories */}

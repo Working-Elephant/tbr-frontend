@@ -67,11 +67,12 @@ const Pets = () => {
           <Filter showCategory={false} />
         </div>
         <div className=" lg:col-span-10 lg:mt-4">
-          <div className="text-end">
-            <select className="border border-borderGrey mb-8 py-2 px-3 text-sm focus:outline-none">
+          <div className="flex justify-end">
+            <div className="border border-borderGrey mb-8 py-2 px-3 w-fit">
+            <select className="pr-5 text-sm focus:outline-none">
               <option>Sort By</option>
               <option>Price</option>
-            </select>
+            </select></div>
           </div>
           <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
             {currentData.map((item, i) => {
