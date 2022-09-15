@@ -452,7 +452,7 @@ const Home = () => {
               itemClass="carousel-item-padding-40-px"
             >
               {testimonialData.slice(4, 8).map((item, i) => (
-                <div key={i} className="pr-6">
+                <div key={i} className="pr-6 lg:pl-10">
                   <TestimonialCard  item={item} />
                 </div>
               ))}
@@ -466,11 +466,11 @@ const Home = () => {
           <h4 className="font-bold text-2xl md:text-3xl my-4">
             Subscribe to Our Newsletter
           </h4>
-          <p className=" w-5/6 mx-auto md:w-4/6">
+          <p className=" w-5/6 mx-auto md:w-4/6 lg:w-5/12 text-base">
             Sign up to receive Texas Registry emails, first dibs on new
             arrivals, sales, exclusive content, events and more!
           </p>
-          <div className="bg-white border-.5 border-borderGrey flex items-center justify-between py-3 px-5 rounded-xl w-5/6 mx-auto my-4 md:w-4/6 ">
+          <div className="bg-white border-.5 border-borderGrey flex items-center justify-between py-3 px-5 rounded-xl w-5/6 mx-auto my-4 md:w-4/6 lg:w-5/12">
             <input
               className="bg-white  w-5/6 focus:outline-none"
               placeholder="Enter your email"
