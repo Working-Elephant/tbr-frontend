@@ -3,9 +3,14 @@ import FormBody from "../../components/auth/FormBody";
 import { useForm } from "react-hook-form";
 import { Input, ErrorMessage } from "../../components/shared";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { SignUpSlice } from "../../store/features/authSlice";
+// import { isResponseSuccess } from "../../utils";
+import { login as LoginUrl } from "../../config/internalUrl";
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -14,8 +19,17 @@ const SignUp = () => {
 
   // function to submit form
   const onSubmit = (data) => {
-    console.log(data);
-    navigate("/login");
+    // console.log(data);
+    dispatch(SignUpSlice(data))
+      .then((res) => {
+        if (res.payload.status >= 200 && res.payload.status <= 300) {
+          navigate(LoginUrl);
+        }
+        throw new Error("error submitting form");
+      })
+      .catch((err) => {
+        // return toast.error(err.message);
+      });
   };
   return (
     <div>
@@ -31,20 +45,18 @@ const SignUp = () => {
                 {...register("fullName", { required: "fullName is required" })}
               />
               {errors.fullName && (
-                <ErrorMessage message={errors.fullName?.message}/>
+                <ErrorMessage message={errors.fullName?.message} />
               )}
             </div>
             <div className=" mb-5 w-full">
-            <Input
+              <Input
                 type="email"
                 placeholder={"Email"}
                 {...register("email", {
                   required: { value: true, message: " Email is required" },
                 })}
               />
-              {errors.email && (
-               <ErrorMessage message={errors.email?.message}/>
-              )}
+              {errors.email && <ErrorMessage message={errors.email?.message} />}
             </div>
             <div className=" mb-5 w-full">
               <Input
@@ -52,7 +64,7 @@ const SignUp = () => {
                 {...register("password", { required: true })}
               />
               {errors.password && (
-                <ErrorMessage message={errors.password?.message}/>
+                <ErrorMessage message={errors.password?.message} />
               )}
             </div>
             <div className=" mb-5 w-full">
@@ -61,7 +73,7 @@ const SignUp = () => {
                 {...register("confirmpassword", { required: true })}
               />
               {errors.confirmpassword && (
-                <ErrorMessage message={errors.confirmpassword?.message}/>
+                <ErrorMessage message={errors.confirmpassword?.message} />
               )}
             </div>
           </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { featuredAdsData } from "../mockData/mockData";
+import { featuredAdsData } from "../data";
 import { Pagination, BreadCrumb, Filter } from "../components/shared";
 import FeaturedAdsCard from "../components/home/FeaturedAdsCard";
 

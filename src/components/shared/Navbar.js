@@ -29,7 +29,7 @@ const Navbar = ({ home }) => {
       <div className=" md:w-10/12  lg:w-11/12 xl:w-10/12  mx-auto flex justify-between items-center  text-xs  md:text-sm lg:text-xs xl:text-sm ">
         <div className="">
           <Link className="flex items-center  " to="/">
-            <img src={Logo} alt="logo" className="w-4/6" />
+            <img src={Logo} alt="logo" className="w-5/6" />
           </Link>
         </div>
         {/* nav items */}
@@ -38,7 +38,7 @@ const Navbar = ({ home }) => {
             <Link to="/">Home</Link>
           </li>
           <li className="mx-3">
-            <Link to="/pets">Listing</Link>
+            <Link to="/">Listings</Link>
           </li>
           <li className="mx-3">
             <Link to="/">Services</Link>
@@ -69,9 +69,11 @@ const Navbar = ({ home }) => {
           <span className="mr-5">
             <Link to="/login">Login</Link>
           </span>
-          <button className="bg-yellow py-3 px-8 lg:px-12 rounded ">
-            <Link to="/register">Sign Up</Link>
-          </button>
+          <Link to="/register">
+            <button className="bg-yellow text-dark py-3 px-8 lg:px-12 rounded ">
+              Sign Up
+            </button>
+          </Link>
         </div>
 
         {/*  mobile menu icon */}
@@ -106,7 +108,7 @@ const Navbar = ({ home }) => {
                     <Link to="/">Home</Link>
                   </li>
                   <li className="py-3">
-                    <Link to="/pets">Listing</Link>
+                    <Link to="/pets">Listings</Link>
                   </li>
                   <li className="py-3">
                     <Link to="/">Services</Link>
@@ -124,7 +126,7 @@ const Navbar = ({ home }) => {
                 <span className="mb-5">
                   <Link to="/login">Login</Link>
                 </span>
-                <button className="bg-yellow py-3 px-8 lg:px-12 rounded ">
+                <button className="bg-yellow text-dark py-3 px-8 lg:px-12 rounded ">
                   <Link to="/register">Sign Up</Link>
                 </button>
               </div>

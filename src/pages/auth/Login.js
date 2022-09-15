@@ -3,10 +3,20 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import FormBody from "../../components/auth/FormBody";
 import { Input, ErrorMessage } from "../../components/shared";
-import { isValidEmail } from "../../utils/Index";
+// import { isValidEmail } from "../../utils";
+// import { useDispatch } from "react-redux";
+// import { LoginSlice } from "../../store/features/authSlice";
+// import { isResponseSuccess } from "../../utils";
+// import { login as LoginUrl } from "../../config/internalUrl"
 
 const Login = () => {
   const navigate = useNavigate();
+  // const dispatch = useDispatch();
+
+
+  function isValidEmail(email) {
+    return /\S+@\S+\.\S+/.test(email);
+  }
   const {
     register,
     handleSubmit,
@@ -19,7 +29,16 @@ const Login = () => {
     if (!isValidEmail(data.email)) {
       return;
     } else {
+      // dispatch(LoginSlice(data.email))
+      //   .then((res) => {
+      //     if (res.payload.status && isResponseSuccess(res.payload.status)) {
       navigate("/dashboard");
+      //       }
+      //       throw new Error("error submitting form");
+      //     })
+      //     .catch((err) => {
+      //       // return toast.error(err.message);
+      //     });
     }
   };
 
@@ -44,7 +63,9 @@ const Login = () => {
             <div className=" mb-5 w-full">
               <Input
                 placeholder={"Password"}
-                {...register("password", { required: true })}
+                {...register("password", {
+                  required: { value: true, message: "Password is required" },
+                })}
               />
               {errors.password && (
                 <ErrorMessage message={errors.password?.message} />

@@ -1,17 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../components/shared/Header";
 import BullyNewsCard from "../components/home/BullyNewsCard";
 import IndicatorIcon from "../components/home/IndicatorIcon";
 import ImageContainer from "../components/shared/ImageContainer";
 import TestimonialCard from "../components/home/TestimonialCard";
+import Skeleton from "@mui/material/Skeleton";
 import { HiUser } from "react-icons/hi";
 import { IoIosArrowForward } from "react-icons/io";
-import User from "../assets/images/user.svg";
-import AdImage from "../assets/images/dog_banner.jpeg";
-// import Doggo1 from "../assets/images/trophy.jpeg";
-// import Doggo2 from "../assets/images/peopleTalking.jpeg";
-// import Doggo3 from "../assets/images/doggo3.jpeg";
-// import Carousel from "react-material-ui-carousel";
+import AdImage from "../assets/images/home_ad.jpg";
+import HIW1 from "../assets/images/howitworks1.svg";
+import HIW2 from "../assets/images/howitworks2.svg";
+import HIW3 from "../assets/images/howitworks3.svg";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import FeaturedAdsCard from "../components/home/FeaturedAdsCard";
@@ -20,7 +19,8 @@ import {
   categoriesData,
   bullyNewsData,
   testimonialData,
-} from "../mockData/mockData";
+  previewData,
+} from "../data/api";
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -85,15 +85,103 @@ const Home = () => {
       partialVisibilityGutter: 0, // this is needed to tell the amount of px that should be visible.
     },
   };
+
+  const [preview, setPreview] = useState(1);
   return (
-    <div className="bg-white">
+    <div className="bg-white m-0">
       <Header />
+      <div className="w-full bg-[#E2E2E2] text-center px-5">
+        <span className="text-textMuted text-xs">Our sponsors</span>
+        <div className="grid grid-cols-2 md:grid-cols-4 mx-auto lg:w-4/6 pb-2">
+          <div className="flex flex-col justify-between mb-5 lg:mb-0">
+            <Skeleton
+              variant="rectangular"
+              animation={false}
+              width={150}
+              height={20}
+              sx={{ bgcolor: "#FFFFFF" }}
+              className="mb-3"
+            />
+            <Skeleton
+              variant="rectangular"
+              animation={false}
+              width={100}
+              height={20}
+              sx={{ bgcolor: "#FFFFFF" }}
+            />
+          </div>
+          <div className="flex flex-col justify-between mb-5 lg:mb-0">
+            <Skeleton
+              variant="rectangular"
+              animation={false}
+              width={150}
+              height={20}
+              sx={{ bgcolor: "#FFFFFF" }}
+              className="mb-3"
+            />
+            <Skeleton
+              variant="rectangular"
+              animation={false}
+              width={100}
+              height={20}
+              sx={{ bgcolor: "#FFFFFF" }}
+            />
+          </div>
+          <div className="flex flex-col justify-between mb-5 lg:mb-0">
+            <Skeleton
+              variant="rectangular"
+              animation={false}
+              width={150}
+              height={20}
+              sx={{ bgcolor: "#FFFFFF" }}
+              className="mb-3"
+            />
+            <Skeleton
+              variant="rectangular"
+              animation={false}
+              width={100}
+              height={20}
+              sx={{ bgcolor: "#FFFFFF" }}
+            />
+          </div>
+          <div className="flex flex-col justify-between mb-5 lg:mb-0">
+            <Skeleton
+              variant="rectangular"
+              animation={false}
+              width={150}
+              height={20}
+              sx={{ bgcolor: "#FFFFFF" }}
+              className="mb-3"
+            />
+            <Skeleton
+              variant="rectangular"
+              animation={false}
+              width={100}
+              height={20}
+              sx={{ bgcolor: "#FFFFFF" }}
+            />
+          </div>
+        </div>
+      </div>
       {/* Popular categories */}
       <section className="p-5 ">
         <div className="md:w-10/12   mx-auto">
-          <div className="mb-3">
-            <h3 className="text-2xl">Popular Categories</h3>
-            <p className="text-grey">Our Most Popular Categories</p>
+          <div className="flex items-center justify-between mb-3">
+            <div>
+              <h3 className="text-xl md:text-2xl">Popular Categories</h3>
+              <p className="text-sm md:text-base text-grey">
+                Our Most Popular Categories
+              </p>
+            </div>
+            <Link
+              to="/categories"
+              className="text-blue flex items-center text-sm md:text-base"
+            >
+              <span className="">View All Categories</span>
+              <i className="ml-1 text-xl">
+                <IoIosArrowForward />
+              </i>
+            </Link>
           </div>
           <div className="relative ">
             <Carousel
@@ -105,8 +193,6 @@ const Home = () => {
               responsive={responsive}
               partialVisible={true}
               infinite={true}
-              // focusOnSelect={true}
-              // autoPlaySpeed={1000}
               keyBoardControl={true}
               customTransition="all .5"
               transitionDuration={500}
@@ -117,15 +203,13 @@ const Home = () => {
               renderDotsOutside={true}
             >
               {categoriesData.map((item, i) => (
-                <div key={item.id} className="mx-4 rounded-[60px] relative">
-                  <Link to={`${item.link}`} >
-                  <ImageContainer
-                    image={item.img}
-                    rounded="rounded-[3rem]"
-                  />
-                  <p className="absolute bottom-4 left-8 uppercase text-white text-xl">
-                    {item.name}
-                  </p></Link>
+                <div key={i} className="mx-4 rounded-[60px] relative">
+                  <Link to={`${item.link}`}>
+                    <ImageContainer image={item.img} rounded="rounded-[3rem]" />
+                    <p className="absolute bottom-4 left-8 uppercase text-white text-xl">
+                      {item.name}
+                    </p>
+                  </Link>
                 </div>
               ))}
             </Carousel>
@@ -137,18 +221,23 @@ const Home = () => {
         <div className=" md:w-10/12 lg:w-8/12  mx-auto">
           <div className="flex items-center justify-between mb-3">
             <div>
-              <h3 className="text-2xl">Featured Sellers</h3>
-              <p className="text-grey">Shop our featured Sellers</p>
+              <h3 className="text-xl md:text-2xl">Featured Sellers</h3>
+              <p className="text-sm md:text-base text-grey">
+                Shop our featured Sellers
+              </p>
             </div>
-            <Link to="/categories" className="text-blue flex items-center">
+            <Link
+              to="/categories/pets"
+              className="text-blue flex items-center text-sm md:text-base"
+            >
               <span className="">View More</span>
               <i className="ml-1 text-xl">
                 <IoIosArrowForward />
               </i>
-            </Link >
+            </Link>
           </div>
           <div className="grid grid-cols-2 gap-3 lg:grid-cols-3   ">
-            {featuredAdsData.slice(0,9).map((item, i) => {
+            {featuredAdsData.slice(0, 9).map((item, i) => {
               return <FeaturedAdsCard key={i} item={item} />;
             })}
           </div>
@@ -161,16 +250,16 @@ const Home = () => {
       </section>
       {/* how it works section */}
       <section className="my-10">
-        <div className="w-5/6  mx-auto text-center">
+        <div className=" w-11/12 lg:w-9/12  mx-auto text-center">
           <h6 className=" text-lg md:text-xl my-1">How it Works</h6>
           <p className=" py-0 text-grey">
             Register. Search. Communicate. Buy. Sale. Repeat
           </p>
-          <div className="flex flex-wrap lg:flex-nowrap my-4 text-start ">
-            <div className="bg-yellow bg-opacity-20 mb-4 lg:mb-0 rounded-lg mx-2 grow">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 text-start my-5">
+            <div className="bg-yellow bg-opacity-20 mb-4 lg:mb-0 rounded-lg mx-2">
               <div className="flex flex-col  p-4  ">
-                <div className=" bg-black bg-opacity-20 rounded p-4 w-1/5 md:4/6">
-                  <img src={User} alt="" />
+                <div className=" w-16 lg:w-24">
+                  <img src={HIW1} alt="" />
                 </div>
                 <div className="">
                   <p className=" my-3 text-dark opacity-100">Register</p>
@@ -181,10 +270,10 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <div className="bg-yellow bg-opacity-20 mb-4 lg:mb-0 rounded-lg mx-2 grow">
+            <div className="bg-yellow bg-opacity-20 mb-4 lg:mb-0 rounded-lg mx-2">
               <div className="flex flex-col  p-4  ">
-                <div className=" bg-black bg-opacity-20 rounded p-4 w-1/5">
-                  <img src={User} alt="" />
+                <div className=" w-16 lg:w-24">
+                  <img src={HIW2} alt="" />
                 </div>
                 <div className="">
                   <p className="my-3 ">Search Bullies</p>
@@ -195,10 +284,10 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <div className="bg-yellow bg-opacity-20 mb-4 lg:mb-0 rounded-lg mx-2 grow">
+            <div className="bg-yellow bg-opacity-20 mb-4 lg:mb-0 rounded-lg mx-2">
               <div className="flex flex-col  p-4 ">
-                <div className=" bg-black bg-opacity-10 rounded p-4 w-1/5">
-                  <img src={User} alt="" />
+                <div className=" w-16 lg:w-24">
+                  <img src={HIW3} alt="" />
                 </div>
                 <div className="">
                   <p className=" my-3">Make Payment</p>
@@ -214,10 +303,10 @@ const Home = () => {
       </section>
       {/* Ad section */}
       <section
-        className=" p-6 md:p-12 bg-no-repeat bg-cover"
+        className=" p-6 md:p-12 bg-no-repeat bg-cover bg-center "
         style={{ backgroundImage: `url('${AdImage}')` }}
       >
-        <div className="md:w-5/6 lg:w-4/6 xl:w-3/6 bg-black bg-opacity-50 p-10 rounded-lg mx-auto text-white text-center">
+        <div className="md:w-5/6 lg:w-4/6 xl:w-3/6 bg-black bg-opacity-50 p-10 rounded-lg mx-auto lg:my-10 text-white text-center">
           <div className=" md:w-4/6 mx-auto">
             <h2 className="font-bold text-4xl ">Bully For Sale?</h2>
             <p className="my-4">
@@ -225,9 +314,11 @@ const Home = () => {
               selling potential by advertising with us today
             </p>
             <div>
-              <button className=" bg-yellow py-4 px-12 rounded text-sm text-dark font-semibold ">
-                Submit Ad
-              </button>
+              <Link to="/ad/post-ad">
+                <button className=" bg-yellow py-4 px-12 rounded text-sm text-dark font-semibold ">
+                  Submit Ad
+                </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -235,8 +326,8 @@ const Home = () => {
       {/* dog show preview section */}
       <section className="p-5">
         <div className="w-full md:w-5/6  mx-auto">
-          <div className="grid grid-col-1 lg:grid-cols-2 gap-3">
-            <div className="col-span-1">
+          <div className="grid grid-col-1 lg:grid-cols-12 gap-3">
+            <div className="col-span-1 lg:col-span-7 overflow-auto">
               <h2 className="text-xl  md:text-2xl lg:text-3xl">
                 A preview of Our Dog Shows
               </h2>
@@ -246,47 +337,37 @@ const Home = () => {
                 our events as they happen. With membership access you remain in
                 the loop with our company's updates and changes.
               </p>
-              {/* <div className="">
-             
-                <Carousel
-                  swipeable={true}
-                  draggable={true}
-                  showDots={false}
-                  arrows={false}
-                  responsive={responsive}
-                  partialVisible={true}
-                  infinite={false}
-                  // focusOnSelect={true}
-                  autoPlay={false}
-                  keyBoardControl={true}
-                  customTransition="all .5"
-                  transitionDuration={500}
-                  containerClass="bg-grey py-2 max-h-24"
-                  sliderClass=""
-                  dotListClass=""
-                  itemClass=""
-                >
-                  {categoriesData.map((item, i) => (
-                    <div className="mx-1 ">
-                      <ImageContainer
-                        key={item.id}
-                        image={item.img}
-                        fullHeight={false}
-                      />
-                    </div>
-                  ))}
-                </Carousel>
-               
-              </div> */}
+              <div className="bg-[#3D3D3D] p-2 overflow-auto scroll-smooth snap-x snap-mandatory touch-pan-x no-scrollbar flex gap-1 items-center lg:w-4/5 ">
+                {previewData.map((item, i) => (
+                  <div
+                    key={i}
+                    className={` min-w-[150px] h-28 ${
+                      preview === i ? "border-3 border-white" : ""
+                    }`}
+                    onClick={() => setPreview(i)}
+                  >
+                    <ImageContainer
+                      key={i}
+                      image={item.image}
+                      fullHeight={false}
+                      width="min-w-[144px]"
+                    />
+                  </div>
+                ))}
+              </div>
 
               <div className="my-5">
-                <button className="bg-yellow py-3 w-1/2 text-dark ">
+                <button className="bg-yellow py-3 w-1/2 text-dark font-semibold">
                   Learn More
                 </button>
               </div>
             </div>
-            <div className="col-span-1">
-              
+            <div className=" col-span-1 lg:col-span-5">
+              <iframe
+                className="w-full aspect-video lg:aspect-square"
+                title="A preview of our dog shows"
+                src="https://www.youtube.com/watch?v=g3fAq0svJ9g"
+              ></iframe>
             </div>
           </div>
         </div>
@@ -322,8 +403,8 @@ const Home = () => {
               // renderDotsOutside={true}
             >
               {bullyNewsData.map((item, i) => (
-                <div className="pr-5">
-                  <BullyNewsCard key={i} item={item} />
+                <div key={i} className="pr-5">
+                  <BullyNewsCard  item={item} />
                 </div>
               ))}
             </Carousel>
@@ -349,8 +430,8 @@ const Home = () => {
               itemClass="carousel-item-padding-40-px"
             >
               {testimonialData.slice(0, 4).map((item, i) => (
-                <div className=" pl-4 md:pl-6 lg:pl-12">
-                  <TestimonialCard key={i} item={item} />
+                <div key={i}  className=" pl-4 md:pl-6 lg:pl-12">
+                  <TestimonialCard  item={item} />
                 </div>
               ))}
             </Carousel>
@@ -371,8 +452,8 @@ const Home = () => {
               itemClass="carousel-item-padding-40-px"
             >
               {testimonialData.slice(4, 8).map((item, i) => (
-                <div className="pr-6">
-                  <TestimonialCard key={i} item={item} />
+                <div key={i} className="pr-6">
+                  <TestimonialCard  item={item} />
                 </div>
               ))}
             </Carousel>
@@ -381,12 +462,12 @@ const Home = () => {
       </section>
       {/* Newsletter section */}
       <section className="py-4 px-4 lg:py-12 ">
-        <div className=" md:w-5/6 lg:4/6 mx-auto text-center">
+        <div className=" md:w-5/6 lg:4/6 xl:3/6 mx-auto text-center">
           <h4 className="font-bold text-2xl md:text-3xl my-4">
             Subscribe to Our Newsletter
           </h4>
-          <p className="text-justify w-5/6 mx-auto md:w-4/6">
-            Sign up to receive Texas registry emails and get first dibs on new
+          <p className=" w-5/6 mx-auto md:w-4/6">
+            Sign up to receive Texas Registry emails, first dibs on new
             arrivals, sales, exclusive content, events and more!
           </p>
           <div className="bg-white border-.5 border-borderGrey flex items-center justify-between py-3 px-5 rounded-xl w-5/6 mx-auto my-4 md:w-4/6 ">

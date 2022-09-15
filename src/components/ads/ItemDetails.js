@@ -25,127 +25,149 @@ const ItemDetails = () => {
   };
   return (
     <div>
-      <div className="md:w-4/6 mx-auto py-3">
+      <div className="md:w-5/6 lg:w-4/6 mx-auto py-3">
         <h5 className="mb-4">Enter Bully Details</h5>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-            <Input
-              border="border-0"
-              placeholder={"Dog's Registered Name"}
-              {...register("dogsRegisteredName", { required: true })}
-            />
+          <div>
+            <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+              <Input
+                border="border-0"
+                placeholder={"Dog's Registered Name"}
+                {...register("dogsRegisteredName", {
+                  required: {
+                    value: true,
+                    message: "This field is required",
+                  },
+                })}
+              />
+            </div>
             {errors.dogsRegisteredName && (
               <ErrorMessage message={errors.dogsRegisteredName?.message} />
             )}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 md: gap-4">
-            {/* <select className="border-.5 border-borderGrey mb-8 py-2 px-3 text-sm focus:outline-none w-full ">
-              <option>Date of Birth</option>
-              <option>Male</option>
-              <option>Female</option>
-            </select> */}
-            <div className="bg-[#FEFCFC] px-3 py-2 rounded-lg border border-borderGrey w-full h-fit tex-sm">
-              <Controller
-                name="dateOfBirth"
-                control={control}
-                rules={{ required: true }}
-                render={({ field: { onChange, onBlur, value } }) => (
-                  <DatePicker
-                    dateFormat="dd-MM-yyyy"
-                    placeholderText="Date of Birth"
-                    // onBlur={onBlur}
-                    selected={value}
-                    // selected={dob}
-                    onChange={onChange}
-                    closeOnScroll={false}
-                    // showMonthDropdown
-                    showYearDropdown
-                    dropdownMode="select"
-                    className="border-0 focus:outline-none placeholder:text-dark text-sm px-3 w-full"
-                    maxDate={new Date()}
-                    // {...field}
-                  />
-                )}
-              />
+            <div>
+              <div className="bg-[#FEFCFC] px-3 py-2 rounded-lg border border-borderGrey w-full h-fit tex-sm">
+                <Controller
+                  name="dateOfBirth"
+                  control={control}
+                  rules={{
+                    required: {
+                      value: true,
+                      message: "This field is required",
+                    },
+                  }}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <DatePicker
+                      dateFormat="dd-MM-yyyy"
+                      placeholderText="Date of Birth"
+                      selected={value}
+                      onChange={onChange}
+                      closeOnScroll={false}
+                      showYearDropdown
+                      dropdownMode="select"
+                      className="border-0 focus:outline-none placeholder:text-dark text-sm px-3 w-full"
+                      maxDate={new Date()}
+                    />
+                  )}
+                />
+              </div>
               {errors.dateOfBirth && (
                 <ErrorMessage message={errors.dateOfBirth?.message} />
               )}
             </div>
-
-            {/* <div className=" mb-4 w-full">
-              <SelectInput
-                options={sex}
-                defaultOption="Select Date"
-                {...register("dateofBirth", { required: true })}
-              />
-              {errors.dateofBirth && (
-                <ErrorMessage>{errors.dateofBirth?.message}</ErrorMessage>
-              )}
-            </div> */}
-            <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-              <SelectInput
-                border="border-0"
-                options={sex}
-                defaultOption="Sex"
-                {...register("sex", { required: true })}
-              />
+            <div>
+              <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                <SelectInput
+                  border="border-0"
+                  options={sex}
+                  defaultOption="Sex"
+                  {...register("sex", { required: true })}
+                />
+              </div>
               {errors.sex && <ErrorMessage message={errors.sex?.message} />}
             </div>
           </div>
-
-          <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-            <Input
-              border="border-0"
-              placeholder={"Dog owner's Name"}
-              {...register("dogsOwnerName", { required: true })}
-            />
-            {errors.dogsOwnerName && (
-              <ErrorMessage message={errors.dogsOwnerName?.message} />
-            )}
+          <div className="grid grid-cols-1 md:grid-cols-2 md: gap-4">
+            <div>
+              <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                <Input
+                  border="border-0"
+                  placeholder={"Dog owner's First Name"}
+                  {...register("dogOwnersFirstName", { required: true })}
+                />
+              </div>
+              {errors.dogOwnersFirstName && (
+                <ErrorMessage message={errors.dogOwnersFirstName?.message} />
+              )}
+            </div>
+            <div>
+              <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                <Input
+                  border="border-0"
+                  placeholder={"Dog owner's Last Name"}
+                  {...register("dogOwnersLastName", { required: true })}
+                />
+              </div>
+              {errors.dogOwnersLastName && (
+                <ErrorMessage message={errors.dogOwnersLastName?.message} />
+              )}
+            </div>
           </div>
-          <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-            <Input
-              border="border-0"
-              placeholder={"Address"}
-              {...register("address", { required: true })}
-            />
+
+          <div>
+            <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+              <Input
+                border="border-0"
+                placeholder={"Address"}
+                {...register("address", { required: true })}
+              />
+            </div>
             {errors.address && (
               <ErrorMessage message={errors.address?.message} />
             )}
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 md: gap-4">
-            <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-              <Input
-                border="border-0"
-                placeholder={"City"}
-                {...register("city", { required: true })}
-              />
+            <div>
+              <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                <Input
+                  border="border-0"
+                  placeholder={"City"}
+                  {...register("city", { required: true })}
+                />
+              </div>
               {errors.city && <ErrorMessage message={errors.city?.message} />}
             </div>
-            <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-              <Input
-                border="border-0"
-                placeholder={"State"}
-                {...register("state", { required: true })}
-              />
+            <div>
+              <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                <Input
+                  border="border-0"
+                  placeholder={"State"}
+                  {...register("state", { required: true })}
+                />
+              </div>
               {errors.state && <ErrorMessage message={errors.state?.message} />}
             </div>
-            <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-              <Input
-                border="border-0"
-                placeholder={"Zip"}
-                {...register("zip", { required: true })}
-              />
+            <div>
+              <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit col-span-2 md:col-span-1">
+                <Input
+                  border="border-0"
+                  placeholder={"Zip"}
+                  {...register("zip", { required: true })}
+                />
+              </div>
               {errors.zip && <ErrorMessage message={errors.zip?.message} />}
             </div>
           </div>
-          <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-            <Input
-              border="border-0"
-              placeholder={"Telephone"}
-              {...register("telephone", { required: true })}
-            />
+          <div>
+            <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+              <Input
+                border="border-0"
+                placeholder={"Telephone"}
+                {...register("telephone", { required: true })}
+              />
+            </div>{" "}
             {errors.telephone && (
               <ErrorMessage message={errors.telephone?.message} />
             )}
@@ -158,119 +180,113 @@ const ItemDetails = () => {
                 <GoPlusSmall />
               </i>
             </div>
-            <p className="text-blue text-sm my-3">Male Parent</p>
-            <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-              <Input
-                border="border-0"
-                placeholder={"Dog's Registered Name"}
-                {...register("maleParentName", { required: true })}
-              />
+            <p className="text-blue text-sm my-3">Sire</p>
+            <div>
+              <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                <Input
+                  border="border-0"
+                  placeholder={"Dog's Registered Name"}
+                  {...register("maleParentName", { required: true })}
+                />
+              </div>{" "}
               {errors.maleParentName && (
                 <ErrorMessage message={errors.maleParentName?.message} />
               )}
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 md: gap-4">
-              {/* <select className="border-.5 border-borderGrey mb-4 py-2 px-3 text-sm focus:outline-none w-full  ">
-                <option>Date of Birth</option>
-                <option>Nigeria</option>
-              </select> */}
-              <div className="bg-[#FEFCFC] px-3 py-2 rounded-lg border border-borderGrey w-full h-fit tex-sm">
-                <Controller
-                  name="maleParentDob"
-                  control={control}
-                  rules={{ required: true }}
-                  render={({ field: { onChange, onBlur, value } }) => (
-                    <DatePicker
-                      dateFormat="dd-MM-yyyy"
-                      placeholderText="Date of Birth"
-                      selected={value}
-                      onChange={onChange}
-                      closeOnScroll={false}
-                      // showMonthDropdown
-                      showYearDropdown
-                      dropdownMode="select"
-                      className="border-0 focus:outline-none placeholder:text-dark text-sm px-3 w-full"
-                      maxDate={new Date()}
-                      // {...field}
-                    />
-                  )}
-                />
+              <div>
+                <div className="bg-[#FEFCFC] px-3 py-2 rounded-lg border border-borderGrey w-full h-fit tex-sm">
+                  <Controller
+                    name="maleParentDob"
+                    control={control}
+                    rules={{ required: true }}
+                    render={({ field: { onChange, onBlur, value } }) => (
+                      <DatePicker
+                        dateFormat="dd-MM-yyyy"
+                        placeholderText="Date of Birth"
+                        selected={value}
+                        onChange={onChange}
+                        closeOnScroll={false}
+                        // showMonthDropdown
+                        showYearDropdown
+                        dropdownMode="select"
+                        className="border-0 focus:outline-none placeholder:text-dark text-sm px-3 w-full"
+                        maxDate={new Date()}
+                        // {...field}
+                      />
+                    )}
+                  />
+                </div>
                 {errors.maleParentDob && (
                   <ErrorMessage message={errors.maleParentDob?.message} />
                 )}
               </div>
-              {/* <select className="border-.5 border-borderGrey mb-4 py-2 px-3 text-sm focus:outline-none w-full ">
-                <option>Breed</option>
-                <option>Male</option>
-                <option>Female</option>
-              </select> */}
-              <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-                <SelectInput
-                  border="border-0"
-                  options={breed}
-                  defaultOption="Breed"
-                  {...register("maleBreedId", { required: true })}
-                />
+              <div>
+                <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                  <SelectInput
+                    border="border-0"
+                    options={breed}
+                    defaultOption="Breed"
+                    {...register("maleBreedId", { required: true })}
+                  />
+                </div>
                 {errors.maleBreedId && (
                   <ErrorMessage>{errors.maleBreedId?.message}</ErrorMessage>
                 )}
               </div>
             </div>
-            <p className="text-blue text-sm my-3">Female Parent</p>
-            <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-              <Input
-                border="border-0"
-                placeholder={"Dog's Registered Name"}
-                {...register("femaleParentName", { required: true })}
-              />
+            <p className="text-blue text-sm my-3">Dame</p>
+            <div>
+              <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                <Input
+                  border="border-0"
+                  placeholder={"Dog's Registered Name"}
+                  {...register("femaleParentName", { required: true })}
+                />
+              </div>
               {errors.femaleParentName && (
                 <ErrorMessage>{errors.femaleParentName?.message}</ErrorMessage>
               )}
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 md: gap-4">
-              {/* <select className="border-.5 border-borderGrey mb-8 py-2 px-3 text-sm focus:outline-none w-full  ">
-                <option>Date of Birth</option>
-                <option>Nigeria</option>
-              </select> */}{" "}
-              <div className="bg-[#FEFCFC] px-3 py-2 rounded-lg border border-borderGrey w-full h-fit tex-sm">
-                <Controller
-                  name="femaleParentDob"
-                  control={control}
-                  rules={{ required: true }}
-                  render={({ field: { onChange, onBlur, value } }) => (
-                    <DatePicker
-                      dateFormat="dd-MM-yyyy"
-                      placeholderText="Date of Birth"
-                      selected={value}
-                      onChange={onChange}
-                      closeOnScroll={false}
-                      // showMonthDropdown
-                      showYearDropdown
-                      dropdownMode="select"
-                      className="border-0 focus:outline-none placeholder:text-dark text-sm px-3 w-full"
-                      maxDate={new Date()}
-                      // {...field}
-                    />
-                  )}
-                />{" "}
+              <div>
+                <div className="bg-[#FEFCFC] px-3 py-2 rounded-lg border border-borderGrey w-full h-fit tex-sm">
+                  <Controller
+                    name="femaleParentDob"
+                    control={control}
+                    rules={{ required: true }}
+                    render={({ field: { onChange, onBlur, value } }) => (
+                      <DatePicker
+                        dateFormat="dd-MM-yyyy"
+                        placeholderText="Date of Birth"
+                        selected={value}
+                        onChange={onChange}
+                        closeOnScroll={false}
+                        // showMonthDropdown
+                        showYearDropdown
+                        dropdownMode="select"
+                        className="border-0 focus:outline-none placeholder:text-dark text-sm px-3 w-full"
+                        maxDate={new Date()}
+                        // {...field}
+                      />
+                    )}
+                  />
+                </div>
                 {errors.femaleParentDob && (
                   <ErrorMessage>{errors.femaleParentDob?.message}</ErrorMessage>
-                )}{" "}
+                )}
               </div>
-              {/* <select className="border-.5 border-borderGrey mb-8 py-2 px-3 text-sm focus:outline-none w-full ">
-                <option>Breed</option>
-                <option>Male</option>
-                <option>Female</option>
-              </select> */}
-              <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-                <SelectInput
-                  border="border-0"
-                  options={breed}
-                  defaultOption="Breed"
-                  {...register("femaleBreedId", { required: true })}
-                />
+              <div>
+                <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                  <SelectInput
+                    border="border-0"
+                    options={breed}
+                    defaultOption="Breed"
+                    {...register("femaleBreedId", { required: true })}
+                  />
+                </div>
                 {errors.femaleBreedId && (
                   <ErrorMessage>{errors.femaleBreedId?.message}</ErrorMessage>
                 )}

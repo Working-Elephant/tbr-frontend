@@ -18,13 +18,18 @@ const AboutItem = () => {
   const onSubmit = (data) => {
     let submitData = {
       ...data,
-      pictureUrl: images
-    }
-    console.log(submitData)
+      pictureUrl: images,
+    };
+    console.log(submitData);
     updateStep1(submitData);
     // nextStep();
   };
-  const productImageRegister = register("pictureUrl", { required: true });
+  const productImageRegister = register("pictureUrl", {
+    required: {
+      value: true,
+      message: " This field is required",
+    },
+  });
   const getBase64 = (file) => {
     return new Promise((resolve) => {
       //   let fileInfo;
@@ -71,28 +76,38 @@ const AboutItem = () => {
             <p className="text-sm">Enter Item Category and Location</p>
           </div>
           <div className="grid grid-cols-2 gap-5 lg:gap-8 my-3">
-            <div className="w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-              <SelectInput
-                border="border-0"
-                options={selectCategories}
-                defaultOption="Category"
-                {...register("category", { required: true })}
-              />
-              {errors.category && (
-                <ErrorMessage message={errors.category?.message} />
-              )}
-
+            <div>
+              <div className="w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                <SelectInput
+                  border="border-0"
+                  options={selectCategories}
+                  defaultOption="Category"
+                  {...register("category", {
+                    required: {
+                      value: true,
+                      message: " This field is required",
+                    },
+                  })}
+                />
+              </div>
               {errors.category && (
                 <ErrorMessage message={errors.category?.message} />
               )}
             </div>
-            <div className="w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-              <SelectInput
-                border="border-0"
-                options={breed}
-                defaultOption="Breed"
-                {...register("breed", { required: true })}
-              />
+            <div>
+              <div className="w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                <SelectInput
+                  border="border-0"
+                  options={breed}
+                  defaultOption="Breed"
+                  {...register("breed", {
+                    required: {
+                      value: true,
+                      message: " This field is required",
+                    },
+                  })}
+                />
+              </div>
               {errors.breed && <ErrorMessage message={errors.breed?.message} />}
             </div>
           </div>
@@ -125,6 +140,9 @@ const AboutItem = () => {
               </div>
             ) : null}
           </div>
+          {errors.pictureUrl && (
+            <ErrorMessage message={errors.pictureUrl?.message} />
+          )}
         </div>
         <div className="text-center my-5">
           <button

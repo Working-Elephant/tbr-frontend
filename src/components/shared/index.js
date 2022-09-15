@@ -14,3 +14,4 @@ export {default as SectionHeader} from "./SectionHeader";
 export {default as UserAvatar} from "./UserAvatar";
 export {default as Filter} from "./Filter"
 export {default as ImageModal} from './ImageModal';
+export {default as Loader} from './Loader';

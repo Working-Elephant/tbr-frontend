@@ -34,9 +34,11 @@ const Wrapper = ({ children }) => {
 
 const App = () => {
   const isHome = useMatch("/" || "/home");
+  const isMessages = useMatch("/dashboard/messages");
+
 
   return (
-    <div className="bg-white">
+    <div className="bg-white p-0 m-0">
       <Wrapper>
         <Navbar home={isHome} />
         <Routes>
@@ -51,7 +53,14 @@ const App = () => {
           <Route path="/categories/pets" element={<Pets />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/search" element={<Search />} />
-          <Route path="/cart" element={<CartContextProvider><Cart /></CartContextProvider>} />
+          <Route
+            path="/cart"
+            element={
+              <CartContextProvider>
+                <Cart />
+              </CartContextProvider>
+            }
+          />
           <Route path="/cart/shipping" element={<Shipping />} />
           <Route path="/cart/shipping/billing" element={<Billing />} />
           <Route
@@ -62,7 +71,7 @@ const App = () => {
           <Route path="/ad/view/:id" element={<ViewAdDetails />} />
           <Route path="*" exact={true} element={<Notfound />} />
         </Routes>
-        <Footer />
+        {isMessages ? null : <Footer />}
       </Wrapper>
     </div>
   );

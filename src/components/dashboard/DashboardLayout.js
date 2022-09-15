@@ -1,9 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { BsHeart } from "react-icons/bs";
 import { IoIosArrowForward } from "react-icons/io";
 import Avatar1 from "../../assets/images/avatar1.jpeg";
-import { dashboardMenu } from "../../mockData/mockData";
+import { dashboardMenu } from "../../data";
 import SellerInfo from "../../components/ads/SellerInfo";
 
 const DashboardLayout = ({ children }) => {
@@ -36,9 +35,9 @@ const DashboardLayout = ({ children }) => {
                         }
                       >
                         <div className="flex items-center">
-                          <i className="mr-6 text-dark">
-                            <BsHeart />
-                          </i>
+                        <div className="mr-6">
+                          <img src={item.icon} alt="icon" className="w-4 h-4" />
+                        </div>
                           <span>{item.name}</span>
                         </div>
                         <i className="text-lg">

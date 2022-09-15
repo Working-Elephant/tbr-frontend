@@ -11,6 +11,23 @@ import Trophy from '../assets/images/trophy.jpeg'
 import People from '../assets/images/peopleTalking.jpeg'
 import janeAvatar from '../assets/images/avatar1.jpeg';
 import User from "../assets/images/avatar2.jpeg";
+// categories images
+import Pets from "../assets/images/pets.jpg";
+import PetToys from "../assets/images/pet_toys.jpg";
+import Equipments from "../assets/images/equipments.jpg";
+import Electronics from "../assets/images/electronics.jpg";
+import Pets2 from "../assets/images/pets2.jpg"
+import PetToys2 from "../assets/images/pet_toys.jpg"
+import PetFood from "../assets/images/petfood.jpg"
+import Random from "../assets/images/random.jpg"
+
+// dashboard menu icons
+import AdsIcon from "../assets/images/adsIcon.svg"
+import MessagesIcon from "../assets/images/mesaages.svg"
+import MembershipIcon from "../assets/images/membership.svg"
+import FavouritesIcon from "../assets/images/favourites.svg"
+import OrdersIcon from "../assets/images/orders.svg"
+import CustomerCareIcon from "../assets/images/customer_care.svg"
 
 
 export const CartData = [
@@ -26,29 +43,34 @@ export const CartData = [
 
 export const dashboardMenu = [
     {
-        icon: "",
+        icon: AdsIcon,
         name: "Your Ads",
-        link: "/dashboard",
+        link: "/dashboard/ads",
     },
     {
-        icon: "",
+        icon: MembershipIcon,
         name: "Memberships",
-        link: "/memberships",
+        link: "/dashboard/memberships",
     },
     {
-        icon: "",
-        name: "Favourites",
-        link: "/favourites",
+        icon: MessagesIcon,
+        name: "Messages",
+        link: "/dashboard/messages",
     },
     {
-        icon: "",
-        name: "Your Orders",
-        link: "/orders",
+        icon: FavouritesIcon,
+        name: "Favorites",
+        link: "/dashboard/favourites",
     },
     {
-        icon: "",
+        icon: OrdersIcon,
+        name: "My Orders",
+        link: "/dashboard/orders",
+    },
+    {
+        icon: CustomerCareIcon,
         name: "Customer Care",
-        link: "/customer-care",
+        link: "/dashboard/customer-care",
     },
 ];
 export const adsData = [
@@ -118,7 +140,8 @@ export const featuredAdsData = [
         image: AdDoggo3,
         price: 800,
         seller: 'Jane Doe',
-        sellerAvatar: janeAvatar
+        sellerAvatar: janeAvatar,
+        description:"cqvghbvkjuwodbihvgfydh jvb yfcbdhjf yeqgvwdachjkbjhvdgwqajs cfyvg hfdbvkjbefcgu vcbhivdcuvgwhbyeh qudwvytguqwrybi hgvudwabcsvtug wcaug hbwvcwiyda vguwcag byvctgucygdwa"
     },
     {
         id: 2,
@@ -254,52 +277,82 @@ export const carouselImages = [
 export const categoriesData = [
     {
         id: 1,
-        img: AdDoggo1,
+        img: Pets,
         name: "Pets",
-        link: '/pets'
+        link: '/categories/pets'
     },
     {
         id: 2,
-        img: AdDoggo2,
+        img: PetToys,
         name: "Pet Toys",
-        link: '/pets'
+        link: '/categories/pets'
     },
     {
         id: 3,
-        img: AdDoggo1,
+        img: Electronics,
         name: "Electronics",
-        link: '/pets'
+        link: '/categories/pets'
     },
     {
         id: 4,
-        img: AdDoggo5,
+        img: Equipments,
         name: "Equipments",
-        link: '/pets'
+        link: '/categories/pets'
     },
     {
         id: 5,
-        img: AdDoggo3,
+        img: Pets2,
         name: "Pets",
-        link: '/pets'
+        link: '/categories/pets'
     },
     {
         id: 6,
-        img: AdDoggo4,
-        name: "Pets",
-        link: '/pets'
+        img: PetToys2,
+        name: "Pet Toys",
+        link: '/categories/pets'
     },
     {
         id: 7,
-        img: AdDoggo1,
-        name: "Pets",
-        link: '/pets'
+        img: PetFood ,
+        name: "Pet Food",
+        link: '/categories/pets'
     },
     {
         id: 8,
-        img: AdDoggo3,
-        name: "Pets",
-        link: '/pets'
+        img: Random,
+        name: "Random",
+        link: '/categories/pets'
     },
+]
+export const previewData =[
+  {
+    image: AdDoggo1,
+    link:""
+  },
+  {
+    image: AdDoggo3,
+    link:""
+  },
+  {
+    image: AdDoggo5,
+    link:""
+  },
+  {
+    image: AdDoggo2,
+    link:""
+  },
+  {
+    image: AdDoggo4,
+    link:""
+  },
+  {
+    image: AdDoggo1,
+    link:""
+  },
+  {
+    image: AdDoggo5,
+    link:""
+  },
 ]
 
 export const bullyNewsData = [
