@@ -14,7 +14,9 @@ const FeaturedAdsCard = ({ item }) => {
 
   const navigate = useNavigate();
 
-  const toggleLike = () => {
+  const toggleLike = (evt) => {
+    // alert('fired')
+    evt.stopPropagation();
     setLiked(!liked);
   };
 
@@ -29,12 +31,12 @@ const FeaturedAdsCard = ({ item }) => {
         style={{ backgroundImage: `url('${image}')` }}
       >
         <i
-          className="text-white text-lg absolute top-4 right-3"
+          className="text-white text-lg absolute top-4 right-3 p-1"
           onClick={toggleLike}
         >
           {liked ? <BsFillHeartFill color="red" /> : <BsHeart color="white" />}
         </i>
-        <div className="absolute bottom-4 right-3 px-2 py-0.5 bg-black opacity-60 text-white text-xs rounded">
+        <div className="absolute bottom-4 right-3 p-2 bg-black opacity-60 text-white text-xs rounded">
           <div className="flex items-center">
             <i className="mr-2">
               <FaCamera />

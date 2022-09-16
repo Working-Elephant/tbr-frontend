@@ -4,13 +4,16 @@ import BullyNewsCard from "../components/home/BullyNewsCard";
 import IndicatorIcon from "../components/home/IndicatorIcon";
 import ImageContainer from "../components/shared/ImageContainer";
 import TestimonialCard from "../components/home/TestimonialCard";
-import Skeleton from "@mui/material/Skeleton";
 import { HiUser } from "react-icons/hi";
 import { IoIosArrowForward } from "react-icons/io";
 import AdImage from "../assets/images/home_ad.jpg";
 import HIW1 from "../assets/images/howitworks1.svg";
 import HIW2 from "../assets/images/howitworks2.svg";
 import HIW3 from "../assets/images/howitworks3.svg";
+import Sponsor1 from "../assets/images/sponsor1.png";
+import Sponsor2 from "../assets/images/sponsor2.png";
+import Sponsor3 from "../assets/images/sponsor3.png";
+import Sponsor4 from "../assets/images/sponsor4.png";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import FeaturedAdsCard from "../components/home/FeaturedAdsCard";
@@ -90,77 +93,23 @@ const Home = () => {
   return (
     <div className="bg-white m-0">
       <Header />
-      <div className="w-full bg-[#E2E2E2] text-center px-5">
+      {/* sponsors */}
+      <div className="w-full bg-[#E2E2E2] text-center px-5 ">
         <span className="text-textMuted text-xs">Our sponsors</span>
-        <div className="grid grid-cols-2 md:grid-cols-4 mx-auto lg:w-4/6 pb-2">
-          <div className="flex flex-col justify-between mb-5 lg:mb-0">
-            <Skeleton
-              variant="rectangular"
-              animation={false}
-              width={150}
-              height={20}
-              sx={{ bgcolor: "#FFFFFF" }}
-              className="mb-3"
-            />
-            <Skeleton
-              variant="rectangular"
-              animation={false}
-              width={100}
-              height={20}
-              sx={{ bgcolor: "#FFFFFF" }}
-            />
+        <div className="grid grid-cols-4 md:grid-cols-4 mx-auto lg:w-4/6">
+          <div className="col-span-1">
+            <img src={Sponsor4} alt="sponsor" className="w-20" />
           </div>
-          <div className="flex flex-col justify-between mb-5 lg:mb-0">
-            <Skeleton
-              variant="rectangular"
-              animation={false}
-              width={150}
-              height={20}
-              sx={{ bgcolor: "#FFFFFF" }}
-              className="mb-3"
-            />
-            <Skeleton
-              variant="rectangular"
-              animation={false}
-              width={100}
-              height={20}
-              sx={{ bgcolor: "#FFFFFF" }}
-            />
+          <div className="col-span-1">
+            <img src={Sponsor2} alt="sponsor" className="w-20" />
           </div>
-          <div className="flex flex-col justify-between mb-5 lg:mb-0">
-            <Skeleton
-              variant="rectangular"
-              animation={false}
-              width={150}
-              height={20}
-              sx={{ bgcolor: "#FFFFFF" }}
-              className="mb-3"
-            />
-            <Skeleton
-              variant="rectangular"
-              animation={false}
-              width={100}
-              height={20}
-              sx={{ bgcolor: "#FFFFFF" }}
-            />
+          <div className="col-span-1">
+            <img src={Sponsor1} alt="sponsor" className="w-20" />
           </div>
-          <div className="flex flex-col justify-between mb-5 lg:mb-0">
-            <Skeleton
-              variant="rectangular"
-              animation={false}
-              width={150}
-              height={20}
-              sx={{ bgcolor: "#FFFFFF" }}
-              className="mb-3"
-            />
-            <Skeleton
-              variant="rectangular"
-              animation={false}
-              width={100}
-              height={20}
-              sx={{ bgcolor: "#FFFFFF" }}
-            />
+          <div className="col-span-1">
+            <img src={Sponsor3} alt="sponsor" className="w-20" />
           </div>
+    
         </div>
       </div>
       {/* Popular categories */}
@@ -168,17 +117,17 @@ const Home = () => {
         <div className="md:w-10/12   mx-auto">
           <div className="flex items-center justify-between mb-3">
             <div>
-              <h3 className="text-xl md:text-2xl">Popular Categories</h3>
-              <p className="text-sm md:text-base text-grey">
+              <h3 className="text-lg md:text-2xl">Popular Categories</h3>
+              <p className="text-xs md:text-base text-grey">
                 Our Most Popular Categories
               </p>
             </div>
             <Link
               to="/categories"
-              className="text-blue flex items-center text-sm md:text-base"
+              className="text-blue flex items-center justify-center text-xs md:text-base"
             >
               <span className="">View All Categories</span>
-              <i className="ml-1 text-xl">
+              <i className=" text-xl">
                 <IoIosArrowForward />
               </i>
             </Link>
@@ -251,8 +200,8 @@ const Home = () => {
       {/* how it works section */}
       <section className="my-10">
         <div className=" w-11/12 lg:w-9/12  mx-auto text-center">
-          <h6 className=" text-lg md:text-xl my-1">How it Works</h6>
-          <p className=" py-0 text-grey">
+          <h6 className=" text-xl my-1">How it Works</h6>
+          <p className=" py-0 text-grey  text-xs md:text-base">
             Register. Search. Communicate. Buy. Sale. Repeat
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 text-start my-5">
@@ -452,7 +401,7 @@ const Home = () => {
               itemClass="carousel-item-padding-40-px"
             >
               {testimonialData.slice(4, 8).map((item, i) => (
-                <div key={i} className="pr-6">
+                <div key={i} className="pr-6 lg:pl-10">
                   <TestimonialCard  item={item} />
                 </div>
               ))}
@@ -466,11 +415,11 @@ const Home = () => {
           <h4 className="font-bold text-2xl md:text-3xl my-4">
             Subscribe to Our Newsletter
           </h4>
-          <p className=" w-5/6 mx-auto md:w-4/6">
+          <p className=" w-5/6 mx-auto md:w-4/6 lg:w-5/12 text-base">
             Sign up to receive Texas Registry emails, first dibs on new
             arrivals, sales, exclusive content, events and more!
           </p>
-          <div className="bg-white border-.5 border-borderGrey flex items-center justify-between py-3 px-5 rounded-xl w-5/6 mx-auto my-4 md:w-4/6 ">
+          <div className="bg-white border-.5 border-borderGrey flex items-center justify-between py-3 px-5 rounded-xl w-5/6 mx-auto my-4 md:w-4/6 lg:w-5/12">
             <input
               className="bg-white  w-5/6 focus:outline-none"
               placeholder="Enter your email"

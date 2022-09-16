@@ -73,8 +73,8 @@ const ViewAdDetails = () => {
           </div>
         </div>
         <div className="grid grid-cols-12 gap-y-8 mb-6">
-          <div className=" col-span-12  md:col-span-7 lg:col-span-8 xl:col-span-9  px-4">
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+          <div className=" col-span-12    xl:col-span-9  px-4">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <div className=" flex flex-col px-2">
                 <div className="w-full mb-4 relative">
                   <div className="absolute top-4 right-3 px-2 py-0.5 bg-black opacity-50 text-white text-sm rounded">
@@ -192,7 +192,7 @@ const ViewAdDetails = () => {
                 </div>
                 <div className="grid grid-cols-2 gap-4 py-3">
                   <div>
-                    <button className="w-full rounded-md py-2 border border-blue text-blue">
+                    <button className="w-full rounded-md py-2 border border-blue text-blue whitespace-nowrap">
                       View Bully Certificate
                     </button>
                   </div>
@@ -235,7 +235,7 @@ const ViewAdDetails = () => {
               </div>
             </div>
           </div>
-          <div className="col-span-12  md:col-span-5 lg:col-span-4 xl:col-span-3 ">
+          <div className="col-span-12 md:col-span-6    xl:col-span-3 ">
             <SellerInfo
               image={SellerAvatar1}
               name="Max Bill"
