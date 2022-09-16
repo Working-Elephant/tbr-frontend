@@ -117,17 +117,17 @@ const Home = () => {
         <div className="md:w-10/12   mx-auto">
           <div className="flex items-center justify-between mb-3">
             <div>
-              <h3 className="text-xl md:text-2xl">Popular Categories</h3>
-              <p className="text-sm md:text-base text-grey">
+              <h3 className="text-lg md:text-2xl">Popular Categories</h3>
+              <p className="text-xs md:text-base text-grey">
                 Our Most Popular Categories
               </p>
             </div>
             <Link
               to="/categories"
-              className="text-blue flex items-center text-sm md:text-base"
+              className="text-blue flex items-center justify-center text-xs md:text-base"
             >
               <span className="">View All Categories</span>
-              <i className="ml-1 text-xl">
+              <i className=" text-xl">
                 <IoIosArrowForward />
               </i>
             </Link>
@@ -200,8 +200,8 @@ const Home = () => {
       {/* how it works section */}
       <section className="my-10">
         <div className=" w-11/12 lg:w-9/12  mx-auto text-center">
-          <h6 className=" text-lg md:text-xl my-1">How it Works</h6>
-          <p className=" py-0 text-grey">
+          <h6 className=" text-xl my-1">How it Works</h6>
+          <p className=" py-0 text-grey  text-xs md:text-base">
             Register. Search. Communicate. Buy. Sale. Repeat
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 text-start my-5">
