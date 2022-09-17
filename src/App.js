@@ -18,6 +18,7 @@ import ViewAdDetails from "./pages/ads/ViewAdDetails";
 // import Dashboard from "./pages/Dashboard";
 import Ads from "./pages/dashboard/Ads";
 import Messages from "./pages/dashboard/Messages";
+import Registration from "./pages/dashboard/Registration";
 import Categories from "./pages/Categories";
 import Pets from "./pages/Pets";
 import Search from "./pages/Search";
@@ -50,6 +51,7 @@ const App = () => {
           <Route path="/dashboard" element={<Navigate to="/dashboard/ads" />} />
           <Route path="/dashboard/ads" element={<Ads />} />
           <Route path="/dashboard/messages" element={<Messages />} />
+          <Route path="/dashboard/bully-registration" element={<Registration />} />
           <Route path="/categories/pets" element={<Pets />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/search" element={<Search />} />

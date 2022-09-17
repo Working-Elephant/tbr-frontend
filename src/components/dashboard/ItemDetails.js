@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { AdContext } from "../../pages/ads/PostAd";
+import { BullyRegistrationContext } from "./BullyRegistration";
 import { GoPlusSmall } from "react-icons/go";
 import { useForm, Controller } from "react-hook-form";
 import { Input, ErrorMessage, SelectInput } from "../../components/shared";
@@ -7,7 +7,7 @@ import { sex, breed } from "../../data";
 import DatePicker from "react-datepicker";
 
 const ItemDetails = () => {
-  const { updateStep2 } = useContext(AdContext);
+  const { updateStep2 } = useContext(BullyRegistrationContext);
   const {
     register,
     handleSubmit,
@@ -59,7 +59,7 @@ const ItemDetails = () => {
                   }}
                   render={({ field: { onChange, onBlur, value } }) => (
                     <DatePicker
-                      dateFormat="MM-dd-yyyy"
+                      dateFormat="dd-MM-yyyy"
                       placeholderText="Date of Birth"
                       selected={value}
                       onChange={onChange}
@@ -185,10 +185,10 @@ const ItemDetails = () => {
               <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
                 <Input
                   border="border-0"
-                  placeholder={"Dog's Registered Name"}
+                  placeholder={"Sire's Registered Name"}
                   {...register("maleParentName", { required: true })}
                 />
-              </div>{" "}
+              </div>
               {errors.maleParentName && (
                 <ErrorMessage message={errors.maleParentName?.message} />
               )}
@@ -203,7 +203,7 @@ const ItemDetails = () => {
                     rules={{ required: true }}
                     render={({ field: { onChange, onBlur, value } }) => (
                       <DatePicker
-                        dateFormat="MM-dd-yyyy"
+                        dateFormat="dd-MM-yyyy"
                         placeholderText="Date of Birth"
                         selected={value}
                         onChange={onChange}
@@ -241,7 +241,7 @@ const ItemDetails = () => {
               <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
                 <Input
                   border="border-0"
-                  placeholder={"Dog's Registered Name"}
+                  placeholder={"Dame's Registered Name"}
                   {...register("femaleParentName", { required: true })}
                 />
               </div>
@@ -259,7 +259,7 @@ const ItemDetails = () => {
                     rules={{ required: true }}
                     render={({ field: { onChange, onBlur, value } }) => (
                       <DatePicker
-                        dateFormat="MM-dd-yyyy"
+                        dateFormat="dd-MM-yyyy"
                         placeholderText="Date of Birth"
                         selected={value}
                         onChange={onChange}

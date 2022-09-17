@@ -1,13 +1,13 @@
 import React, { useContext, useState } from "react";
-import { AdContext } from "../../pages/ads/PostAd";
+import { BullyRegistrationContext } from "./BullyRegistration";
 import { FaPlus } from "react-icons/fa";
-import { SelectInput, ErrorMessage } from "../shared";
+import { SelectInput, Input, ErrorMessage } from "../shared";
 import { selectCategories, breed } from "../../data";
 import { useForm } from "react-hook-form";
 
 const AboutItem = () => {
   const [images, setImages] = useState("");
-  const { updateStep1 } = useContext(AdContext);
+  const { updateStep1 } = useContext(BullyRegistrationContext);
   const {
     register,
     handleSubmit,
@@ -75,7 +75,7 @@ const AboutItem = () => {
           <div className="  flex  items-center my-2">
             <p className="text-sm">Enter Item Category and Location</p>
           </div>
-          <div className="grid grid-cols-2 gap-5 lg:gap-8 my-3">
+          <div className="grid grid-cols-2 gap-4 lg:gap-6  my-3">
             <div>
               <div className="w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
                 <SelectInput
@@ -111,62 +111,57 @@ const AboutItem = () => {
               </div>
               {errors.breed && <ErrorMessage message={errors.breed?.message} />}
             </div>
-
-            <div className="col-span-2 flex items-center justify-between">
-              <div className="grow">
-                <div className="w-full bg-[#FEFCFC] px-3 rounded-l-lg border border-borderGrey border-r-0 h-fit">
-                  <SelectInput
-                    border="border-0"
-                    options={breed}
-                    defaultOption="City"
-                    {...register("city", {
-                      required: {
-                        value: true,
-                        message: " This field is required",
-                      },
-                    })}
-                  />
-                </div>
-                {errors.city && (
-                  <ErrorMessage message={errors.city?.message} />
-                )}
+            <div>
+              <div className="w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                <SelectInput
+                  border="border-0"
+                  options={breed}
+                  defaultOption="Breed Type"
+                  {...register("breedType", {
+                    required: {
+                      value: true,
+                      message: " This field is required",
+                    },
+                  })}
+                />
               </div>
-              <div className="grow">
-                <div className="w-full bg-[#FEFCFC] px-3  border-y border-y-borderGrey h-fit">
-                  <SelectInput
-                    border="border-0"
-                    options={breed}
-                    defaultOption="State"
-                    {...register("state", {
-                      required: {
-                        value: true,
-                        message: " This field is required",
-                      },
-                    })}
-                  />
-                </div>
-                {errors.state && (
-                  <ErrorMessage message={errors.state?.message} />
-                )}
+              {errors.breedType && (
+                <ErrorMessage message={errors.breedType?.message} />
+              )}
+            </div>
+            <div>
+              <div className=" w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                <Input
+                  border="border-0"
+                  placeholder={"Height"}
+                  {...register("height", { required: true })}
+                />
               </div>
-              <div className="grow">
-                <div className="w-full bg-[#FEFCFC] px-3 rounded-r-lg border border-borderGrey border-l-0 h-fit">
-                  <SelectInput
-                    border="border-0"
-                    options={breed}
-                    defaultOption="Zip"
-                    {...register("breed", {
-                      required: {
-                        value: true,
-                        message: " This field is required",
-                      },
-                    })}
-                  />
-                </div>
-                {errors.breed && (
-                  <ErrorMessage message={errors.breed?.message} />
-                )}
+              {errors.height && (
+                <ErrorMessage message={errors.height?.message} />
+              )}
+            </div>
+            <div>
+              <div className=" w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                <Input
+                  border="border-0"
+                  placeholder={"Color"}
+                  {...register("color", { required: true })}
+                />
               </div>
+              {errors.color && <ErrorMessage message={errors.color?.message} />}
+            </div>
+            <div>
+              <div className=" w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                <Input
+                  border="border-0"
+                  placeholder={"Weight"}
+                  {...register("weight", { required: true })}
+                />
+              </div>
+              {errors.weight && (
+                <ErrorMessage message={errors.weight?.message} />
+              )}
             </div>
           </div>
         </div>
