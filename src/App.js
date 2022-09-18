@@ -1,7 +1,6 @@
 import "./App.css";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
-import 'react-phone-input-2/lib/style.css'
 import { CartContextProvider } from "./context/cartContext";
 import Footer from "./components/shared/Footer";
 import Home from "./pages/Home";
