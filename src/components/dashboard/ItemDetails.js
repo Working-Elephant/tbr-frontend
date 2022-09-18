@@ -25,7 +25,7 @@ const ItemDetails = () => {
   };
   return (
     <div>
-      <div className="md:w-5/6 lg:w-4/6 mx-auto py-3">
+      <div className=" lg:w-5/6 xl:w-4/6 mx-auto py-3">
         <h5 className="mb-4">Enter Bully Details</h5>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>

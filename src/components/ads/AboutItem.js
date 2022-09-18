@@ -7,7 +7,8 @@ import { useForm } from "react-hook-form";
 
 const AboutItem = () => {
   const [images, setImages] = useState("");
-  const { updateStep1 } = useContext(AdContext);
+  // const [pet, setPet] = useState(false);
+  const { updateStep1, pet, checkCategory } = useContext(AdContext);
   const {
     register,
     handleSubmit,
@@ -51,7 +52,6 @@ const AboutItem = () => {
       //   console.log(fileInfo);
     });
   };
-
   const handleImageUpload = (e) => {
     if (e.target.files && e.target.files[0]) {
       let uploadedimage = e.target.files[0];
@@ -68,6 +68,16 @@ const AboutItem = () => {
       return;
     }
   };
+
+  // const checkCategory = (e) => {
+  //   console.log("ran")
+  //   console.log(e.target.value)
+  //   if (e.target.value === "1") {
+  //     setPet(true);
+  //   } else{
+  //     setPet(false)
+  //   }
+  // };
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -76,12 +86,13 @@ const AboutItem = () => {
             <p className="text-sm">Enter Item Category and Location</p>
           </div>
           <div className="grid grid-cols-2 gap-5 lg:gap-8 my-3">
-            <div>
+            <div className={`${pet ? "col-span-1" : "col-span-2"}`}>
               <div className="w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
                 <SelectInput
                   border="border-0"
                   options={selectCategories}
                   defaultOption="Category"
+                  additionalFunc={checkCategory}
                   {...register("category", {
                     required: {
                       value: true,
@@ -94,23 +105,26 @@ const AboutItem = () => {
                 <ErrorMessage message={errors.category?.message} />
               )}
             </div>
-
-            <div>
-              <div className="w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-                <SelectInput
-                  border="border-0"
-                  options={breed}
-                  defaultOption="Breed"
-                  {...register("breed", {
-                    required: {
-                      value: true,
-                      message: " This field is required",
-                    },
-                  })}
-                />
+            {pet && (
+              <div>
+                <div className="w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                  <SelectInput
+                    border="border-0"
+                    options={breed}
+                    defaultOption="Breed"
+                    {...register("breed", {
+                      required: {
+                        value: true,
+                        message: " This field is required",
+                      },
+                    })}
+                  />
+                </div>
+                {errors.breed && (
+                  <ErrorMessage message={errors.breed?.message} />
+                )}
               </div>
-              {errors.breed && <ErrorMessage message={errors.breed?.message} />}
-            </div>
+            )}
 
             <div className="col-span-2 flex items-center justify-between">
               <div className="grow">
@@ -127,9 +141,7 @@ const AboutItem = () => {
                     })}
                   />
                 </div>
-                {errors.city && (
-                  <ErrorMessage message={errors.city?.message} />
-                )}
+                {errors.city && <ErrorMessage message={errors.city?.message} />}
               </div>
               <div className="grow">
                 <div className="w-full bg-[#FEFCFC] px-3  border-y border-y-borderGrey h-fit">

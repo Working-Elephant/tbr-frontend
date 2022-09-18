@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const AdConfirm = () => {
   return (
     <div>
-      <div className="md:w-4/6 mx-auto py-3 text-center">
+      <div className="md:w-5/6 xl:w-4/6 mx-auto py-3 text-center">
         <div className="p-15 bg-success rounded-full inline-block mt-10">
             <i className="text-4xl text-white"><FaCheck/></i>
         </div>

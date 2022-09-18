@@ -2,9 +2,9 @@ import React, { useState } from "react";
 // import { Step1, Step2, Step3 } from "../../components/ads/Index";
 import AboutItem from "./AboutItem";
 import ItemDetails from "./ItemDetails";
-import AdConfirm from "../ads/AdConfirm";
+import AdConfirm from "./AdConfirm";
 import { createContext } from "react";
-import { FaCheckCircle } from "react-icons/fa";
+import StepIndicator from "./StepIndicator";
 // import { useDispatch } from "react-redux";
 // import { createPostsSlice } from "../../store/features/productSlice";
 // import { isResponseSuccess } from "../../utils";
@@ -106,49 +106,11 @@ const BullyRegistration = () => {
       <BullyRegistrationContext.Provider
         value={{ step, adData, nextStep, prevStep, updateStep1, updateStep2 }}
       >
-        <div className="w-full p-5 ">
+        <div className="w-full p-4 ">
           <div className="w-full border p-4 border-borderGrey  xl:w-11/12 md:mx-auto md:my-5  ">
             <h4 className="text-center my-4 font-normal text-lg">Register Bully</h4>
-            <div className="flex items-center justify-center">
-              <div
-                className={`text-sm rounded-3xl py-2 px-5 md:px-10 flex items-center ${
-                  step > 1 ? "bg-borderGrey" : "bg-yellow"
-                }`}
-              >
-                <span className="flex items-center text-xs md:text-base whitespace-nowrap">
-                  About 
-                  {step > 1 ? (
-                    <i className="pl-3 text-end">
-                      <FaCheckCircle />
-                    </i>
-                  ) : null}
-                </span>
-              </div>
-              <hr className="w-20 h-2 text-borderGrey mt-2" />
-              <div
-                className={`text-sm rounded-3xl py-2 px-5 md:px-10 flex items-center ${
-                  step > 1 && step < 3 ? "bg-yellow" : "bg-borderGrey"
-                }
-           `}
-              >
-                <span className="flex items-center text-xs md:text-base whitespace-nowrap">
-                  Details
-                  {step > 2 ? (
-                    <i className="pl-3 text-end">
-                      <FaCheckCircle />
-                    </i>
-                  ) : null}
-                </span>
-              </div>
-              <hr className="w-20 h-2 text-borderGrey mt-2" />
-              <div
-                className={`bg-borderGrey text-sm rounded-3xl py-2 px-5 md:px-10 ${
-                  step >= 3 ? "bg-yellow" : "border-borderGrey"
-                }`}
-              >
-                <span className="flex items-center text-xs  md:text-base whitespace-nowrap">Register</span>
-              </div>
-            </div>
+            
+            <StepIndicator/>
             {step === 1 && <AboutItem />}
             {step === 2 && <ItemDetails />}
             {step === 3 && <AdConfirm />}

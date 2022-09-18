@@ -71,7 +71,7 @@ const AboutItem = () => {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="md:w-4/6 mx-auto py-3">
+        <div className="lg:w-4/6 mx-auto py-3">
           <div className="  flex  items-center my-2">
             <p className="text-sm">Enter Item Category and Location</p>
           </div>
