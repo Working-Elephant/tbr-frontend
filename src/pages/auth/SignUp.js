@@ -7,7 +7,7 @@ import useSignUp from "../../hooks/useSignUp";
 // import { useDispatch } from "react-redux";
 // import { SignUpSlice } from "../../store/features/authSlice";
 // import { isResponseSuccess } from "../../utils";
-import { isValidEmail } from "../../utils";
+// import { isValidEmail } from "../../utils";
 // import { login as LoginUrl } from "../../config/internalUrl";
 
 
@@ -22,6 +22,10 @@ const SignUp = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+ function isValidEmail(email) {
+    return /\S+@\S+\.\S+/.test(email);
+  }
 
   const password = useRef({});
   password.current = watch("password", "");
