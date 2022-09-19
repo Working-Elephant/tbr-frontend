@@ -14,6 +14,7 @@ import Sponsor1 from "../assets/images/sponsor1.png";
 import Sponsor2 from "../assets/images/sponsor2.png";
 import Sponsor3 from "../assets/images/sponsor3.png";
 import Sponsor4 from "../assets/images/sponsor4.png";
+import Logo from "../assets/images/logo.png";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import FeaturedAdsCard from "../components/home/FeaturedAdsCard";
@@ -94,22 +95,25 @@ const Home = () => {
     <div className="bg-white m-0">
       <Header />
       {/* sponsors */}
-      <div className="w-full bg-[#E2E2E2] text-center px-5 ">
-        <span className="text-textMuted text-xs">Our sponsors</span>
-        <div className="grid grid-cols-4 md:grid-cols-4 mx-auto lg:w-4/6">
+      <div className="w-full bg-[#fff] mt-4 text-center px-5 ">
+        <span className="text-textMuted text-md">Our sponsors</span>
+        <div className="grid grid-cols-5 md:grid-cols-5 mx-auto lg:w-4/6 items-center">
           <div className="col-span-1">
-            <img src={Sponsor4} alt="sponsor" className="w-20" />
+            <img src={Sponsor4} alt="sponsor" className="" />
           </div>
           <div className="col-span-1">
-            <img src={Sponsor2} alt="sponsor" className="w-20" />
+            <img src={Sponsor2} alt="sponsor" className="" />
           </div>
           <div className="col-span-1">
-            <img src={Sponsor1} alt="sponsor" className="w-20" />
+            <img src={Sponsor1} alt="sponsor" className="" />
           </div>
           <div className="col-span-1">
-            <img src={Sponsor3} alt="sponsor" className="w-20" />
+            <img src={Sponsor3} alt="sponsor" className="" />
           </div>
-    
+
+          <div className="col-span-1">
+            <img src={Logo} alt="sponsor" className="" />
+          </div>
         </div>
       </div>
       {/* Popular categories */}
@@ -353,7 +357,7 @@ const Home = () => {
             >
               {bullyNewsData.map((item, i) => (
                 <div key={i} className="pr-5">
-                  <BullyNewsCard  item={item} />
+                  <BullyNewsCard item={item} />
                 </div>
               ))}
             </Carousel>
@@ -379,8 +383,8 @@ const Home = () => {
               itemClass="carousel-item-padding-40-px"
             >
               {testimonialData.slice(0, 4).map((item, i) => (
-                <div key={i}  className=" pl-4 md:pl-6 lg:pl-12">
-                  <TestimonialCard  item={item} />
+                <div key={i} className=" pl-4 md:pl-6 lg:pl-12">
+                  <TestimonialCard item={item} />
                 </div>
               ))}
             </Carousel>
@@ -402,7 +406,7 @@ const Home = () => {
             >
               {testimonialData.slice(4, 8).map((item, i) => (
                 <div key={i} className="pr-6 lg:pl-10">
-                  <TestimonialCard  item={item} />
+                  <TestimonialCard item={item} />
                 </div>
               ))}
             </Carousel>
