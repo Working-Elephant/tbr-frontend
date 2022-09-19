@@ -36,7 +36,7 @@ const FeaturedAdsCard = ({ item }) => {
         >
           {liked ? <BsFillHeartFill color="red" /> : <BsHeart color="white" />}
         </i>
-        <div className="absolute bottom-4 right-3 p-2 bg-black opacity-60 text-white text-xs rounded">
+        <div className="absolute bottom-4 right-3 py-1 px-2 bg-black opacity-60 text-white text-xs rounded">
           <div className="flex items-center">
             <i className="mr-2">
               <FaCamera />
