@@ -4,22 +4,25 @@ import { toast } from "react-toastify";
 // Import Styling
 import "react-toastify/dist/ReactToastify.css";
 
-toast.configure({
+
+const config = {
+  position: "top-right",
   autoClose: 3000,
-  draggable: true,
   hideProgressBar: true,
-  position: toast.POSITION.TOP_RIGHT,
-  theme: "light",
-});
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  // progress: undefined,
+  }
 
 export function warning(string) {
-  toast.warning(string);
+  toast.warning(string, config);
 }
 
 export function errorToast(string) {
-  toast.error(string);
+  toast.error(string, config);
 }
 
 export function success(string) {
-  toast.success(string);
+  toast.success(string, config);
 }

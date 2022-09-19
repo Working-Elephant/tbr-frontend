@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AuthService from "../services/auth";
+import AuthService from "../services/user";
 import { errorToast } from "../components/shared";
 import { useDispatch } from "react-redux";
 import { login } from "../store/features/authSlice";
