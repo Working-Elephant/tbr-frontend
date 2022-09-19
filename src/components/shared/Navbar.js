@@ -47,7 +47,7 @@ const Navbar = ({ home }) => {
             <Link to="/">Bully News</Link>
           </li>
           <li className="mx-3">
-            <Link to="/">About Us </Link>
+            <Link to="/about-us">About Us </Link>
           </li>
         </ul>
         {/* Search */}
@@ -117,7 +117,7 @@ const Navbar = ({ home }) => {
                     <Link to="/">Bully News</Link>
                   </li>
                   <li className="py-3">
-                    <Link to="/">About Us </Link>
+                    <Link to="/about-us">About Us </Link>
                   </li>
                 </ul>
               </div>
