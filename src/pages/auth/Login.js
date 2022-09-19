@@ -4,14 +4,14 @@ import { useForm } from "react-hook-form";
 import FormBody from "../../components/auth/FormBody";
 import { Input, ErrorMessage, Loader } from "../../components/shared";
 import useSignIn from "../../hooks/useSignIn";
+// import { isValidEmail } from "../../utils/index";
+// import { useDispatch } from "react-redux";
+// import { login } from "../../store/features/authSlice";
 
 const Login = () => {
+  const { isLoading, signIn } = useSignIn();
+  // const dispatch = useDispatch()
 
-  const {loading, signIn} = useSignIn();
-
-  function isValidEmail(email) {
-    return /\S+@\S+\.\S+/.test(email);
-  }
   const {
     register,
     handleSubmit,
@@ -21,11 +21,9 @@ const Login = () => {
   // function to submit form
   const onSubmit = (data) => {
     console.log(data);
-    if (!isValidEmail(data.email)) {
-      return;
-    } else {
-      signIn(data);
-    }
+    signIn(data);
+    // dispatch(login(data))
+
   };
 
   return (
@@ -36,15 +34,29 @@ const Login = () => {
       >
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="w-full lg:w-2/3 mx-auto flex flex-col uppercase text-center">
-            <div className=" mb-5 w-full">
+            {/* <div className=" mb-5 w-full">
               <Input
-                type="email"
+                type="text"
                 placeholder={"Email"}
                 {...register("email", {
-                  required: { value: true, message: " Email is required" },
+                  required: { value: true, message: "Email is required" },
+                  validate: (value) =>
+                    isValidEmail(value) || "Please enter a valid email address",
                 })}
               />
               {errors.email && <ErrorMessage message={errors.email?.message} />}
+            </div> */}
+            <div className=" mb-5 w-full">
+              <Input
+                type="text"
+                placeholder={"Username"}
+                {...register("username", {
+                  required: { value: true, message: "This field is required" },
+                })}
+              />
+              {errors.username && (
+                <ErrorMessage message={errors.username?.message} />
+              )}
             </div>
             <div className=" mb-5 w-full">
               <Input
@@ -69,7 +81,7 @@ const Login = () => {
               className=" bg-yellow py-4 px-10 rounded text-sm"
               type="submit"
             >
-              {loading ? <Loader /> : "SIGN IN"}
+              {isLoading ? <Loader /> : "SIGN IN"}
             </button>
           </div>
         </form>
