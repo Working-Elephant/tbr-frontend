@@ -2,18 +2,18 @@ import axios from "axios";
 
 let baseUrl = process.env.REACT_APP_BACKEND_URL;
 const AuthService = {
-  signUp: async (email, password) => {
+  signUp: async (data) => {
     return await axios
-      .post(`${baseUrl}/signUp/${email}`, { email, password })
+      .post(`${baseUrl}/signUp`, data)
       .then((res) => {
-        return res.data;
+        return res;
       });
   },
-  login: async (email, password) => {
+  login: async (data) => {
     return await axios
-      .post(`${baseUrl}/signUp/${email}`, { email, password })
+      .post(`${baseUrl}/SignUser/authenticate`, data)
       .then((res) => {
-        return res.data;
+        return res;
       });
   },
   getUser: () => {

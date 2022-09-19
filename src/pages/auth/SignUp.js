@@ -1,26 +1,41 @@
-import React from "react";
+import React, { useRef } from "react";
 import FormBody from "../../components/auth/FormBody";
 import { useForm } from "react-hook-form";
-import { Input, ErrorMessage } from "../../components/shared";
-import { useNavigate } from "react-router-dom";
+import { Input, ErrorMessage, Loader } from "../../components/shared";
+// import { useNavigate } from "react-router-dom";
+import useSignUp from "../../hooks/useSignUp";
 // import { useDispatch } from "react-redux";
 // import { SignUpSlice } from "../../store/features/authSlice";
 // import { isResponseSuccess } from "../../utils";
 // import { login as LoginUrl } from "../../config/internalUrl";
+import { isValidEmail } from '../../utils/index';
 
 const SignUp = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const { signUp, isLoading } = useSignUp();
   // const dispatch = useDispatch();
   const {
     register,
+    watch,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  const password = useRef({});
+  password.current = watch("password", "");
+
   // function to submit form
   const onSubmit = (data) => {
     console.log(data);
-    navigate('/login')
+    const submitData = {
+      fullName: data.fullName,
+      username: data.username,
+      email: data.email,
+      password: data.password,
+    };
+
+    console.log(submitData);
+    signUp(submitData);
     // dispatch(SignUpSlice(data))
     //   .then((res) => {
     //     if (res.payload.status >= 200 && res.payload.status <= 300) {
@@ -43,7 +58,9 @@ const SignUp = () => {
             <div className=" mb-5 w-full">
               <Input
                 placeholder={"Full Name"}
-                {...register("fullName", { required: "fullName is required" })}
+                {...register("fullName", {
+                  required: "This field is required",
+                })}
               />
               {errors.fullName && (
                 <ErrorMessage message={errors.fullName?.message} />
@@ -51,18 +68,35 @@ const SignUp = () => {
             </div>
             <div className=" mb-5 w-full">
               <Input
-                type="email"
+                type="text"
                 placeholder={"Email"}
                 {...register("email", {
-                  required: { value: true, message: " Email is required" },
+                  required: { value: true, message: "This field is required" },
+                  validate: (value) =>
+                    isValidEmail(value) || "Please enter a valid email address",
                 })}
               />
               {errors.email && <ErrorMessage message={errors.email?.message} />}
             </div>
             <div className=" mb-5 w-full">
               <Input
+                type="text"
+                placeholder={"Username"}
+                {...register("username", {
+                  required: { value: true, message: "This field is required" },
+                })}
+              />
+              {errors.username && (
+                <ErrorMessage message={errors.username?.message} />
+              )}
+            </div>
+            <div className=" mb-5 w-full">
+              <Input
+                type="password"
                 placeholder={"Password"}
-                {...register("password", { required: true })}
+                {...register("password", {
+                  required: { value: true, message: "This field is required" },
+                })}
               />
               {errors.password && (
                 <ErrorMessage message={errors.password?.message} />
@@ -70,8 +104,13 @@ const SignUp = () => {
             </div>
             <div className=" mb-5 w-full">
               <Input
+                type="password"
                 placeholder={"Confirm Password"}
-                {...register("confirmpassword", { required: true })}
+                {...register("confirmpassword", {
+                  required: { value: true, message: "This field is required" },
+                  validate: (value) =>
+                    value === password.current || "The passwords do not match",
+                })}
               />
               {errors.confirmpassword && (
                 <ErrorMessage message={errors.confirmpassword?.message} />
@@ -83,7 +122,7 @@ const SignUp = () => {
               type="submit"
               className=" bg-yellow py-4 px-10 rounded text-sm"
             >
-              REGISTER
+              {isLoading ? <Loader /> : "REGISTER"}
             </button>
           </div>
         </form>
