@@ -55,7 +55,7 @@ const Footer = () => {
               <h4>TEXAS BULLY REGISTRY</h4>
               <ul className="opacity-50 text-xs ">
                 <li className="my-3">
-                  <Link to="/">About Us</Link>
+                  <Link to="/about-us">About Us</Link>
                 </li>
                 <li className="my-3">
                   <Link to="/">FAQs</Link>

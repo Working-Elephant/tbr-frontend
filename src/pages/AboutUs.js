@@ -1,11 +1,11 @@
 import React from "react";
-import Image from "../assets/images/favourites.svg";
+import Image from "../assets/images/about-image.svg";
 
 const AboutUs = () => {
   return (
     <div className="p-5">
       <div className="flex items-center justify-end">
-        <div className="hidden md:w-1/2">
+        <div className="hidden md:block md:w-1/2">
           <div>
             <img src={Image} alt="" className="" />
           </div>
