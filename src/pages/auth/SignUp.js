@@ -7,8 +7,10 @@ import useSignUp from "../../hooks/useSignUp";
 // import { useDispatch } from "react-redux";
 // import { SignUpSlice } from "../../store/features/authSlice";
 // import { isResponseSuccess } from "../../utils";
+import { isValidEmail } from "../../utils";
 // import { login as LoginUrl } from "../../config/internalUrl";
-import { isValidEmail } from '../../utils/index';
+
+
 
 const SignUp = () => {
   // const navigate = useNavigate();
