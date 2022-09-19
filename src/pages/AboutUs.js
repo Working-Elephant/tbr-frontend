@@ -7,7 +7,7 @@ const AboutUs = () => {
       <div className="flex items-center justify-end">
         <div className="hidden md:w-1/2">
           <div>
-            <img src={Image} alt="" />
+            <img src={Image} alt="" className="" />
           </div>
         </div>
         <div className="w-full md:w-1/2">

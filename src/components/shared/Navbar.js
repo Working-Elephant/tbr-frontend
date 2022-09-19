@@ -3,21 +3,29 @@ import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import { FiSearch } from "react-icons/fi";
+import { FaBell } from "react-icons/fa";
 import Logo from "../../assets/images/logo.png";
 import Backdrop from "@mui/material/Backdrop";
+import { useSelector } from "react-redux";
+import UserAvatar from "../../assets/images/avatar2.jpeg";
+import useLogOut from "../../hooks/useLogout";
 
 const Navbar = ({ home }) => {
   const [mobileMenu, setMobileMenu] = useState(false);
+  const isLoggedIn = useSelector((state) => state.auth.isAuthenticated);
+  const {  logOut } = useLogOut();
 
   const handleClose = () => {
     setMobileMenu(false);
   };
-  // const handleToggle = () => {
-  //   setOpen(!open);
-  // };
+
 
   const toggleMenu = () => {
     setMobileMenu(!mobileMenu);
+  };
+
+  const onLogOut = () => {
+    logOut();
   };
 
   return (
@@ -65,16 +73,36 @@ const Navbar = ({ home }) => {
           </div>
         )}
         {/* login and sign up buttons */}
-        <div className=" hidden lg:flex items-center whitespace-nowrap">
-          <span className="mr-5">
-            <Link to="/login">Login</Link>
-          </span>
-          <Link to="/register">
-            <button className="bg-yellow text-dark py-3 px-8 lg:px-12 rounded ">
-              Sign Up
-            </button>
-          </Link>
-        </div>
+        {isLoggedIn ? (
+          <div className=" hidden lg:flex items-center whitespace-nowrap">
+            <div className="bg-black p-2 rounded-[50%] mr-3">
+              <i className="text-lg text-yellow">
+                <FaBell />
+              </i>
+            </div>
+
+            <div className="h-9 mr-5">
+              <img
+                src={UserAvatar}
+                alt=""
+                className="rounded-[50%] max-h-full"
+              />
+            </div>
+
+            <span onClick={onLogOut}>Logout</span>
+          </div>
+        ) : (
+          <div className=" hidden lg:flex items-center whitespace-nowrap">
+            <span className="mr-5">
+              <Link to="/login">Login</Link>
+            </span>
+            <Link to="/register">
+              <button className="bg-yellow text-dark py-3 px-8 lg:px-12 rounded ">
+                Sign Up
+              </button>
+            </Link>
+          </div>
+        )}
 
         {/*  mobile menu icon */}
         <div className="lg:hidden text-end ">
