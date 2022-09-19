@@ -5,9 +5,10 @@ import { useForm, Controller } from "react-hook-form";
 import { Input, ErrorMessage, SelectInput } from "../../components/shared";
 import { sex, breed } from "../../data";
 import DatePicker from "react-datepicker";
+import { PatternFormat } from "react-number-format";
 
 const ItemDetails = () => {
-  const { updateStep2 } = useContext(AdContext);
+  const { updateStep2, pet } = useContext(AdContext);
   const {
     register,
     handleSubmit,
@@ -16,6 +17,8 @@ const ItemDetails = () => {
   } = useForm({
     defaultValues: { dateOfBirth: "", maleParentDob: "", femaleParentDob: "" },
   });
+
+ 
 
   // function to submit form
   const onSubmit = (data) => {
@@ -59,7 +62,7 @@ const ItemDetails = () => {
                   }}
                   render={({ field: { onChange, onBlur, value } }) => (
                     <DatePicker
-                      dateFormat="dd-MM-yyyy"
+                      dateFormat="MM-dd-yyyy"
                       placeholderText="Date of Birth"
                       selected={value}
                       onChange={onChange}
@@ -82,7 +85,12 @@ const ItemDetails = () => {
                   border="border-0"
                   options={sex}
                   defaultOption="Sex"
-                  {...register("sex", { required: true })}
+                  {...register("sex", {
+                    required: {
+                      value: true,
+                      message: "This field is required",
+                    },
+                  })}
                 />
               </div>
               {errors.sex && <ErrorMessage message={errors.sex?.message} />}
@@ -94,7 +102,12 @@ const ItemDetails = () => {
                 <Input
                   border="border-0"
                   placeholder={"Dog owner's First Name"}
-                  {...register("dogOwnersFirstName", { required: true })}
+                  {...register("dogOwnersFirstName", {
+                    required: {
+                      value: true,
+                      message: "This field is required",
+                    },
+                  })}
                 />
               </div>
               {errors.dogOwnersFirstName && (
@@ -106,7 +119,12 @@ const ItemDetails = () => {
                 <Input
                   border="border-0"
                   placeholder={"Dog owner's Last Name"}
-                  {...register("dogOwnersLastName", { required: true })}
+                  {...register("dogOwnersLastName", {
+                    required: {
+                      value: true,
+                      message: "This field is required",
+                    },
+                  })}
                 />
               </div>
               {errors.dogOwnersLastName && (
@@ -120,7 +138,12 @@ const ItemDetails = () => {
               <Input
                 border="border-0"
                 placeholder={"Address"}
-                {...register("address", { required: true })}
+                {...register("address", {
+                  required: {
+                    value: true,
+                    message: "This field is required",
+                  },
+                })}
               />
             </div>
             {errors.address && (
@@ -134,7 +157,12 @@ const ItemDetails = () => {
                 <Input
                   border="border-0"
                   placeholder={"City"}
-                  {...register("city", { required: true })}
+                  {...register("city", {
+                    required: {
+                      value: true,
+                      message: "This field is required",
+                    },
+                  })}
                 />
               </div>
               {errors.city && <ErrorMessage message={errors.city?.message} />}
@@ -144,7 +172,12 @@ const ItemDetails = () => {
                 <Input
                   border="border-0"
                   placeholder={"State"}
-                  {...register("state", { required: true })}
+                  {...register("state", {
+                    required: {
+                      value: true,
+                      message: "This field is required",
+                    },
+                  })}
                 />
               </div>
               {errors.state && <ErrorMessage message={errors.state?.message} />}
@@ -154,7 +187,12 @@ const ItemDetails = () => {
                 <Input
                   border="border-0"
                   placeholder={"Zip"}
-                  {...register("zip", { required: true })}
+                  {...register("zip", {
+                    required: {
+                      value: true,
+                      message: "This field is required",
+                    },
+                  })}
                 />
               </div>
               {errors.zip && <ErrorMessage message={errors.zip?.message} />}
@@ -162,10 +200,24 @@ const ItemDetails = () => {
           </div>
           <div>
             <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-              <Input
-                border="border-0"
-                placeholder={"Telephone"}
-                {...register("telephone", { required: true })}
+              <Controller
+                name="telephone"
+                control={control}
+                rules={{
+                  required: {
+                    value: true,
+                    message: "This field is required",
+                  },
+                }}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <PatternFormat
+                    format="(###)###-####"
+                    // allowEmptyFormatting
+                    // mask=""
+                    className="w-full py-2 focus:outline-none placeholder:text-dark text-sm"
+                    placeholder="Telephone"
+                  />
+                )}
               />
             </div>{" "}
             {errors.telephone && (
@@ -173,126 +225,163 @@ const ItemDetails = () => {
             )}
           </div>
 
-          <div className="bg-[#ECECEC63] p-5">
-            <div className="flex items-center justify-between text-dark">
-              <h5 className="text-sm">Add Pedigree Information</h5>
-              <i className="text-xs">
-                <GoPlusSmall />
-              </i>
-            </div>
-            <p className="text-blue text-sm my-3">Sire</p>
-            <div>
-              <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-                <Input
-                  border="border-0"
-                  placeholder={"Dog's Registered Name"}
-                  {...register("maleParentName", { required: true })}
-                />
-              </div>{" "}
-              {errors.maleParentName && (
-                <ErrorMessage message={errors.maleParentName?.message} />
-              )}
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 md: gap-4">
-              <div>
-                <div className="bg-[#FEFCFC] px-3 py-2 rounded-lg border border-borderGrey w-full h-fit tex-sm">
-                  <Controller
-                    name="maleParentDob"
-                    control={control}
-                    rules={{ required: true }}
-                    render={({ field: { onChange, onBlur, value } }) => (
-                      <DatePicker
-                        dateFormat="dd-MM-yyyy"
-                        placeholderText="Date of Birth"
-                        selected={value}
-                        onChange={onChange}
-                        closeOnScroll={false}
-                        // showMonthDropdown
-                        showYearDropdown
-                        dropdownMode="select"
-                        className="border-0 focus:outline-none placeholder:text-dark text-sm px-3 w-full"
-                        maxDate={new Date()}
-                        // {...field}
-                      />
-                    )}
-                  />
-                </div>
-                {errors.maleParentDob && (
-                  <ErrorMessage message={errors.maleParentDob?.message} />
-                )}
+          {pet && (
+            <div className="bg-[#ECECEC63] p-5">
+              <div className="flex items-center justify-between text-dark">
+                <h5 className="text-sm">Add Pedigree Information</h5>
+                <i className="text-xs">
+                  <GoPlusSmall />
+                </i>
               </div>
+              <p className="text-blue text-sm my-3">Sire</p>
               <div>
                 <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-                  <SelectInput
+                  <Input
                     border="border-0"
-                    options={breed}
-                    defaultOption="Breed"
-                    {...register("maleBreedId", { required: true })}
+                    placeholder={"Dog's Registered Name"}
+                    {...register("maleParentName", {
+                      required: {
+                        value: true,
+                        message: "This field is required",
+                      },
+                    })}
                   />
-                </div>
-                {errors.maleBreedId && (
-                  <ErrorMessage>{errors.maleBreedId?.message}</ErrorMessage>
+                </div>{" "}
+                {errors.maleParentName && (
+                  <ErrorMessage message={errors.maleParentName?.message} />
                 )}
               </div>
-            </div>
-            <p className="text-blue text-sm my-3">Dame</p>
-            <div>
-              <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-                <Input
-                  border="border-0"
-                  placeholder={"Dog's Registered Name"}
-                  {...register("femaleParentName", { required: true })}
-                />
-              </div>
-              {errors.femaleParentName && (
-                <ErrorMessage>{errors.femaleParentName?.message}</ErrorMessage>
-              )}
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 md: gap-4">
-              <div>
-                <div className="bg-[#FEFCFC] px-3 py-2 rounded-lg border border-borderGrey w-full h-fit tex-sm">
-                  <Controller
-                    name="femaleParentDob"
-                    control={control}
-                    rules={{ required: true }}
-                    render={({ field: { onChange, onBlur, value } }) => (
-                      <DatePicker
-                        dateFormat="dd-MM-yyyy"
-                        placeholderText="Date of Birth"
-                        selected={value}
-                        onChange={onChange}
-                        closeOnScroll={false}
-                        // showMonthDropdown
-                        showYearDropdown
-                        dropdownMode="select"
-                        className="border-0 focus:outline-none placeholder:text-dark text-sm px-3 w-full"
-                        maxDate={new Date()}
-                        // {...field}
-                      />
-                    )}
-                  />
+              <div className="grid grid-cols-1 md:grid-cols-2 md: gap-4">
+                <div>
+                  <div className="bg-[#FEFCFC] px-3 py-2 rounded-lg border border-borderGrey w-full h-fit tex-sm">
+                    <Controller
+                      name="maleParentDob"
+                      control={control}
+                      rules={{
+                        required: {
+                          value: true,
+                          message: "This field is required",
+                        },
+                      }}
+                      render={({ field: { onChange, onBlur, value } }) => (
+                        <DatePicker
+                          dateFormat="MM-dd-yyyy"
+                          placeholderText="Date of Birth"
+                          selected={value}
+                          onChange={onChange}
+                          closeOnScroll={false}
+                          // showMonthDropdown
+                          showYearDropdown
+                          dropdownMode="select"
+                          className="border-0 focus:outline-none placeholder:text-dark text-sm px-3 w-full"
+                          maxDate={new Date()}
+                          // {...field}
+                        />
+                      )}
+                    />
+                  </div>
+                  {errors.maleParentDob && (
+                    <ErrorMessage message={errors.maleParentDob?.message} />
+                  )}
                 </div>
-                {errors.femaleParentDob && (
-                  <ErrorMessage>{errors.femaleParentDob?.message}</ErrorMessage>
-                )}
+                <div>
+                  <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                    <SelectInput
+                      border="border-0"
+                      options={breed}
+                      defaultOption="Breed"
+                      {...register("maleBreedId", {
+                        required: {
+                          value: true,
+                          message: "This field is required",
+                        },
+                      })}
+                    />
+                  </div>
+                  {errors.maleBreedId && (
+                    <ErrorMessage>{errors.maleBreedId?.message}</ErrorMessage>
+                  )}
+                </div>
               </div>
+              <p className="text-blue text-sm my-3">Dame</p>
               <div>
                 <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-                  <SelectInput
+                  <Input
                     border="border-0"
-                    options={breed}
-                    defaultOption="Breed"
-                    {...register("femaleBreedId", { required: true })}
+                    placeholder={"Dog's Registered Name"}
+                    {...register("femaleParentName", {
+                      required: {
+                        value: true,
+                        message: "This field is required",
+                      },
+                    })}
                   />
                 </div>
-                {errors.femaleBreedId && (
-                  <ErrorMessage>{errors.femaleBreedId?.message}</ErrorMessage>
+                {errors.femaleParentName && (
+                  <ErrorMessage>
+                    {errors.femaleParentName?.message}
+                  </ErrorMessage>
                 )}
               </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 md: gap-4">
+                <div>
+                  <div className="bg-[#FEFCFC] px-3 py-2 rounded-lg border border-borderGrey w-full h-fit tex-sm">
+                    <Controller
+                      name="femaleParentDob"
+                      control={control}
+                      rules={{
+                        required: {
+                          value: true,
+                          message: "This field is required",
+                        },
+                      }}
+                      render={({ field: { onChange, onBlur, value } }) => (
+                        <DatePicker
+                          dateFormat="MM-dd-yyyy"
+                          placeholderText="Date of Birth"
+                          selected={value}
+                          onChange={onChange}
+                          closeOnScroll={false}
+                          // showMonthDropdown
+                          showYearDropdown
+                          dropdownMode="select"
+                          className="border-0 focus:outline-none placeholder:text-dark text-sm px-3 w-full"
+                          maxDate={new Date()}
+                          // {...field}
+                        />
+                      )}
+                    />
+                  </div>
+                  {errors.femaleParentDob && (
+                    <ErrorMessage>
+                      {errors.femaleParentDob?.message}
+                    </ErrorMessage>
+                  )}
+                </div>
+                <div>
+                  <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                    <SelectInput
+                      border="border-0"
+                      options={breed}
+                      defaultOption="Breed"
+                      {...register("femaleBreedId", {
+                        required: {
+                          value: true,
+                          message: "This field is required",
+                        },
+                      })}
+                    />
+                  </div>
+                  {errors.femaleBreedId && (
+                    <ErrorMessage>{errors.femaleBreedId?.message}</ErrorMessage>
+                  )}
+                </div>
+              </div>
             </div>
-          </div>
+          )}
+
           <div className="text-center my-5">
             <button
               className="bg-yellow py-4 px-15 rounded font-semibold text-sm "

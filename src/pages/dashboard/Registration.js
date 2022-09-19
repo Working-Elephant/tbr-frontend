@@ -1,15 +1,16 @@
 import React from 'react'
-import RegistrationComponent from '../../components/dashboard/RegistrationComponent'
+// import RegistrationComponent from '../../components/dashboard/RegistrationComponent'
+import BullyRegistration from '../../components/dashboard/BullyRegistration'
 import DashboardLayout from '../../components/dashboard/DashboardLayout'
 
-const Messages = () => {
+const Registration = () => {
   return (
     <>
     <DashboardLayout>
-        <RegistrationComponent/>
+        <BullyRegistration/>
     </DashboardLayout>
     </>
   )
 }
 
-export default Messages
+export default Registration

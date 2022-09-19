@@ -23,19 +23,15 @@ const AuthService = {
     return user;
   },
   logout: async () => {
-    return await axios
-      .post(`${baseUrl}/signUp`)
-      .then((res) => {
-        return res.data;
-      });
+  localStorage.removeItem("user")
   },
-  forgotPassword: async (email) => {
-    return await axios
-      .post(`${baseUrl}/signUp/${email}`, { email})
-      .then((res) => {
-        return res.data;
-      });
-  },
+  // forgotPassword: async (email) => {
+  //   return await axios
+  //     .post(`${baseUrl}/signUp/${email}`, { email})
+  //     .then((res) => {
+  //       return res.data;
+  //     });
+  // },
 };
 
 export default AuthService;

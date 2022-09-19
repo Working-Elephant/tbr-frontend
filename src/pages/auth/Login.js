@@ -1,18 +1,13 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import FormBody from "../../components/auth/FormBody";
-import { Input, ErrorMessage } from "../../components/shared";
-// import { isValidEmail } from "../../utils";
-// import { useDispatch } from "react-redux";
-// import { LoginSlice } from "../../store/features/authSlice";
-// import { isResponseSuccess } from "../../utils";
-// import { login as LoginUrl } from "../../config/internalUrl"
+import { Input, ErrorMessage, Loader } from "../../components/shared";
+import useSignIn from "../../hooks/useSignIn";
 
 const Login = () => {
-  const navigate = useNavigate();
-  // const dispatch = useDispatch();
 
+  const {loading, signIn} = useSignIn();
 
   function isValidEmail(email) {
     return /\S+@\S+\.\S+/.test(email);
@@ -29,16 +24,7 @@ const Login = () => {
     if (!isValidEmail(data.email)) {
       return;
     } else {
-      // dispatch(LoginSlice(data.email))
-      //   .then((res) => {
-      //     if (res.payload.status && isResponseSuccess(res.payload.status)) {
-      navigate("/dashboard");
-      //       }
-      //       throw new Error("error submitting form");
-      //     })
-      //     .catch((err) => {
-      //       // return toast.error(err.message);
-      //     });
+      signIn(data);
     }
   };
 
@@ -83,7 +69,7 @@ const Login = () => {
               className=" bg-yellow py-4 px-10 rounded text-sm"
               type="submit"
             >
-              SIGN IN
+              {loading ? <Loader /> : "SIGN IN"}
             </button>
           </div>
         </form>

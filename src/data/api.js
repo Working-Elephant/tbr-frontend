@@ -53,6 +53,11 @@ export const dashboardMenu = [
         link: "/dashboard/memberships",
     },
     {
+        icon: AdsIcon,
+        name: "Bully Registration",
+        link: "/dashboard/bully-registration",
+    },
+    {
         icon: MessagesIcon,
         name: "Messages",
         link: "/dashboard/messages",
