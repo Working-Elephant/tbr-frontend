@@ -2,6 +2,7 @@ import "./App.css";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
 import { CartContextProvider } from "./context/cartContext";
+import ProtectedRoutes from "./utils/ProtectedRoutes";
 import Footer from "./components/shared/Footer";
 import Home from "./pages/Home";
 import Login from "./pages/auth/Login";
@@ -15,7 +16,6 @@ import Billing from "./pages/shop/Billing";
 import Confirmation from "./pages/shop/Confirmation";
 import PostAd from "./pages/ads/PostAd";
 import ViewAdDetails from "./pages/ads/ViewAdDetails";
-// import Dashboard from "./pages/Dashboard";
 import Ads from "./pages/dashboard/Ads";
 import Messages from "./pages/dashboard/Messages";
 import Registration from "./pages/dashboard/Registration";
@@ -37,7 +37,6 @@ const App = () => {
   const isHome = useMatch("/" || "/home");
   const isMessages = useMatch("/dashboard/messages");
 
-
   return (
     <div className="bg-white p-0 m-0">
       <Wrapper>
@@ -49,27 +48,75 @@ const App = () => {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           {/* <Route path="/dashboard" element={<Dashboard />} /> */}
           <Route path="/dashboard" element={<Navigate to="/dashboard/ads" />} />
-          <Route path="/dashboard/ads" element={<Ads />} />
-          <Route path="/dashboard/messages" element={<Messages />} />
-          <Route path="/dashboard/bully-registration" element={<Registration />} />
+          <Route
+            path="/dashboard/ads"
+            element={
+              <ProtectedRoutes>
+                <Ads />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/dashboard/messages"
+            element={
+              <ProtectedRoutes>
+                <Messages />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/dashboard/bully-registration"
+            element={
+              <ProtectedRoutes>
+                <Registration />
+              </ProtectedRoutes>
+            }
+          />
           <Route path="/categories/pets" element={<Pets />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/search" element={<Search />} />
           <Route
             path="/cart"
             element={
-              <CartContextProvider>
-                <Cart />
-              </CartContextProvider>
+              <ProtectedRoutes>
+                <CartContextProvider>
+                  <Cart />
+                </CartContextProvider>
+              </ProtectedRoutes>
             }
           />
-          <Route path="/cart/shipping" element={<Shipping />} />
-          <Route path="/cart/shipping/billing" element={<Billing />} />
+          <Route
+            path="/cart/shipping"
+            element={
+              <ProtectedRoutes>
+                <Shipping />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/cart/shipping/billing"
+            element={
+              <ProtectedRoutes>
+                <Billing />
+              </ProtectedRoutes>
+            }
+          />
           <Route
             path="/cart/shipping/billing/confirmation"
-            element={<Confirmation />}
+            element={
+              <ProtectedRoutes>
+                <Confirmation />
+              </ProtectedRoutes>
+            }
           />
-          <Route path="/ad/post-ad" element={<PostAd />} />
+          <Route
+            path="/ad/post-ad"
+            element={
+              <ProtectedRoutes>
+                <PostAd />
+              </ProtectedRoutes>
+            }
+          />
           <Route path="/ad/view/:id" element={<ViewAdDetails />} />
           <Route path="*" exact={true} element={<Notfound />} />
         </Routes>
