@@ -8,7 +8,7 @@ export const AdContext = createContext();
 
 const PostAd = () => {
   // const dispatch = useDispatch();
-  const {userId} = useSelector(state=> state.auth.user)
+  const { userId } = useSelector((state) => state.auth.user);
   const [adData, setadData] = useState({
     postAddId: 0,
     categoryId: 0,
@@ -34,22 +34,22 @@ const PostAd = () => {
   });
   const [step, setStep] = useState(1);
   const [pet, setPet] = useState(false);
-  const {isLoading, postAd} = useFetchAds();
+  const { isLoading, postAd } = useFetchAds();
 
   const checkCategory = (e) => {
-    console.log("ran")
-    console.log(e.target.value)
+    console.log("ran");
+    console.log(e.target.value);
     if (e.target.value === "1") {
       setPet(true);
-    } else{
-      setPet(false)
+    } else {
+      setPet(false);
     }
   };
   const updateStep1 = (data) => {
     setadData((adData) => ({
       ...adData,
       categoryId: parseInt(data.category),
-      color:data.color,
+      color: data.color,
       breedId: parseInt(data.breed),
       pictureUrl: data.pictureUrl,
     }));
@@ -75,7 +75,7 @@ const PostAd = () => {
       femaleBreedId: data.femaleBreedId,
       signUpId: userId,
     }));
-    postAd(adData)
+    postAd(adData);
   };
   const nextStep = () => {
     if (step >= 3) {
@@ -95,12 +95,22 @@ const PostAd = () => {
   return (
     <div>
       <AdContext.Provider
-        value={{ step, adData,pet, isLoading, checkCategory, nextStep, prevStep, updateStep1, updateStep2 }}
+        value={{
+          step,
+          adData,
+          pet,
+          isLoading,
+          checkCategory,
+          nextStep,
+          prevStep,
+          updateStep1,
+          updateStep2,
+        }}
       >
         <div className="w-full p-5 ">
           <div className="w-full border p-4 border-borderGrey md:w-11/12 lg:w-4/6 md:mx-auto md:my-5  ">
             <h4 className="text-center my-4 font-normal text-lg">Post Ad</h4>
-            <Progress/>
+            <Progress />
             {step === 1 && <Step1 />}
             {step === 2 && <Step2 />}
             {step === 3 && <Step3 />}
