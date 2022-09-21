@@ -4,13 +4,9 @@ import { useForm } from "react-hook-form";
 import FormBody from "../../components/auth/FormBody";
 import { Input, ErrorMessage, Loader } from "../../components/shared";
 import useSignIn from "../../hooks/useSignIn";
-// import { isValidEmail } from "../../utils/index";
-// import { useDispatch } from "react-redux";
-// import { login } from "../../store/features/authSlice";
 
 const Login = () => {
   const { isLoading, signIn } = useSignIn();
-  // const dispatch = useDispatch()
 
   const {
     register,
@@ -22,8 +18,6 @@ const Login = () => {
   const onSubmit = (data) => {
     console.log(data);
     signIn(data);
-    // dispatch(login(data))
-
   };
 
   return (

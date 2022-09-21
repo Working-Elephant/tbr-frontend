@@ -5,10 +5,9 @@ import { errorToast } from "../components/shared";
 import { useDispatch } from "react-redux";
 import { login } from "../store/features/authSlice";
 
-
 const useSignIn = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const [isLoading, setIsLoading] = useState(false);
   const [isAborted, setIsAborted] = useState(false);
@@ -19,13 +18,15 @@ const useSignIn = () => {
 
     try {
       const res = await AuthService.login(loginData);
-      const { status, data  } = res;
+      const { status, data } = res;
 
       if (status === 200) {
-        dispatch(login(data));
-        localStorage.setItem("user", data)
-        setIsLoading(false)
-        navigate("/dashboard")
+        let userObj = { token: data[0], userId: data[1] };
+        dispatch(login(userObj));
+        localStorage.setItem("user", JSON.stringify(userObj));
+
+        setIsLoading(false);
+        navigate("/dashboard");
       }
       setIsLoading(false);
 

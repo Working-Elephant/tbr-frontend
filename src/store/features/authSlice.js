@@ -1,4 +1,4 @@
-import {  createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 // import axios from "axios";
 // import * as ExternalUrl from "../../config/externalUrl";
 // import { toast } from "react-toastify";
@@ -47,20 +47,20 @@ import {  createSlice } from "@reduxjs/toolkit";
 const slice = createSlice({
   name: "auth",
   initialState: {
-    user: localStorage.getItem("user") ?? null,
+    user: JSON.parse(localStorage.getItem("user")) ?? null,
     isAuthenticated: localStorage.getItem("user") ? true : false,
     loading: false,
   },
   reducers: {
     login(state, { payload }) {
-      state.user = payload.data;
+      state.user = payload;
       state.isAuthenticated = true;
     },
-    logout(state){
-      state.user=null;
+    logout(state) {
+      state.user = null;
       state.isAuthenticated = false;
-      localStorage.removeItem("user")
-    }
+      localStorage.removeItem("user");
+    },
   },
   // extraReducers: {
   //   // signup user reducer
@@ -98,5 +98,5 @@ const slice = createSlice({
 });
 
 // export { SignUpSlice };
-export const {login, logout } = slice.actions
+export const { login, logout } = slice.actions;
 export default slice.reducer;

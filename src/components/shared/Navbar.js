@@ -89,7 +89,7 @@ const Navbar = ({ home }) => {
               />
             </div>
 
-            <span onClick={onLogOut}>Logout</span>
+            <span className="cursor-pointer" onClick={onLogOut}>Logout</span>
           </div>
         ) : (
           <div className=" hidden lg:flex items-center whitespace-nowrap">
