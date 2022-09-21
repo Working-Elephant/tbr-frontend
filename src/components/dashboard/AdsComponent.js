@@ -1,10 +1,18 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Link } from "react-router-dom";
 import { BsPlusCircle } from "react-icons/bs";
 import { adsData } from "../../data";
-import { PetCard } from "../shared";
+import { Loader, PetCard } from "../shared";
+import useFetchAds from "../../hooks/useFetchAds";
 
 const AdsComponent = () => {
+  const { isLoading, getAds } = useFetchAds();
+
+  useEffect(() => {
+    getAds();
+  }, [])
+  
+
   return (
     <>
       <div className="flex items-center justify-between mb-3 px-5">
@@ -20,11 +28,23 @@ const AdsComponent = () => {
         </Link>
       </div>
       {/* <div className="border-l border-l-borderGrey px-3"> */}
-        <div className="grid grid-cols-2 gap-3 lg:grid-cols-3  xl:grid-cols-4 ">
-          {adsData.map((item, i) => {
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-3  xl:grid-cols-4 place-content-center">
+        {isLoading ? (
+          <div className="flex justify-center items-center w-full ">
+            <div className="w-fit mx-auto">
+            <Loader size={60} />
+            </div>
+          </div>
+        ) : adsData && adsData.length > 0 ? (
+          adsData.map((item, i) => {
             return <PetCard key={i} item={item} />;
-          })}
-        </div>
+          })
+        ) : (
+          <div>
+            <p>No Ads found</p>
+          </div>
+        )}
+      </div>
       {/* </div> */}
     </>
   );

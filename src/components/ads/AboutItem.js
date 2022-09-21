@@ -85,7 +85,7 @@ const AboutItem = () => {
           <div className="  flex  items-center my-2">
             <p className="text-sm">Enter Item Category and Location</p>
           </div>
-          <div className="grid grid-cols-2 gap-5 lg:gap-8 my-3">
+          <div className="grid grid-cols-3 gap-5 lg:gap-8 my-3">
             <div className={`${pet ? "col-span-1" : "col-span-2"}`}>
               <div className="w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
                 <SelectInput
@@ -125,8 +125,26 @@ const AboutItem = () => {
                 )}
               </div>
             )}
+             <div>
+                <div className="w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                  <SelectInput
+                    border="border-0"
+                    options={breed}
+                    defaultOption="Color"
+                    {...register("color", {
+                      required: {
+                        value: true,
+                        message: " This field is required",
+                      },
+                    })}
+                  />
+                </div>
+                {errors.color && (
+                  <ErrorMessage message={errors.color?.message} />
+                )}
+              </div>
 
-            <div className="col-span-2 flex items-center justify-between">
+            <div className="col-span-3 flex items-center justify-between">
               <div className="grow">
                 <div className="w-full bg-[#FEFCFC] px-3 rounded-l-lg border border-borderGrey border-r-0 h-fit">
                   <SelectInput

@@ -1,14 +1,13 @@
-import React from 'react'
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
+import React from "react";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
-
-const Loader = () => {
+const Loader = ({ size }) => {
   return (
-    <Box sx={{ display: 'flex' }}>
-    <CircularProgress color='inherit' size={18} />
-  </Box>
-  )
-}
+    <Box sx={{ display: "inline" }}>
+      <CircularProgress color="inherit" size={size} />
+    </Box>
+  );
+};
 
-export default Loader
+export default Loader;
