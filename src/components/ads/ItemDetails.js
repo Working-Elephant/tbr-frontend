@@ -2,13 +2,18 @@ import React, { useContext } from "react";
 import { AdContext } from "../../pages/ads/PostAd";
 import { GoPlusSmall } from "react-icons/go";
 import { useForm, Controller } from "react-hook-form";
-import { Input, ErrorMessage, SelectInput } from "../../components/shared";
+import {
+  Input,
+  ErrorMessage,
+  SelectInput,
+  Loader,
+} from "../../components/shared";
 import { sex, breed } from "../../data";
 import DatePicker from "react-datepicker";
 import { PatternFormat } from "react-number-format";
 
 const ItemDetails = () => {
-  const { updateStep2, pet } = useContext(AdContext);
+  const { updateStep2, pet, isLoading } = useContext(AdContext);
   const {
     register,
     handleSubmit,
@@ -17,8 +22,6 @@ const ItemDetails = () => {
   } = useForm({
     defaultValues: { dateOfBirth: "", maleParentDob: "", femaleParentDob: "" },
   });
-
- 
 
   // function to submit form
   const onSubmit = (data) => {
@@ -212,6 +215,8 @@ const ItemDetails = () => {
                 render={({ field: { onChange, onBlur, value } }) => (
                   <PatternFormat
                     format="(###)###-####"
+                    onChange={onChange}
+                    value={value}
                     // allowEmptyFormatting
                     // mask=""
                     className="w-full py-2 focus:outline-none placeholder:text-dark text-sm"
@@ -387,7 +392,7 @@ const ItemDetails = () => {
               className="bg-yellow py-4 px-15 rounded font-semibold text-sm "
               type="submit"
             >
-              NEXT
+              {isLoading ? <Loader /> : "NEXT"}
             </button>
           </div>
         </form>

@@ -92,7 +92,10 @@ const Navbar = ({ home }) => {
             <Link to={"/dashboard"} className="ml-2 mr-2">
               <span className="font-medium">Dashboard</span>{" "}
             </Link>
-            <span onClick={onLogOut}>Logout</span>
+
+            <span className="cursor-pointer" onClick={onLogOut}>
+              Logout
+            </span>
           </div>
         ) : (
           <div className=" hidden lg:flex items-center whitespace-nowrap">
