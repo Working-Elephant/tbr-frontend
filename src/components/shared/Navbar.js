@@ -29,7 +29,7 @@ const Navbar = ({ home }) => {
 
   return (
     <nav
-      className={`w-full bg-transparent  px-6 pb-4 pt-6 md:pt-8   ${
+      className={`w-full bg-transparent  px-6 pb-4 pt-6 md:pt-8    ${
         home ? " absolute top-0 text-white" : "border-b-.5 border-b-borderGrey"
       } `}
     >
@@ -45,7 +45,7 @@ const Navbar = ({ home }) => {
             <Link to="/">Home</Link>
           </li>
           <li className="mx-3">
-            <Link to="/categories/pets">Listings</Link>
+            <Link to="/categories">Listings</Link>
           </li>
           {/* <li className="mx-3">
             <Link to="/">Services</Link>
@@ -145,7 +145,7 @@ const Navbar = ({ home }) => {
                     <Link to="/">Home</Link>
                   </li>
                   <li className="py-3">
-                    <Link to="/pets">Listings</Link>
+                    <Link to="/categories">Listings</Link>
                   </li>
                   <li className="py-3">
                     <Link to="/">Services</Link>

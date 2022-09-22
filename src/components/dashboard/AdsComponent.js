@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { BsPlusCircle } from "react-icons/bs";
 import { adsData } from "../../data";
@@ -10,8 +10,7 @@ const AdsComponent = () => {
 
   useEffect(() => {
     getAds();
-  }, [])
-  
+  }, []);
 
   return (
     <>
@@ -28,11 +27,11 @@ const AdsComponent = () => {
         </Link>
       </div>
       {/* <div className="border-l border-l-borderGrey px-3"> */}
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-3  xl:grid-cols-4 place-content-center">
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-3  xl:grid-cols-4 place-content-center  overflow-y-scroll">
         {isLoading ? (
           <div className="flex justify-center items-center w-full ">
             <div className="w-fit mx-auto">
-            <Loader size={60} />
+              <Loader size={60} />
             </div>
           </div>
         ) : adsData && adsData.length > 0 ? (

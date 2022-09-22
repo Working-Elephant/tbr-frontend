@@ -17,16 +17,15 @@ const AboutUs = () => {
             </h5>
             <h3 className="font-bold text-2xl mb-4">About Us</h3>
             <p className="font-light text-sm">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse commodo sapien sed risus tincidunt, in viverra dolor
-              ornare. Sed quis dolor et enim convallis dapibus. Ut rutrum mauris
-              vitae mi ultricies, hendrerit fringilla felis congue. Nunc est
-              ante, imperdiet sed mollis blandit, hendrerit vitae lorem.
-              Suspendisse nec nisi tellus. Quisque laoreet nunc quis justo
-              ultrices cursus. Sed lorem nibh, sollicitudin nec iaculis cursus,
-              auctor id odio. Vestibulum elementum fermentum mattis. Mauris arcu
-              purus, auctor a massa ac, commodo consequat tellus. Etiam vitae
-              egestas tortor. Vestibulum iaculis luctus pulvinar.
+              The mission of the Texas Bully Registry an initiative of The Robin
+              Hood Foundation is to improve the quality of life for all pets and
+              animals especially the Bully breeds of Texas. The Texas Bully
+              Registry will assist and aid in the national, state and local
+              registration of the Bully breeds of Texas. Texas Bully Registry
+              will uphold and adhere to the standards of all registered breeds
+              set forth by other notable registries and licensed veterinarians.
+              Texas Bully Registry is here to serve the Bully community and help
+              propel dogs and owners into the future of breeding.
             </p>
             <div className="my-3">
               <button className="bg-yellow py-2 font-semibold text-md rounded w-full md:w-1/2">
