@@ -23,6 +23,7 @@ import Categories from "./pages/Categories";
 import Pets from "./pages/Pets";
 import Search from "./pages/Search";
 import AboutUs from "./pages/AboutUs";
+
 import { useMatch } from "react-router-dom";
 import { useLayoutEffect } from "react";
 
@@ -48,6 +49,7 @@ const App = () => {
           <Route path="/register" element={<SignUp />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/about-us" element={<AboutUs />} />
+         
           <Route path="/dashboard" element={<Navigate to="/dashboard/ads" />} />
           <Route
             path="/dashboard/ads"

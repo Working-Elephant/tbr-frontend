@@ -13,12 +13,11 @@ import useLogOut from "../../hooks/useLogout";
 const Navbar = ({ home }) => {
   const [mobileMenu, setMobileMenu] = useState(false);
   const isLoggedIn = useSelector((state) => state.auth.isAuthenticated);
-  const {  logOut } = useLogOut();
+  const { logOut } = useLogOut();
 
   const handleClose = () => {
     setMobileMenu(false);
   };
-
 
   const toggleMenu = () => {
     setMobileMenu(!mobileMenu);
@@ -52,7 +51,7 @@ const Navbar = ({ home }) => {
             <Link to="/">Services</Link>
           </li> */}
           <li className="mx-3">
-            <Link to="/">Bully News</Link>
+            <Link to="/blog">Bully News</Link>
           </li>
           <li className="mx-3">
             <Link to="/about-us">About Us </Link>
@@ -82,13 +81,17 @@ const Navbar = ({ home }) => {
             </div>
 
             <div className="h-9 mr-5">
-              <img
-                src={UserAvatar}
-                alt=""
-                className="rounded-[50%] max-h-full"
-              />
+              <Link to={"/dashboard"} className="mr-2">
+                <img
+                  src={UserAvatar}
+                  alt=""
+                  className="rounded-[50%] max-h-full"
+                />
+              </Link>
             </div>
-
+            <Link to={"/dashboard"} className="ml-2 mr-2">
+              <span className="font-medium">Dashboard</span>{" "}
+            </Link>
             <span onClick={onLogOut}>Logout</span>
           </div>
         ) : (
@@ -127,7 +130,10 @@ const Navbar = ({ home }) => {
             >
               <div className="">
                 <div className="flex items-center justify-end">
-                  <i className="text-xl text-end p-4" onClick={toggleMenu}>
+                  <i
+                    className="text-xl text-end p-4 cursor-pointer"
+                    onClick={toggleMenu}
+                  >
                     <MdClose />
                   </i>
                 </div>
@@ -147,17 +153,47 @@ const Navbar = ({ home }) => {
                   <li className="py-3">
                     <Link to="/about-us">About Us </Link>
                   </li>
+                  {isLoggedIn ? (
+                    <li className="py-3">
+                      <Link to="/dashboard" className="font-medium">
+                        Dashboard
+                      </Link>
+                    </li>
+                  ) : null}
                 </ul>
               </div>
+              {isLoggedIn ? (
+                <div className="  items-center whitespace-nowrap">
+                  {/* <div className="bg-black p-2 rounded-[50%] mr-3">
+                    <i className="text-lg text-yellow"> <FaBell /> </i>
+                  </div> */}
 
-              <div className=" text-start flex flex-col text-sm pr-8">
-                <span className="mb-5">
-                  <Link to="/login">Login</Link>
-                </span>
-                <button className="bg-yellow text-dark py-3 px-8 lg:px-12 rounded ">
-                  <Link to="/register">Sign Up</Link>
-                </button>
-              </div>
+                  {/* <div className="h-9">
+                    <img
+                      src={UserAvatar}
+                      alt=""
+                      className="rounded-[50%] max-h-full"
+                    />
+                  </div> */}
+                  <div className="justify-center flex mt-4">
+                    <button
+                      className="bg-yellow text-dark py-3 px-8 lg:px-12 rounded"
+                      onClick={onLogOut}
+                    >
+                      Logout
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className=" text-start flex flex-col text-sm pr-8">
+                  <span className="mb-5">
+                    <Link to="/login">Login</Link>
+                  </span>
+                  <button className="bg-yellow text-dark py-3 px-8 lg:px-12 rounded ">
+                    <Link to="/register">Sign Up</Link>
+                  </button>
+                </div>
+              )}
             </div>
           </Backdrop>
         </div>
