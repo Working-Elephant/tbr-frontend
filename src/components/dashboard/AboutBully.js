@@ -5,7 +5,7 @@ import { SelectInput, Input, ErrorMessage } from "../shared";
 import { selectCategories, breed } from "../../data";
 import { useForm } from "react-hook-form";
 
-const AboutItem = () => {
+const AboutBully = () => {
   const [images, setImages] = useState("");
   const { updateStep1 } = useContext(BullyRegistrationContext);
   const {
@@ -51,7 +51,6 @@ const AboutItem = () => {
       //   console.log(fileInfo);
     });
   };
-
   const handleImageUpload = (e) => {
     if (e.target.files && e.target.files[0]) {
       let uploadedimage = e.target.files[0];
@@ -73,7 +72,7 @@ const AboutItem = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="lg:w-9/12 xl:w-8/12 mx-auto py-3">
           <div className="  flex  items-center my-2">
-            <p className="text-sm">Enter Item Category and Location</p>
+            {/* <p className="text-sm">Enter Item Category and Location</p> */}
           </div>
           <div className="grid grid-cols-2 gap-4 lg:gap-6  my-3">
             <div>
@@ -94,7 +93,6 @@ const AboutItem = () => {
                 <ErrorMessage message={errors.category?.message} />
               )}
             </div>
-
             <div>
               <div className="w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
                 <SelectInput
@@ -211,4 +209,4 @@ const AboutItem = () => {
   );
 };
 
-export default AboutItem;
+export default AboutBully;

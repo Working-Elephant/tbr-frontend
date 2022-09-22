@@ -3,6 +3,7 @@ import { Step1, Step2, Step3, Progress } from "../../components/ads/Index";
 import { createContext } from "react";
 import { useSelector } from "react-redux";
 import useFetchAds from "../../hooks/useFetchAds";
+import isResponseSuccess from "../../utils/successResponse";
 
 export const AdContext = createContext();
 
@@ -14,22 +15,11 @@ const PostAd = () => {
     categoryId: 0,
     breedId: 0,
     pictureUrl: "",
-    dogsRegisteredName: "",
-    dateofBirth: "",
-    sex: "",
-    dogsOwnerName: "",
-    address: "",
+    // address: "",
     city: "",
-    // country: "",
     state: "",
     zip: "",
-    telephone: "",
-    maleParentName: "",
-    maleParentDob: "",
-    maleBreedId: 0,
-    femaleParentName: "",
-    femaleParentDob: "",
-    femaleBreedId: 0,
+    // telephone: "",
     signUpId: 0,
   });
   const [step, setStep] = useState(1);
@@ -48,34 +38,27 @@ const PostAd = () => {
   const updateStep1 = (data) => {
     setadData((adData) => ({
       ...adData,
-      categoryId: parseInt(data.category),
-      color: data.color,
-      breedId: parseInt(data.breed),
+      categoryId: data.category,
+      // color: data.color,
+      // breedId: data.breed,
       pictureUrl: data.pictureUrl,
-    }));
-    setStep(step + 1);
-  };
-  const updateStep2 = (data) => {
-    setadData((adData) => ({
-      ...adData,
-      dogsRegisteredName: data.dogsRegisteredName,
-      dateofBirth: data.dateOfBirth.toISOString(),
-      sex: data.sex,
-      dogsOwnerName: data.dogsOwnerName,
-      address: data.address,
       city: data.city,
       state: data.state,
       zip: data.zip,
-      telephone: data.telephone,
-      maleParentName: data.maleParentName,
-      maleParentDob: data.maleParentDob,
-      maleBreedId: data.maleBreedId,
-      femaleParentName: data.femaleParentName,
-      femaleParentDob: data.femaleParentDob,
-      femaleBreedId: data.femaleBreedId,
-      signUpId: userId,
     }));
-    postAd(adData);
+    nextStep();
+  };
+  const updateStep2 = async (data) => {
+    const formData = { ...adData, ...data };
+    formData.price = Number(formData.price);
+    formData.categoryId = Number(formData.categoryId);
+    // formData.breedId = Number(formData.breedId);
+    console.log(formData, "form");
+
+    const status = await postAd(formData);
+    if (isResponseSuccess(status)) {
+      nextStep();
+    }
   };
   const nextStep = () => {
     if (step >= 3) {
