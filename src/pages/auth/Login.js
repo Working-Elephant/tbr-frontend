@@ -16,7 +16,6 @@ const Login = () => {
 
   // function to submit form
   const onSubmit = (data) => {
-    console.log(data);
     signIn(data);
   };
 

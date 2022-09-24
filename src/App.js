@@ -26,6 +26,7 @@ import AboutUs from "./pages/AboutUs";
 
 import { useMatch } from "react-router-dom";
 import { useLayoutEffect } from "react";
+import BullyRegistration from "./components/dashboard/BullyRegistration";
 
 const Wrapper = ({ children }) => {
   const location = useLocation();
@@ -72,6 +73,14 @@ const App = () => {
             element={
               <ProtectedRoutes>
                 <Registration />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/dashboard/bully-registration/register-bully"
+            element={
+              <ProtectedRoutes>
+                <BullyRegistration />
               </ProtectedRoutes>
             }
           />

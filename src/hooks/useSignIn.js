@@ -23,8 +23,6 @@ const useSignIn = () => {
       if (status === 200) {
         let userObj = { token: data[0], userId: data[1] };
         dispatch(login(userObj));
-        localStorage.setItem("user", JSON.stringify(userObj));
-
         setIsLoading(false);
         navigate("/dashboard");
       }
