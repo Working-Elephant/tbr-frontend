@@ -1,8 +1,16 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import { BsPlusCircle } from 'react-icons/bs';
+import useFetchBullies from '../../hooks/useFectchBullies';
 
 const RegisteredBullies = () => {
+
+  const {isLoading, getRegisteredBullies} = useFetchBullies();
+  useEffect(() => {
+    getRegisteredBullies();
+  
+
+  }, [])
     return (
         <>
           <div className="flex items-center justify-between mb-3 px-5">
