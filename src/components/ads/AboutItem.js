@@ -1,12 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { AdContext } from "../../pages/ads/PostAd";
 import { FaPlus } from "react-icons/fa";
-import { SelectInput, ErrorMessage } from "../shared";
+import { SelectInput, ErrorMessage, Loader } from "../shared";
 import { selectCategories, breed } from "../../data";
 import { useForm } from "react-hook-form";
+import useFetchBullies from "../../hooks/useFectchBullies";
 
 const AboutItem = () => {
   const [images, setImages] = useState("");
+  const { isLoading, bullies, getRegisteredBullies } = useFetchBullies();
   // const [pet, setPet] = useState(false);
   const { updateStep1, pet, checkCategory } = useContext(AdContext);
   const {
@@ -68,6 +70,9 @@ const AboutItem = () => {
       return;
     }
   };
+  useEffect(() => {
+    getRegisteredBullies();
+  }, []);
 
   // const checkCategory = (e) => {
   //   console.log("ran")
@@ -107,10 +112,27 @@ const AboutItem = () => {
             </div>
             {pet && (
               <div>
+                {isLoading ? <Loader/> : (
                 <div className="w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-                  <SelectInput
+                  <select
+                    className="border-0 w-full py-2 px-3 text-sm focus:outline-none placeholder:text-sm placeholder:text-dark"
+                    {...register("breed", {
+                      required: {
+                        value: true,
+                        message: " This field is required",
+                      },
+                    })}
+                  >
+                    <option>Breed</option>
+                    {bullies.map((item, i) => (
+                      <option key={i} value={item.registerBullyId}>
+                        {item.dogsRegisteredName}
+                      </option>
+                    ))}
+                  </select>
+                  {/* <SelectInput
                     border="border-0"
-                    options={breed}
+                    options={bullies}
                     defaultOption="Breed"
                     {...register("breed", {
                       required: {
@@ -118,14 +140,15 @@ const AboutItem = () => {
                         message: " This field is required",
                       },
                     })}
-                  />
+                  /> */}
                 </div>
-                {errors.breed && (
-                  <ErrorMessage message={errors.breed?.message} />
+                // {errors.breed && (
+                //   <ErrorMessage message={errors.breed?.message} />
+                // )}
                 )}
               </div>
             )}
-             {/* <div>
+            {/* <div>
                 <div className="w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
                   <SelectInput
                     border="border-0"
@@ -143,7 +166,7 @@ const AboutItem = () => {
                   <ErrorMessage message={errors.color?.message} />
                 )}
               </div> */}
-        
+
             <div className="col-span-2 flex items-center justify-between">
               <div className="grow">
                 <div className="w-full bg-[#FEFCFC] px-3 rounded-l-lg border border-borderGrey border-r-0 h-fit">
@@ -193,9 +216,7 @@ const AboutItem = () => {
                     })}
                   />
                 </div>
-                {errors.zip && (
-                  <ErrorMessage message={errors.zip?.message} />
-                )}
+                {errors.zip && <ErrorMessage message={errors.zip?.message} />}
               </div>
             </div>
           </div>
