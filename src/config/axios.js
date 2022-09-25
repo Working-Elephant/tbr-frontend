@@ -1,48 +1,55 @@
-import axios from "axios"
-// import { SignOut } from "@slices/user-slice";
-// import { SignInUrl } from "@config/app-url";
+import axios from "axios";
+import { logout } from "../store/features/authSlice";
 
-let store
+let store;
 
-export const injectStore = _store => {
-  store = _store
-}
+export const injectStore = (_store) => {
+  store = _store;
+};
 
 const instance = axios.create({
-    baseURL: process.env.REACT_APP_BACKEND_URL,
-    // timeout: 1000,
-    headers: {}
-});  
+  baseURL: process.env.REACT_APP_BACKEND_URL,
+  // timeout: 1000,
+  headers: {},
+});
 
 // Add a request interceptor
-instance.interceptors.request.use(function (config) {
+instance.interceptors.request.use(
+  function (config) {
     // Do something before request is sent
-    let token = JSON.parse(localStorage.getItem("token"))
-    if (token) {
-        config.headers.credentials = 'include';
-        config.headers.common["x-access-token"] = token;
-        config.headers['Content-Type'] = 'application/json';
+    const user = localStorage.getItem("user");
+    if (user) {
+      const { token } = JSON.parse(user);
+      config.headers.credentials = "include";
+      // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      config.headers["Authorization"] = `Bearer ${token}`;
+      config.headers["Content-Type"] = "application/json";
     }
     return config;
-  }, function (error) {
+  },
+  function (error) {
     // Do something with request error
     return Promise.reject(error);
-  });
+  }
+);
 
 // Add a response interceptor
-instance.interceptors.response.use(function (response) {
+instance.interceptors.response.use(
+  function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
     return response;
-  }, function (error) {
+  },
+  function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
     if (error.response && error.response.status === 401) {
-        store.dispatch(SignOut()).then(() => {
-            window.location = SignInUrl
-        });        
-    }  
+      console.log("error401");
+      store.dispatch(logout());
+
+    }
     return Promise.reject(error);
-});
-  
-export default instance
+  }
+);
+
+export default instance;

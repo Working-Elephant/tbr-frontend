@@ -90,7 +90,7 @@ const StepIndicator = () => {
         <hr className="grow h-4 text-borderGrey mt-4" />
         <div
           className={`text-sm rounded-3xl py-2 px-5 md:px-8 ${
-            step >= 3 ? "bg-yellow" : "border-borderGrey"
+            step >= 3 ? "bg-yellow" : "bg-borderGrey"
           }`}
         >
           <span className="flex items-center text-xs  md:text-base whitespace-nowrap">
