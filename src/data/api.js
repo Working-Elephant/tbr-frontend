@@ -333,7 +333,7 @@ export const categoriesData = [
 export const previewData = [
   {
     image: AdDoggo1,
-    link: "",
+    link: "https://www.youtube.com/watch?v=g3fAq0svJ9g",
   },
   {
     image: AdDoggo3,
