@@ -5,6 +5,7 @@ import { useForm, Controller } from "react-hook-form";
 import { Input, ErrorMessage, SelectInput } from "../../components/shared";
 import { sex, breed } from "../../data";
 import DatePicker from "react-datepicker";
+import { PatternFormat } from "react-number-format";
 
 const BullyDetails = () => {
   const {  updateStep2 } = useContext(
@@ -197,13 +198,29 @@ const BullyDetails = () => {
             </div>
           </div>
           <div>
-            <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-              <Input
-                border="border-0"
-                placeholder={"Telephone"}
-                {...register("telephone", { required: true })}
-              />
-            </div>{" "}
+          <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                <Controller
+                  name="telephone"
+                  control={control}
+                  rules={{
+                    required: {
+                      value: true,
+                      message: "This field is required",
+                    },
+                  }}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <PatternFormat
+                      format="(###)###-####"
+                      onChange={onChange}
+                      value={value}
+                      // allowEmptyFormatting
+                      // mask=""
+                      className="w-full py-2 px-3 focus:outline-none placeholder:text-dark text-sm"
+                      placeholder="Telephone"
+                    />
+                  )}
+                />
+              </div>
             {errors.telephone && (
               <ErrorMessage message={errors.telephone?.message} />
             )}

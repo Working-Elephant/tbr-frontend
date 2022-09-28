@@ -21,7 +21,7 @@ const BullyRegistration = () => {
     postAddId: 0,
     categoryId: 0,
     breedId: 0,
-
+    registerBullyId:0,
     pictureUrl: "",
   });
   const [step, setStep] = useState(1);
@@ -29,7 +29,7 @@ const BullyRegistration = () => {
   const updateStep1 = (data) => {
     setadData((adData) => ({
       ...adData,
-      signUpId: userId,
+      signUpId: parseInt(userId),
       categoryId: parseInt(data.category),
       breedId: parseInt(data.breed),
       pictureUrl: data.pictureUrl,
@@ -81,6 +81,29 @@ const BullyRegistration = () => {
       setStep(step - 1);
     }
   };
+
+  // address: "string"
+  // breedId: 0
+  // categoryId: 0
+  // city: "string"
+  // color: "string"
+  // dateofBirth: "2022-09-21T10:33:00.42"
+  // dogsOwnerName: "string"
+  // dogsRegisteredName: "string"
+  // femaleBeedId: 0
+  // femaleParentDob: "2022-09-21T10:33:00.42"
+  // femaleParentName: "string"
+  // maleBeedId: 0
+  // maleParentDob: "2022-09-21T10:33:00.42"
+  // maleParentName: "string"
+  // pictureUrl: "string"
+  // registerBullyId: 1
+  // sex: "string"
+  // signUpId: 0
+  // state: "string"
+  // telephone: "string"
+  // zip: "string"
+  
 
   return (
     <div>

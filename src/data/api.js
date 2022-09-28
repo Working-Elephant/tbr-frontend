@@ -24,7 +24,7 @@ import Random from "../assets/images/random.jpg";
 // dashboard menu icons
 import AdsIcon from "../assets/images/adsIcon.svg";
 import MessagesIcon from "../assets/images/mesaages.svg";
-import MembershipIcon from "../assets/images/membership.svg";
+// import MembershipIcon from "../assets/images/membership.svg";
 import FavouritesIcon from "../assets/images/favourites.svg";
 import OrdersIcon from "../assets/images/orders.svg";
 import CustomerCareIcon from "../assets/images/customer_care.svg";
@@ -333,19 +333,19 @@ export const categoriesData = [
 export const previewData = [
   {
     image: AdDoggo1,
-    link: "",
+    link: "https://www.youtube.com/watch?v=g3fAq0svJ9g",
   },
   {
     image: AdDoggo3,
-    link: "",
+    link: "https://www.youtube.com/watch?v=4dPAqEoKOa0",
   },
   {
     image: AdDoggo5,
-    link: "",
+    link: "https://www.youtube.com/watch?v=g3fAq0svJ9g",
   },
   {
     image: AdDoggo2,
-    link: "",
+    link: "https://www.youtube.com/watch?v=4dPAqEoKOa0",
   },
   {
     image: AdDoggo4,

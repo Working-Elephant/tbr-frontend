@@ -90,7 +90,8 @@ const Home = () => {
     },
   };
 
-  const [preview, setPreview] = useState(1);
+  const [preview, setPreview] = useState(0);
+  const [video, setVideo] = useState(previewData[0]);
   return (
     <div className="bg-white m-0">
       <Header />
@@ -297,7 +298,10 @@ const Home = () => {
                     className={` min-w-[150px] h-28 ${
                       preview === i ? "border-3 border-white" : ""
                     }`}
-                    onClick={() => setPreview(i)}
+                    onClick={() => {
+                      setPreview(i);
+                      setVideo(item);
+                    }}
                   >
                     <ImageContainer
                       key={i}
@@ -319,7 +323,7 @@ const Home = () => {
               <iframe
                 className="w-full aspect-video lg:aspect-square"
                 title="A preview of our dog shows"
-                src="https://www.youtube.com/watch?v=g3fAq0svJ9g"
+                src={video?.link}
               ></iframe>
             </div>
           </div>

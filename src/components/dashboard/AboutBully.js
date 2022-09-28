@@ -109,7 +109,7 @@ const AboutBully = () => {
               </div>
               {errors.breed && <ErrorMessage message={errors.breed?.message} />}
             </div>
-            <div>
+            {/* <div>
               <div className="w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
                 <SelectInput
                   border="border-0"
@@ -126,8 +126,8 @@ const AboutBully = () => {
               {errors.breedType && (
                 <ErrorMessage message={errors.breedType?.message} />
               )}
-            </div>
-            <div>
+            </div> */}
+            {/* <div>
               <div className=" w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
                 <Input
                   border="border-0"
@@ -138,7 +138,7 @@ const AboutBully = () => {
               {errors.height && (
                 <ErrorMessage message={errors.height?.message} />
               )}
-            </div>
+            </div> */}
             <div>
               <div className=" w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
                 <Input
@@ -149,7 +149,7 @@ const AboutBully = () => {
               </div>
               {errors.color && <ErrorMessage message={errors.color?.message} />}
             </div>
-            <div>
+            {/* <div>
               <div className=" w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
                 <Input
                   border="border-0"
@@ -160,7 +160,7 @@ const AboutBully = () => {
               {errors.weight && (
                 <ErrorMessage message={errors.weight?.message} />
               )}
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="text-center mt-5">
