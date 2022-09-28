@@ -90,7 +90,7 @@ const Home = () => {
     },
   };
 
-  const [preview, setPreview] = useState(1);
+  const [preview, setPreview] = useState(0);
   const [video, setVideo] = useState(previewData[0]);
   return (
     <div className="bg-white m-0">

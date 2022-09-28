@@ -337,15 +337,15 @@ export const previewData = [
   },
   {
     image: AdDoggo3,
-    link: "",
+    link: "https://www.youtube.com/watch?v=4dPAqEoKOa0",
   },
   {
     image: AdDoggo5,
-    link: "",
+    link: "https://www.youtube.com/watch?v=g3fAq0svJ9g",
   },
   {
     image: AdDoggo2,
-    link: "",
+    link: "https://www.youtube.com/watch?v=4dPAqEoKOa0",
   },
   {
     image: AdDoggo4,
