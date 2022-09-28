@@ -333,19 +333,19 @@ export const categoriesData = [
 export const previewData = [
   {
     image: AdDoggo1,
-    link: "https://www.youtube.com/watch?v=g3fAq0svJ9g",
+    link: "https://www.youtube.com/embed/g3fAq0svJ9g",
   },
   {
     image: AdDoggo3,
-    link: "https://www.youtube.com/watch?v=4dPAqEoKOa0",
+    link: "https://www.youtube.com/embed/4dPAqEoKOa0",
   },
   {
     image: AdDoggo5,
-    link: "https://www.youtube.com/watch?v=g3fAq0svJ9g",
+    link: "https://www.youtube.com/embed/g3fAq0svJ9g",
   },
   {
     image: AdDoggo2,
-    link: "https://www.youtube.com/watch?v=4dPAqEoKOa0",
+    link: "https://www.youtube.com/embed/4dPAqEoKOa0",
   },
   {
     image: AdDoggo4,

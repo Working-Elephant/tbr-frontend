@@ -324,6 +324,7 @@ const Home = () => {
                 className="w-full aspect-video lg:aspect-square"
                 title="A preview of our dog shows"
                 src={video?.link}
+                allowFullScreen
               ></iframe>
             </div>
           </div>
