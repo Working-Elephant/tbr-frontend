@@ -24,7 +24,7 @@ const Footer = () => {
               </div>
 
               <div className="text-white w-50 text-start px-3">
-                <h5 className="mb-2 ">THE TEXAS BULLY REGISTRY</h5>
+                <h5 className="mb-2 ">TEXAS BULLY REGISTRY</h5>
                 <p className="opacity-50 text-justify text-xxs leading-loose">
                   Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
                   diam nonumy eirmod tempor invidunt ut labore et dolore magna

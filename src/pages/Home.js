@@ -24,8 +24,10 @@ import {
   bullyNewsData,
   testimonialData,
   previewData,
+  videoData,
 } from "../data/api";
 import { Link } from "react-router-dom";
+import { NoEncryption } from "@material-ui/icons";
 
 const Home = () => {
   const responsive = {
@@ -91,6 +93,7 @@ const Home = () => {
   };
 
   const [preview, setPreview] = useState(1);
+  console.log(preview, "preview");
   return (
     <div className="bg-white m-0">
       <Header />
@@ -301,7 +304,7 @@ const Home = () => {
                   >
                     <ImageContainer
                       key={i}
-                      image={item.image}
+                      image={item.src}
                       fullHeight={false}
                       width="min-w-[144px]"
                     />
@@ -316,10 +319,23 @@ const Home = () => {
               </div>
             </div>
             <div className=" col-span-1 lg:col-span-5">
-              <iframe
+              {/* <iframe
                 className="w-full aspect-video lg:aspect-square"
                 title="A preview of our dog shows"
                 src="https://www.youtube.com/watch?v=g3fAq0svJ9g"
+              ></iframe> */}
+              <iframe
+                className="w-full aspect-video lg:aspect-square"
+                title="A preview of our dog shows"
+                src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Fthebestmfnbullyshow%2Fvideos%2F679944213010522%2F&show_text=false&width=267&t=0"
+                width="267"
+                height="476"
+                style={{ border: "none", overflow: "hidden" }}
+                scrolling="no"
+                frameborder="0"
+                allowfullscreen="true"
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                allowFullScreen="true"
               ></iframe>
             </div>
           </div>
