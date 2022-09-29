@@ -6,6 +6,7 @@ import { warning, errorToast, success } from "../components/shared";
 const useFetchBullies = () => {
 //   const  dispatch  = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
+  const [bullies, setBullies]= useState([])
   const [error, setError] = useState(null);
 
   const getRegisteredBullies = async () => {
@@ -17,10 +18,11 @@ const useFetchBullies = () => {
       if (res) {
         const response = await res;
         console.log('response',response)
-        const { status,   } = response;
+        const { status, data  } = response;
 
         if (status === 200) {
           // success(data)
+          setBullies(data)
           setIsLoading(false);
           return status;
         } else {
@@ -61,7 +63,7 @@ const useFetchBullies = () => {
   };
  
 
-  return { getRegisteredBullies, registerBully,  isLoading, error };
+  return { getRegisteredBullies, registerBully,  isLoading,bullies, error };
 };
 
 export default useFetchBullies;

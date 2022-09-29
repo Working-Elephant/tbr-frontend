@@ -92,8 +92,8 @@ const Home = () => {
     },
   };
 
-  const [preview, setPreview] = useState(1);
-  console.log(preview, "preview");
+  const [preview, setPreview] = useState(0);
+  const [video, setVideo] = useState(previewData[0]);
   return (
     <div className="bg-white m-0">
       <Header />
@@ -300,11 +300,14 @@ const Home = () => {
                     className={` min-w-[150px] h-28 ${
                       preview === i ? "border-3 border-white" : ""
                     }`}
-                    onClick={() => setPreview(i)}
+                    onClick={() => {
+                      setPreview(i);
+                      setVideo(item);
+                    }}
                   >
                     <ImageContainer
                       key={i}
-                      image={item.src}
+                      image={item.image}
                       fullHeight={false}
                       width="min-w-[144px]"
                     />
@@ -327,7 +330,7 @@ const Home = () => {
               <iframe
                 className="w-full aspect-video lg:aspect-square"
                 title="A preview of our dog shows"
-                src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Fthebestmfnbullyshow%2Fvideos%2F679944213010522%2F&show_text=false&width=267&t=0"
+                // src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Fthebestmfnbullyshow%2Fvideos%2F679944213010522%2F&show_text=false&width=267&t=0"
                 width="267"
                 height="476"
                 style={{ border: "none", overflow: "hidden" }}
@@ -335,7 +338,8 @@ const Home = () => {
                 frameborder="0"
                 allowfullscreen="true"
                 allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                allowFullScreen="true"
+                src={video?.link}
+                allowFullScreen
               ></iframe>
             </div>
           </div>

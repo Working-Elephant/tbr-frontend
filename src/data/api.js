@@ -24,7 +24,7 @@ import Random from "../assets/images/random.jpg";
 // dashboard menu icons
 import AdsIcon from "../assets/images/adsIcon.svg";
 import MessagesIcon from "../assets/images/mesaages.svg";
-import MembershipIcon from "../assets/images/membership.svg";
+// import MembershipIcon from "../assets/images/membership.svg";
 import FavouritesIcon from "../assets/images/favourites.svg";
 import OrdersIcon from "../assets/images/orders.svg";
 import CustomerCareIcon from "../assets/images/customer_care.svg";
@@ -350,31 +350,19 @@ export const videoData = [
 export const previewData = [
   {
     image: AdDoggo1,
-    link: "",
+    link: "https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Fthebestmfnbullyshow%2Fvideos%2F679944213010522%2F&show_text=false&width=267&t=0",
   },
   {
     image: AdDoggo3,
-    link: "",
+    link: "https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Fthebestmfnbullyshow%2Fvideos%2F1268869750255730%2F&show_text=false&width=267&t=0",
   },
   {
     image: AdDoggo5,
-    link: "",
+    link: "https://www.facebook.com/plugins/video.php?height=317&href=https%3A%2F%2Fwww.facebook.com%2Fthebestmfnbullyshow%2Fvideos%2F915745462641412%2F&show_text=false&width=267&t=0",
   },
   {
     image: AdDoggo2,
-    link: "",
-  },
-  {
-    image: AdDoggo4,
-    link: "",
-  },
-  {
-    image: AdDoggo1,
-    link: "",
-  },
-  {
-    image: AdDoggo5,
-    link: "",
+    link: "https://www.facebook.com/plugins/video.php?height=317&href=https%3A%2F%2Fwww.facebook.com%2Fthebestmfnbullyshow%2Fvideos%2F915745462641412%2F&show_text=false&width=267&t=0",
   },
 ];
 
