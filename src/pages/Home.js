@@ -159,10 +159,10 @@ const Home = () => {
               renderDotsOutside={true}
             >
               {categoriesData.map((item, i) => (
-                <div key={i} className="mx-4 rounded-[60px] relative">
+                <div key={i} className="mx-4 rounded-[60px] relative lg:h-72">
                   <Link to={`${item.link}`}>
-                    <ImageContainer image={item.img} rounded="rounded-[3rem]" />
-                    <p className="absolute bottom-4 left-8 uppercase text-white text-xl">
+                    <ImageContainer image={item.img} rounded="rounded-[2rem]" />
+                    <p className="absolute bottom-4 left-8 uppercase  text-xl">
                       {item.name}
                     </p>
                   </Link>

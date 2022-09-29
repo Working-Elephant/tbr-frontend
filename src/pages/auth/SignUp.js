@@ -10,8 +10,6 @@ import useSignUp from "../../hooks/useSignUp";
 // import { isValidEmail } from "../../utils";
 // import { login as LoginUrl } from "../../config/internalUrl";
 
-
-
 const SignUp = () => {
   // const navigate = useNavigate();
   const { signUp, isLoading } = useSignUp();
@@ -23,7 +21,7 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
 
- function isValidEmail(email) {
+  function isValidEmail(email) {
     return /\S+@\S+\.\S+/.test(email);
   }
 
@@ -56,8 +54,8 @@ const SignUp = () => {
   return (
     <div>
       <FormBody
-        title="New customer"
-        text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam"
+        title="New Customer"
+        text="Signup to register, shop, and buy bullies within minutes."
       >
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="w-full lg:w-2/3 mx-auto flex flex-col uppercase">

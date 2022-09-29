@@ -13,6 +13,12 @@ import janeAvatar from "../assets/images/avatar1.jpeg";
 import User from "../assets/images/avatar2.jpeg";
 // categories images
 import Pets from "../assets/images/pets.jpg";
+import Category1 from "../assets/images/category1.jpeg";
+import Category2 from "../assets/images/category2.jpeg";
+import Category3 from "../assets/images/category3.jpeg";
+import Category4 from "../assets/images/category4.jpeg";
+import Category5 from "../assets/images/category5.jpg";
+import Category6 from "../assets/images/category6.jpg";
 import PetToys from "../assets/images/pet_toys.jpg";
 import Equipments from "../assets/images/equipments.jpg";
 import Electronics from "../assets/images/electronics.jpg";
@@ -283,52 +289,52 @@ export const carouselImages = [
 export const categoriesData = [
   {
     id: 1,
-    img: Pets,
+    img: Category1,
     name: "Pets",
     link: "/categories/pets",
   },
   {
     id: 2,
-    img: PetToys,
-    name: "Pet Toys",
+    img: Category6,
+    name: "Toys",
     link: "/categories/pets",
   },
   {
     id: 3,
-    img: Electronics,
-    name: "Electronics",
+    img: Category5,
+    name: "Food",
     link: "/categories/pets",
   },
   {
     id: 4,
-    img: Equipments,
-    name: "Equipments",
+    img: Category3,
+    name: "Care",
     link: "/categories/pets",
   },
   {
     id: 5,
-    img: Pets2,
-    name: "Pets",
+    img: Category4,
+    name: "Supplies",
     link: "/categories/pets",
   },
   {
     id: 6,
-    img: PetToys2,
-    name: "Pet Toys",
+    img: Category2,
+    name: "Equipment",
     link: "/categories/pets",
   },
-  {
-    id: 7,
-    img: PetFood,
-    name: "Pet Food",
-    link: "/categories/pets",
-  },
-  {
-    id: 8,
-    img: Random,
-    name: "Random",
-    link: "/categories/pets",
-  },
+  // {
+  //   id: 7,
+  //   img: PetFood,
+  //   name: "Misc",
+  //   link: "/categories/pets",
+  // },
+  // {
+  //   id: 8,
+  //   img: Random,
+  //   name: "Random",
+  //   link: "/categories/pets",
+  // },
 ];
 export const videoData = [
   {
@@ -370,14 +376,14 @@ export const bullyNewsData = [
   {
     id: 1,
     title: "Our Latest Shows",
-    text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd",
+    text: "Stay up to date with us, the #1 Bully Registry and Ecommerce website. Learn about our advanced technology, events, founders, and how we stand out from our competitors.",
     image: Trophy,
     link: "",
   },
   {
     id: 2,
     title: "Bully News",
-    text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd",
+    text: "Submit your application to join our dog shows and become a junior handler",
     image: People,
     link: "",
   },

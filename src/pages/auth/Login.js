@@ -22,8 +22,9 @@ const Login = () => {
   return (
     <div>
       <FormBody
-        title="existing customer"
-        text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam"
+        title="Existing Customer"
+        text="Login to your Texas Bully Registry Account
+"
       >
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="w-full lg:w-2/3 mx-auto flex flex-col uppercase text-center">

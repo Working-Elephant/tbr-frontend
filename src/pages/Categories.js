@@ -10,12 +10,17 @@ const Categories = () => {
       <div className="grid grid-cols-2  gap-x-4 gap-y-12  md:grid-cols-3 xl:grid-cols-4 mb-12">
         {categoriesData.map((data, i) => (
           <Link to={data.link}>
-          <div key={`km${i}`} className="mx-4  relative  lg:h-72"  >
-            <ImageContainer image={data.img} rounded="rounded-[2rem]" fullHeight={true} />
-            <p className="absolute bottom-4 left-6 uppercase text-white text-lg">
-              {data.name}
-            </p>
-          </div></Link>
+            <div key={`km${i}`} className="mx-4  relative  lg:h-72">
+              <ImageContainer
+                image={data.img}
+                rounded="rounded-[2rem]"
+                fullHeight={true}
+              />
+              <p className="absolute bottom-4 left-6 uppercase text-lg">
+                {data.name}
+              </p>
+            </div>
+          </Link>
         ))}
       </div>
     </div>
