@@ -99,7 +99,7 @@ const Home = () => {
       <Header />
       {/* sponsors */}
       <div className="w-full bg-[#fff] mt-4 text-center px-5 ">
-        <span className="text-textMuted text-md">Our sponsors</span>
+        <span className="text-textMuted text-md">Sponsors</span>
         <div className="grid grid-cols-5 md:grid-cols-5 mx-auto lg:w-4/6 items-center gap-[2.75rem]">
           <div className="col-span-1">
             <img src={Sponsor4} alt="sponsor" className="" />
@@ -159,10 +159,10 @@ const Home = () => {
               renderDotsOutside={true}
             >
               {categoriesData.map((item, i) => (
-                <div key={i} className="mx-4 rounded-[60px] relative lg:h-72">
+                <div key={i} className="mx-4 rounded-[60px] relative ">
                   <Link to={`${item.link}`}>
-                    <ImageContainer image={item.img} rounded="rounded-[2rem]" />
-                    <p className="absolute bottom-4 left-8 uppercase  text-xl">
+                    <ImageContainer image={item.img} rounded="rounded-[3rem]" />
+                    <p className="absolute bottom-4 left-8 uppercase text-white  text-xl">
                       {item.name}
                     </p>
                   </Link>
@@ -200,7 +200,7 @@ const Home = () => {
         </div>
         <div className="mt-10 text-center">
           <button className="py-3 px-5  bg-black text-white text-sm rounded-md">
-            Load More Featured Ads
+            Load More Featured Sellers
           </button>
         </div>
       </section>
@@ -209,7 +209,7 @@ const Home = () => {
         <div className=" w-11/12 lg:w-9/12  mx-auto text-center">
           <h6 className=" text-xl my-1">How it Works</h6>
           <p className=" py-0 text-grey  text-xs md:text-base">
-            Register. Search. Communicate. Buy. Sale. Repeat
+            Register. Search. Chat. Buy. Sale. Repeat
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 text-start my-5">
             <div className="bg-yellow bg-opacity-20 mb-4 lg:mb-0 rounded-lg mx-2">
@@ -220,8 +220,7 @@ const Home = () => {
                 <div className="">
                   <p className=" my-3 text-dark opacity-100">Register</p>
                   <p className="text-sm text-grey">
-                    Register and create your bully's profile then receive a
-                    certificate to show buyers
+                    Register your bullies automatically at your convenience
                   </p>
                 </div>
               </div>
@@ -232,10 +231,9 @@ const Home = () => {
                   <img src={HIW2} alt="" />
                 </div>
                 <div className="">
-                  <p className="my-3 ">Search Bullies</p>
+                  <p className="my-3 ">Chat </p>
                   <p className="text-sm text-grey ">
-                    Search our classified for local bullies. View sellers
-                    pedigree certificate
+                    Search bullies and instantly chat with seller
                   </p>
                 </div>
               </div>
@@ -248,8 +246,7 @@ const Home = () => {
                 <div className="">
                   <p className=" my-3">Make Payment</p>
                   <p className="text-sm text-grey">
-                    Once you find your perfect bully check out in our secured
-                    payment center.
+                    Pay securely with PayPal checkout
                   </p>
                 </div>
               </div>
@@ -266,8 +263,7 @@ const Home = () => {
           <div className=" md:w-4/6 mx-auto">
             <h2 className="font-bold text-4xl ">Bully For Sale?</h2>
             <p className="my-4">
-              Get your bullies seen by many local buyers and increase your
-              selling potential by advertising with us today
+              Increase your selling potential by advertising to our community
             </p>
             <div>
               <Link to="/ad/post-ad">

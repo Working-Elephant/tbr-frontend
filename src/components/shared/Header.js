@@ -94,7 +94,7 @@ const Header = () => {
                   <div className="flex flex-col ml-2 text-start text-white">
                     <p className="text-sm font-semibold mb-2">Bully Services</p>
                     <p className=" text-xxs md:text-xs font-light">
-                      Local Dog Services
+                      Search Bullies nearby
                     </p>
                   </div>
                 </div>
@@ -111,7 +111,7 @@ const Header = () => {
                       Pedigree Certificates
                     </p>
                     <p className="text-xxs md:text-xs font-light">
-                      Simple and easy to update
+                      Easy to update
                     </p>
                   </div>
                 </div>
@@ -126,7 +126,7 @@ const Header = () => {
                   <div className="flex flex-col ml-2 text-start text-white">
                     <p className="text-sm font-semibold mb-2">Secure Payment</p>
                     <p className="text-xxs md:text-xs font-light">
-                      100% secure payment
+                      Secure payment
                     </p>
                   </div>
                 </div>
@@ -143,7 +143,7 @@ const Header = () => {
                       Communication Hub
                     </p>
                     <p className="text-xxs md:text-xs font-light">
-                      Chat with other sellers and buyers
+                      Chat with sellers and buyers
                     </p>
                   </div>
                 </div>

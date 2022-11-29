@@ -289,37 +289,37 @@ export const carouselImages = [
 export const categoriesData = [
   {
     id: 1,
-    img: Category1,
+    img: Pets,
     name: "Pets",
     link: "/categories/pets",
   },
   {
     id: 2,
-    img: Category6,
+    img: PetToys,
     name: "Toys",
     link: "/categories/pets",
   },
   {
     id: 3,
-    img: Category5,
+    img: Electronics,
     name: "Food",
     link: "/categories/pets",
   },
   {
     id: 4,
-    img: Category3,
+    img: Equipments,
     name: "Care",
     link: "/categories/pets",
   },
   {
     id: 5,
-    img: Category4,
+    img: Pets2,
     name: "Supplies",
     link: "/categories/pets",
   },
   {
     id: 6,
-    img: Category2,
+    img: PetToys2,
     name: "Equipment",
     link: "/categories/pets",
   },

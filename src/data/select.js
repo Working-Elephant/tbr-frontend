@@ -67,13 +67,13 @@ export const months = [
     value: "December",
   },
 ];
-export const year =[
-  {value: 2022},
-  {value: 2023},
-  {value: 2024},
-  {value: 2025},
-  {value: 2026},
-]
+export const year = [
+  { value: 2022 },
+  { value: 2023 },
+  { value: 2024 },
+  { value: 2025 },
+  { value: 2026 },
+];
 export const titles = [
   {
     value: "Mr",
@@ -91,36 +91,33 @@ export const titles = [
     value: "Master",
   },
 ];
-export const locations =[
+export const locations = [
   {
-    value:"Texas"
+    value: "Texas",
   },
   {
-    value:"Vales"
+    value: "Vales",
   },
   {
-    value:"Missouri"
-  },
-  {
-    value:"Pennysylvania"
+    value: "Missouri",
   },
 ];
-export const searchCategories =[
+export const searchCategories = [
   {
-    value:"Pets"
+    value: "Pets",
   },
   {
-    value:"Pet Toys"
+    value: "Pet Toys",
   },
   {
-    value:"Equipments"
+    value: "Equipments",
   },
   {
-    value:"Pennysylvania"
+    value: "Pennysylvania",
   },
 ];
-export const selectCategories=[
-  {id:1, value:"Pets"},
-  {id:2, value:"Pet Toys"},
-  {id:3, value:"Equipments"},
-]
+export const selectCategories = [
+  { id: 1, value: "Pets" },
+  { id: 2, value: "Pet Toys" },
+  { id: 3, value: "Equipments" },
+];
