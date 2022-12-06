@@ -1,12 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/images/logo2x.png";
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaTwitter,
-  FaLinkedinIn,
-} from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -43,7 +38,7 @@ const Footer = () => {
                   <Link to="/">Listings</Link>
                 </li>
                 <li className="my-3">
-                  <Link to="/">Blog</Link>
+                  <Link to="/about-us">About Us</Link>
                 </li>
                 <li className="my-3">
                   <Link to="/categories">Categories</Link>
@@ -54,10 +49,7 @@ const Footer = () => {
               <h4>TEXAS BULLY REGISTRY</h4>
               <ul className="opacity-50 text-xs ">
                 <li className="my-3">
-                  <Link to="/about-us">About Us</Link>
-                </li>
-                <li className="my-3">
-                  <Link to="/">FAQs</Link>
+                  <Link to="/">Founders</Link>
                 </li>
                 <li className="my-3">
                   <Link to="/">Bully News</Link>
@@ -65,25 +57,19 @@ const Footer = () => {
                 <li className="my-3">
                   <Link to="/">Terms of Service</Link>
                 </li>
-                <li className="my-3">
-                  <Link to="/">Contact Us</Link>
-                </li>
-                <li className="my-3">
-                  <Link to="/">Sitemap</Link>
-                </li>
               </ul>
             </div>
             <div className="text-left ">
               <h4>CONTACT US</h4>
               <ul className="opacity-50 text-xs">
                 <li className="my-2">
-                  Email Us: <span className="">Support@texasregistry.com</span>
+                  Email Us: <span className="">support@texasregistry.com</span>
                 </li>
               </ul>
               <div className="flex justify-start my-2 mt-10">
                 <span className="pr-2">
                   <a
-                    href="https://www.facebook.com/thebestmfnbullyshow/"
+                    href="https://www.facebook.com/texasbullyregistry/"
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -92,23 +78,21 @@ const Footer = () => {
                     </i>
                   </a>
                 </span>
+
                 <span className="px-2">
-                  <Link to="/">
+                  <a
+                    href="https://www.youtube.com/@texasbullyregistry7742"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     <i className="text-white">
-                      <FaLinkedinIn />
+                      <FaYoutube />
                     </i>
-                  </Link>
-                </span>
-                <span className="px-2">
-                  <Link to="/">
-                    <i className="text-white">
-                      <FaTwitter />
-                    </i>
-                  </Link>
+                  </a>
                 </span>
                 <span className="pl-2">
                   <a
-                    href="https://instagram.com/thebestmfnbullyshow?igshid=YmMyMTA2M2Y="
+                    href="https://www.instagram.com/texasbullyregistryllc/"
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -117,11 +101,6 @@ const Footer = () => {
                     </i>
                   </a>
                 </span>
-              </div>
-              <div>
-                <button className="bg-white text-dark p-3 mt-2 rounded font-semibold text-sm">
-                  CONTACT US
-                </button>
               </div>
             </div>
             <div></div>

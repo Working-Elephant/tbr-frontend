@@ -38,7 +38,6 @@ const SignUp = () => {
       password: data.password,
     };
 
-    console.log(submitData);
     signUp(submitData);
     // dispatch(SignUpSlice(data))
     //   .then((res) => {

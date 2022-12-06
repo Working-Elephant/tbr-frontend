@@ -4,9 +4,14 @@ import isResponseSuccess from "../utils/successResponse";
 let baseUrl = process.env.REACT_APP_BACKEND_URL;
 const AuthService = {
   signUp: async (data) => {
-    axios.post(`${baseUrl}/signUp`, data).then((res) => {
-      return res;
-    });
+    return axios
+      .post(`${baseUrl}/SignUp`, data)
+      .then((res) => {
+        return res;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
   login: async (data) => {
     return await axios
@@ -15,6 +20,7 @@ const AuthService = {
         if (isResponseSuccess(res.status)) {
           let userObj = { token: res.data[0], userId: res.data[1] };
           localStorage.setItem("user", JSON.stringify(userObj));
+          console.log(res, "res");
           return res;
         }
         return res;

@@ -15,6 +15,7 @@ import Sponsor2 from "../assets/images/sponsor2.png";
 import Sponsor3 from "../assets/images/sponsor3.png";
 import Sponsor4 from "../assets/images/sponsor4.png";
 import Logo from "../assets/images/logo.png";
+import Coin from "../assets/images/coin.png";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import FeaturedAdsCard from "../components/home/FeaturedAdsCard";
@@ -28,6 +29,7 @@ import {
 } from "../data/api";
 import { Link } from "react-router-dom";
 import { NoEncryption } from "@material-ui/icons";
+import { Container } from "@material-ui/core";
 
 const Home = () => {
   const responsive = {
@@ -98,8 +100,8 @@ const Home = () => {
     <div className="bg-white m-0">
       <Header />
       {/* sponsors */}
-      <div className="w-full bg-[#fff] mt-4 text-center px-5 ">
-        <span className="text-textMuted text-md">Sponsors</span>
+      <div className="w-full bg-[#fff]  text-center px-5 mt-6">
+        <span className="text-textMuted text-lg">Sponsors</span>
         <div className="grid grid-cols-5 md:grid-cols-5 mx-auto lg:w-4/6 items-center gap-[2.75rem]">
           <div className="col-span-1">
             <img src={Sponsor4} alt="sponsor" className="" />
@@ -115,7 +117,7 @@ const Home = () => {
           </div>
 
           <div className="col-span-1">
-            <img src={Logo} alt="sponsor" className="" />
+            <img src={Coin} alt="sponsor" className="" />
           </div>
         </div>
       </div>
@@ -346,9 +348,7 @@ const Home = () => {
         <div className=" md:w-5/6  mx-auto text-center">
           <div className="mb-8">
             <h6 className=" text-lg md:text-xl my-1">Bully News</h6>
-            <p className=" py-0 text-grey">
-              Lorem ipsum dolor sit amet, consetetur
-            </p>
+            <p className=" py-0 text-grey">Stay up to date with us</p>
           </div>
           <div>
             <Carousel

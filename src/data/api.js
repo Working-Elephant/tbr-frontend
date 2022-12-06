@@ -290,39 +290,40 @@ export const categoriesData = [
   {
     id: 1,
     img: Pets,
-    name: "Pets",
+    name: "Shop TBR",
     link: "/categories/pets",
   },
   {
     id: 2,
+    img: Pets,
+    name: "Bullys",
+    link: "/categories/pets",
+  },
+  {
+    id: 3,
     img: PetToys,
     name: "Toys",
     link: "/categories/pets",
   },
   {
-    id: 3,
+    id: 4,
     img: Electronics,
     name: "Food",
     link: "/categories/pets",
   },
   {
-    id: 4,
+    id: 5,
     img: Equipments,
     name: "Care",
     link: "/categories/pets",
   },
   {
-    id: 5,
+    id: 6,
     img: Pets2,
     name: "Supplies",
     link: "/categories/pets",
   },
-  {
-    id: 6,
-    img: PetToys2,
-    name: "Equipment",
-    link: "/categories/pets",
-  },
+
   // {
   //   id: 7,
   //   img: PetFood,
@@ -376,7 +377,7 @@ export const bullyNewsData = [
   {
     id: 1,
     title: "Our Latest Shows",
-    text: "Stay up to date with us, the #1 Bully Registry and Ecommerce website. Learn about our advanced technology, events, founders, and how we stand out from our competitors.",
+    text: "The #1 Bully Registry and Ecommerce website. Learn about our advanced technology, events, founders, and how we stand out from our competitors.",
     image: Trophy,
     link: "",
   },

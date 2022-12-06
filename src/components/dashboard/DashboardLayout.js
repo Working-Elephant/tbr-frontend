@@ -4,8 +4,11 @@ import { IoIosArrowForward } from "react-icons/io";
 import Avatar1 from "../../assets/images/avatar1.jpeg";
 import { dashboardMenu } from "../../data";
 import SellerInfo from "../../components/ads/SellerInfo";
-
+import AuthService from "../../services/user";
 const DashboardLayout = ({ children }) => {
+  const { getUser } = AuthService;
+  const user = getUser();
+  console.log(user, "user");
   return (
     <div className="px-5 pt-5 lg:py-10 lg:px-12">
       <div className=" grid  md:grid-cols-8 md:gap-3 lg:gap-4">
@@ -15,7 +18,7 @@ const DashboardLayout = ({ children }) => {
 
             <SellerInfo
               image={Avatar1}
-              name="Max Bill"
+              name={user.userId.toUpperCase()}
               rating={4.5}
               status="online"
               blackBtnText="Edit Profile"
@@ -35,9 +38,13 @@ const DashboardLayout = ({ children }) => {
                         }
                       >
                         <div className="flex items-center">
-                        <div className="mr-6">
-                          <img src={item.icon} alt="icon" className="w-4 h-4" />
-                        </div>
+                          <div className="mr-6">
+                            <img
+                              src={item.icon}
+                              alt="icon"
+                              className="w-4 h-4"
+                            />
+                          </div>
                           <span>{item.name}</span>
                         </div>
                         <i className="text-lg">
