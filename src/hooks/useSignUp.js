@@ -16,8 +16,8 @@ const useSignUp = () => {
       const res = await AuthService.signUp(signUpData);
 
       const { status, data } = res;
-
-      if (data == "User Added Successful") {
+      console.log(data, "datany");
+      if (data.message == "User Added Successful") {
         // success(data);
         setIsLoading(false);
 
