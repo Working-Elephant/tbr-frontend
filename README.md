@@ -1,8 +1,10 @@
 # Texas Bully Registry
-This project is about 
+
+This project is about
 
 ## Test Url
-Open [http://texas-bully-registry.vercel.app](http://texas-bully-registry.vercel.app) to view it in your browser.
+
+Open [https://tbr-frontend.vercel.app/](https://tbr-frontend.vercel.app/) to view it in your browser.
 
 ## Available Scripts
 
@@ -23,4 +25,3 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
-
