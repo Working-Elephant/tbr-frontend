@@ -1,0 +1,9 @@
+.password {
+  position: absolute;
+  top: 10%;
+  right: 5%;
+}
+.password:hover {
+  color: #f9cb40;
+  cursor: pointer;
+}

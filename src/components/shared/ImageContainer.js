@@ -5,9 +5,10 @@ const ImageContainer = ({ image, rounded, width, height }) => {
     <img
       src={image}
       alt=""
-      className={`${width ? width : "w-full"}  ${height ? height : "h-full"}  ${
-        rounded ? rounded : ""
-      }`}
+      className={`${width ? width : "w-full"}  ${
+        height ? height : "h-[330px]"
+      }  ${rounded ? rounded : ""}`}
+      height={height}
     />
   );
 };

@@ -30,25 +30,13 @@ const SignUp = () => {
 
   // function to submit form
   const onSubmit = (data) => {
-    console.log(data);
     const submitData = {
       fullName: data.fullName,
       username: data.username,
       email: data.email,
       password: data.password,
     };
-
     signUp(submitData);
-    // dispatch(SignUpSlice(data))
-    //   .then((res) => {
-    //     if (res.payload.status >= 200 && res.payload.status <= 300) {
-    //       navigate(LoginUrl);
-    //     }
-    //     throw new Error("error submitting form");
-    //   })
-    //   .catch((err) => {
-    //     // return toast.error(err.message);
-    //   });
   };
   return (
     <div>
@@ -87,6 +75,10 @@ const SignUp = () => {
                 placeholder={"Username"}
                 {...register("username", {
                   required: { value: true, message: "This field is required" },
+                  minLength: {
+                    value: 8,
+                    message: "Username must be at least 8 Characters",
+                  },
                 })}
               />
               {errors.username && (
@@ -95,10 +87,15 @@ const SignUp = () => {
             </div>
             <div className=" mb-5 w-full">
               <Input
+                label="Password"
                 type="password"
                 placeholder={"Password"}
                 {...register("password", {
                   required: { value: true, message: "This field is required" },
+                  minLength: {
+                    value: 8,
+                    message: "Password must be at least 8 Characters",
+                  },
                 })}
               />
               {errors.password && (
@@ -113,6 +110,10 @@ const SignUp = () => {
                   required: { value: true, message: "This field is required" },
                   validate: (value) =>
                     value === password.current || "The passwords do not match",
+                  minLength: {
+                    value: 8,
+                    message: "Password must be at least 8 Characters",
+                  },
                 })}
               />
               {errors.confirmpassword && (

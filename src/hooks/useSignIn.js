@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthService from "../services/user";
 import { errorToast } from "../components/shared";
@@ -10,7 +10,7 @@ const useSignIn = () => {
   const dispatch = useDispatch();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [isAborted, setIsAborted] = useState(false);
+
   const [error, setError] = useState(null);
   const signIn = async (loginData) => {
     setIsLoading(true);
@@ -18,35 +18,22 @@ const useSignIn = () => {
 
     try {
       const res = await AuthService.login(loginData);
-      const { status, data } = res;
-
-      if (status === 200) {
+      const { data } = res;
+      if (data.error == false) {
         let userObj = { token: data[0], userId: data[1] };
         dispatch(login(userObj));
         setIsLoading(false);
         navigate("/dashboard");
-      }
-      setIsLoading(false);
-
-      if (!isAborted) {
+      } else {
+        errorToast(data.message);
         setIsLoading(false);
-        setError(null);
       }
     } catch (error) {
       setIsLoading(false);
-      errorToast(error.message);
-
-      if (!isAborted) {
-        console.log(error, "error");
-        setIsLoading(false);
-      }
+      console.log(error, "error");
+      errorToast("An Error Occured");
     }
   };
-  useEffect(() => {
-    return () => {
-      setIsAborted(true);
-    };
-  }, []);
 
   return { isLoading, error, signIn };
 };

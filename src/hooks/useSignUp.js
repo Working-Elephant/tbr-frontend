@@ -10,27 +10,61 @@ const useSignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [error, setError] = useState(null);
-
+  // {error: false,…}
+  // data
+  // :
+  // {id: 2, email: "timbetekanem@gmail.com", username: "admintimbet", fullName: "TIMBET EKANEM",…}
+  // createdAt
+  // :
+  // "12/15/2022 10:42:19"
+  // email
+  // :
+  // "timbetekanem@gmail.com"
+  // emailVerified
+  // :
+  // false
+  // emailVerifiedAt
+  // :
+  // null
+  // fullName
+  // :
+  // "TIMBET EKANEM"
+  // id
+  // :
+  // 2
+  // status
+  // :
+  // false
+  // username
+  // :
+  // "admintimbet"
+  // error
+  // :
+  // false
+  // message
+  // :
+  // "Your TexasBully account has been created successfully, kindly verify your account by following the link in the mail sent to you
   const signUp = async (signUpData) => {
     try {
       const res = await AuthService.signUp(signUpData);
 
-      const { status, data } = res;
-      console.log(data, "datany");
-      if (data.message == "User Added Successful") {
-        // success(data);
-        setIsLoading(false);
+      const { data } = res;
 
-        const { username, password } = signUpData;
-        const obj = { username, password };
-        signIn(obj);
+      if (data.error == "false") {
+        success(data.message);
+        setIsLoading(false);
+        navigate("/login");
+        // const { username, password } = signUpData;
+        // const obj = { username, password };
+        // signIn(obj);
       } else {
-        errorToast(data);
+        errorToast(data.message);
       }
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
-      errorToast(error);
+
+      errorToast(error.message ? error.message : error.error.message);
     }
   };
 

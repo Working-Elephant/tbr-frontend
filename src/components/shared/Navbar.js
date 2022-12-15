@@ -56,6 +56,9 @@ const Navbar = ({ home }) => {
           <li className="mx-3">
             <Link to="/about-us">About Us </Link>
           </li>
+          <li className="mx-3">
+            <Link to="/founders">Founders </Link>
+          </li>
         </ul>
         {/* Search */}
         {home ? null : (
@@ -155,6 +158,9 @@ const Navbar = ({ home }) => {
                   </li>
                   <li className="py-3">
                     <Link to="/about-us">About Us </Link>
+                  </li>
+                  <li className="py-3">
+                    <Link to="/founders">Founders </Link>
                   </li>
                   {isLoggedIn ? (
                     <li className="py-3">

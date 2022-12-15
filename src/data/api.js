@@ -11,6 +11,7 @@ import Trophy from "../assets/images/trophy.jpeg";
 import People from "../assets/images/peopleTalking.jpeg";
 import janeAvatar from "../assets/images/avatar1.jpeg";
 import User from "../assets/images/avatar2.jpeg";
+import Coin from "../assets/images/coin2.jpeg";
 // categories images
 import Pets from "../assets/images/pets.jpg";
 import Category1 from "../assets/images/category1.jpeg";
@@ -289,9 +290,9 @@ export const carouselImages = [
 export const categoriesData = [
   {
     id: 1,
-    img: Pets,
+    img: Coin,
     name: "Shop TBR",
-    link: "/categories/pets",
+    externalLink: "https://texasbullyregistrystore.threadless.com/",
   },
   {
     id: 2,

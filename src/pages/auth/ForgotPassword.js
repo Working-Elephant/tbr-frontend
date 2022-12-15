@@ -12,7 +12,6 @@ const ForgotPassword = () => {
 
   // function to submit form
   const onSubmit = (data) => {
-    console.log(data);
     // navigate("/dashboard");
   };
 
@@ -20,21 +19,19 @@ const ForgotPassword = () => {
     <div>
       <FormBody
         title="password assistance"
-        text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam"
+        text="Enter the email associated with your account and we'll send an email with instructions to reset your password"
       >
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="w-full lg:w-2/3 mx-auto flex flex-col uppercase">
             <div className=" mb-5 w-full">
-             <Input
+              <Input
                 type="email"
                 placeholder={"Email"}
                 {...register("email", {
                   required: { value: true, message: " Email is required" },
                 })}
               />
-              {errors.email && (
-                <ErrorMessage message={errors.email?.message}/>
-              )}
+              {errors.email && <ErrorMessage message={errors.email?.message} />}
             </div>
           </div>
           <div className="my-8 text-center" type="submit">

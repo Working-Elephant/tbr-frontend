@@ -18,7 +18,9 @@ const Login = () => {
   const onSubmit = (data) => {
     signIn(data);
   };
-
+  function isValidEmail(email) {
+    return /\S+@\S+\.\S+/.test(email);
+  }
   return (
     <div>
       <FormBody
@@ -28,35 +30,29 @@ const Login = () => {
       >
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="w-full lg:w-2/3 mx-auto flex flex-col uppercase text-center">
-            {/* <div className=" mb-5 w-full">
+            <div className=" mb-5 w-full">
               <Input
                 type="text"
                 placeholder={"Email"}
-                {...register("email", {
+                {...register("username", {
                   required: { value: true, message: "Email is required" },
                   validate: (value) =>
                     isValidEmail(value) || "Please enter a valid email address",
                 })}
               />
               {errors.email && <ErrorMessage message={errors.email?.message} />}
-            </div> */}
-            <div className=" mb-5 w-full">
-              <Input
-                type="text"
-                placeholder={"Username"}
-                {...register("username", {
-                  required: { value: true, message: "This field is required" },
-                })}
-              />
-              {errors.username && (
-                <ErrorMessage message={errors.username?.message} />
-              )}
             </div>
+
             <div className=" mb-5 w-full">
               <Input
+              type='password'
                 placeholder={"Password"}
                 {...register("password", {
                   required: { value: true, message: "Password is required" },
+                  minLength: {
+                    value: 8,
+                    message: "Username must be at least 8 Characters",
+                  },
                 })}
               />
               {errors.password && (

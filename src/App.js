@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Login from "./pages/auth/Login";
 import SignUp from "./pages/auth/SignUp";
 import ForgotPassword from "./pages/auth/ForgotPassword";
+import ResetPassword from "./pages/auth/ResetPassword";
 import Notfound from "./pages/NotFound";
 import Navbar from "./components/shared/Navbar";
 import Cart from "./pages/shop/Cart";
@@ -23,6 +24,7 @@ import Categories from "./pages/Categories";
 import Pets from "./pages/Pets";
 import Search from "./pages/Search";
 import AboutUs from "./pages/AboutUs";
+import Founders from "./pages/Founders";
 
 import { useMatch } from "react-router-dom";
 import { useLayoutEffect } from "react";
@@ -49,8 +51,10 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/about-us" element={<AboutUs />} />
-         
+          <Route path="/founders" element={<Founders />} />
+
           <Route path="/dashboard" element={<Navigate to="/dashboard/ads" />} />
           <Route
             path="/dashboard/ads"
