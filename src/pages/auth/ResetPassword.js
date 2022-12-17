@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import FormBody from "../../components/auth/FormBody";
 import { useForm } from "react-hook-form";
 import { Input, ErrorMessage } from "../../components/shared";
+import { useLocation } from "react-router-dom";
 
 const ResetPassword = () => {
   const {
@@ -10,9 +11,11 @@ const ResetPassword = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
+  const { token, email } = useLocation();
   // function to submit form
   const onSubmit = (data) => {
+    const obj = { ...data, token, email };
+    console.log(obj, "obj");
     // navigate("/dashboard");
   };
   const password = useRef({});

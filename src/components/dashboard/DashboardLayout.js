@@ -18,7 +18,7 @@ const DashboardLayout = ({ children }) => {
 
             <SellerInfo
               image={Avatar1}
-              name={user.userId.toUpperCase()}
+              name={user?.username?.toUpperCase()}
               rating={4.5}
               status="online"
               blackBtnText="Edit Profile"

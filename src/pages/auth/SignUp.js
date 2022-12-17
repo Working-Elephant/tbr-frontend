@@ -4,12 +4,6 @@ import { useForm } from "react-hook-form";
 import { Input, ErrorMessage, Loader } from "../../components/shared";
 // import { useNavigate } from "react-router-dom";
 import useSignUp from "../../hooks/useSignUp";
-// import { useDispatch } from "react-redux";
-// import { SignUpSlice } from "../../store/features/authSlice";
-// import { isResponseSuccess } from "../../utils";
-// import { isValidEmail } from "../../utils";
-// import { login as LoginUrl } from "../../config/internalUrl";
-
 const SignUp = () => {
   // const navigate = useNavigate();
   const { signUp, isLoading } = useSignUp();
@@ -32,7 +26,7 @@ const SignUp = () => {
   const onSubmit = (data) => {
     const submitData = {
       fullName: data.fullName,
-      username: data.username,
+
       email: data.email,
       password: data.password,
     };
@@ -69,22 +63,7 @@ const SignUp = () => {
               />
               {errors.email && <ErrorMessage message={errors.email?.message} />}
             </div>
-            <div className=" mb-5 w-full">
-              <Input
-                type="text"
-                placeholder={"Username"}
-                {...register("username", {
-                  required: { value: true, message: "This field is required" },
-                  minLength: {
-                    value: 8,
-                    message: "Username must be at least 8 Characters",
-                  },
-                })}
-              />
-              {errors.username && (
-                <ErrorMessage message={errors.username?.message} />
-              )}
-            </div>
+
             <div className=" mb-5 w-full">
               <Input
                 label="Password"

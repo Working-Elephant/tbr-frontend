@@ -1,41 +1,37 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthService from "../services/user";
-import { errorToast } from "../components/shared";
-import { useDispatch } from "react-redux";
-import { login } from "../store/features/authSlice";
+import { errorToast, success } from "../components/shared";
 
-const useSignIn = () => {
+const useForgotPassword = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
   const [isLoading, setIsLoading] = useState(false);
-
   const [error, setError] = useState(null);
-  const signIn = async (loginData) => {
+  const forgotPassword = async (Data) => {
     setIsLoading(true);
     setError(null);
 
     try {
-      const res = await AuthService.login(loginData);
-      const { data } = res;
+      const res = await AuthService.forgotPassword(Data);
+      const data = res;
+      console.log(data, "data");
       if (data.error === false) {
-        let userObj = { token: data.message, user: data.data };
-        dispatch(login(userObj));
+        success(data.message);
         setIsLoading(false);
-        navigate("/dashboard");
+        reset();
       } else {
         errorToast(data.message);
         setIsLoading(false);
       }
     } catch (error) {
       setIsLoading(false);
-      console.log(error, "error");
       errorToast("An Error Occured");
     }
   };
 
-  return { isLoading, error, signIn };
+  const reset = () => true;
+
+  return { isLoading, error, forgotPassword, reset };
 };
 
-export default useSignIn;
+export default useForgotPassword;

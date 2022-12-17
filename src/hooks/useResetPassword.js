@@ -2,28 +2,20 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthService from "../services/user";
 import { errorToast } from "../components/shared";
-import { useDispatch } from "react-redux";
-import { login } from "../store/features/authSlice";
 
-const useSignIn = () => {
+const useResetPassword = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
   const [isLoading, setIsLoading] = useState(false);
-
   const [error, setError] = useState(null);
-  const signIn = async (loginData) => {
+  const forgotPassword = async (Data) => {
     setIsLoading(true);
     setError(null);
 
     try {
-      const res = await AuthService.login(loginData);
+      const res = await AuthService.forgotPassword(Data);
       const { data } = res;
       if (data.error === false) {
-        let userObj = { token: data.message, user: data.data };
-        dispatch(login(userObj));
-        setIsLoading(false);
-        navigate("/dashboard");
+        console.log(data);
       } else {
         errorToast(data.message);
         setIsLoading(false);
@@ -35,7 +27,7 @@ const useSignIn = () => {
     }
   };
 
-  return { isLoading, error, signIn };
+  return { isLoading, error, forgotPassword };
 };
 
-export default useSignIn;
+export default useResetPassword;

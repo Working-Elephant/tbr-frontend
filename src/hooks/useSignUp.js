@@ -5,7 +5,6 @@ import { errorToast, success } from "../components/shared";
 import useSignIn from "./useSignIn";
 const useSignUp = () => {
   const navigate = useNavigate();
-  const { signIn } = useSignIn();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -50,13 +49,10 @@ const useSignUp = () => {
 
       const { data } = res;
 
-      if (data.error == "false") {
+      if (data.error === false) {
         success(data.message);
         setIsLoading(false);
         navigate("/login");
-        // const { username, password } = signUpData;
-        // const obj = { username, password };
-        // signIn(obj);
       } else {
         errorToast(data.message);
       }
