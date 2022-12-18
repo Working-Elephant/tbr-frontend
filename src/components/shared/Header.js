@@ -22,6 +22,7 @@ const Header = () => {
         className="w-full h-full  bg-no-repeat bg-cover bg-center  text-center py-3 flex flex-col justify-end"
         style={{
           backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('${HeaderImage}')`,
+          backgroundPosition: "right",
         }}
       >
         <div className=" mt-5">
