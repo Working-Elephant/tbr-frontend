@@ -14,7 +14,8 @@ import Sponsor1 from "../assets/images/sponsor1.png";
 import Sponsor2 from "../assets/images/sponsor2.png";
 import Sponsor3 from "../assets/images/sponsor3.png";
 import Sponsor4 from "../assets/images/sponsor4.png";
-import Logo from "../assets/images/logo.png";
+import dreams from "../assets/images/dreams.jpg";
+import tides from "../assets/images/tide.png";
 import Coin from "../assets/images/coin.png";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -102,7 +103,7 @@ const Home = () => {
       {/* sponsors */}
       <div className="w-full bg-[#fff]  text-center px-5 mt-6">
         <span className="text-textMuted text-lg">Sponsors</span>
-        <div className="grid grid-cols-5 md:grid-cols-5 mx-auto lg:w-4/6 items-center gap-[2.75rem]">
+        <div className="grid grid-cols-7 md:grid-cols-7 mx-auto lg:w-4/6 items-center gap-[2.75rem]">
           <div className="col-span-1">
             <img src={Sponsor4} alt="sponsor" className="" />
           </div>
@@ -118,6 +119,12 @@ const Home = () => {
 
           <div className="col-span-1">
             <img src={Coin} alt="sponsor" className="" />
+          </div>
+          <div className="col-span-1">
+            <img src={tides} alt="sponsor" className="" />
+          </div>
+          <div className="col-span-1">
+            <img src={dreams} alt="sponsor" className="" />
           </div>
         </div>
       </div>

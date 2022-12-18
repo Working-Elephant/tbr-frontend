@@ -11,7 +11,10 @@ const ResetPassword = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { token, email } = useLocation();
+  const search = useLocation().search;
+  const token = new URLSearchParams(search).get("token");
+  const email = new URLSearchParams(search).get("email");
+  console.log(token, email, "wandy");
   // function to submit form
   const onSubmit = (data) => {
     const obj = { ...data, token, email };
