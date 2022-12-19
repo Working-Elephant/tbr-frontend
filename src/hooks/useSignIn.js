@@ -21,7 +21,9 @@ const useSignIn = () => {
       const { data } = res;
       if (data.error === false) {
         let userObj = { token: data.message, user: data.data };
+        console.log(userObj, "obj");
         dispatch(login(userObj));
+        localStorage.setItem("user", JSON.stringify(userObj));
         setIsLoading(false);
         navigate("/dashboard");
       } else {

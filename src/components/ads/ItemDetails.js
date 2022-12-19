@@ -13,7 +13,7 @@ import DatePicker from "react-datepicker";
 import { PatternFormat } from "react-number-format";
 
 const ItemDetails = () => {
-  const { updateStep2, pet, isLoading } = useContext(AdContext);
+  const { updateStep2, pet, isLoading, prevStep } = useContext(AdContext);
   const {
     register,
     handleSubmit,
@@ -26,7 +26,6 @@ const ItemDetails = () => {
 
   // function to submit form
   const onSubmit = (data) => {
-    console.log(data);
     updateStep2(data);
     // nextStep();
   };
@@ -142,7 +141,7 @@ const ItemDetails = () => {
                 <Input
                   border="border-0"
                   placeholder={"Price"}
-                  {...register("price", {
+                  {...register("Amount", {
                     required: {
                       value: true,
                       message: "This field is required",
@@ -155,7 +154,7 @@ const ItemDetails = () => {
             <div>
               <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
                 <Controller
-                  name="telephone"
+                  name="Telephone"
                   control={control}
                   rules={{
                     required: {
@@ -186,7 +185,7 @@ const ItemDetails = () => {
               <Input
                 border="border-0"
                 placeholder={"Address"}
-                {...register("address", {
+                {...register("Address", {
                   required: {
                     value: true,
                     message: "This field is required",
@@ -252,7 +251,7 @@ const ItemDetails = () => {
               <textarea
                 className="border-0 w-full text-sm py-2 p-3 resize-none focus:outline-none  placeholder:text-sm placeholder:text-dark"
                 placeholder={"Description"}
-                {...register("description", {
+                {...register("Description", {
                   required: {
                     value: true,
                     message: "This field is required",
@@ -265,7 +264,13 @@ const ItemDetails = () => {
             )}
           </div>
 
-          <div className="text-center my-5">
+          <div className="text-center my-5 flex justify-evenly">
+            <button
+              className="bg-yellow py-4 px-15 rounded font-semibold text-sm "
+              onClick={prevStep}
+            >
+              BACK
+            </button>
             <button
               className="bg-yellow py-4 px-15 rounded font-semibold text-sm "
               type="submit"

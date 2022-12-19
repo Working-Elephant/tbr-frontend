@@ -1,34 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Step1, Step2, Step3, Progress } from "../../components/ads/Index";
 import { createContext } from "react";
 import { useSelector } from "react-redux";
 import useFetchAds from "../../hooks/useFetchAds";
-import isResponseSuccess from "../../utils/successResponse";
 
 export const AdContext = createContext();
 
 const PostAd = () => {
   // const dispatch = useDispatch();
   const { userId } = useSelector((state) => state.auth.user);
-  const [adData, setadData] = useState({
-    postAddId: 0,
-    categoryId: 0,
-    breedId: 0,
-    pictureUrl: "",
-    // address: "",
-    city: "",
-    state: "",
-    zip: "",
-    // telephone: "",
-    signUpId: 0,
-  });
+  const [adData, setadData] = useState({});
   const [step, setStep] = useState(1);
   const [pet, setPet] = useState(false);
-  const { isLoading, postAd } = useFetchAds();
+  const { isLoading, postAd, getCategories } = useFetchAds();
+
+  useEffect(() => {
+    getCategories();
+  }, []);
 
   const checkCategory = (e) => {
-    console.log("ran");
-    console.log(e.target.value);
     if (e.target.value === "1") {
       setPet(true);
     } else {
@@ -38,27 +28,31 @@ const PostAd = () => {
   const updateStep1 = (data) => {
     setadData((adData) => ({
       ...adData,
-      categoryId: data.category,
-      // color: data.color,
-      // breedId: data.breed,
-      pictureUrl: data.pictureUrl,
-      city: data.city,
-      state: data.state,
-      zip: data.zip,
+      CategoryId: data.CategoryId,
+      images: data.images,
+      City: data.City,
+      State: data.State,
+      Zip: data.Zip,
+      Title: data.Title,
     }));
     nextStep();
   };
   const updateStep2 = async (data) => {
-    const formData = { ...adData, ...data };
-    formData.price = Number(formData.price);
-    formData.categoryId = Number(formData.categoryId);
-    // formData.breedId = Number(formData.breedId);
-    console.log(formData, "form");
-
-    const status = await postAd(formData);
-    if (isResponseSuccess(status)) {
-      nextStep();
-    }
+    const obj = { ...adData, ...data };
+    // formData.Amount = Number(formData.Amount);
+    // formData.CategoryId = Number(formData.CategoryId);
+    const formdata = new FormData();
+    formdata.append("CategoryId", obj.CategoryId);
+    formdata.append("images", obj.images);
+    formdata.append("City", obj.City);
+    formdata.append("State", obj.State);
+    formdata.append("Zip", obj.Zip);
+    formdata.append("Title", obj.Title);
+    formdata.append("Address", obj.Address);
+    formdata.append("Amount", obj.Amount);
+    formdata.append("Description", obj.Description);
+    formdata.append("Telephone", obj.Telephone);
+    const status = await postAd(formdata);
   };
   const nextStep = () => {
     if (step >= 3) {
@@ -82,7 +76,7 @@ const PostAd = () => {
           step,
           adData,
           pet,
-          isLoading,
+          // isLoading,
           checkCategory,
           nextStep,
           prevStep,

@@ -1,104 +1,110 @@
 import React, { useContext, useState, useEffect } from "react";
 import { AdContext } from "../../pages/ads/PostAd";
-import { FaPlus } from "react-icons/fa";
-import { SelectInput, ErrorMessage, Loader } from "../shared";
+import { FaPlus, FaTimes } from "react-icons/fa";
+import { SelectInput, ErrorMessage, Loader, Input } from "../shared";
 import { selectCategories, breed } from "../../data";
 import { useForm } from "react-hook-form";
 import useFetchBullies from "../../hooks/useFectchBullies";
-
 const AboutItem = () => {
-  const [images, setImages] = useState("");
+  const [fileLimit, setFileLimit] = useState();
   const { isLoading, bullies, getRegisteredBullies } = useFetchBullies();
-  // const [pet, setPet] = useState(false);
-  const { updateStep1, pet, checkCategory } = useContext(AdContext);
+  const [uploadedFiles, setUploadedFiles] = useState([]);
+  const { updateStep1, pet, checkCategory, prevStep } = useContext(AdContext);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
+  const MAX_COUNT = 3;
   // function to submit form
   const onSubmit = (data) => {
     let submitData = {
       ...data,
-      pictureUrl: images,
+      images: uploadedFiles,
     };
-    console.log(submitData);
+
     updateStep1(submitData);
-    // nextStep();
   };
-  const productImageRegister = register("pictureUrl", {
+  const productImageRegister = register("images", {
     required: {
       value: true,
       message: " This field is required",
     },
   });
-  const getBase64 = (file) => {
-    return new Promise((resolve) => {
-      //   let fileInfo;
-      let baseURL = "";
-      // Make new FileReader
-      let reader = new FileReader();
 
-      // Convert the file to base64 text
-      reader.readAsDataURL(file);
+  const fields = [
+    { name: "City", value: "city" },
+    { name: "State", value: "state" },
+    { name: "Zip", value: "zip" },
+  ];
+  const handleUploadFiles = (files) => {
+    const uploaded = [...uploadedFiles];
+    let limitExceeded = false;
+    files.some((file) => {
+      if (uploaded.findIndex((f) => f.name === file.name) === -1) {
+        uploaded.push(file);
 
-      // on reader load somthing...
-      reader.onload = () => {
-        // Make a fileInfo Object
-        console.log("Called", reader);
-        baseURL = reader.result;
-        console.log(baseURL);
-        resolve(baseURL);
-      };
-      //   console.log(fileInfo);
+        if (uploaded.length === MAX_COUNT) setFileLimit(true);
+        if (uploaded.length > MAX_COUNT) {
+          alert(`You can only add a maximum of ${MAX_COUNT} files`);
+          setFileLimit(false);
+          limitExceeded = true;
+          return true;
+        }
+      }
     });
+    if (!limitExceeded) setUploadedFiles(uploaded);
   };
-  const handleImageUpload = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      let uploadedimage = e.target.files[0];
-      // formDataImage.append("file", uploadedimage);
-      getBase64(uploadedimage)
-        .then((result) => {
-          uploadedimage["base64"] = result;
-          setImages(uploadedimage.base64);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+  const handleFileEvent = (e) => {
+    const chosenFiles = Array.prototype.slice.call(e.target.files);
+    handleUploadFiles(chosenFiles);
+  };
+  const previewImage = (file) => {
+    const objectUrl = URL.createObjectURL(file);
+    return objectUrl;
+  };
+
+  const deleteImage = (image) => {
+    const filteredList = uploadedFiles.filter((file) => file != image);
+    setUploadedFiles(filteredList);
+    if (uploadedFiles.length < MAX_COUNT) {
+      setFileLimit(false);
     } else {
-      return;
+      setFileLimit(true);
     }
   };
-  useEffect(() => {
-    getRegisteredBullies();
-  }, []);
-
-  // const checkCategory = (e) => {
-  //   console.log("ran")
-  //   console.log(e.target.value)
-  //   if (e.target.value === "1") {
-  //     setPet(true);
-  //   } else{
-  //     setPet(false)
-  //   }
-  // };
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="md:w-4/6 mx-auto py-3">
           <div className="  flex  items-center my-2">
-            <p className="text-sm">Enter Item Category and Location</p>
+            <p className="text-sm">Enter Item Name,Category and Location</p>
           </div>
           <div className="grid grid-cols-2 gap-5 lg:gap-8 my-3">
-            <div className={`${pet ? "col-span-1" : "col-span-2"}`}>
-              <div className="w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+            <div className="col-span-2">
+              <div className="w-full bg-[#FEFCFC] px-3   h-fit">
+                <Input
+                  {...register("Title", {
+                    required: {
+                      value: true,
+                      message: " This field is required",
+                    },
+                  })}
+                  placeholder={"Name"}
+                />
+              </div>
+              {errors.item?.value && (
+                <ErrorMessage message={errors.item?.message} />
+              )}
+            </div>
+            <div className={"col-span-2"}>
+              <div className="w-full bg-[#FEFCFC] px-3   h-fit">
                 <SelectInput
                   border="border-0"
                   options={selectCategories}
                   defaultOption="Category"
                   additionalFunc={checkCategory}
-                  {...register("category", {
+                  {...register("CategoryId", {
                     required: {
                       value: true,
                       message: " This field is required",
@@ -110,114 +116,26 @@ const AboutItem = () => {
                 <ErrorMessage message={errors.category?.message} />
               )}
             </div>
-            {pet && (
-              <div>
-                {isLoading ? <Loader/> : (
-                <div className="w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-                  <select
-                    className="border-0 w-full py-2 px-3 text-sm focus:outline-none placeholder:text-sm placeholder:text-dark"
-                    {...register("breed", {
-                      required: {
-                        value: true,
-                        message: " This field is required",
-                      },
-                    })}
-                  >
-                    <option>Breed</option>
-                    {bullies.map((item, i) => (
-                      <option key={i} value={item.registerBullyId}>
-                        {item.dogsRegisteredName}
-                      </option>
-                    ))}
-                  </select>
-                  {/* <SelectInput
-                    border="border-0"
-                    options={bullies}
-                    defaultOption="Breed"
-                    {...register("breed", {
-                      required: {
-                        value: true,
-                        message: " This field is required",
-                      },
-                    })}
-                  /> */}
-                </div>
-                // {errors.breed && (
-                //   <ErrorMessage message={errors.breed?.message} />
-                // )}
-                )}
-              </div>
-            )}
-            {/* <div>
-                <div className="w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-                  <SelectInput
-                    border="border-0"
-                    options={breed}
-                    defaultOption="Color"
-                    {...register("color", {
-                      required: {
-                        value: true,
-                        message: " This field is required",
-                      },
-                    })}
-                  />
-                </div>
-                {errors.color && (
-                  <ErrorMessage message={errors.color?.message} />
-                )}
-              </div> */}
 
             <div className="col-span-2 flex items-center justify-between">
-              <div className="grow">
-                <div className="w-full bg-[#FEFCFC] px-3 rounded-l-lg border border-borderGrey border-r-0 h-fit">
-                  <SelectInput
-                    border="border-0"
-                    options={breed}
-                    defaultOption="City"
-                    {...register("city", {
-                      required: {
-                        value: true,
-                        message: " This field is required",
-                      },
-                    })}
-                  />
+              {fields.map((item) => (
+                <div className="grow">
+                  <div className="w-full bg-[#FEFCFC] px-3 rounded-l-lg border-r-0 h-fit">
+                    <Input
+                      {...register(item.name, {
+                        required: {
+                          value: true,
+                          message: " This field is required",
+                        },
+                      })}
+                      placeholder={item.name}
+                    />
+                  </div>
+                  {errors.item?.value && (
+                    <ErrorMessage message={errors.item?.message} />
+                  )}
                 </div>
-                {errors.city && <ErrorMessage message={errors.city?.message} />}
-              </div>
-              <div className="grow">
-                <div className="w-full bg-[#FEFCFC] px-3  border-y border-y-borderGrey h-fit">
-                  <SelectInput
-                    border="border-0"
-                    options={breed}
-                    defaultOption="State"
-                    {...register("state", {
-                      required: {
-                        value: true,
-                        message: " This field is required",
-                      },
-                    })}
-                  />
-                </div>
-                {errors.state && (
-                  <ErrorMessage message={errors.state?.message} />
-                )}
-              </div>
-              <div className="grow">
-                <div className="w-full bg-[#FEFCFC] px-3 rounded-r-lg border border-borderGrey border-l-0 h-fit">
-                  <SelectInput
-                    border="border-0"
-                    options={breed}
-                    defaultOption="Zip"
-                    {...register("zip", {
-                      required: {
-                        value: true,
-                        message: " This field is required",
-                      },
-                    })}
-                  />
-                </div>
-                {errors.zip && <ErrorMessage message={errors.zip?.message} />}
-              </div>
+              ))}
             </div>
           </div>
         </div>
@@ -235,19 +153,36 @@ const AboutItem = () => {
                 id="AdImageInput"
                 className="hidden "
                 type="file"
+                multiple
                 accept="image/png, image/jpg, image/jpeg"
                 {...productImageRegister}
-                onChange={(e) => {
-                  productImageRegister.onChange(e);
-                  handleImageUpload(e);
-                }}
+                onChange={handleFileEvent}
+                disabled={fileLimit}
               />
             </label>
-            {images ? (
-              <div className=" mx-3 h-20 w-22 bg-success">
-                <img src={images} alt="" className="w-full h-full" />
-              </div>
-            ) : null}
+
+            {uploadedFiles &&
+              uploadedFiles.map((file, index) => (
+                <div className=" mx-3 h-20 w-22 ">
+                  {/* <img
+                    src={previewImage(file)}
+                    alt=""
+                    className="w-full h-full"
+                  /> */}
+                  <div
+                    className="flex justify-center cursor-pointer"
+                    onClick={() => deleteImage(file)}
+                  >
+                    <FaTimes />
+                  </div>
+                  <img
+                    key={index}
+                    src={previewImage(file)}
+                    alt=""
+                    className="w-full h-full"
+                  />
+                </div>
+              ))}
           </div>
           {errors.pictureUrl && (
             <ErrorMessage message={errors.pictureUrl?.message} />

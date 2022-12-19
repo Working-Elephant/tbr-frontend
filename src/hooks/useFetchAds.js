@@ -6,19 +6,19 @@ import isResponseSuccess from "../utils/successResponse";
 const useFetchAds = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [ads, setAds] = useState([]);
 
   const getAds = async () => {
     setIsLoading(true);
     setError(null);
 
     try {
-      const { status, } = await AdService.getAds();
-      if (isResponseSuccess(status)) {
-        // success(data)
+      const data = await AdService.getAds();
+
+      if (data.error === false) {
+        setAds(data.data.items);
         setIsLoading(false);
-        return status;
       }
-      throw new Error("Unable to fetch ads");
     } catch (error) {
       setIsLoading(false);
       setError(error);
@@ -30,14 +30,8 @@ const useFetchAds = () => {
     setError(null);
 
     try {
-      const { status,  } = await AdService.postAd(ad);
-      if (isResponseSuccess(status)) {
-        // success(data);
-        setIsLoading(false);
-        return status;
-      }
-      warning("unable to post ad")
-      throw new Error("Unable to fetch ads");
+      const data = await AdService.postAd(ad);
+      console.log(data, "data");
     } catch (error) {
       setIsLoading(false);
       setError(error);
@@ -45,7 +39,24 @@ const useFetchAds = () => {
     }
   };
 
-  return { getAds, postAd, isLoading, error };
+  const getCategories = async () => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const data = await AdService.getCategories();
+
+      if (data.error === false) {
+        setIsLoading(false);
+      }
+    } catch (error) {
+      setIsLoading(false);
+      setError(error);
+      errorToast(error.message);
+    }
+  };
+
+  return { getAds, postAd, isLoading, error, ads, getCategories };
 };
 
 export default useFetchAds;

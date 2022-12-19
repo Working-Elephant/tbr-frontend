@@ -6,7 +6,7 @@ import { Loader, PetCard } from "../shared";
 import useFetchAds from "../../hooks/useFetchAds";
 
 const AdsComponent = () => {
-  const { isLoading, getAds } = useFetchAds();
+  const { isLoading, getAds, ads } = useFetchAds();
 
   useEffect(() => {
     getAds();
@@ -15,7 +15,7 @@ const AdsComponent = () => {
   return (
     <>
       <div className="flex items-center justify-between mb-3 px-5">
-        <h6>Your Ads({adsData.length})</h6>
+        <h6>Your Ads({ads?.length})</h6>
         <Link to="/ad/post-ad">
           {" "}
           <div className="p-3 bg-black text-white text-sm rounded-md flex items-center">
@@ -34,8 +34,8 @@ const AdsComponent = () => {
               <Loader size={60} />
             </div>
           </div>
-        ) : adsData && adsData.length > 0 ? (
-          adsData.map((item, i) => {
+        ) : ads && ads.length > 0 ? (
+          ads?.map((item, i) => {
             return <PetCard key={i} item={item} />;
           })
         ) : (

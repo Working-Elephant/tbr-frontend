@@ -18,9 +18,6 @@ const AuthService = {
       .post(`${baseUrl}/Login/authenticate`, data)
       .then((res) => {
         if (isResponseSuccess(res.status)) {
-          let userObj = { token: res.data[0], userId: res.data[1] };
-          localStorage.setItem("user", JSON.stringify(userObj));
-          console.log(res, "res");
           return res;
         }
         return res;
