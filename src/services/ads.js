@@ -7,6 +7,11 @@ const AdService = {
       return res.data;
     });
   },
+  getSingleAd: async (id) => {
+    return axios.get(`${baseUrl}/PostAd/view/${id}`).then((res) => {
+      return res.data;
+    });
+  },
   postAd: async (post) => {
     return await axios.post(`${baseUrl}/PostAd/add`, post).then((res) => {
       return res;

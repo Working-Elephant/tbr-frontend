@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import useFetchBullies from "../../hooks/useFectchBullies";
 const AboutItem = () => {
   const [fileLimit, setFileLimit] = useState();
-  const { isLoading, bullies, getRegisteredBullies } = useFetchBullies();
+  //const { isLoading, bullies, getRegisteredBullies } = useFetchBullies();
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const { updateStep1, pet, checkCategory, prevStep } = useContext(AdContext);
   const {
@@ -20,7 +20,7 @@ const AboutItem = () => {
   const onSubmit = (data) => {
     let submitData = {
       ...data,
-      images: uploadedFiles,
+      images: [...uploadedFiles],
     };
 
     updateStep1(submitData);

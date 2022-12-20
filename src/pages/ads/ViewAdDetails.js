@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ImageModal } from "../../components/shared";
 import SellerInfo from "../../components/ads/SellerInfo";
@@ -6,6 +6,7 @@ import SimilarProducts from "../../components/ads/SimilarProducts";
 import RecentlyViewed from "../../components/ads/RecentlyViewed";
 import SellerAvatar1 from "../../assets/images/avatar1.jpeg";
 // import { carouselImages } from "../../mockData/mockData";
+import useFetchAds from "../../hooks/useFetchAds";
 import {
   BsChatText,
   BsPlus,
@@ -15,16 +16,27 @@ import {
 import { FaCamera, FaBorderAll, FaArrowLeft } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "../../store/features/productSlice";
+import AuthService from "../../services/user";
 
 const ViewAdDetails = () => {
   const { id } = useParams();
+  const { getSingleAd, singleAds } = useFetchAds();
+  const { getUser } = AuthService;
+  const { user } = getUser();
+  const userID = user.id;
+  console.log(user, "user");
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
   const selectedProduct = products.find((product) => product.id === Number(id));
   const thumbnailsContainer = useRef(null);
   const [ImageInView, setImageInView] = useState(1);
   const navigate = useNavigate();
-
+  useEffect(() => {
+    if (!singleAds.length) {
+      getSingleAd(id);
+    }
+  }, [id]);
+  console.log(singleAds, "single");
   const sideScroll = (element, speed, distance, step) => {
     let scrollAmount = 0;
     const slideTimer = setInterval(() => {
@@ -56,7 +68,7 @@ const ViewAdDetails = () => {
   };
 
   return (
-    selectedProduct && (
+    singleAds && (
       <div className="p-5  lg:py-10 lg:px-12">
         <div className="px-6 mb-4">
           {/* <BreadCrumb crumbs={crumbs} /> */}
@@ -83,7 +95,7 @@ const ViewAdDetails = () => {
                         <FaCamera />
                       </i>
                       <span className="">
-                        {selectedProduct?.images?.length ?? 1}
+                        {singleAds?.postAdImages?.length ?? 1}
                       </span>
                     </div>
                   </div>
@@ -162,46 +174,46 @@ const ViewAdDetails = () => {
                 ) : null}
               </div>
               <div className=" px-2 text-xs">
-                <p className="">{selectedProduct?.name}</p>
+                <p className="">{singleAds?.title}</p>
                 <p className="my-3 pb-2 text-base font-semibold border-b border-b-borderGrey">
-                  &#163;{selectedProduct?.price}
+                  &#163;{singleAds?.amount}
                 </p>
                 <p className="uppercase ">Description</p>
                 <p className="border-b border-b-borderGrey py-2">
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                  aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                  justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                  sea takimata sanctus est Lorem ipsum dolor sit amet.
+                  {singleAds?.description}
                 </p>
-                <div className="border-b border-b-borderGrey">
-                  <div className="flex items-center justify-between text-xs py-2">
-                    <span className="uppercase">BULLY AGE</span>
-                    <i>
-                      <BsPlus />
-                    </i>
-                  </div>
-                </div>
-                <div className="border-b border-b-borderGrey">
-                  <div className="flex items-center justify-between text-xs py-2">
-                    <span className="uppercase">DETAILS & CARE</span>
-                    <i>
-                      <BsPlus />
-                    </i>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-4 py-3">
-                  <div>
-                    <button className="w-full rounded-md py-2 border border-blue text-blue whitespace-nowrap">
-                      View Bully Certificate
-                    </button>
-                  </div>
-                  <div>
-                    <button className="w-full rounded-md py-2 border border-blue text-blue">
-                      View Pedigree Chart
-                    </button>
-                  </div>
-                </div>
+                {singleAds?.bully && (
+                  <>
+                    <div className="border-b border-b-borderGrey">
+                      <div className="flex items-center justify-between text-xs py-2">
+                        <span className="uppercase">BULLY AGE</span>
+                        <i>
+                          <BsPlus />
+                        </i>
+                      </div>
+                    </div>
+                    <div className="border-b border-b-borderGrey">
+                      <div className="flex items-center justify-between text-xs py-2">
+                        <span className="uppercase">DETAILS & CARE</span>
+                        <i>
+                          <BsPlus />
+                        </i>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4 py-3">
+                      <div>
+                        <button className="w-full rounded-md py-2 border border-blue text-blue whitespace-nowrap">
+                          View Bully Certificate
+                        </button>
+                      </div>
+                      <div>
+                        <button className="w-full rounded-md py-2 border border-blue text-blue">
+                          View Pedigree Chart
+                        </button>
+                      </div>
+                    </div>
+                  </>
+                )}
                 <div className="border-b border-b-borderGrey">
                   <div className="flex items-center justify-between text-xs py-2">
                     <span className="uppercase">DELIVERY & RETURNS</span>
@@ -235,17 +247,19 @@ const ViewAdDetails = () => {
               </div>
             </div>
           </div>
-          <div className="col-span-12 md:col-span-6    xl:col-span-3 ">
-            <SellerInfo
-              image={SellerAvatar1}
-              name="Max Bill"
-              rating={4.5}
-              status="online"
-              blackBtnIcon={<BsChatText />}
-              blackBtnText="Message Seller"
-              whiteBtnText="View Merchant Profile"
-            />
-          </div>
+          {userID !== singleAds.id ? (
+            <div className="col-span-12 md:col-span-6    xl:col-span-3 ">
+              <SellerInfo
+                image={SellerAvatar1}
+                name="Max Bill"
+                rating={4.5}
+                status="online"
+                blackBtnIcon={<BsChatText />}
+                blackBtnText="Message Seller"
+                whiteBtnText="View Merchant Profile"
+              />
+            </div>
+          ) : null}
         </div>
         <div className=" my-6">
           <SimilarProducts />

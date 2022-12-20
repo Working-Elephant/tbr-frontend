@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { BullyRegistrationContext } from "./BullyRegistration";
-import { GoPlus } from "react-icons/go";
+import { GoPlus, GoDash } from "react-icons/go";
 import { useForm, Controller } from "react-hook-form";
 import { Input, ErrorMessage, SelectInput } from "../../components/shared";
 import { sex, breed } from "../../data";
@@ -8,9 +8,8 @@ import DatePicker from "react-datepicker";
 import { PatternFormat } from "react-number-format";
 
 const BullyDetails = () => {
-  const {  updateStep2 } = useContext(
-    BullyRegistrationContext
-  );
+  const { updateStep2, prevStep } = useContext(BullyRegistrationContext);
+  const [PedigreeArray, setPedigreeArray] = useState([{}]);
   const {
     register,
     handleSubmit,
@@ -22,7 +21,18 @@ const BullyDetails = () => {
 
   // function to submit form
   const onSubmit = (data) => {
-    updateStep2(data)
+    console.log(data, "submit data");
+    //updateStep2(data);
+  };
+  const addPedigree = () => {
+    let newfield = {};
+    if (PedigreeArray.length === 3) return;
+    setPedigreeArray([...PedigreeArray, newfield]);
+  };
+  const removePedigree = (key) => {
+    if (PedigreeArray.length === 1) return;
+    const filteredList = PedigreeArray.filter((item, index) => index !== key);
+    setPedigreeArray(filteredList);
   };
   return (
     <div>
@@ -198,155 +208,234 @@ const BullyDetails = () => {
             </div>
           </div>
           <div>
-          <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-                <Controller
-                  name="telephone"
-                  control={control}
-                  rules={{
-                    required: {
-                      value: true,
-                      message: "This field is required",
-                    },
-                  }}
-                  render={({ field: { onChange, onBlur, value } }) => (
-                    <PatternFormat
-                      format="(###)###-####"
-                      onChange={onChange}
-                      value={value}
-                      // allowEmptyFormatting
-                      // mask=""
-                      className="w-full py-2 px-3 focus:outline-none placeholder:text-dark text-sm"
-                      placeholder="Telephone"
-                    />
-                  )}
-                />
-              </div>
+            <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+              <Controller
+                name="telephone"
+                control={control}
+                rules={{
+                  required: {
+                    value: true,
+                    message: "This field is required",
+                  },
+                }}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <PatternFormat
+                    format="(###)###-####"
+                    onChange={onChange}
+                    value={value}
+                    // allowEmptyFormatting
+                    // mask=""
+                    className="w-full py-2 px-3 focus:outline-none placeholder:text-dark text-sm"
+                    placeholder="Telephone"
+                  />
+                )}
+              />
+            </div>
             {errors.telephone && (
               <ErrorMessage message={errors.telephone?.message} />
             )}
           </div>
-         
-          <div className="bg-[#ECECEC63] p-5">
-            <div className="flex items-center justify-between text-dark">
-              <h5 className="text-sm">Add Pedigree Information</h5>
-              <i className="text-md bg-yellow p-[2px] rounded-full">
-                <GoPlus />
-              </i>
-            </div>
-            <p className="text-blue text-sm my-3">Sire</p>
-            <div>
-              <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-                <Input
-                  border="border-0"
-                  placeholder={"Sire's Registered Name"}
-                  {...register("maleParentName", { required: true })}
-                />
-              </div>
-              {errors.maleParentName && (
-                <ErrorMessage message={errors.maleParentName?.message} />
-              )}
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 md: gap-4">
-              <div>
-                <div className="bg-[#FEFCFC] px-3 py-2 rounded-lg border border-borderGrey w-full h-fit tex-sm">
-                  <Controller
-                    name="maleParentDob"
-                    control={control}
-                    rules={{ required: true }}
-                    render={({ field: { onChange, onBlur, value } }) => (
-                      <DatePicker
-                        dateFormat="dd-MM-yyyy"
-                        placeholderText="Date of Birth"
-                        selected={value}
-                        onChange={onChange}
-                        closeOnScroll={false}
-                        // showMonthDropdown
-                        showYearDropdown
-                        dropdownMode="select"
-                        className="border-0 focus:outline-none placeholder:text-dark text-sm px-3 w-full"
-                        maxDate={new Date()}
-                        // {...field}
-                      />
-                    )}
-                  />
+          {/* Pedigree */}
+          <>
+            {PedigreeArray.map((item, index) => (
+              <div className="bg-[#ECECEC63] p-5" key={index}>
+                <div className="flex items-center justify-between text-dark">
+                  <h5 className="text-sm">Add Pedigree Information</h5>
+                  <div className="flex justify-evenly">
+                    <i
+                      className="text-md bg-yellow p-[2px] rounded-full"
+                      onClick={addPedigree}
+                    >
+                      <GoPlus />
+                    </i>
+                    <i
+                      className="text-md bg-yellow p-[2px] rounded-full"
+                      onClick={() => removePedigree(index)}
+                    >
+                      <GoDash />
+                    </i>
+                  </div>
                 </div>
-                {errors.maleParentDob && (
-                  <ErrorMessage message={errors.maleParentDob?.message} />
-                )}
-              </div>
-              <div>
-                <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-                  <SelectInput
-                    border="border-0"
-                    options={breed}
-                    defaultOption="Breed"
-                    {...register("maleBreedId", { required: true })}
-                  />
+                <p className="text-blue text-sm my-3">Sire</p>
+                <div>
+                  <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                    <Input
+                      border="border-0"
+                      placeholder={"Sire's Registered Name"}
+                      {...register("maleParentName", { required: true })}
+                    />
+                  </div>
+                  {errors.maleParentName && (
+                    <ErrorMessage message={errors.maleParentName?.message} />
+                  )}
                 </div>
-                {errors.maleBreedId && (
-                  <ErrorMessage>{errors.maleBreedId?.message}</ErrorMessage>
-                )}
-              </div>
-            </div>
-            <p className="text-blue text-sm my-3">Dame</p>
-            <div>
-              <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-                <Input
-                  border="border-0"
-                  placeholder={"Dame's Registered Name"}
-                  {...register("femaleParentName", { required: true })}
-                />
-              </div>
-              {errors.femaleParentName && (
-                <ErrorMessage>{errors.femaleParentName?.message}</ErrorMessage>
-              )}
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 md: gap-4">
-              <div>
-                <div className="bg-[#FEFCFC] px-3 py-2 rounded-lg border border-borderGrey w-full h-fit tex-sm">
-                  <Controller
-                    name="femaleParentDob"
-                    control={control}
-                    rules={{ required: true }}
-                    render={({ field: { onChange, onBlur, value } }) => (
-                      <DatePicker
-                        dateFormat="dd-MM-yyyy"
-                        placeholderText="Date of Birth"
-                        selected={value}
-                        onChange={onChange}
-                        closeOnScroll={false}
-                        // showMonthDropdown
-                        showYearDropdown
-                        dropdownMode="select"
-                        className="border-0 focus:outline-none placeholder:text-dark text-sm px-3 w-full"
-                        maxDate={new Date()}
-                        // {...field}
+                <div className="grid grid-cols-1 md:grid-cols-2 md: gap-4">
+                  <div>
+                    <div className="bg-[#FEFCFC] px-3 py-2 rounded-lg border border-borderGrey w-full h-fit tex-sm">
+                      <Controller
+                        name="maleParentDob"
+                        control={control}
+                        rules={{ required: true }}
+                        render={({ field: { onChange, onBlur, value } }) => (
+                          <DatePicker
+                            dateFormat="dd-MM-yyyy"
+                            placeholderText="Date of Birth"
+                            selected={value}
+                            onChange={onChange}
+                            closeOnScroll={false}
+                            // showMonthDropdown
+                            showYearDropdown
+                            dropdownMode="select"
+                            className="border-0 focus:outline-none placeholder:text-dark text-sm px-3 w-full"
+                            maxDate={new Date()}
+                            // {...field}
+                          />
+                        )}
                       />
+                    </div>
+                    {errors.maleParentDob && (
+                      <ErrorMessage message={errors.maleParentDob?.message} />
                     )}
-                  />
+                  </div>
+                  <div>
+                    <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                      <Input
+                        border="border-0"
+                        placeholder={"Breed"}
+                        {...register("maleBreed", { required: true })}
+                      />
+                    </div>
+                    {errors.maleBreedId && (
+                      <ErrorMessage>{errors.maleBreedId?.message}</ErrorMessage>
+                    )}
+                  </div>
+                  <div>
+                    <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                      <SelectInput
+                        border="border-0"
+                        options={breed}
+                        defaultOption="Breed Type"
+                        {...register("maleBreedId", { required: true })}
+                      />
+                    </div>
+                    {errors.maleBreedId && (
+                      <ErrorMessage>{errors.maleBreedId?.message}</ErrorMessage>
+                    )}
+                  </div>
+                  <div>
+                    <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                      <Input
+                        disabled
+                        border="border-0"
+                        placeholder={`Generation ${index + 1}`}
+                        {...register("maleBreed", { required: true })}
+                      />
+                    </div>
+                    {errors.maleBreedId && (
+                      <ErrorMessage>{errors.maleBreedId?.message}</ErrorMessage>
+                    )}
+                  </div>
                 </div>
-                {errors.femaleParentDob && (
-                  <ErrorMessage>{errors.femaleParentDob?.message}</ErrorMessage>
-                )}
-              </div>
-              <div>
-                <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-                  <SelectInput
-                    border="border-0"
-                    options={breed}
-                    defaultOption="Breed"
-                    {...register("femaleBreedId", { required: true })}
-                  />
+                <p className="text-blue text-sm my-3">Dame</p>
+                <div>
+                  <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                    <Input
+                      border="border-0"
+                      placeholder={"Dame's Registered Name"}
+                      {...register("femaleParentName", { required: true })}
+                    />
+                  </div>
+                  {errors.femaleParentName && (
+                    <ErrorMessage>
+                      {errors.femaleParentName?.message}
+                    </ErrorMessage>
+                  )}
                 </div>
-                {errors.femaleBreedId && (
-                  <ErrorMessage>{errors.femaleBreedId?.message}</ErrorMessage>
-                )}
+
+                <div className="grid grid-cols-1 md:grid-cols-2 md: gap-4">
+                  <div>
+                    <div className="bg-[#FEFCFC] px-3 py-2 rounded-lg border border-borderGrey w-full h-fit tex-sm">
+                      <Controller
+                        name="femaleParentDob"
+                        control={control}
+                        rules={{ required: true }}
+                        render={({ field: { onChange, onBlur, value } }) => (
+                          <DatePicker
+                            dateFormat="dd-MM-yyyy"
+                            placeholderText="Date of Birth"
+                            selected={value}
+                            onChange={onChange}
+                            closeOnScroll={false}
+                            // showMonthDropdown
+                            showYearDropdown
+                            dropdownMode="select"
+                            className="border-0 focus:outline-none placeholder:text-dark text-sm px-3 w-full"
+                            maxDate={new Date()}
+                            // {...field}
+                          />
+                        )}
+                      />
+                    </div>
+                    {errors.femaleParentDob && (
+                      <ErrorMessage>
+                        {errors.femaleParentDob?.message}
+                      </ErrorMessage>
+                    )}
+                  </div>
+                  <div>
+                    <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                      <Input
+                        border="border-0"
+                        placeholder={"Breed"}
+                        {...register("maleBreed", { required: true })}
+                      />
+                    </div>
+                    {errors.maleBreedId && (
+                      <ErrorMessage>{errors.maleBreedId?.message}</ErrorMessage>
+                    )}
+                  </div>
+                  <div>
+                    <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                      <SelectInput
+                        border="border-0"
+                        options={breed}
+                        defaultOption="Breed Type"
+                        {...register("femaleBreedId", { required: true })}
+                      />
+                    </div>
+                    {errors.femaleBreedId && (
+                      <ErrorMessage>
+                        {errors.femaleBreedId?.message}
+                      </ErrorMessage>
+                    )}
+                  </div>
+                  <div>
+                    <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                      <Input
+                        disabled
+                        border="border-0"
+                        placeholder={`Generation ${index + 1}`}
+                        {...register("maleBreed", { required: true })}
+                      />
+                    </div>
+                    {errors.maleBreedId && (
+                      <ErrorMessage>{errors.maleBreedId?.message}</ErrorMessage>
+                    )}
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div className="text-center my-5">
+            ))}
+          </>
+          <div className="text-center my-5 flex justify-evenly">
+            <button
+              className="bg-yellow py-4 px-15 rounded font-semibold text-sm "
+              type="submit"
+              onClick={prevStep}
+            >
+              BACK
+            </button>
             <button
               className="bg-yellow py-4 px-15 rounded font-semibold text-sm "
               type="submit"

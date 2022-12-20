@@ -26,6 +26,7 @@ const PostAd = () => {
     }
   };
   const updateStep1 = (data) => {
+    console.log(data, "dt");
     setadData((adData) => ({
       ...adData,
       CategoryId: data.CategoryId,
@@ -39,11 +40,15 @@ const PostAd = () => {
   };
   const updateStep2 = async (data) => {
     const obj = { ...adData, ...data };
+    console.log(obj.images, "objimage");
     // formData.Amount = Number(formData.Amount);
     // formData.CategoryId = Number(formData.CategoryId);
     const formdata = new FormData();
     formdata.append("CategoryId", obj.CategoryId);
-    formdata.append("images", obj.images);
+    for (var i = 0; i < obj.images.length; i++) {
+      formdata.append("images", obj.images[i]);
+    }
+    // formdata.append("images", JSON.stringify(obj.images));
     formdata.append("City", obj.City);
     formdata.append("State", obj.State);
     formdata.append("Zip", obj.Zip);

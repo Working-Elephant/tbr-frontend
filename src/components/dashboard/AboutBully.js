@@ -1,70 +1,76 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BullyRegistrationContext } from "./BullyRegistration";
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaTimes } from "react-icons/fa";
 import { SelectInput, Input, ErrorMessage } from "../shared";
 import { selectCategories, breed } from "../../data";
 import { useForm } from "react-hook-form";
+import useFetchBullies from "../../hooks/useFectchBullies";
 
 const AboutBully = () => {
+  const { getBreedType, breedType } = useFetchBullies();
   const [images, setImages] = useState("");
   const { updateStep1 } = useContext(BullyRegistrationContext);
+  const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [fileLimit, setFileLimit] = useState();
+  const MAX_COUNT = 3;
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
+  useEffect(() => {
+    getBreedType();
+  }, []);
   // function to submit form
   const onSubmit = (data) => {
     let submitData = {
       ...data,
-      pictureUrl: images,
+      images: [...uploadedFiles],
     };
-    console.log(submitData);
+    console.log(submitData, "submit Data");
     updateStep1(submitData);
     // nextStep();
   };
-  const productImageRegister = register("pictureUrl", {
+  const productImageRegister = register("images", {
     required: {
       value: true,
       message: " This field is required",
     },
   });
-  const getBase64 = (file) => {
-    return new Promise((resolve) => {
-      //   let fileInfo;
-      let baseURL = "";
-      // Make new FileReader
-      let reader = new FileReader();
+  const handleUploadFiles = (files) => {
+    const uploaded = [...uploadedFiles];
+    let limitExceeded = false;
+    files.some((file) => {
+      if (uploaded.findIndex((f) => f.name === file.name) === -1) {
+        uploaded.push(file);
 
-      // Convert the file to base64 text
-      reader.readAsDataURL(file);
-
-      // on reader load somthing...
-      reader.onload = () => {
-        // Make a fileInfo Object
-        console.log("Called", reader);
-        baseURL = reader.result;
-        console.log(baseURL);
-        resolve(baseURL);
-      };
-      //   console.log(fileInfo);
+        if (uploaded.length === MAX_COUNT) setFileLimit(true);
+        if (uploaded.length > MAX_COUNT) {
+          alert(`You can only add a maximum of ${MAX_COUNT} files`);
+          setFileLimit(false);
+          limitExceeded = true;
+          return true;
+        }
+      }
     });
+    if (!limitExceeded) setUploadedFiles(uploaded);
   };
-  const handleImageUpload = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      let uploadedimage = e.target.files[0];
-      // formDataImage.append("file", uploadedimage);
-      getBase64(uploadedimage)
-        .then((result) => {
-          uploadedimage["base64"] = result;
-          setImages(uploadedimage.base64);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+  const handleFileEvent = (e) => {
+    const chosenFiles = Array.prototype.slice.call(e.target.files);
+    handleUploadFiles(chosenFiles);
+  };
+  const previewImage = (file) => {
+    const objectUrl = URL.createObjectURL(file);
+    return objectUrl;
+  };
+
+  const deleteImage = (image) => {
+    const filteredList = uploadedFiles.filter((file) => file != image);
+    setUploadedFiles(filteredList);
+    if (uploadedFiles.length < MAX_COUNT) {
+      setFileLimit(false);
     } else {
-      return;
+      setFileLimit(true);
     }
   };
   return (
@@ -77,45 +83,27 @@ const AboutBully = () => {
           <div className="grid grid-cols-2 gap-4 lg:gap-6  my-3">
             <div>
               <div className="w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-                <SelectInput
+                <Input
                   border="border-0"
-                  options={selectCategories}
-                  defaultOption="Category"
-                  {...register("category", {
+                  {...register("Breed", {
                     required: {
                       value: true,
                       message: " This field is required",
                     },
                   })}
+                  placeholder="Breed"
                 />
               </div>
-              {errors.category && (
-                <ErrorMessage message={errors.category?.message} />
-              )}
+              {errors.Breed && <ErrorMessage message={errors.Breed?.message} />}
             </div>
+
             <div>
               <div className="w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
                 <SelectInput
                   border="border-0"
                   options={breed}
-                  defaultOption="Breed"
-                  {...register("breed", {
-                    required: {
-                      value: true,
-                      message: " This field is required",
-                    },
-                  })}
-                />
-              </div>
-              {errors.breed && <ErrorMessage message={errors.breed?.message} />}
-            </div>
-            {/* <div>
-              <div className="w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-                <SelectInput
-                  border="border-0"
-                  options={breed}
                   defaultOption="Breed Type"
-                  {...register("breedType", {
+                  {...register("BreedType", {
                     required: {
                       value: true,
                       message: " This field is required",
@@ -123,10 +111,10 @@ const AboutBully = () => {
                   })}
                 />
               </div>
-              {errors.breedType && (
-                <ErrorMessage message={errors.breedType?.message} />
+              {errors.BreedType && (
+                <ErrorMessage message={errors.BreedType?.message} />
               )}
-            </div> */}
+            </div>
             {/* <div>
               <div className=" w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
                 <Input
@@ -142,12 +130,18 @@ const AboutBully = () => {
             <div>
               <div className=" w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
                 <Input
+                  type="color"
                   border="border-0"
                   placeholder={"Color"}
-                  {...register("color", { required: true })}
+                  {...register("Color", {
+                    required: {
+                      value: true,
+                      message: " This field is required",
+                    },
+                  })}
                 />
               </div>
-              {errors.color && <ErrorMessage message={errors.color?.message} />}
+              {errors.Color && <ErrorMessage message={errors.Color?.message} />}
             </div>
             {/* <div>
               <div className=" w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
@@ -177,19 +171,36 @@ const AboutBully = () => {
                 id="AdImageInput"
                 className="hidden "
                 type="file"
+                multiple
                 accept="image/png, image/jpg, image/jpeg"
                 {...productImageRegister}
-                onChange={(e) => {
-                  productImageRegister.onChange(e);
-                  handleImageUpload(e);
-                }}
+                onChange={handleFileEvent}
+                disabled={fileLimit}
               />
             </label>
-            {images ? (
-              <div className=" mx-3 h-20 w-22 bg-success">
-                <img src={images} alt="" className="w-full h-full" />
-              </div>
-            ) : null}
+
+            {uploadedFiles &&
+              uploadedFiles.map((file, index) => (
+                <div className=" mx-3 h-20 w-22 ">
+                  {/* <img
+                    src={previewImage(file)}
+                    alt=""
+                    className="w-full h-full"
+                  /> */}
+                  <div
+                    className="flex justify-center cursor-pointer"
+                    onClick={() => deleteImage(file)}
+                  >
+                    <FaTimes />
+                  </div>
+                  <img
+                    key={index}
+                    src={previewImage(file)}
+                    alt=""
+                    className="w-full h-full"
+                  />
+                </div>
+              ))}
           </div>
           {errors.pictureUrl && (
             <ErrorMessage message={errors.pictureUrl?.message} />
