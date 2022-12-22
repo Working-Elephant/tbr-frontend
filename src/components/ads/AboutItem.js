@@ -87,7 +87,7 @@ const AboutItem = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="md:w-4/6 mx-auto py-3">
           <div className="  flex  items-center my-2">
-            <p className="text-sm">Enter Item Name,Category and Location</p>
+            <p className="text-sm">Enter Fields Below</p>
           </div>
           <div className="grid grid-cols-2 gap-5 lg:gap-8 my-3">
             <div className="col-span-2">
@@ -99,7 +99,7 @@ const AboutItem = () => {
                       message: " This field is required",
                     },
                   })}
-                  placeholder={"Name"}
+                  placeholder={"Item Name"}
                 />
               </div>
               {errors.item?.value && (

@@ -14,7 +14,7 @@ const AdService = {
   },
   postAd: async (post) => {
     return await axios.post(`${baseUrl}/PostAd/add`, post).then((res) => {
-      return res;
+      return res.data;
     });
   },
   getCategories: async () => {

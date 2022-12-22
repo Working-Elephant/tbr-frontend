@@ -46,7 +46,6 @@ instance.interceptors.response.use(
     if (error.response && error.response.status === 401) {
       console.log("error401");
       store.dispatch(logout());
-
     }
     return Promise.reject(error);
   }

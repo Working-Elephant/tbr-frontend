@@ -3,73 +3,17 @@ import { MdLocationOn } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import useFetchAds from "../../hooks/useFetchAds";
 
-const PetCard = ({ item }) => {
+const PetCard = ({ item, type }) => {
   const imageurl = process.env.REACT_APP_IMAGE_URL;
   const { getSingleAd } = useFetchAds();
+  if (type != "bullies") {
+  }
   const viewAd = (id) => {
-    console.log(id, "id");
-    getSingleAd(id);
+    if (type === "bully") {
+    } else {
+      getSingleAd(id);
+    }
   };
-  //   {
-  // address
-  // :
-  //  navigate(`/ad/view/${id}`);
-  // "timbet alley"
-  // amount
-  // :
-  // "123"
-  // bullyId
-  // :
-  // null
-  // category
-  // :
-  // null
-  // categoryId
-  // :
-  // 2
-  // city
-  // :
-  // "Uyo"
-  // createdAt
-  // :
-  // "12/19/2022 20:06:36"
-  // description
-  // :
-  // "sfvs"
-  // featured
-  // :
-  // false
-  // id
-  // :
-  // 1
-  // postAdImages
-  // :
-  // [{id: 1, postAdId: 1,…}, {id: 2, postAdId: 1,…}]
-  // 0
-  // :
-  // {id: 1, postAdId: 1,…}
-  // 1
-  // :
-  // {id: 2, postAdId: 1,…}
-  // state
-  // :
-  // "Akwa Ibom"
-  // status
-  // :
-  // "ACTIVE"
-  // telephone
-  // :
-  // "(123)456-7890"
-  // title
-  // :
-  // "timbet toy"
-  // userId
-  // :
-  // 2
-  // zip
-  // :
-  // "1234"
-  // }
   const { title, city, amount, postAdImages, seller, sellerAvatar, id } = item;
   return (
     <div

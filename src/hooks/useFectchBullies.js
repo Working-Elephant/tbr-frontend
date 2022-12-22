@@ -17,20 +17,17 @@ const useFetchBullies = () => {
 
     try {
       const res = await BullyService.getRegisteredBullies();
-      if (res) {
-        const response = await res;
-        console.log("response", response);
-        const { status, data } = response;
 
-        if (status === 200) {
-          // success(data)
-          setBullies(data);
-          setIsLoading(false);
-          return status;
-        } else {
-          warning(`Unable to fetch registered Bullies`);
-          setIsLoading(false);
-        }
+      const response = await res;
+      console.log("response", response);
+
+      if (response.error === false) {
+        // success(data)
+        setBullies(response.data.items);
+        setIsLoading(false);
+      } else {
+        errorToast(response.message || `Unable to fetch registered Bullies`);
+        setIsLoading(false);
       }
     } catch (error) {
       setIsLoading(false);
@@ -72,11 +69,11 @@ const useFetchBullies = () => {
       const res = await BullyService.registerBully(obj);
       if (res) {
         const response = await res;
-        const { status, data } = response;
 
-        if (status === 200) {
-          success(data);
+        if (response.error === false) {
+          success(response.message);
           setIsLoading(false);
+          return response.error;
         } else {
           warning(`Unable to register bully`);
           setIsLoading(false);

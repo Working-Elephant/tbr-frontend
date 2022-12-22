@@ -7,12 +7,10 @@ import useFetchAds from "../../hooks/useFetchAds";
 export const AdContext = createContext();
 
 const PostAd = () => {
-  // const dispatch = useDispatch();
-  const { userId } = useSelector((state) => state.auth.user);
   const [adData, setadData] = useState({});
   const [step, setStep] = useState(1);
   const [pet, setPet] = useState(false);
-  const { isLoading, postAd, getCategories } = useFetchAds();
+  const { isLoading = false, postAd, getCategories } = useFetchAds();
 
   useEffect(() => {
     getCategories();
@@ -26,7 +24,6 @@ const PostAd = () => {
     }
   };
   const updateStep1 = (data) => {
-    console.log(data, "dt");
     setadData((adData) => ({
       ...adData,
       CategoryId: data.CategoryId,
@@ -40,15 +37,10 @@ const PostAd = () => {
   };
   const updateStep2 = async (data) => {
     const obj = { ...adData, ...data };
-    console.log(obj.images, "objimage");
-    // formData.Amount = Number(formData.Amount);
-    // formData.CategoryId = Number(formData.CategoryId);
     const formdata = new FormData();
-    formdata.append("CategoryId", obj.CategoryId);
     for (var i = 0; i < obj.images.length; i++) {
       formdata.append("images", obj.images[i]);
     }
-    // formdata.append("images", JSON.stringify(obj.images));
     formdata.append("City", obj.City);
     formdata.append("State", obj.State);
     formdata.append("Zip", obj.Zip);
@@ -58,6 +50,9 @@ const PostAd = () => {
     formdata.append("Description", obj.Description);
     formdata.append("Telephone", obj.Telephone);
     const status = await postAd(formdata);
+    if (status === false) {
+      setStep(3);
+    }
   };
   const nextStep = () => {
     if (step >= 3) {
@@ -81,7 +76,7 @@ const PostAd = () => {
           step,
           adData,
           pet,
-          // isLoading,
+          isLoading,
           checkCategory,
           nextStep,
           prevStep,

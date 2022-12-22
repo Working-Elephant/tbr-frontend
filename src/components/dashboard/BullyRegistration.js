@@ -16,14 +16,8 @@ export const BullyRegistrationContext = createContext();
 const BullyRegistration = () => {
   const { userId } = useSelector((state) => state.auth.user);
 
-  const { isLoading, registerBully } = useFetchBullies();
-  const [adData, setadData] = useState({
-    postAddId: 0,
-    categoryId: 0,
-    breedId: 0,
-    registerBullyId: 0,
-    pictureUrl: "",
-  });
+  const { isLoading = false, registerBully } = useFetchBullies();
+  const [adData, setadData] = useState({});
   const [step, setStep] = useState(1);
 
   const updateStep1 = (data) => {
@@ -31,26 +25,37 @@ const BullyRegistration = () => {
     nextStep();
   };
   const updateStep2 = async (data) => {
-    const formData = { ...adData, ...data };
-    const status = registerBully(formData);
-    console.log(status);
-    // if (isResponseSuccess(status)) {
-    //   nextStep();
+    console.log(adData, "adData");
+    const obj = { ...adData, ...data };
+    const formdata = new FormData();
+    // for (var i = 0; i < obj.images.length; i++) {
+    //   formdata.append("images", obj.images[i]);
     // }
-    // dispatch(createPostsSlice(adData))
-    //   .then((res) => {
-    //     if (res.payload.status >= 200 && res.payload.status <= 300) {
-    //       nextStep();
-    //     }
-    //     throw new Error("error submitting form");
-    //   })
-    //   .catch((err) => {
-    //     return toast.error(`${err.message}`, {
-    //       transition: Slide,
-    //       hideProgressBar: true,
-    //       autoClose: 3000,
-    //     });
-    //   });
+
+    formdata.append("Images", ...obj.images);
+    formdata.append("BreedTypeId", obj.BreedTypeId);
+    formdata.append("Breed", obj.Breed);
+    formdata.append("DogRegisterName", obj.DogRegisterName);
+    formdata.append("Dob", obj.Dob);
+
+    formdata.append("Sex", obj.Sex);
+    formdata.append("DogOwnerName", obj.DogOwnerName);
+    formdata.append("Price", obj.Price);
+    formdata.append("City", obj.City);
+    formdata.append("Color", obj.Color);
+    formdata.append("State", obj.State);
+    formdata.append("Zip", obj.Zip);
+    formdata.append("Address", obj.Address);
+
+    formdata.append("Description", obj.Description);
+    formdata.append("Telephone", obj.Telephone);
+    formdata.append("Pedigrees", obj.Pedigree);
+
+    const status = await registerBully(formdata);
+    console.log(status, "sd");
+    if (status === false) {
+      setStep(3);
+    }
   };
 
   const nextStep = () => {
@@ -68,34 +73,13 @@ const BullyRegistration = () => {
     }
   };
 
-  // address: "string"
-  // breedId: 0
-  // categoryId: 0
-  // city: "string"
-  // color: "string"
-  // dateofBirth: "2022-09-21T10:33:00.42"
-  // dogsOwnerName: "string"
-  // dogsRegisteredName: "string"
-  // femaleBeedId: 0
-  // femaleParentDob: "2022-09-21T10:33:00.42"
-  // femaleParentName: "string"
-  // maleBeedId: 0
-  // maleParentDob: "2022-09-21T10:33:00.42"
-  // maleParentName: "string"
-  // pictureUrl: "string"
-  // registerBullyId: 1
-  // sex: "string"
-  // signUpId: 0
-  // state: "string"
-  // telephone: "string"
-  // zip: "string"
-
   return (
     <div>
       <BullyRegistrationContext.Provider
         value={{
           step,
           adData,
+          isLoading,
           setadData,
           nextStep,
           prevStep,

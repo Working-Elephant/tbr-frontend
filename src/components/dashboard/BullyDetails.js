@@ -2,7 +2,12 @@ import React, { useContext, useState } from "react";
 import { BullyRegistrationContext } from "./BullyRegistration";
 import { GoPlus, GoDash } from "react-icons/go";
 import { useForm, Controller } from "react-hook-form";
-import { Input, ErrorMessage, SelectInput } from "../../components/shared";
+import {
+  Input,
+  ErrorMessage,
+  SelectInput,
+  errorToast,
+} from "../../components/shared";
 import { sex, breed } from "../../data";
 import DatePicker from "react-datepicker";
 import { PatternFormat } from "react-number-format";
@@ -10,7 +15,7 @@ import { PatternFormat } from "react-number-format";
 const BullyDetails = () => {
   const { updateStep2, prevStep } = useContext(BullyRegistrationContext);
   const [PedigreeArray, setPedigreeArray] = useState([{}]);
-  const [pedigreeData, setPedigreeData] = useState([]);
+  const [pedigreeData, setPedigreeData] = useState([{}]);
   const {
     register,
     handleSubmit,
@@ -30,16 +35,15 @@ const BullyDetails = () => {
       ...data,
       Pedigree: [pedigreeData],
     };
-
+    console.log(submitData, "sd");
     updateStep2(submitData);
   };
-  const onSubmit2 = (data) => {
-    setPedigreeData(data);
-  };
+  const onSubmit2 = (data) => setPedigreeData(data);
+
   // function to submit form
   const onerror = (data) => {
+    errorToast(data);
     console.log(data, "error data");
-    // updateStep2(data);
   };
   const addPedigree = () => {
     let newfield = {};

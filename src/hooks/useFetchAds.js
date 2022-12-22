@@ -50,9 +50,10 @@ const useFetchAds = () => {
 
     try {
       const data = await AdService.postAd(ad);
-
+      console.log(data);
       if (data.error === false) {
         success(data.message);
+        return data.error;
       } else {
         errorToast(data.message);
       }
@@ -64,17 +65,14 @@ const useFetchAds = () => {
   };
 
   const getCategories = async () => {
-    setIsLoading(true);
     setError(null);
 
     try {
       const data = await AdService.getCategories();
 
       if (data.error === false) {
-        setIsLoading(false);
       }
     } catch (error) {
-      setIsLoading(false);
       setError(error);
       errorToast(error.message);
     }
