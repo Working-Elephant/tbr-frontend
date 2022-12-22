@@ -21,36 +21,22 @@ const BullyRegistration = () => {
     postAddId: 0,
     categoryId: 0,
     breedId: 0,
-    registerBullyId:0,
+    registerBullyId: 0,
     pictureUrl: "",
   });
   const [step, setStep] = useState(1);
 
   const updateStep1 = (data) => {
-    setadData((adData) => ({
-      ...adData,
-      signUpId: parseInt(userId),
-      categoryId: parseInt(data.category),
-      breedId: parseInt(data.breed),
-      pictureUrl: data.pictureUrl,
-      color: data.color,
-    }));
+    setadData(data);
     nextStep();
   };
   const updateStep2 = async (data) => {
     const formData = { ...adData, ...data };
-    formData.price = Number(formData.price);
-    formData.maleBreedId = Number(formData.maleBreedId);
-    formData.femaleBreedId = Number(formData.femaleBreedId);
-    formData.dateOfBirth = formData.dateOfBirth.toISOString();
-    formData.maleParentDob = formData.maleParentDob.toISOString();
-    formData.femaleParentDob = formData.femaleParentDob.toISOString();
-    console.log(formData, "form");
-
     const status = registerBully(formData);
-    if (isResponseSuccess(status)) {
-      nextStep();
-    }
+    console.log(status);
+    // if (isResponseSuccess(status)) {
+    //   nextStep();
+    // }
     // dispatch(createPostsSlice(adData))
     //   .then((res) => {
     //     if (res.payload.status >= 200 && res.payload.status <= 300) {
@@ -103,7 +89,6 @@ const BullyRegistration = () => {
   // state: "string"
   // telephone: "string"
   // zip: "string"
-  
 
   return (
     <div>

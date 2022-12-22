@@ -25,7 +25,8 @@ import Pets from "./pages/Pets";
 import Search from "./pages/Search";
 import AboutUs from "./pages/AboutUs";
 import Founders from "./pages/Founders";
-
+import Favorite from "./components/dashboard/Favorites";
+import Orders from "./components/dashboard/Orders";
 import { useMatch } from "react-router-dom";
 import { useLayoutEffect } from "react";
 import BullyRegistration from "./components/dashboard/BullyRegistration";
@@ -40,7 +41,7 @@ const Wrapper = ({ children }) => {
 
 const App = () => {
   const isHome = useMatch("/" || "/home");
-  const isMessages = useMatch("/dashboard/messages");
+  const isMessages = useMatch("/dashboard/:id");
 
   return (
     <div className="bg-white p-0 m-0">
@@ -85,6 +86,22 @@ const App = () => {
             element={
               <ProtectedRoutes>
                 <BullyRegistration />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/dashboard/favorites"
+            element={
+              <ProtectedRoutes>
+                <Favorite />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/dashboard/orders"
+            element={
+              <ProtectedRoutes>
+                <Orders />
               </ProtectedRoutes>
             }
           />

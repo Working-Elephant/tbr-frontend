@@ -8,7 +8,6 @@ import AuthService from "../../services/user";
 const DashboardLayout = ({ children }) => {
   const { getUser } = AuthService;
   const user = getUser();
-  console.log(user, "user");
   return (
     <div className="px-5 pt-5 lg:py-10 lg:px-12">
       <div className=" grid  md:grid-cols-8 md:gap-3 lg:gap-4">

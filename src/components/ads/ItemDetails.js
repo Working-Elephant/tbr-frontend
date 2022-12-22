@@ -29,11 +29,14 @@ const ItemDetails = () => {
     updateStep2(data);
     // nextStep();
   };
+  const onerror = (error) => {
+    console.log(error);
+  };
   return (
     <div>
       <div className="md:w-5/6 lg:w-4/6 mx-auto py-3">
         <h5 className="mb-4">Enter Ad Details</h5>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit, onerror)}>
           {/* <div>
             <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
               <Input

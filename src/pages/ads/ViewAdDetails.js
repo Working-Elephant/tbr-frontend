@@ -24,19 +24,17 @@ const ViewAdDetails = () => {
   const { getUser } = AuthService;
   const { user } = getUser();
   const userID = user.id;
-  console.log(user, "user");
+  console.log(userID, "userid");
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.product.products);
-  const selectedProduct = products.find((product) => product.id === Number(id));
   const thumbnailsContainer = useRef(null);
-  const [ImageInView, setImageInView] = useState(1);
+  const [ImageInView, setImageInView] = useState(0);
   const navigate = useNavigate();
   useEffect(() => {
     if (!singleAds.length) {
       getSingleAd(id);
     }
-  }, [id]);
-  console.log(singleAds, "single");
+  }, []);
+
   const sideScroll = (element, speed, distance, step) => {
     let scrollAmount = 0;
     const slideTimer = setInterval(() => {
@@ -60,10 +58,11 @@ const ViewAdDetails = () => {
   const handleClose = () => {
     setFullImage(!fullImage);
   };
+  const imageurl = process.env.REACT_APP_IMAGE_URL;
 
   const goToCart = () => {
     // navigate("/cart", { state: { product: selectedProduct, quantity: 1 } });
-    dispatch(addToCart(selectedProduct));
+    // dispatch(addToCart(selectedProduct));
     navigate("/cart");
   };
 
@@ -101,10 +100,8 @@ const ViewAdDetails = () => {
                   </div>
                   <img
                     src={
-                      selectedProduct?.images
-                        ? selectedProduct.images[ImageInView]
-                        : selectedProduct.image
-                        ? selectedProduct.image
+                      singleAds?.postAdImages?.length
+                        ? `${imageurl}${singleAds?.postAdImages?.[ImageInView]?.url}`
                         : null
                     }
                     alt=""
@@ -124,16 +121,14 @@ const ViewAdDetails = () => {
                 </div>
                 <ImageModal
                   image={
-                    selectedProduct?.images
-                      ? selectedProduct.images[ImageInView]
-                      : selectedProduct.image
-                      ? selectedProduct.image
+                    singleAds?.postAdImages?.length
+                      ? `${imageurl}${singleAds?.postAdImages?.[ImageInView]?.url}`
                       : null
                   }
                   open={fullImage}
                   close={handleClose}
                 />
-                {selectedProduct?.images ? (
+                {singleAds?.postAdImages?.length ? (
                   <div
                     ref={thumbnailsContainer}
                     className="flex items-center  "
@@ -150,11 +145,11 @@ const ViewAdDetails = () => {
                       className="flex overflow-auto scroll-m-4 mx-4"
                       style={{ webkitScrollBar: "none" }}
                     >
-                      {selectedProduct?.images?.map((item, i) => {
+                      {singleAds?.postAdImages?.map((item, i) => {
                         return (
                           <img
                             key={i}
-                            src={item.img}
+                            src={`${imageurl}${item?.url}`}
                             alt=""
                             className="h-15 w-15 rounded-md mx-1"
                             onClick={() => setImage(i)}
@@ -222,32 +217,34 @@ const ViewAdDetails = () => {
                     </i>
                   </div>
                 </div>
-                <div className="py-3 border-b border-b-borderGrey">
-                  <button
-                    className="w-full rounded-md py-2 bg-blue text-white capitalize"
-                    onClick={goToCart}
-                  >
-                    Make payment
-                  </button>
-                </div>
-                <div className=" border-b border-b-borderGrey grid grid-cols-3 text-xs text-blue text-center cursor-pointer">
-                  <div className="border-r border-borderGrey py-3">
-                    <p>BULLY CODE</p>
-                    <h5 className=" font-semibold">668235</h5>
+
+                {userID !== singleAds?.userId ? (
+                  <div className="py-3 border-b border-b-borderGrey">
+                    <button
+                      className="w-full rounded-md py-2 bg-blue text-white capitalize"
+                      onClick={goToCart}
+                    >
+                      Make payment
+                    </button>
                   </div>
-                  <div className="py-3">
-                    <p>VIEW MORE</p>
-                    <h5 className=" font-semibold">Bullies</h5>
+                ) : null}
+
+                {singleAds?.bully && (
+                  <div className=" border-b border-b-borderGrey grid grid-cols-3 text-xs text-blue text-center cursor-pointer">
+                    <div className="border-r border-borderGrey py-3">
+                      <p>BULLY CODE</p>
+                      <h5 className=" font-semibold">668235</h5>
+                    </div>
+                    <div className="py-3">
+                      <p>VIEW MORE</p>
+                      <h5 className=" font-semibold">Bullies</h5>
+                    </div>
                   </div>
-                  <div className="border-l border-borderGrey py-3">
-                    <p>CONTACT US</p>
-                    <h5 className=" font-semibold">Customer Care</h5>
-                  </div>
-                </div>
+                )}
               </div>
             </div>
           </div>
-          {userID !== singleAds.id ? (
+          {userID !== singleAds?.userId ? (
             <div className="col-span-12 md:col-span-6    xl:col-span-3 ">
               <SellerInfo
                 image={SellerAvatar1}

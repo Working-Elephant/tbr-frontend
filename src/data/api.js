@@ -54,11 +54,6 @@ export const dashboardMenu = [
     name: "Your Ads",
     link: "/dashboard/ads",
   },
-  // {
-  //     icon: MembershipIcon,
-  //     name: "Memberships",
-  //     link: "/dashboard/memberships",
-  // },
   {
     icon: AdsIcon,
     name: "Bully Registration",
@@ -78,11 +73,6 @@ export const dashboardMenu = [
     icon: OrdersIcon,
     name: "My Orders",
     link: "/dashboard/orders",
-  },
-  {
-    icon: CustomerCareIcon,
-    name: "Customer Care",
-    link: "/dashboard/customer-care",
   },
 ];
 export const adsData = [

@@ -78,7 +78,7 @@ const PetCard = ({ item }) => {
     >
       <div className="w-full">
         <img
-          src={`${imageurl}/Uploads/Images/${postAdImages?.[0].url}`}
+          src={`${imageurl}${postAdImages?.[0].url}`}
           alt=""
           className="w-full h-36 rounded-2xl"
         />

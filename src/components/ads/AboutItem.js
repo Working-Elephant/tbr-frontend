@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import * as watermark from "watermarkjs";
 import { AdContext } from "../../pages/ads/PostAd";
 import { FaPlus, FaTimes } from "react-icons/fa";
 import { SelectInput, ErrorMessage, Loader, Input } from "../shared";
@@ -39,6 +40,8 @@ const AboutItem = () => {
   ];
   const handleUploadFiles = (files) => {
     const uploaded = [...uploadedFiles];
+    const waterImage = watermarkImage(uploaded);
+    console.log(waterImage, "waterimage");
     let limitExceeded = false;
     files.some((file) => {
       if (uploaded.findIndex((f) => f.name === file.name) === -1) {
@@ -63,7 +66,13 @@ const AboutItem = () => {
     const objectUrl = URL.createObjectURL(file);
     return objectUrl;
   };
+  const watermarkImage = (upload) => {
+    // load a url and file object
 
+    watermark([upload, "../../assets/images/coin.png"])
+      .image(watermark.image.lowerLeft(0.5))
+      .then((img) => document.getElementById("container").appendChild(img));
+  };
   const deleteImage = (image) => {
     const filteredList = uploadedFiles.filter((file) => file != image);
     setUploadedFiles(filteredList);

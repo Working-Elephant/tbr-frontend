@@ -5,7 +5,7 @@ import { SelectInput, Input, ErrorMessage } from "../shared";
 import { selectCategories, breed } from "../../data";
 import { useForm } from "react-hook-form";
 import useFetchBullies from "../../hooks/useFectchBullies";
-
+import * as watermark from "watermarkjs";
 const AboutBully = () => {
   const { getBreedType, breedType } = useFetchBullies();
   const [images, setImages] = useState("");
@@ -39,6 +39,7 @@ const AboutBully = () => {
   });
   const handleUploadFiles = (files) => {
     const uploaded = [...uploadedFiles];
+
     let limitExceeded = false;
     files.some((file) => {
       if (uploaded.findIndex((f) => f.name === file.name) === -1) {
@@ -59,6 +60,13 @@ const AboutBully = () => {
     const chosenFiles = Array.prototype.slice.call(e.target.files);
     handleUploadFiles(chosenFiles);
   };
+  // const watermarkImage = (upload) => {
+  //   // load a url and file object
+
+  //   return watermark([upload, "../../assets/images/coin.png"])
+  //     .image(watermark.image.lowerLeft(0.5))
+  //     .then((img) => document.getElementById("container").appendChild(img));
+  // };
   const previewImage = (file) => {
     const objectUrl = URL.createObjectURL(file);
     return objectUrl;
@@ -103,7 +111,7 @@ const AboutBully = () => {
                   border="border-0"
                   options={breed}
                   defaultOption="Breed Type"
-                  {...register("BreedType", {
+                  {...register("BreedTypeId", {
                     required: {
                       value: true,
                       message: " This field is required",
@@ -115,18 +123,7 @@ const AboutBully = () => {
                 <ErrorMessage message={errors.BreedType?.message} />
               )}
             </div>
-            {/* <div>
-              <div className=" w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-                <Input
-                  border="border-0"
-                  placeholder={"Height"}
-                  {...register("height", { required: true })}
-                />
-              </div>
-              {errors.height && (
-                <ErrorMessage message={errors.height?.message} />
-              )}
-            </div> */}
+
             <div>
               <div className=" w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
                 <Input
@@ -143,18 +140,24 @@ const AboutBully = () => {
               </div>
               {errors.Color && <ErrorMessage message={errors.Color?.message} />}
             </div>
-            {/* <div>
+            <div>
               <div className=" w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
                 <Input
+                  type="text"
                   border="border-0"
-                  placeholder={"Weight"}
-                  {...register("weight", { required: true })}
+                  placeholder={"Description"}
+                  {...register("Description", {
+                    required: {
+                      value: true,
+                      message: " This field is required",
+                    },
+                  })}
                 />
               </div>
-              {errors.weight && (
-                <ErrorMessage message={errors.weight?.message} />
+              {errors.Description && (
+                <ErrorMessage message={errors.Description?.message} />
               )}
-            </div> */}
+            </div>
           </div>
         </div>
         <div className="text-center mt-5">
@@ -182,16 +185,11 @@ const AboutBully = () => {
             {uploadedFiles &&
               uploadedFiles.map((file, index) => (
                 <div className=" mx-3 h-20 w-22 ">
-                  {/* <img
-                    src={previewImage(file)}
-                    alt=""
-                    className="w-full h-full"
-                  /> */}
                   <div
                     className="flex justify-center cursor-pointer"
                     onClick={() => deleteImage(file)}
                   >
-                    <FaTimes />
+                    <FaTimes key={index} />
                   </div>
                   <img
                     key={index}
@@ -210,7 +208,6 @@ const AboutBully = () => {
           <button
             className="bg-yellow py-4 px-15 rounded font-semibold text-sm "
             type="submit"
-            // onClick={nextStep}
           >
             NEXT
           </button>
