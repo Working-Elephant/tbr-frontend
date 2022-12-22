@@ -8,6 +8,11 @@ const BullyService = {
       return res.data;
     });
   },
+  getSingleBully: async (id) => {
+    return await axios.get(`${baseUrl}/Bully/view/${id}`).then((res) => {
+      return res.data;
+    });
+  },
   getBreedType: async () => {
     return await axios
       .get(`${baseUrl}/BreedType`)

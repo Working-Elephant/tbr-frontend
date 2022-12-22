@@ -3,14 +3,15 @@ import BullyService from "../services/bully";
 // import { useDispatch } from "react-redux";
 import { warning, errorToast, success } from "../components/shared";
 import { data } from "autoprefixer";
-
+import { useNavigate } from "react-router-dom";
 const useFetchBullies = () => {
   //   const  dispatch  = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [bullies, setBullies] = useState([]);
   const [breedType, setBullyType] = useState([]);
   const [error, setError] = useState(null);
-
+  const [bully, setBully] = useState([]);
+  const navigate = useNavigate();
   const getRegisteredBullies = async () => {
     setIsLoading(true);
     setError(null);
@@ -27,6 +28,30 @@ const useFetchBullies = () => {
         setIsLoading(false);
       } else {
         errorToast(response.message || `Unable to fetch registered Bullies`);
+        setIsLoading(false);
+      }
+    } catch (error) {
+      setIsLoading(false);
+      setError(error);
+      errorToast(error.message);
+    }
+  };
+  const getSingleBully = async (id) => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const res = await BullyService.getSingleBully(id);
+
+      const response = await res;
+      console.log("response", response);
+
+      if (response.error === false) {
+        setBully(data.data);
+        navigate(`/ad/view/${id}`);
+        setIsLoading(false);
+      } else {
+        errorToast(response.message || `Unable to fetch registered Bully`);
         setIsLoading(false);
       }
     } catch (error) {
@@ -94,6 +119,8 @@ const useFetchBullies = () => {
     error,
     getBreedType,
     breedType,
+    bully,
+    getSingleBully,
   };
 };
 

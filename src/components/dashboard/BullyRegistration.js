@@ -28,11 +28,11 @@ const BullyRegistration = () => {
     console.log(adData, "adData");
     const obj = { ...adData, ...data };
     const formdata = new FormData();
-    // for (var i = 0; i < obj.images.length; i++) {
-    //   formdata.append("images", obj.images[i]);
-    // }
+    for (var i = 0; i < obj.images.length; i++) {
+      formdata.append("Images", obj.images[i]);
+    }
 
-    formdata.append("Images", ...obj.images);
+    //formdata.append("Images", ...obj.images);
     formdata.append("BreedTypeId", obj.BreedTypeId);
     formdata.append("Breed", obj.Breed);
     formdata.append("DogRegisterName", obj.DogRegisterName);
