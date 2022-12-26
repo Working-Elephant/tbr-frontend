@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { BullyRegistrationContext } from "./BullyRegistration";
 import { GoPlusSmall } from "react-icons/go";
 import { useForm, Controller } from "react-hook-form";
-import { Input, ErrorMessage, SelectInput } from "../../components/shared";
+import { Input, ErrorMessage, SelectInput } from "../shared";
 import { sex, breed } from "../../data";
 import DatePicker from "react-datepicker";
 

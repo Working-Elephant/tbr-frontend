@@ -2,12 +2,7 @@ import React, { useContext, useState } from "react";
 import { BullyRegistrationContext } from "./BullyRegistration";
 import { GoPlus, GoDash } from "react-icons/go";
 import { useForm, Controller } from "react-hook-form";
-import {
-  Input,
-  ErrorMessage,
-  SelectInput,
-  errorToast,
-} from "../../components/shared";
+import { Input, ErrorMessage, SelectInput, errorToast } from "../shared";
 import { sex, breed } from "../../data";
 import DatePicker from "react-datepicker";
 import { PatternFormat } from "react-number-format";

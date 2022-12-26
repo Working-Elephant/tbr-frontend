@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import Avatar1 from "../../assets/images/avatar1.jpeg";
 import { dashboardMenu } from "../../data";
-import SellerInfo from "../../components/ads/SellerInfo";
+import SellerInfo from "../ads/SellerInfo";
 import AuthService from "../../services/user";
 const DashboardLayout = ({ children }) => {
   const { getUser } = AuthService;

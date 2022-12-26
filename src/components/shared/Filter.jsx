@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BsDash } from "react-icons/bs";
-import { filterColors, categories} from "../../data";
-import { CustomCheckbox, CustomColorFilter } from "../../components/shared";
+import { filterColors, categories } from "../../data";
+import { CustomCheckbox, CustomColorFilter } from ".";
 import { MdClose } from "react-icons/md";
 import Backdrop from "@mui/material/Backdrop";
 

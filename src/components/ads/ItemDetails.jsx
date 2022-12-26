@@ -2,12 +2,7 @@ import React, { useContext } from "react";
 import { AdContext } from "../../pages/ads/PostAd";
 import { GoPlusSmall } from "react-icons/go";
 import { useForm, Controller } from "react-hook-form";
-import {
-  Input,
-  ErrorMessage,
-  SelectInput,
-  Loader,
-} from "../../components/shared";
+import { Input, ErrorMessage, SelectInput, Loader } from "../shared";
 import { sex, breed } from "../../data";
 import DatePicker from "react-datepicker";
 import { PatternFormat } from "react-number-format";

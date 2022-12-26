@@ -1,6 +1,6 @@
 import axios from "axios";
 
-let baseUrl = process.env.REACT_APP_BACKEND_URL;
+let baseUrl = process.env.VITE_BACKEND_URL;
 const CartService = {
   createCart: async (cartData) => {
     return await axios.post(`${baseUrl}/Cart`, cartData).then((res) => {
@@ -29,11 +29,9 @@ const CartService = {
       });
   },
   createOrderSummary: async (summary) => {
-    return await axios
-      .post(`${baseUrl}/OrderSummary`, summary)
-      .then((res) => {
-        return res.data;
-      });
+    return await axios.post(`${baseUrl}/OrderSummary`, summary).then((res) => {
+      return res.data;
+    });
   },
 };
 

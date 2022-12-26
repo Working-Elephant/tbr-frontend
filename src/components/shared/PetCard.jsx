@@ -4,7 +4,7 @@ import useFetchAds from "../../hooks/useFetchAds";
 import useFetchBullies from "../../hooks/useFectchBullies";
 import { get } from "react-hook-form";
 const PetCard = ({ item, type }) => {
-  const imageurl = process.env.REACT_APP_IMAGE_URL;
+  const imageurl = process.env.VITE_IMAGE_URL;
   const { getSingleAd } = useFetchAds();
   const { getSingleBully } = useFetchBullies();
   if (type != "bullies") {
