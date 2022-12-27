@@ -58,7 +58,7 @@ const ViewAdDetails = () => {
   const handleClose = () => {
     setFullImage(!fullImage);
   };
-  const imageurl = process.env.VITE_IMAGE_URL;
+  const imageurl = import.meta.env.VITE_IMAGE_URL;
 
   const goToCart = () => {
     // navigate("/cart", { state: { product: selectedProduct, quantity: 1 } });

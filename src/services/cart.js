@@ -1,6 +1,6 @@
 import axios from "axios";
 
-let baseUrl = process.env.VITE_BACKEND_URL;
+let baseUrl = import.meta.env.VITE_BACKEND_URL;
 const CartService = {
   createCart: async (cartData) => {
     return await axios.post(`${baseUrl}/Cart`, cartData).then((res) => {

@@ -1,7 +1,8 @@
 import axios from "axios";
 import isResponseSuccess from "../utils/successResponse";
 
-let baseUrl = process.env.VITE_BACKEND_URL;
+let baseUrl = import.meta.env.VITE_BACKEND_URL;
+console.log(baseUrl, "base");
 const AuthService = {
   signUp: async (data) => {
     return axios

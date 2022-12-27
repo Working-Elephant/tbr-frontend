@@ -1,4 +1,4 @@
-const { VITE_BACKEND_URL } = process.env;
+const { VITE_BACKEND_URL } = import.meta.env;
 
 // Base External URL
 const baseURL = VITE_BACKEND_URL;

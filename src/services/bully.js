@@ -1,6 +1,6 @@
 import axios from "../config/axios";
 
-let baseUrl = process.env.VITE_BACKEND_URL;
+let baseUrl = import.meta.env.VITE_BACKEND_URL;
 
 const BullyService = {
   getRegisteredBullies: async () => {

@@ -1,16 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import { Navigate } from "react-router-dom";
 import { RiSearchLine } from "react-icons/ri";
-import { GrAttachment } from "react-icons/gr";
-import { FaChevronLeft } from "react-icons/fa";
 import UserAvatar from "../shared/UserAvatar";
-import { userMessages } from "../../data/api";
+import useFetchChat from "../../hooks/useFetchChats";
+import { useEffect } from "react";
+import { findUpper } from "../../utils/Utils";
+import ChatComponent from "./ChatComponent";
 
 const MessagesComponent = () => {
-  const [users, setUsers] = useState(userMessages);
+  const { getChats, chats, isLoading, getSingleChat, singleChat } =
+    useFetchChat();
   const [activeUser, setActiveUser] = useState();
   const [showMessage, setShowMessage] = useState(false);
+  const [connection, setConnection] = useState(null);
+  const [chat, setChat] = useState(null);
+  const [chatObject, setChatObject] = useState(null);
+  useEffect(() => {
+    getChats();
+  }, []);
 
   const setUser = (user) => {
+    getSingleChat(user.chatId);
     setActiveUser(user);
   };
 
@@ -33,33 +43,43 @@ const MessagesComponent = () => {
             />
           </div>
           <ul className="">
-            {users.map((user) => (
-              <li
-                key={user.id}
-                className={`border-.5 border-borderGrey rounded ${
-                  activeUser?.user?.id === user.id ? "bg-borderGrey" : ""
-                }`}
-                onClick={() => {
-                  setUser(user);
-                  setShowMessage(true);
-                }}
-              >
-                <div className="flex  px-4 py-6">
-                  <div className="w-1/6">
-                    <UserAvatar image={user.image} width="w-12" height="h-12" />
-                  </div>
-                  <div className="flex flex-col ml-4 w-5/6">
-                    <h4 className="text-sm font-semibold">{user.name} </h4>
-                    <p className="text-xxs text-blue font-semibold">
-                      Skull Candy Headphones
-                    </p>
-                    <p className="text-xs text-grey truncate pr-6  ">
-                      {user.messages[0].message}
-                    </p>
-                  </div>
-                </div>
-              </li>
-            ))}
+            <div className="">
+              {chats &&
+                chats?.map(({ chatParticipants, chatMessages }) => (
+                  <li
+                    key={chatParticipants?.[0].id}
+                    className={`border-.5 border-borderGrey rounded ${
+                      activeUser?.chatParticipants?.[0].id ===
+                      chatParticipants?.[0].id
+                        ? "bg-borderGrey"
+                        : ""
+                    }`}
+                    onClick={() => {
+                      setUser(chatParticipants?.[0]);
+                      setShowMessage(true);
+                    }}
+                  >
+                    <div className="flex  px-4 py-6">
+                      <div className="w-1/6">
+                        <UserAvatar
+                          text={chatParticipants?.[0].username}
+                          width="w-12"
+                          height="h-12"
+                        />
+                      </div>
+                      <div className="flex flex-col ml-4 w-5/6">
+                        <h4 className="text-sm font-semibold">
+                          {chatParticipants?.[0]?.username}{" "}
+                        </h4>
+                        <p className="text-xxs text-blue font-semibold">TBR</p>
+                        <p className="text-xs text-grey truncate pr-6  ">
+                          {chatMessages?.[0]?.message}
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+            </div>
           </ul>
         </div>
 
@@ -68,67 +88,16 @@ const MessagesComponent = () => {
             showMessage ? "col-span-12" : "hidden"
           }   xl:block  xl:col-span-7    relative overflow-auto no-scrollbar scroll-smooth`}
         >
-          {activeUser ? (
-            <>
-              <div className="bg-[#FFFCF2] pt-2 pb-3 sticky top-0 flex items-center">
-                {showMessage ? (
-                  <i
-                    className=" mx-2 xl:hidden"
-                    onClick={() => {
-                      setShowMessage(false);
-                    }}
-                  >
-                    <FaChevronLeft />
-                  </i>
-                ) : null}
-
-                <div className=" flex items-center justify-center mx-auto ">
-                  <UserAvatar
-                    image={activeUser?.image}
-                    width="w-12"
-                    height="h-10"
-                  />
-                  <span className="ml-3 text-xs"> {activeUser?.name}</span>
-                </div>
-              </div>
-              <div className="  px-4 h-[75%] overflow-auto no-scrollbar">
-                {activeUser.messages?.map((message, i) => (
-                  <div
-                    key={i}
-                    className={`px-5 py-3  mt-4 rounded-3xl w-fit max-w-[70%] ${
-                      message.sent
-                        ? "bg-borderGrey ml-auto "
-                        : "bg-[#FFFCF2] mr-auto"
-                    } `}
-                  >
-                    <p className="text-xs text-textMuted leading-6">
-                      {message.message}
-                    </p>
-                  </div>
-                ))}
-              </div>
-              <div className="border-.5 border-borderGrey rounded p-3 flex justify-between absolute bottom-0 left-0 right-0">
-                <div className="w-[70%]">
-                  <textarea
-                    className="w-full text-xs text-textMuted resize-none max-h-[5rem] focus:outline-none placeholder:text-xs "
-                    placeholder="Write your message here..."
-                  ></textarea>
-                </div>
-                <div className="flex items-center justify-end ">
-                  <i className="mr-5">
-                    <GrAttachment />
-                  </i>
-                  <button className=" bg-yellow px-6 py-2 rounded-3xl text-xs ">
-                    Send
-                  </button>
-                </div>
-              </div>
-            </>
-          ) : (
-            <div className="mt-15">
-              <p className="text-center my-auto">Open a message</p>
-            </div>
-          )}
+          {
+            singleChat && singleChat.length ? (
+              <ChatComponent
+                singleChat={chat}
+                showMessage={showMessage}
+                activeUser={activeUser}
+              />
+            ) : null
+            //  setShowMessage(false)
+          }
         </div>
       </div>
     </div>

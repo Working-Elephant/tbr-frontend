@@ -8,7 +8,7 @@ export const injectStore = (_store) => {
 };
 
 const instance = axios.create({
-  baseURL: process.env.VITE_BACKEND_URL,
+  baseURL: import.meta.env.VITE_BACKEND_URL,
   // timeout: 1000,
   headers: {},
 });
