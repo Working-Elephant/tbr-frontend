@@ -6,6 +6,11 @@ import useFetchChat from "../../hooks/useFetchChats";
 import { useEffect } from "react";
 import { findUpper } from "../../utils/Utils";
 import ChatComponent from "./ChatComponent";
+import {
+  HubConnectionBuilder,
+  LogLevel,
+  HubConnectionState,
+} from "@microsoft/signalr";
 
 const MessagesComponent = () => {
   const { getChats, chats, isLoading, getSingleChat, singleChat } =
@@ -13,17 +18,88 @@ const MessagesComponent = () => {
   const [activeUser, setActiveUser] = useState();
   const [showMessage, setShowMessage] = useState(false);
   const [connection, setConnection] = useState(null);
-  const [chat, setChat] = useState(null);
+  const [chat, setChat] = useState([]);
   const [chatObject, setChatObject] = useState(null);
+  const latestChat = useRef(null);
+  latestChat.current = chat;
+  //get all chats
   useEffect(() => {
     getChats();
   }, []);
-
-  const setUser = (user) => {
-    getSingleChat(user.chatId);
+  useEffect(() => {
+    setChat(singleChat);
+  }, [singleChat]);
+  //set recipient
+  const setUser = async (user) => {
+    const status = await getSingleChat(user.chatId);
     setActiveUser(user);
+    if (!status) {
+      setShowMessage(true);
+      // setChat(singleChat);
+    }
   };
 
+  //const goBack = () => setShowMessage(false);
+
+  //  //start chat
+  //  useEffect(() => {
+  //    const requestOptions = {
+  //      method: "POST",
+  //      headers: { "Content-Type": "application/json" },
+  //      body: JSON.stringify({ RecipientId: 2 }),
+  //    };
+  //    fetch(
+  //      "https://da16-154-160-9-103.eu.ngrok.io/api/Chat/start",
+  //      requestOptions
+  //    )
+  //      .then((response) => response.json())
+  //      .then((data) => {
+  //        // console.log(data.data)
+  //        setChatObject(data.data);
+  //      });
+  //  }, []);
+
+  //establish socket connection
+  useEffect(() => {
+    const newConnection = new HubConnectionBuilder()
+      .withUrl("https://da16-154-160-9-103.eu.ngrok.io/hubs/chat")
+      .withAutomaticReconnect()
+      .configureLogging(LogLevel.Information)
+      .build();
+
+    setConnection(newConnection);
+  }, []);
+
+  //check connection and reestablish
+  useEffect(() => {
+    if (connection) {
+      if (connection.state === HubConnectionState.Disconnected) {
+        connection
+          .start()
+          .then((result) => {
+            handleListen();
+          })
+          .catch((e) => console.log("Connection failed: ", e));
+      } else {
+        console.log("Connected!");
+        handleListen();
+      }
+
+      function handleListen() {
+        if (activeUser?.chatId) {
+          connection.on(activeUser?.chatId.toString(), (message) => {
+            console.log(message, "io");
+            const updatedChat = [...latestChat.current];
+            console.log(updatedChat, "updated");
+            updatedChat.push(message);
+            const newList = new Set(updatedChat);
+
+            setChat([...newList]);
+          });
+        }
+      }
+    }
+  }, [connection, chat]);
   return (
     <div className="">
       <div className=" h-[100vh] grid grid-cols-12 ">
@@ -48,7 +124,7 @@ const MessagesComponent = () => {
                 chats?.map(({ chatParticipants, chatMessages }) => (
                   <li
                     key={chatParticipants?.[0].id}
-                    className={`border-.5 border-borderGrey rounded ${
+                    className={`border-.5 border-borderGrey rounded cursor-pointer ${
                       activeUser?.chatParticipants?.[0].id ===
                       chatParticipants?.[0].id
                         ? "bg-borderGrey"
@@ -56,7 +132,6 @@ const MessagesComponent = () => {
                     }`}
                     onClick={() => {
                       setUser(chatParticipants?.[0]);
-                      setShowMessage(true);
                     }}
                   >
                     <div className="flex  px-4 py-6">
@@ -89,14 +164,15 @@ const MessagesComponent = () => {
           }   xl:block  xl:col-span-7    relative overflow-auto no-scrollbar scroll-smooth`}
         >
           {
-            singleChat && singleChat.length ? (
+            chat && chat?.length ? (
               <ChatComponent
                 singleChat={chat}
                 showMessage={showMessage}
                 activeUser={activeUser}
+                setShowMessage={setShowMessage}
               />
             ) : null
-            //  setShowMessage(false)
+            //
           }
         </div>
       </div>

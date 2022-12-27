@@ -18,7 +18,7 @@ const useFetchChat = () => {
       const data = await ChatService.getChats();
       if (data.error === false) {
         setChats(data.data);
-        console.log(data.data, "tim");
+
         setIsLoading(false);
       }
     } catch (error) {
@@ -36,9 +36,10 @@ const useFetchChat = () => {
       const data = await ChatService.getSingleChat(id);
 
       if (data.error === false) {
-        setSingleChat(data.data);
-
+        setSingleChat(data.data.chatMessages);
+        console.log(data.data.chatMessages, "tim");
         setIsLoading(false);
+        return data.error;
       }
     } catch (error) {
       setIsLoading(false);
@@ -46,15 +47,15 @@ const useFetchChat = () => {
       errorToast(error.message);
     }
   };
-  const postAd = async (ad) => {
+  const sendChat = async (message) => {
     setIsLoading(true);
     setError(null);
 
     try {
-      const data = await AdService.postAd(ad);
-      console.log(data);
+      const data = await ChatService.sendMessage(message);
+
       if (data.error === false) {
-        success(data.message);
+        //  success(data.message);
         return data.error;
       } else {
         errorToast(data.message);
@@ -86,6 +87,7 @@ const useFetchChat = () => {
     getSingleChat,
     singleChat,
     isLoading,
+    sendChat,
   };
 };
 

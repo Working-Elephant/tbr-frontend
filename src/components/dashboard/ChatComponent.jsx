@@ -9,14 +9,21 @@ import useFetchChat from "../../hooks/useFetchChats";
 import { useEffect } from "react";
 import { findUpper } from "../../utils/Utils";
 import { useForm } from "react-hook-form";
-const ChatComponent = ({ singleChat, showMessage, activeUser }) => {
-  const { register, handleSubmit } = useForm();
-
-  const onSubmit = (data) => {
+const ChatComponent = ({
+  singleChat,
+  showMessage,
+  setShowMessage,
+  activeUser,
+}) => {
+  const { register, handleSubmit, reset } = useForm();
+  const { sendChat } = useFetchChat();
+  // console.log(singleChat, "cc");
+  const onSubmit = async (data) => {
     const { chatId } = activeUser;
     const obj = { ...data, chatId };
+    const status = await sendChat(obj);
+    if (!status) reset();
   };
-
   return (
     <div className="">
       <div className=" h-[100vh] grid grid-cols-12 ">
@@ -25,7 +32,7 @@ const ChatComponent = ({ singleChat, showMessage, activeUser }) => {
             showMessage ? "col-span-12" : "hidden"
           }   xl:block  xl:col-span-7    relative overflow-auto no-scrollbar scroll-smooth`}
         >
-          {singleChat ? (
+          {singleChat?.length ? (
             <>
               <div className="bg-[#FFFCF2] pt-2 pb-3 sticky top-0 flex items-center">
                 {showMessage ? (
@@ -58,7 +65,7 @@ const ChatComponent = ({ singleChat, showMessage, activeUser }) => {
                 </div>
               </div>
               <div className="  px-4 h-[75%] overflow-auto no-scrollbar">
-                {singleChat?.chatMessages?.map((chatMessages, i) => (
+                {singleChat?.map((chatMessages, i) => (
                   <div
                     key={i}
                     className={`px-5 py-3  mt-4 rounded-3xl w-fit max-w-[70%] ${
@@ -101,9 +108,7 @@ const ChatComponent = ({ singleChat, showMessage, activeUser }) => {
                 </form>
               </div>
             </>
-          ) : (
-            <Navigate to={"/dashboard/messages"} />
-          )}
+          ) : null}
         </div>
       </div>
     </div>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120.684" height="103.668" viewBox="0 0 120.684 103.668">
+  <g id="Group_10282" data-name="Group 10282" transform="translate(-740 -3659)">
+    <rect id="Rectangle_3901" data-name="Rectangle 3901" width="103.668" height="103.668" rx="22" transform="translate(757.016 3659)" fill="#8a7200" opacity="0.1"/>
+    <path id="Path_733" data-name="Path 733" d="M253.183,3303.847H231.538" transform="translate(510.961 371.546)" fill="none" stroke="#ffc432" stroke-linecap="round" stroke-width="5"/>
+    <path id="Path_734" data-name="Path 734" d="M242.361,3303.847H231.538" transform="translate(521.961 383.394)" fill="none" stroke="#ffc432" stroke-linecap="round" stroke-width="5"/>
+    <g id="Group_10" data-name="Group 10" transform="translate(765.854 3675.954)">
+      <g id="Icon_feather-search" data-name="Icon feather-search" transform="translate(26.649 19.014)">
+        <path id="Path_727" data-name="Path 727" d="M33.562,19.031A14.531,14.531,0,1,1,19.031,4.5,14.531,14.531,0,0,1,33.562,19.031Z" transform="translate(-4.5 -4.5)" fill="none" stroke="#393960" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+        <path id="Path_728" data-name="Path 728" d="M32.876,32.876l-7.9-7.9" transform="translate(-0.182 -0.182)" fill="none" stroke="#393960" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+        <circle id="Ellipse_9" data-name="Ellipse 9" cx="9.5" cy="9.5" r="9.5" transform="translate(5.498 5.032)" fill="#393960"/>
+      </g>
+    </g>
+  </g>
+</svg>
