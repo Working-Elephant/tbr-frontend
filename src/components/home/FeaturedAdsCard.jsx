@@ -4,15 +4,21 @@ import { MdLocationOn } from "react-icons/md";
 // import { FiHeart } from "react-icons/fi";
 import { BsHeart, BsFillHeartFill } from "react-icons/bs";
 import { FaCamera } from "react-icons/fa";
+import useFetchAds from "../../hooks/useFetchAds";
+import { useEffect } from "react";
 // import Checkbox from "@mui/material/Checkbox";
 // import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 // import Favorite from "@mui/icons-material/Favorite";
 
-const FeaturedAdsCard = ({ item }) => {
-  const { name, location, price, image, seller, sellerAvatar, id } = item;
+const FeaturedAdsCard = () => {
+  const { getFeaturedAds, featuredAds } = useFetchAds();
+  // const { name, location, price, image, seller, sellerAvatar, id } = item;
   const [liked, setLiked] = useState(false);
-
   const navigate = useNavigate();
+
+  useEffect(() => {
+    getFeaturedAds();
+  }, []);
 
   const toggleLike = (evt) => {
     // alert('fired')
@@ -27,8 +33,8 @@ const FeaturedAdsCard = ({ item }) => {
     <div className="p-2 flex flex-col cursor-pointer">
       <div
         className="w-full relative h-52 bg-cover bg-center bg-no-repeat rounded-2xl"
-        onClick={() => viewAd(id)}
-        style={{ backgroundImage: `url('${image}')` }}
+        // onClick={() => viewAd(id)}
+        // style={{ backgroundImage: `url('${image}')` }}
       >
         <i
           className="text-white text-lg absolute top-4 right-3 p-1"
@@ -47,14 +53,14 @@ const FeaturedAdsCard = ({ item }) => {
       </div>
       <div className="flex items-center justify-between mt-3">
         <div className="text-xs">
-          <p className="mb-1">{name}</p>
+          {/* <p className="mb-1">{name}</p> */}
           <div className="flex items-center text-grey ">
             <i className="mr-2">
               <MdLocationOn />
             </i>
-            <p>{location}</p>
+            {/* <p>{location}</p> */}
           </div>
-          {seller ? (
+          {/* {seller ? (
             <div className="flex text-grey">
               {sellerAvatar ? (
                 <img
@@ -67,11 +73,11 @@ const FeaturedAdsCard = ({ item }) => {
               )}
               By {seller}
             </div>
-          ) : null}
+          ) : null} */}
         </div>
         <div className="my-2">
           <span className="bg-black px-3 py-1 rounded-xl text-xs text-white">
-            &#x24;{price}
+            {/* ${price} */}
           </span>
         </div>
       </div>

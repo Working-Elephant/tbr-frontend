@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { RiSearchLine } from "react-icons/ri";
 import UserAvatar from "../shared/UserAvatar";
@@ -17,18 +17,12 @@ const MessagesComponent = () => {
     useFetchChat();
   const [activeUser, setActiveUser] = useState();
   const [showMessage, setShowMessage] = useState(false);
-  const [connection, setConnection] = useState(null);
-  const [chat, setChat] = useState([]);
-  const [chatObject, setChatObject] = useState(null);
-  const latestChat = useRef(null);
-  latestChat.current = chat;
+
   //get all chats
   useEffect(() => {
     getChats();
   }, []);
-  useEffect(() => {
-    setChat(singleChat);
-  }, [singleChat]);
+
   //set recipient
   const setUser = async (user) => {
     const status = await getSingleChat(user.chatId);
@@ -59,47 +53,6 @@ const MessagesComponent = () => {
   //      });
   //  }, []);
 
-  //establish socket connection
-  useEffect(() => {
-    const newConnection = new HubConnectionBuilder()
-      .withUrl("https://da16-154-160-9-103.eu.ngrok.io/hubs/chat")
-      .withAutomaticReconnect()
-      .configureLogging(LogLevel.Information)
-      .build();
-
-    setConnection(newConnection);
-  }, []);
-
-  //check connection and reestablish
-  useEffect(() => {
-    if (connection) {
-      if (connection.state === HubConnectionState.Disconnected) {
-        connection
-          .start()
-          .then((result) => {
-            handleListen();
-          })
-          .catch((e) => console.log("Connection failed: ", e));
-      } else {
-        console.log("Connected!");
-        handleListen();
-      }
-
-      function handleListen() {
-        if (activeUser?.chatId) {
-          connection.on(activeUser?.chatId.toString(), (message) => {
-            console.log(message, "io");
-            const updatedChat = [...latestChat.current];
-            console.log(updatedChat, "updated");
-            updatedChat.push(message);
-            const newList = new Set(updatedChat);
-
-            setChat([...newList]);
-          });
-        }
-      }
-    }
-  }, [connection, chat]);
   return (
     <div className="">
       <div className=" h-[100vh] grid grid-cols-12 ">
@@ -120,7 +73,7 @@ const MessagesComponent = () => {
           </div>
           <ul className="">
             <div className="">
-              {chats &&
+              {chats?.length ? (
                 chats?.map(({ chatParticipants, chatMessages }) => (
                   <li
                     key={chatParticipants?.[0].id}
@@ -137,7 +90,7 @@ const MessagesComponent = () => {
                     <div className="flex  px-4 py-6">
                       <div className="w-1/6">
                         <UserAvatar
-                          text={chatParticipants?.[0].username}
+                          text={findUpper(chatParticipants?.[0]?.username)}
                           width="w-12"
                           height="h-12"
                         />
@@ -153,7 +106,10 @@ const MessagesComponent = () => {
                       </div>
                     </div>
                   </li>
-                ))}
+                ))
+              ) : (
+                <h1>No Messages</h1>
+              )}
             </div>
           </ul>
         </div>
@@ -164,9 +120,9 @@ const MessagesComponent = () => {
           }   xl:block  xl:col-span-7    relative overflow-auto no-scrollbar scroll-smooth`}
         >
           {
-            chat && chat?.length ? (
+            singleChat && singleChat?.length ? (
               <ChatComponent
-                singleChat={chat}
+                singleChat={singleChat}
                 showMessage={showMessage}
                 activeUser={activeUser}
                 setShowMessage={setShowMessage}

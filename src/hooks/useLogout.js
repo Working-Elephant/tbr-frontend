@@ -4,7 +4,6 @@ import AuthService from "../services/user";
 import { useDispatch } from "react-redux";
 import { logout } from "../store/features/authSlice";
 
-
 const useLogOut = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
@@ -23,7 +22,7 @@ const useLogOut = () => {
       if (!isAborted) {
         setIsLoading(false);
         setError(null);
-        navigate(`/home`)
+        navigate(`/`);
       }
     } catch (error) {
       if (!isAborted) {

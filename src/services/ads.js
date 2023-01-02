@@ -22,6 +22,13 @@ const AdService = {
       return res;
     });
   },
+  getFeaturedAds: async () => {
+    return axios
+      .get(`${baseUrl}/PostAd/featured?limit=9&page=1`)
+      .then((res) => {
+        return res.data;
+      });
+  },
 };
 
 export default AdService;

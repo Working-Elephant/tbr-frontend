@@ -202,9 +202,7 @@ const Home = () => {
             </Link>
           </div>
           <div className="grid grid-cols-2 gap-3 lg:grid-cols-3   ">
-            {featuredAdsData.slice(0, 9).map((item, i) => {
-              return <FeaturedAdsCard key={i} item={item} />;
-            })}
+            <FeaturedAdsCard />;
           </div>
         </div>
         <div className="mt-10 text-center">

@@ -44,6 +44,7 @@ const useSignUp = () => {
   // :
   // "Your TexasBully account has been created successfully, kindly verify your account by following the link in the mail sent to you
   const signUp = async (signUpData) => {
+    setIsLoading(true);
     try {
       const res = await AuthService.signUp(signUpData);
 

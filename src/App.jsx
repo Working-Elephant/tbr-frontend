@@ -30,6 +30,9 @@ import Orders from "./components/dashboard/Orders";
 import { useMatch } from "react-router-dom";
 import { useLayoutEffect } from "react";
 import BullyRegistration from "./components/dashboard/BullyRegistration";
+import ViewPetDetails from "./pages/pets/ViewPetDetails";
+import BullyBilling from "./pages/shop/BullyBilling";
+import FeaturedBilling from "./pages/shop/FeaturedBilling";
 
 const Wrapper = ({ children }) => {
   const location = useLocation();
@@ -134,6 +137,7 @@ const App = () => {
               </ProtectedRoutes>
             }
           />
+
           <Route
             path="/cart/shipping/billing/confirmation"
             element={
@@ -151,6 +155,31 @@ const App = () => {
             }
           />
           <Route path="/ad/view/:id" element={<ViewAdDetails />} />
+
+          <Route
+            path="/pet/view/:id"
+            element={
+              <ProtectedRoutes>
+                <ViewPetDetails />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/pet/billing/:id"
+            element={
+              <ProtectedRoutes>
+                <BullyBilling />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/featured/billing"
+            element={
+              <ProtectedRoutes>
+                <FeaturedBilling />
+              </ProtectedRoutes>
+            }
+          />
           <Route path="*" exact={true} element={<Notfound />} />
         </Routes>
         {isMessages ? null : <Footer />}

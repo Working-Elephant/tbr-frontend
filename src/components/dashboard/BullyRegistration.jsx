@@ -46,13 +46,14 @@ const BullyRegistration = () => {
     formdata.append("State", obj.State);
     formdata.append("Zip", obj.Zip);
     formdata.append("Address", obj.Address);
+    formdata.append("DogClass", obj.DogClass);
 
     formdata.append("Description", obj.Description);
     formdata.append("Telephone", obj.Telephone);
     formdata.append("Pedigrees", obj.Pedigree);
 
     const status = await registerBully(formdata);
-    console.log(status, "sd");
+
     if (status === false) {
       setStep(3);
     }

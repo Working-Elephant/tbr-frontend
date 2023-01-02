@@ -6,12 +6,16 @@ import { selectCategories, breed } from "../../data";
 import { useForm } from "react-hook-form";
 import useFetchBullies from "../../hooks/useFectchBullies";
 import * as watermark from "watermarkjs";
+import { HexColorInput, HexColorPicker } from "react-colorful";
+import { PopoverPicker } from "../shared/PopOverPicker";
 const AboutBully = () => {
   const { getBreedType, breedType } = useFetchBullies();
   const [images, setImages] = useState("");
   const { updateStep1 } = useContext(BullyRegistrationContext);
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [fileLimit, setFileLimit] = useState();
+  const [color1, setColor1] = useState("#aabbcc");
+  const [color2, setColor2] = useState("#aabbcc");
   const MAX_COUNT = 3;
   const {
     register,
@@ -26,6 +30,7 @@ const AboutBully = () => {
     let submitData = {
       ...data,
       images: [...uploadedFiles],
+      Color: `${color1},${color2}`,
     };
     console.log(submitData, "submit Data");
     updateStep1(submitData);
@@ -109,7 +114,8 @@ const AboutBully = () => {
               <div className="w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
                 <SelectInput
                   border="border-0"
-                  options={breed}
+                  options={breedType}
+                  read={"BreedTypeId"}
                   defaultOption="Breed Type"
                   {...register("BreedTypeId", {
                     required: {
@@ -122,23 +128,6 @@ const AboutBully = () => {
               {errors.BreedType && (
                 <ErrorMessage message={errors.BreedType?.message} />
               )}
-            </div>
-
-            <div>
-              <div className=" w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-                <Input
-                  type="color"
-                  border="border-0"
-                  placeholder={"Color"}
-                  {...register("Color", {
-                    required: {
-                      value: true,
-                      message: " This field is required",
-                    },
-                  })}
-                />
-              </div>
-              {errors.Color && <ErrorMessage message={errors.Color?.message} />}
             </div>
             <div>
               <div className=" w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
@@ -158,7 +147,52 @@ const AboutBully = () => {
                 <ErrorMessage message={errors.Description?.message} />
               )}
             </div>
+            <div>
+              <div className="w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+                <SelectInput
+                  border="border-0"
+                  options={breedType}
+                  read={"BreedTypeId"}
+                  defaultOption="Dog Class"
+                  {...register("DogClass", {
+                    required: {
+                      value: true,
+                      message: " This field is required",
+                    },
+                  })}
+                />
+              </div>
+              {errors.BreedType && (
+                <ErrorMessage message={errors.BreedType?.message} />
+              )}
+            </div>
           </div>
+        </div>
+        <div className="flex justify-center">
+          <div className=" w-[50%] bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
+            {/* <Input
+                  type="color"
+                  border="border-0"
+                  placeholder={"Color"}
+                  {...register("Color", {
+                    required: {
+                      value: true,
+                      message: " This field is required",
+                    },
+                  })}
+                /> */}
+            <div className="flex justify-evenly">
+              <div className="flex items-center justify-between">
+                <span className="text-xs mr-2">Dog Color 1</span>
+                <PopoverPicker color={color1} onChange={setColor1} />
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-xs mr-2">Dog Color 2</span>
+                <PopoverPicker color={color2} onChange={setColor2} />
+              </div>
+            </div>
+          </div>
+          {errors.Color && <ErrorMessage message={errors.Color?.message} />}
         </div>
         <div className="text-center mt-5">
           <h5 className="text-center mb-4">Add Photos</h5>

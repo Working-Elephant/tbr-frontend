@@ -9,7 +9,7 @@ const DashboardLayout = ({ children }) => {
   const { getUser } = AuthService;
   const user = getUser();
   return (
-    <div className="px-5 pt-5 lg:py-10 lg:px-12">
+    <div className="px-5 pt-5 lg:py-5 lg:px-5 h-[90vh] ">
       <div className=" grid  md:grid-cols-8 md:gap-3 lg:gap-4">
         <div className="md:col-span-3 xl:col-span-2">
           <div className="lg:border-r lg:border-r-borderGrey pr-6">
@@ -32,8 +32,8 @@ const DashboardLayout = ({ children }) => {
                         to={`${item.link}`}
                         className={({ isActive }) =>
                           isActive
-                            ? "bg-yellow  px-5 py-3 rounded-lg my-3 flex items-center justify-between"
-                            : "bg-[#F6F6F6] px-5 py-3 rounded-lg my-3 flex items-center justify-between"
+                            ? "bg-yellow  px-5 py-3 rounded-lg my-3 flex items-center justify-between mt-5"
+                            : "bg-[#F6F6F6] px-5 py-3 rounded-lg my-3 flex items-center justify-between mt-5"
                         }
                       >
                         <div className="flex items-center">
@@ -57,7 +57,7 @@ const DashboardLayout = ({ children }) => {
             </div>
           </div>
         </div>
-        <div className="md:col-span-5 xl:col-span-6  mt-6 md:mt-0">
+        <div className="md:col-span-5 xl:col-span-6  mt-3 md:mt-0">
           <div className=" px-3">{children}</div>
         </div>
       </div>

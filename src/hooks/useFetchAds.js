@@ -7,6 +7,7 @@ const useFetchAds = () => {
   const [error, setError] = useState(null);
   const [ads, setAds] = useState([]);
   const [singleAds, setSingleAd] = useState([]);
+  const [featuredAds, setFeaturedAds] = useState([]);
   const navigate = useNavigate();
   const getAds = async () => {
     setIsLoading(true);
@@ -77,6 +78,23 @@ const useFetchAds = () => {
       errorToast(error.message);
     }
   };
+  const getFeaturedAds = async () => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const data = await AdService.getFeaturedAds();
+
+      if (data.error === false) {
+        setFeaturedAds(data.data.items);
+        setIsLoading(false);
+      }
+    } catch (error) {
+      setIsLoading(false);
+      setError(error);
+      errorToast(error.message);
+    }
+  };
 
   return {
     getAds,
@@ -87,6 +105,8 @@ const useFetchAds = () => {
     getCategories,
     getSingleAd,
     singleAds,
+    getFeaturedAds,
+    featuredAds,
   };
 };
 

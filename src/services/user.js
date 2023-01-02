@@ -1,8 +1,9 @@
 import axios from "axios";
+import { logout } from "../store/features/authSlice";
 import isResponseSuccess from "../utils/successResponse";
-
+import useLogOut from "../hooks/useLogout";
 let baseUrl = import.meta.env.VITE_BACKEND_URL;
-console.log(baseUrl, "base");
+
 const AuthService = {
   signUp: async (data) => {
     return axios
@@ -25,10 +26,13 @@ const AuthService = {
       });
   },
   getUser: () => {
-    let user = localStorage.getItem("user")
-      ? JSON.parse(localStorage.getItem("user"))
-      : null;
-    return user;
+    const { logOut } = useLogOut();
+    let user = localStorage.getItem("user");
+    if (user) {
+      return JSON.parse(localStorage.getItem("user"));
+    } else {
+      return logOut();
+    }
   },
   logout: async () => {
     localStorage.removeItem("user");

@@ -19,7 +19,7 @@ const UserAvatar = (props) => {
       )} */}
       {props.image && <img src={props.image} alt="" className="rounded-full" />}
       {props.text && !props.image && (
-        <div className="text-white">{props.text}</div>
+        <div className="text-white">{props.text || "U"}</div>
       )}
     </div>
   );

@@ -2,8 +2,9 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { BsPlusCircle } from "react-icons/bs";
 import { adsData } from "../../data";
-import { Loader, PetCard } from "../shared";
+import { Loader } from "../shared";
 import useFetchAds from "../../hooks/useFetchAds";
+import AdCard from "../shared/AdCard";
 
 const AdsComponent = () => {
   const { isLoading, getAds, ads } = useFetchAds();
@@ -36,7 +37,7 @@ const AdsComponent = () => {
           </div>
         ) : ads && ads.length > 0 ? (
           ads?.map((item, i) => {
-            return <PetCard key={i} item={item} />;
+            return <AdCard key={i} item={item} />;
           })
         ) : (
           <div>

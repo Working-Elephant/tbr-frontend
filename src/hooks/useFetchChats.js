@@ -67,15 +67,22 @@ const useFetchChat = () => {
     }
   };
 
-  const getCategories = async () => {
+  const startChat = async (message) => {
+    setIsLoading(true);
     setError(null);
 
     try {
-      const data = await AdService.getCategories();
+      const data = await ChatService.createMessage(message);
 
       if (data.error === false) {
+        setSingleChat(data.data.chatMessages);
+        //  success(data.message);
+        return data.error;
+      } else {
+        errorToast(data.message);
       }
     } catch (error) {
+      setIsLoading(false);
       setError(error);
       errorToast(error.message);
     }
@@ -88,6 +95,7 @@ const useFetchChat = () => {
     singleChat,
     isLoading,
     sendChat,
+    startChat,
   };
 };
 

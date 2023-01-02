@@ -20,6 +20,7 @@ const SelectInput = forwardRef(function SelectInput(
     border,
     paddingX,
     paddingY,
+    read,
     ...props
   },
   ref
@@ -50,7 +51,7 @@ const SelectInput = forwardRef(function SelectInput(
         <option value="">{defaultOption}</option>
         {options.map((option, i) => (
           <option key={i} value={option.id ? option.id : option.value}>
-            {option.value}
+            {read === "BreedTypeId" ? option.breedTypeName : option.value}
           </option>
         ))}
       </select>

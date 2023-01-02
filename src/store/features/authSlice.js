@@ -48,9 +48,10 @@ const slice = createSlice({
   name: "auth",
   initialState: {
     user: JSON.parse(localStorage.getItem("user")) ?? null,
-    isAuthenticated: localStorage.getItem("user") ? true : false,
+    isAuthenticated: JSON.parse(localStorage.getItem("user")) ? true : false,
     loading: false,
   },
+
   reducers: {
     login(state, { payload }) {
       state.user = payload;

@@ -9,7 +9,6 @@ const RegisteredBullies = () => {
   useEffect(() => {
     getRegisteredBullies();
   }, []);
-  console.log(bullies, "bullies");
   return (
     <>
       <div className="flex items-center justify-between mb-3 px-5">
@@ -33,7 +32,7 @@ const RegisteredBullies = () => {
             </div>
           ) : bullies && bullies.length > 0 ? (
             bullies.map((item, i) => {
-              return <PetCard key={i} item={item} type={"bully"} />;
+              return <PetCard key={i} item={item} />;
             })
           ) : (
             <div>

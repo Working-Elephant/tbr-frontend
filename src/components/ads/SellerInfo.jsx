@@ -1,5 +1,5 @@
 import React from "react";
-import {  BsStar } from "react-icons/bs";
+import { BsStar } from "react-icons/bs";
 import { IoIosArrowDown } from "react-icons/io";
 import { GoPrimitiveDot } from "react-icons/go";
 import UserAvatar from "../shared/UserAvatar";
@@ -44,19 +44,22 @@ const SellerInfo = (props) => {
         </div>
       </div>
       {/* <div className="grid grid-cols-1 md:grid-cols-2 md:gap-3 lg:grid-cols-1"> */}
-        <div className="my-3">
-          <button className="p-3 w-full bg-black text-white text-sm rounded-md flex items-center justify-center">
-            {props.blackBtnIcon ? (
-              <i className="mx-3">{props.blackBtnIcon}</i>
-            ) : null}{" "}
-            {props.blackBtnText}
-          </button>
-        </div>
-        <div className="my-3">
-          <button className="p-3 w-full bg-white text-dark text-sm rounded-md">
-            {props.whiteBtnText}
-          </button>
-        </div>
+      <div className="my-3">
+        <button
+          className="p-3 w-full bg-black text-white text-sm rounded-md flex items-center justify-center"
+          onClick={() => props.openChat()}
+        >
+          {props.blackBtnIcon ? (
+            <i className="mx-3">{props.blackBtnIcon}</i>
+          ) : null}{" "}
+          {props.blackBtnText}
+        </button>
+      </div>
+      <div className="my-3">
+        <button className="p-3 w-full bg-white text-dark text-sm rounded-md">
+          {props.whiteBtnText}
+        </button>
+      </div>
       {/* </div> */}
     </div>
   );

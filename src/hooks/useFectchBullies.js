@@ -8,9 +8,9 @@ const useFetchBullies = () => {
   //   const  dispatch  = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [bullies, setBullies] = useState([]);
+  const [bully, setBully] = useState([]);
   const [breedType, setBullyType] = useState([]);
   const [error, setError] = useState(null);
-  const [bully, setBully] = useState([]);
   const navigate = useNavigate();
   const getRegisteredBullies = async () => {
     setIsLoading(true);
@@ -44,11 +44,11 @@ const useFetchBullies = () => {
       const res = await BullyService.getSingleBully(id);
 
       const response = await res;
-      console.log("response", response);
 
       if (response.error === false) {
-        setBully(data.data);
-        navigate(`/ad/view/${id}`);
+        setBully(response.data);
+
+        navigate(`/pet/view/${id}`);
         setIsLoading(false);
       } else {
         errorToast(response.message || `Unable to fetch registered Bully`);
@@ -111,6 +111,32 @@ const useFetchBullies = () => {
     }
   };
 
+  const postBully = async (obj) => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const res = await BullyService.postBully(obj);
+      if (res) {
+        const response = await res;
+
+        if (response.error === false) {
+          success(response.message);
+          setIsLoading(false);
+          navigate("/categories/pets");
+          return response.error;
+        } else {
+          warning(`Unable to Post bully`);
+          setIsLoading(false);
+        }
+      }
+    } catch (error) {
+      setIsLoading(false);
+      setError(error);
+      errorToast(error.message);
+    }
+  };
+
   return {
     getRegisteredBullies,
     registerBully,
@@ -121,6 +147,7 @@ const useFetchBullies = () => {
     breedType,
     bully,
     getSingleBully,
+    postBully,
   };
 };
 

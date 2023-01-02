@@ -5,8 +5,6 @@ import SellerInfo from "../../components/ads/SellerInfo";
 import SimilarProducts from "../../components/ads/SimilarProducts";
 import RecentlyViewed from "../../components/ads/RecentlyViewed";
 import SellerAvatar1 from "../../assets/images/avatar1.jpeg";
-// import { carouselImages } from "../../mockData/mockData";
-import useFetchAds from "../../hooks/useFetchAds";
 import {
   BsChatText,
   BsPlus,
@@ -17,30 +15,27 @@ import Backdrop from "@mui/material/Backdrop";
 import { MdClose } from "react-icons/md";
 import { FaCamera, FaBorderAll, FaArrowLeft } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
-import { addToCart, addFeatured } from "../../store/features/productSlice";
+import { addBullyToCart } from "../../store/features/productSlice";
 import AuthService from "../../services/user";
 import ChatComponent from "../../components/dashboard/ChatComponent";
 import useFetchChat from "../../hooks/useFetchChats";
 import { success } from "../../components/shared";
+import useFetchBullies from "../../hooks/useFectchBullies";
 
-const ViewAdDetails = () => {
+const ViewPetDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { getSingleAd, singleAds } = useFetchAds();
-  const { startChat, isLoading, singleChat } = useFetchChat();
-  // const { getUser } = AuthService;
-  // const user = getUser();
-  // const userID = user ? user.user.id : null;
-
+  const { getSingleBully, bully, postBully, isLoading } = useFetchBullies();
   const user = useSelector((state) => state?.auth?.user);
   const userID = user?.userId;
   const thumbnailsContainer = useRef(null);
+  const csId = useRef(null);
   const [ImageInView, setImageInView] = useState(0);
   const [showChat, setShowChat] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
-    if (!singleAds.length) {
-      getSingleAd(id);
+    if (!bully.length) {
+      getSingleBully(id);
     }
   }, []);
 
@@ -71,38 +66,122 @@ const ViewAdDetails = () => {
     setShowChat(false);
   };
   const activeUser = {
-    chatId: singleAds?.userId,
+    chatId: bully?.userId,
   };
-  const openChat = async () => {
-    if (userID) {
-      const status = await startChat(singleAds?.userId);
-      if (!status) {
-        setShowChat(true);
-      }
-    } else {
-      navigate("/login");
-    }
-  };
+
   const imageurl = import.meta.env.VITE_IMAGE_URL;
 
-  const addItemToCart = () => {
-    if (!singleAds) return;
-    success("Item Added to Cart");
-    dispatch(addToCart(singleAds));
-    console.log("here");
-  };
   const goToCart = () => {
-    if (!singleAds) return;
-    dispatch(addToCart(singleAds));
-    navigate("/cart");
+    if (!bully) return;
+
+    dispatch(addBullyToCart(bully));
+    navigate(`/pet/billing/${id}`);
   };
 
-  const makeFeatured = () => {
-    if (!singleAds) return;
-    dispatch(addFeatured(singleAds));
-    navigate("/featured/billing");
+  const postAd = async () => {
+    if (!bully) return;
+    const obj = {
+      Price: bully?.price,
+      BullyId: bully?.id,
+    };
+    const status = await postBully(obj);
   };
-
+  // address
+  // :
+  // "Lumis student living  Tyndall Street  North building room 709"
+  // breed
+  // :
+  // "wolf"
+  // breedTypeId
+  // :
+  // 3
+  // bullyImages
+  // :
+  // [{id: 3, bullyId: 2,…},…]
+  // 0
+  // :
+  // {id: 3, bullyId: 2,…}
+  // 1
+  // :
+  // {id: 7, bullyId: 2, url: "276a17bc-7a4e-4dbf-95b3-2b7fe34ee166_pizza-Large.png"}
+  // bullyId
+  // :
+  // 2
+  // id
+  // :
+  // 7
+  // url
+  // :
+  // "276a17bc-7a4e-4dbf-95b3-2b7fe34ee166_pizza-Large.png"
+  // 2
+  // :
+  // {id: 8, bullyId: 2, url: "b65d28cd-8d94-4891-817c-b73aa9dccedb_logo_white_background-(1).jpg"}
+  // bullyPedigrees
+  // :
+  // []
+  // bullyRegId
+  // :
+  // "AKI-D-00000000"
+  // bullyType
+  // :
+  // {id: 3, breedTypeName: "Akita Inu"}
+  // breedTypeName
+  // :
+  // "Akita Inu"
+  // id
+  // :
+  // 3
+  // city
+  // :
+  // "Cardiff"
+  // color
+  // :
+  // "#000"
+  // createdAt
+  // :
+  // "12/30/2022 22:55:23"
+  // description
+  // :
+  // "wolfie"
+  // dob
+  // :
+  // "Sun Nov 27 2022 00:00:00 GMT+0100 (West Africa Standard Time)"
+  // dogOwnerName
+  // :
+  // "lkmlkmlkm"
+  // dogRegisterName
+  // :
+  // "lm;"
+  // id
+  // :
+  // 2
+  // price
+  // :
+  // "10000"
+  // sex
+  // :
+  // "Female"
+  // state
+  // :
+  // "Akwa Ibom"
+  // status
+  // :
+  // "PENDING"
+  // telephone
+  // :
+  // "(074)383-4959"
+  // userId
+  // :
+  // 2
+  // zip
+  // :
+  // "CF10 4BZ"
+  const callCustomerService = () => {
+    let id = document.getElementById("hubspot-messages-iframe-container");
+    csId.current = id;
+    console.log(csId.current);
+    csId.current.focus();
+  };
   return (
     <>
       <div className="p-5  lg:py-10 lg:px-12">
@@ -131,14 +210,14 @@ const ViewAdDetails = () => {
                         <FaCamera />
                       </i>
                       <span className="">
-                        {singleAds?.postAdImages?.length ?? 1}
+                        {bully?.bullyImages?.length ?? 1}
                       </span>
                     </div>
                   </div>
                   <img
                     src={
-                      singleAds?.postAdImages?.length
-                        ? `${imageurl}${singleAds?.postAdImages?.[ImageInView]?.url}`
+                      bully?.bullyImages?.length
+                        ? `${imageurl}${bully?.bullyImages?.[ImageInView]?.url}`
                         : null
                     }
                     alt=""
@@ -158,14 +237,14 @@ const ViewAdDetails = () => {
                 </div>
                 <ImageModal
                   image={
-                    singleAds?.postAdImages?.length
-                      ? `${imageurl}${singleAds?.postAdImages?.[ImageInView]?.url}`
+                    bully?.bullyImages?.length
+                      ? `${imageurl}${bully?.bullyImages?.[ImageInView]?.url}`
                       : null
                   }
                   open={fullImage}
                   close={handleClose}
                 />
-                {singleAds?.postAdImages?.length ? (
+                {bully?.bullyImages?.length ? (
                   <div
                     ref={thumbnailsContainer}
                     className="flex items-center  "
@@ -182,7 +261,7 @@ const ViewAdDetails = () => {
                       className="flex overflow-auto scroll-m-4 mx-4"
                       style={{ webkitScrollBar: "none" }}
                     >
-                      {singleAds?.postAdImages?.map((item, i) => {
+                      {bully?.bullyImages?.map((item, i) => {
                         return (
                           <img
                             key={i}
@@ -206,99 +285,96 @@ const ViewAdDetails = () => {
                 ) : null}
               </div>
               <div className=" px-2 text-xs">
-                <p className="">{singleAds?.title}</p>
+                <p className="">{bully?.bully}</p>
                 <p className="my-3 pb-2 text-base font-semibold border-b border-b-borderGrey">
-                  ${singleAds?.amount}
+                  ${bully?.price}
                 </p>
                 <p className="uppercase ">Description</p>
                 <p className="border-b border-b-borderGrey py-2">
-                  {singleAds?.description}
+                  {bully?.description}
                 </p>
-                {singleAds?.bully && (
-                  <>
-                    <div className="border-b border-b-borderGrey">
-                      <div className="flex items-center justify-between text-xs py-2">
-                        <span className="uppercase">BULLY AGE</span>
-                        <i>
-                          <BsPlus />
-                        </i>
-                      </div>
-                    </div>
-                    <div className="border-b border-b-borderGrey">
-                      <div className="flex items-center justify-between text-xs py-2">
-                        <span className="uppercase">DETAILS & CARE</span>
-                        {/* <i>
+
+                <div className="border-b border-b-borderGrey">
+                  <div className="flex items-center justify-between text-xs py-2">
+                    <span className="uppercase">BULLY AGE</span>
+                    {/* <i>
                           <BsPlus />
                         </i> */}
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4 py-3">
-                      <div>
+                    {bully?.dob}
+                  </div>
+                </div>
+                <div className="border-b border-b-borderGrey">
+                  {/* <div className="flex items-center justify-between text-xs py-2">
+                    <span className="uppercase">DETAILS & CARE</span>
+                     <i>
+                          <BsPlus />
+                        </i> 
+                  </div> */}
+                </div>
+                <div className="grid grid-cols-2 gap-4 py-3">
+                  {/* <div>
                         <button className="w-full rounded-md py-2 border border-blue text-blue whitespace-nowrap">
                           View Bully Certificate
                         </button>
-                      </div>
-                      <div>
+                      </div> */}
+                  {/* <div>
                         <button className="w-full rounded-md py-2 border border-blue text-blue">
                           View Pedigree Chart
                         </button>
-                      </div>
-                    </div>
-                  </>
-                )}
-                <div className="border-b border-b-borderGrey">
+                      </div> */}
+                </div>
+
+                {/* <div className="border-b border-b-borderGrey">
                   <div className="flex items-center justify-between text-xs py-2">
                     <span className="uppercase">DELIVERY & RETURNS</span>
                     <i>
                       <BsPlus />
                     </i>
                   </div>
-                </div>
+                </div> */}
+
                 <div className="py-3 border-b border-b-borderGrey">
-                  {userID && userID !== singleAds?.userId ? (
-                    <>
-                      <button
-                        className="w-full rounded-md py-2 bg-blue text-white capitalize"
-                        onClick={addItemToCart}
-                      >
-                        Add to Cart
-                      </button>
-                      <button
-                        className="w-full rounded-md py-2 bg-white text-blue capitalize"
-                        onClick={goToCart}
-                      >
-                        Proceed to Checkout
-                      </button>
-                    </>
+                  {/* <button
+                    className="w-full rounded-md py-2 bg-blue text-white capitalize"
+                    onClick={addItemToCart}
+                  >
+                    Add to Cart
+                  </button> */}
+                  {bully?.status === "REGISTERED" ? (
+                    <button
+                      className="w-full rounded-md py-2 bg-blue text-white capitalize"
+                      onClick={postAd}
+                    >
+                      {isLoading ? <Loader size={20} /> : "Post Ad"}
+                    </button>
                   ) : (
-                    <>
-                      {singleAds?.featured === false ? (
-                        <button
-                          className="w-full rounded-md py-2 bg-blue text-white capitalize"
-                          onClick={makeFeatured}
-                        >
-                          Make Featured
-                        </button>
-                      ) : null}
-                    </>
+                    <button
+                      className="w-full rounded-md py-2 bg-blue text-white capitalize"
+                      onClick={goToCart}
+                    >
+                      Register Pet
+                    </button>
                   )}
                 </div>
-                {singleAds?.bully && (
-                  <div className=" border-b border-b-borderGrey grid grid-cols-3 text-xs text-blue text-center cursor-pointer">
-                    <div className="border-r border-borderGrey py-3">
-                      <p>BULLY CODE</p>
-                      <h5 className=" font-semibold">668235</h5>
-                    </div>
-                    <div className="py-3">
-                      <p>VIEW MORE</p>
-                      <h5 className=" font-semibold">Bullies</h5>
-                    </div>
+
+                <div className=" border-b border-b-borderGrey grid grid-cols-3 text-xs text-blue text-center cursor-pointer">
+                  <div className="border-r border-borderGrey py-3">
+                    <p>PET CODE</p>
+                    <h5 className=" font-semibold">{bully?.bullyRegId}</h5>
                   </div>
-                )}
+                  <div className="py-3">
+                    <p>Status</p>
+                    <h5 className=" font-semibold">{bully?.status}</h5>
+                  </div>
+                  <div className="py-3" onClick={callCustomerService}>
+                    <p>Contact Us</p>
+                    <h5 className=" font-semibold">Customer Service</h5>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          {userID && userID !== singleAds?.userId ? (
+          {userID && userID !== bully?.userId ? (
             <div className="col-span-12 md:col-span-6    xl:col-span-3 ">
               <SellerInfo
                 image={SellerAvatar1}
@@ -313,38 +389,9 @@ const ViewAdDetails = () => {
             </div>
           ) : null}
         </div>
-        <div className=" my-6">
-          <SimilarProducts />
-        </div>
-        <div>
-          <RecentlyViewed />
-        </div>
       </div>
-      {showChat && (
-        <>
-          <Backdrop
-            // sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-            open={true}
-          >
-            {isLoading ? <Loader /> : null}
-            <div className="absolute top-4 bg-white p-4 w-fit max-h-[90vh] rounded-lg">
-              <div className="flex items-center justify-end">
-                <i className="text-xl text-end p-4" onClick={handleChatClose}>
-                  <MdClose />
-                </i>
-              </div>
-              <ChatComponent
-                singleChat={singleChat}
-                activeUser={activeUser}
-                showMessage={true}
-              />
-              {/* <h1 className="text-primary">Tiiim</h1> */}
-            </div>
-          </Backdrop>
-        </>
-      )}
     </>
   );
 };
 
-export default ViewAdDetails;
+export default ViewPetDetails;

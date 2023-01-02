@@ -12,7 +12,10 @@ const AdConfirm = () => {
           </i>
         </div>
         <h5 className="my-2 font-semibold">Completed</h5>
-        <p className="my-2">You have successfully registered your Bully</p>
+        <p className="my-2">
+          You have successfully submitted your Bully for review. Kindly head
+          over to payment to complete Registration{" "}
+        </p>
         <div className="text-center my-5">
           <button className="bg-yellow py-4 px-15 rounded font-semibold text-sm ">
             <Link to="/dashboard/bully-registration"> FINISH</Link>

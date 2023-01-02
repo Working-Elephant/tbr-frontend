@@ -42,13 +42,16 @@ const initialState = {
   loading: false,
   products: featuredAdsData,
   cart: {
-    item: null,
+    items: [],
+    bully: null,
+    featured: null,
     quantity: 1,
     subTotal: 0,
     shipping: 0,
     duties: 0,
-    tax: 0,
+    tax: 0.025,
     total: 0,
+    shippingInfo: null,
   },
   //   single: null,
 };
@@ -64,19 +67,53 @@ const slice = createSlice({
     // },
     addToCart: (state, { payload }) => {
       let cart = state.cart;
-      cart.item = payload;
-      cart.subTotal = cart.quantity * payload.price;
+      cart.items = [...cart.items, payload];
+      const amountArray = cart.items.map(({ amount }) => {
+        let value = +amount;
+        console.log(value, "value add");
+        return value;
+      });
+      cart.subTotal = amountArray.reduce((partialSum, a) => partialSum + a, 0);
+      cart.tax = cart.subTotal * 0.025;
       cart.total = cart.subTotal + cart.shipping + cart.tax;
     },
-    // filterProducts: (state, { payload }) => {
-    //   state.cart.quantity = payload;
-    // },
+
+    addShipping: (state, { payload }) => {
+      let cart = state.cart;
+      cart.shippingInfo = payload;
+    },
+
+    addBullyToCart: (state, { payload }) => {
+      let cart = state.cart;
+      cart.bully = payload;
+      cart.duties = 35;
+      cart.subTotal = cart.bully.price;
+      cart.tax = cart.subTotal * 0.025;
+      cart.total = +cart.subTotal + +cart.duties + +cart.tax;
+    },
+    addFeatured: (state, { payload }) => {
+      let cart = state.cart;
+      cart.featured = payload;
+      cart.duties = 35;
+      cart.subTotal = cart.bully.price;
+      cart.tax = cart.subTotal * 0.025;
+      cart.total = +cart.subTotal + +cart.duties + +cart.tax;
+    },
+    removeFromCart: (state, { payload }) => {
+      let cart = state.cart;
+      let filtered = cart.items.filter((item) => item.id !== payload);
+      cart.items = filtered;
+    },
     increaseQuantity: (state, { payload }) => {
       state.cart.quantity += 1;
+
+      console.log(state, "updated state");
+      return state;
     },
     decreaseQuantity: (state, { payload }) => {
       if (state.cart.quantity > 1) {
         state.cart.quantity -= 1;
+        return state;
       }
     },
   },
@@ -111,5 +148,13 @@ const slice = createSlice({
 });
 
 export { fetchPostsSlice, createPostsSlice };
-export const { addToCart, increaseQuantity, decreaseQuantity } = slice.actions;
+export const {
+  addToCart,
+  increaseQuantity,
+  decreaseQuantity,
+  addShipping,
+  addBullyToCart,
+  removeFromCart,
+  addFeatured,
+} = slice.actions;
 export default slice.reducer;

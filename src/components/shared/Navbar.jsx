@@ -3,17 +3,17 @@ import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import { FiSearch } from "react-icons/fi";
-import { FaBell } from "react-icons/fa";
+import { FaBell, FaCartPlus } from "react-icons/fa";
 import Logo from "../../assets/images/logo.png";
 import Backdrop from "@mui/material/Backdrop";
 import { useSelector } from "react-redux";
 import UserAvatar from "../../assets/images/avatar2.jpeg";
 import useLogOut from "../../hooks/useLogout";
-
 const Navbar = ({ home }) => {
   const [mobileMenu, setMobileMenu] = useState(false);
   const isLoggedIn = useSelector((state) => state.auth.isAuthenticated);
   const { logOut } = useLogOut();
+  const { cart } = useSelector((state) => state.product);
 
   const handleClose = () => {
     setMobileMenu(false);
@@ -74,6 +74,32 @@ const Navbar = ({ home }) => {
             </div>
           </div>
         )}
+        {/* cart */}
+
+        <div className=" hidden lg:flex items-center whitespace-nowrap">
+          <div className="bg-black p-2 rounded-[50%] mr-3">
+            {cart?.items?.length ? (
+              <Link to={"/cart"}>
+                <div class="inline-flex relative items-center p-3  text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                  <i className="text-lg text-yellow">
+                    <FaCartPlus />
+                  </i>
+                  <span class="sr-only">Cart</span>
+                  <div class="inline-flex absolute -top-2  justify-center items-center w-6 h-6 text-xs font-bold text-primary  rounded-full dark:border-gray-900">
+                    {cart?.items?.length}
+                  </div>
+                </div>
+              </Link>
+            ) : (
+              <Link to={"/cart"}>
+                <i className="text-lg text-yellow">
+                  <FaCartPlus />
+                </i>
+              </Link>
+            )}
+          </div>
+        </div>
+
         {/* login and sign up buttons */}
         {isLoggedIn ? (
           <div className=" hidden lg:flex items-center whitespace-nowrap">

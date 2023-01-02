@@ -18,9 +18,13 @@ const ChatService = {
     });
   },
   createMessage: async (id) => {
-    return await axios.post(`${baseUrl}/Chat/start`, id).then((res) => {
-      return res.data;
-    });
+    return await axios
+      .post(`${baseUrl}/Chat/start`, {
+        recipientId: id,
+      })
+      .then((res) => {
+        return res.data;
+      });
   },
 };
 

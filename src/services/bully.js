@@ -25,10 +25,13 @@ const BullyService = {
   },
   registerBully: async (post) => {
     return await axios.post(`${baseUrl}/Bully/register`, post).then((res) => {
-      // checkToken(res);
+      return res.data;
+    });
+  },
+  postBully: async (bully) => {
+    return await axios.post(`${baseUrl}/Bully/post`, bully).then((res) => {
       return res.data;
     });
   },
 };
-
 export default BullyService;

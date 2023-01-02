@@ -1,4 +1,5 @@
 import axios from "axios";
+import { errorToast } from "../components/shared";
 import { logout } from "../store/features/authSlice";
 
 let store;
@@ -46,6 +47,10 @@ instance.interceptors.response.use(
     if (error.response && error.response.status === 401) {
       console.log("error401");
       store.dispatch(logout());
+      const obj = {
+        data: errorToast("Token Expired! Kindly login again"),
+      };
+      return obj;
     }
     return Promise.reject(error);
   }

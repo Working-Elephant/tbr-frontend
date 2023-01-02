@@ -1,16 +1,26 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { BullyRegistrationContext } from "./BullyRegistration";
 import { GoPlus, GoDash } from "react-icons/go";
 import { useForm, Controller } from "react-hook-form";
-import { Input, ErrorMessage, SelectInput, errorToast } from "../shared";
+import {
+  Input,
+  ErrorMessage,
+  SelectInput,
+  errorToast,
+  Loader,
+} from "../shared";
 import { sex, breed } from "../../data";
 import DatePicker from "react-datepicker";
 import { PatternFormat } from "react-number-format";
+import useFetchBullies from "../../hooks/useFectchBullies";
 
 const BullyDetails = () => {
-  const { updateStep2, prevStep } = useContext(BullyRegistrationContext);
+  const { updateStep2, prevStep, isLoading } = useContext(
+    BullyRegistrationContext
+  );
   const [PedigreeArray, setPedigreeArray] = useState([{}]);
   const [pedigreeData, setPedigreeData] = useState([{}]);
+  const { getBreedType, breedType } = useFetchBullies();
   const {
     register,
     handleSubmit,
@@ -23,6 +33,9 @@ const BullyDetails = () => {
     formState: { errors2 },
     handleSubmit: handleSubmit2,
   } = useForm();
+  useEffect(() => {
+    getBreedType();
+  }, []);
   // function to submit form
   const onSubmit = (data) => {
     handleSubmit2(onSubmit2)();
@@ -87,7 +100,7 @@ const BullyDetails = () => {
                   }}
                   render={({ field: { onChange, onBlur, value } }) => (
                     <DatePicker
-                      dateFormat="dd-MM-yyyy"
+                      dateFormat="MM-dd-yyyy"
                       placeholderText="Date of Birth"
                       selected={value}
                       onChange={onChange}
@@ -295,7 +308,7 @@ const BullyDetails = () => {
                           //  rules={{ required: true }}
                           render={({ field: { onChange, onBlur, value } }) => (
                             <DatePicker
-                              dateFormat="dd-MM-yyyy"
+                              dateFormat="MM-dd-yyyy"
                               placeholderText="Date of Birth"
                               selected={value}
                               onChange={onChange}
@@ -333,8 +346,9 @@ const BullyDetails = () => {
                     <div>
                       <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
                         <SelectInput
+                          read={"BreedTypeId"}
                           border="border-0"
-                          options={breed}
+                          options={breedType}
                           defaultOption="Breed Type"
                           {...register2(`maleBreedTypeId${index + 1}`, {
                             required: true,
@@ -385,7 +399,7 @@ const BullyDetails = () => {
                           rules={{ required: true }}
                           render={({ field: { onChange, onBlur, value } }) => (
                             <DatePicker
-                              dateFormat="dd-MM-yyyy"
+                              dateFormat="MM-dd-yyyy"
                               placeholderText="Date of Birth"
                               selected={value}
                               onChange={onChange}
@@ -426,7 +440,8 @@ const BullyDetails = () => {
                       <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
                         <SelectInput
                           border="border-0"
-                          options={breed}
+                          read={"BreedTypeId"}
+                          options={breedType}
                           defaultOption="Breed Type"
                           {...register2(`femaleBreedTypeId${index + 1}`, {
                             required: true,
@@ -472,7 +487,7 @@ const BullyDetails = () => {
               className="bg-yellow py-4 px-15 rounded font-semibold text-sm "
               type="submit"
             >
-              NEXT
+              {isLoading ? <Loader /> : "Submit"}
             </button>
           </div>
         </form>

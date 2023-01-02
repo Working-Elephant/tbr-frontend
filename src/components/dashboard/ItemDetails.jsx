@@ -59,7 +59,7 @@ const ItemDetails = () => {
                   }}
                   render={({ field: { onChange, onBlur, value } }) => (
                     <DatePicker
-                      dateFormat="dd-MM-yyyy"
+                      dateFormat="MM-dd-yyyy"
                       placeholderText="Date of Birth"
                       selected={value}
                       onChange={onChange}
@@ -203,7 +203,7 @@ const ItemDetails = () => {
                     rules={{ required: true }}
                     render={({ field: { onChange, onBlur, value } }) => (
                       <DatePicker
-                        dateFormat="dd-MM-yyyy"
+                        dateFormat="MM-dd-yyyy"
                         placeholderText="Date of Birth"
                         selected={value}
                         onChange={onChange}
@@ -259,7 +259,7 @@ const ItemDetails = () => {
                     rules={{ required: true }}
                     render={({ field: { onChange, onBlur, value } }) => (
                       <DatePicker
-                        dateFormat="dd-MM-yyyy"
+                        dateFormat="MM-dd-yyyy"
                         placeholderText="Date of Birth"
                         selected={value}
                         onChange={onChange}
