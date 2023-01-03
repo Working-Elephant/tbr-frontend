@@ -173,7 +173,7 @@ const App = () => {
             }
           />
           <Route
-            path="/featured/billing"
+            path="/featured/billing/:id"
             element={
               <ProtectedRoutes>
                 <FeaturedBilling />

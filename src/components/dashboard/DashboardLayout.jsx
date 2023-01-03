@@ -5,9 +5,13 @@ import Avatar1 from "../../assets/images/avatar1.jpeg";
 import { dashboardMenu } from "../../data";
 import SellerInfo from "../ads/SellerInfo";
 import AuthService from "../../services/user";
+import { useSelector } from "react-redux";
 const DashboardLayout = ({ children }) => {
-  const { getUser } = AuthService;
-  const user = getUser();
+  //const { getUser } = AuthService;
+  // const user = getUser();
+  const user = useSelector((state) => state?.auth?.user);
+  const loggedInUser = user?.user;
+
   return (
     <div className="px-5 pt-5 lg:py-5 lg:px-5 h-[90vh] ">
       <div className=" grid  md:grid-cols-8 md:gap-3 lg:gap-4">
@@ -17,7 +21,7 @@ const DashboardLayout = ({ children }) => {
 
             <SellerInfo
               image={Avatar1}
-              name={user?.username?.toUpperCase()}
+              name={loggedInUser?.username?.toUpperCase()}
               rating={4.5}
               status="online"
               blackBtnText="Edit Profile"

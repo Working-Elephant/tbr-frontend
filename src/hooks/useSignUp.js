@@ -48,20 +48,20 @@ const useSignUp = () => {
     try {
       const res = await AuthService.signUp(signUpData);
 
-      const { data } = res;
+      // const { data } = res;
 
-      if (data.error === false) {
-        success(data.message);
+      if (res?.error === false) {
+        success(res?.message, { autoClose: 10000 });
         setIsLoading(false);
         navigate("/login");
       } else {
-        errorToast(data.message);
+        errorToast(res?.message || "An Error has Occured");
       }
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
-
-      errorToast(error.message ? error.message : error.error.message);
+      console.log(error, "eror");
+      errorToast(error.message ? error.message : "An Error has Occured");
     }
   };
 

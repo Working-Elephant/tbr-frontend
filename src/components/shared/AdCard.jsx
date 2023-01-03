@@ -1,22 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
 import { MdLocationOn } from "react-icons/md";
 import useFetchAds from "../../hooks/useFetchAds";
 import useFetchBullies from "../../hooks/useFectchBullies";
 import { get } from "react-hook-form";
-const AdCard = ({ item, type }) => {
+import { BsHeart, BsFillHeartFill } from "react-icons/bs";
+const AdCard = ({ item, showLike = false }) => {
   const imageurl = import.meta.env.VITE_IMAGE_URL;
   const { getSingleAd } = useFetchAds();
-
+  const [liked, setLiked] = useState(false);
   const viewAd = (id) => {
     getSingleAd(id);
   };
-  const { title, city, amount, postAdImages, seller, sellerAvatar, id } = item;
-
+  const {
+    title,
+    city,
+    amount,
+    postAdImages,
+    seller,
+    sellerAvatar,
+    id,
+    featured,
+  } = item;
+  const toggleLike = (evt) => {
+    // alert('fired')
+    evt.stopPropagation();
+    setLiked(!liked);
+  };
   return (
     <div
-      className="p-2 flex flex-col  cursor-pointer"
+      className="p-2 flex flex-col  cursor-pointer relative"
       onClick={() => viewAd(id)}
     >
+      <div class="inline-flex absolute mt-2 -top-2 -right-2 justify-center items-center w-6 h-6 text-xs font-bold   rounded-full">
+        {!showLike &&
+          (featured === false ? (
+            <span class="bg-yellow  text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-200 dark:text-yellow-900">
+              Regular
+            </span>
+          ) : (
+            <span class="bg-success  text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 ">
+              featured
+            </span>
+          ))}
+      </div>
+      {showLike && (
+        <i
+          className="text-white text-lg absolute top-4 right-3 p-1"
+          onClick={toggleLike}
+        >
+          {liked ? <BsFillHeartFill color="red" /> : <BsHeart color="white" />}
+        </i>
+      )}
       <div className="w-full">
         <img
           src={`${imageurl}${postAdImages?.[0].url}`}

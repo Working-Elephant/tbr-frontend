@@ -2,11 +2,13 @@ import { useState } from "react";
 import AdService from "../services/ads";
 import { warning, errorToast, success } from "../components/shared";
 import { useNavigate } from "react-router-dom";
+import { set } from "react-hook-form";
 const useFetchAds = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [ads, setAds] = useState([]);
   const [singleAds, setSingleAd] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [featuredAds, setFeaturedAds] = useState([]);
   const navigate = useNavigate();
   const getAds = async () => {
@@ -70,8 +72,10 @@ const useFetchAds = () => {
 
     try {
       const data = await AdService.getCategories();
+      console.log(data, "tim");
 
       if (data.error === false) {
+        setCategories(data.data);
       }
     } catch (error) {
       setError(error);
@@ -107,6 +111,7 @@ const useFetchAds = () => {
     singleAds,
     getFeaturedAds,
     featuredAds,
+    categories,
   };
 };
 

@@ -8,9 +8,13 @@ import { useForm } from "react-hook-form";
 import useFetchBullies from "../../hooks/useFectchBullies";
 const AboutItem = () => {
   const [fileLimit, setFileLimit] = useState();
-  //const { isLoading, bullies, getRegisteredBullies } = useFetchBullies();
   const [uploadedFiles, setUploadedFiles] = useState([]);
-  const { updateStep1, pet, checkCategory, prevStep } = useContext(AdContext);
+  const { updateStep1, pet, checkCategory, prevStep, categories } =
+    useContext(AdContext);
+  const filteredCat = categories.filter(
+    (item) => item.categoryName !== "Pets" && item.categoryName !== "Shop Tbr"
+  );
+
   const {
     register,
     handleSubmit,
@@ -26,6 +30,7 @@ const AboutItem = () => {
 
     updateStep1(submitData);
   };
+
   const productImageRegister = register("images", {
     required: {
       value: true,
@@ -107,10 +112,11 @@ const AboutItem = () => {
               )}
             </div>
             <div className={"col-span-2"}>
-              <div className="w-full bg-[#FEFCFC] px-3   h-fit">
+              <div className="w-full bg-[#FEFCFC] px-3  bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey  h-fit">
                 <SelectInput
+                  read="categoryName"
                   border="border-0"
-                  options={selectCategories}
+                  options={filteredCat}
                   defaultOption="Category"
                   additionalFunc={checkCategory}
                   {...register("CategoryId", {

@@ -1,9 +1,15 @@
 import React from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ImageContainer } from "../components/shared";
 import { categoriesData } from "../data";
+import useFetchAds from "../hooks/useFetchAds";
 
 const Categories = () => {
+  const { getCategories, categories } = useFetchAds();
+  useEffect(() => {
+    getCategories();
+  }, []);
   return (
     <div className="p-5 w-full mx-auto md:w-11/12 lg:w-10/12 xl:9/12">
       <h2 className="font-bold text-2xl m-6">Shop by Category</h2>

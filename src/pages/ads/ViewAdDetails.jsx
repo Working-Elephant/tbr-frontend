@@ -33,7 +33,8 @@ const ViewAdDetails = () => {
   // const userID = user ? user.user.id : null;
 
   const user = useSelector((state) => state?.auth?.user);
-  const userID = user?.userId;
+  const userID = user?.user?.id;
+
   const thumbnailsContainer = useRef(null);
   const [ImageInView, setImageInView] = useState(0);
   const [showChat, setShowChat] = useState(false);
@@ -100,7 +101,7 @@ const ViewAdDetails = () => {
   const makeFeatured = () => {
     if (!singleAds) return;
     dispatch(addFeatured(singleAds));
-    navigate("/featured/billing");
+    navigate(`/featured/billing/${id}`);
   };
 
   return (
@@ -246,14 +247,14 @@ const ViewAdDetails = () => {
                     </div>
                   </>
                 )}
-                <div className="border-b border-b-borderGrey">
+                {/* <div className="border-b border-b-borderGrey">
                   <div className="flex items-center justify-between text-xs py-2">
                     <span className="uppercase">DELIVERY & RETURNS</span>
                     <i>
                       <BsPlus />
                     </i>
                   </div>
-                </div>
+                </div> */}
                 <div className="py-3 border-b border-b-borderGrey">
                   {userID && userID !== singleAds?.userId ? (
                     <>
@@ -287,11 +288,15 @@ const ViewAdDetails = () => {
                   <div className=" border-b border-b-borderGrey grid grid-cols-3 text-xs text-blue text-center cursor-pointer">
                     <div className="border-r border-borderGrey py-3">
                       <p>BULLY CODE</p>
-                      <h5 className=" font-semibold">668235</h5>
+                      <h5 className=" font-semibold">
+                        {singleAds?.bully?.bullyRegId}
+                      </h5>
                     </div>
                     <div className="py-3">
-                      <p>VIEW MORE</p>
-                      <h5 className=" font-semibold">Bullies</h5>
+                      <p>Status</p>
+                      <h5 className=" font-semibold">
+                        {singleAds?.featured ? "Featured Ad" : "Regular Ad"}
+                      </h5>
                     </div>
                   </div>
                 )}
@@ -327,7 +332,7 @@ const ViewAdDetails = () => {
             open={true}
           >
             {isLoading ? <Loader /> : null}
-            <div className="absolute top-4 bg-white p-4 w-fit max-h-[90vh] rounded-lg">
+            <div className="absolute top-4 bg-white p-4 w-[50%] max-h-[90vh] rounded-lg">
               <div className="flex items-center justify-end">
                 <i className="text-xl text-end p-4" onClick={handleChatClose}>
                   <MdClose />
@@ -338,7 +343,6 @@ const ViewAdDetails = () => {
                 activeUser={activeUser}
                 showMessage={true}
               />
-              {/* <h1 className="text-primary">Tiiim</h1> */}
             </div>
           </Backdrop>
         </>

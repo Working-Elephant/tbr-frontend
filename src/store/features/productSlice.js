@@ -94,10 +94,13 @@ const slice = createSlice({
     addFeatured: (state, { payload }) => {
       let cart = state.cart;
       cart.featured = payload;
-      cart.duties = 35;
-      cart.subTotal = cart.bully.price;
+      //  const amountArray = cart.items.map(({ amount }) => {
+      //    let value = +amount;
+      //    return value;
+      //  });
+      cart.subTotal = 100;
       cart.tax = cart.subTotal * 0.025;
-      cart.total = +cart.subTotal + +cart.duties + +cart.tax;
+      cart.total = cart.subTotal + cart.shipping + cart.tax;
     },
     removeFromCart: (state, { payload }) => {
       let cart = state.cart;

@@ -9,7 +9,7 @@ const AuthService = {
     return axios
       .post(`${baseUrl}/SignUp`, data)
       .then((res) => {
-        return res;
+        return res.data;
       })
       .catch((error) => {
         console.log(error);

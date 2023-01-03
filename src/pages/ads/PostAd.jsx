@@ -10,7 +10,12 @@ const PostAd = () => {
   const [adData, setadData] = useState({});
   const [step, setStep] = useState(1);
   const [pet, setPet] = useState(false);
-  const { isLoading = false, postAd, getCategories } = useFetchAds();
+  const {
+    isLoading = false,
+    postAd,
+    getCategories,
+    categories,
+  } = useFetchAds();
 
   useEffect(() => {
     getCategories();
@@ -49,6 +54,7 @@ const PostAd = () => {
     formdata.append("Amount", obj.Amount);
     formdata.append("Description", obj.Description);
     formdata.append("Telephone", obj.Telephone);
+    formdata.append("CategoryId", obj.CategoryId);
     const status = await postAd(formdata);
     if (status === false) {
       setStep(3);
@@ -68,7 +74,7 @@ const PostAd = () => {
       setStep(step - 1);
     }
   };
-
+  console.log(categories, "dog");
   return (
     <div>
       <AdContext.Provider
@@ -82,6 +88,7 @@ const PostAd = () => {
           prevStep,
           updateStep1,
           updateStep2,
+          categories,
         }}
       >
         <div className="w-full p-5 ">

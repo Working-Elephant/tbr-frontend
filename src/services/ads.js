@@ -19,7 +19,7 @@ const AdService = {
   },
   getCategories: async () => {
     return await axios.get(`${baseUrl}/Category`).then((res) => {
-      return res;
+      return res.data;
     });
   },
   getFeaturedAds: async () => {

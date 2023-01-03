@@ -11,6 +11,7 @@ import {
   LogLevel,
   HubConnectionState,
 } from "@microsoft/signalr";
+import { useSelector } from "react-redux";
 
 const MessagesComponent = () => {
   const { getChats, chats, isLoading, getSingleChat, singleChat } =
@@ -23,6 +24,8 @@ const MessagesComponent = () => {
     getChats();
   }, []);
 
+  const user = useSelector((state) => state?.auth?.user);
+  const loggedInUser = user?.user;
   //set recipient
   const setUser = async (user) => {
     const status = await getSingleChat(user.chatId);
@@ -32,26 +35,6 @@ const MessagesComponent = () => {
       // setChat(singleChat);
     }
   };
-
-  //const goBack = () => setShowMessage(false);
-
-  //  //start chat
-  //  useEffect(() => {
-  //    const requestOptions = {
-  //      method: "POST",
-  //      headers: { "Content-Type": "application/json" },
-  //      body: JSON.stringify({ RecipientId: 2 }),
-  //    };
-  //    fetch(
-  //      "https://da16-154-160-9-103.eu.ngrok.io/api/Chat/start",
-  //      requestOptions
-  //    )
-  //      .then((response) => response.json())
-  //      .then((data) => {
-  //        // console.log(data.data)
-  //        setChatObject(data.data);
-  //      });
-  //  }, []);
 
   return (
     <div className="">

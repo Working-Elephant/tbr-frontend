@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
+import ReactDOM from "react-dom";
 import { useNavigate, useParams } from "react-router-dom";
 import { ImageModal, Loader } from "../../components/shared";
 import SellerInfo from "../../components/ads/SellerInfo";
-import SimilarProducts from "../../components/ads/SimilarProducts";
-import RecentlyViewed from "../../components/ads/RecentlyViewed";
 import SellerAvatar1 from "../../assets/images/avatar1.jpeg";
 import {
   BsChatText,
@@ -11,16 +10,13 @@ import {
   BsArrowLeftShort,
   BsArrowRightShort,
 } from "react-icons/bs";
-import Backdrop from "@mui/material/Backdrop";
-import { MdClose } from "react-icons/md";
 import { FaCamera, FaBorderAll, FaArrowLeft } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { addBullyToCart } from "../../store/features/productSlice";
-import AuthService from "../../services/user";
-import ChatComponent from "../../components/dashboard/ChatComponent";
-import useFetchChat from "../../hooks/useFetchChats";
-import { success } from "../../components/shared";
 import useFetchBullies from "../../hooks/useFectchBullies";
+import { Certificate } from "../../shared/certificate";
+import { Wrapper, Trigger } from "../../utils/wapper";
+import Backdrop from "@mui/material/Backdrop";
 
 const ViewPetDetails = () => {
   const { id } = useParams();
@@ -30,8 +26,10 @@ const ViewPetDetails = () => {
   const userID = user?.userId;
   const thumbnailsContainer = useRef(null);
   const csId = useRef(null);
+  const wrapper = useRef(null);
   const [ImageInView, setImageInView] = useState(0);
   const [showChat, setShowChat] = useState(false);
+  const [showCert, setShowCert] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     if (!bully.length) {
@@ -86,7 +84,6 @@ const ViewPetDetails = () => {
     };
     const status = await postBully(obj);
   };
-  // address
   // :
   // "Lumis student living  Tyndall Street  North building room 709"
   // breed
@@ -182,6 +179,12 @@ const ViewPetDetails = () => {
     console.log(csId.current);
     csId.current.focus();
   };
+
+  const trigger = () => {
+    console.log("here");
+    setShowCert((prev) => !prev);
+  };
+
   return (
     <>
       <div className="p-5  lg:py-10 lg:px-12">
@@ -311,18 +314,24 @@ const ViewPetDetails = () => {
                         </i> 
                   </div> */}
                 </div>
-                <div className="grid grid-cols-2 gap-4 py-3">
-                  {/* <div>
-                        <button className="w-full rounded-md py-2 border border-blue text-blue whitespace-nowrap">
-                          View Bully Certificate
-                        </button>
-                      </div> */}
-                  {/* <div>
-                        <button className="w-full rounded-md py-2 border border-blue text-blue">
-                          View Pedigree Chart
-                        </button>
-                      </div> */}
-                </div>
+                {bully?.status !== "PENDING" && (
+                  <div className="grid grid-cols-2 gap-4 py-3">
+                    <div>
+                      {" "}
+                      <button
+                        onClick={trigger}
+                        className="w-full rounded-md py-2 border border-blue text-blue whitespace-nowrap"
+                      >
+                        View Bully Certificate
+                      </button>
+                    </div>
+                    <div>
+                      <button className="w-full rounded-md py-2 border border-blue text-blue">
+                        View Pedigree Chart
+                      </button>
+                    </div>
+                  </div>
+                )}
 
                 {/* <div className="border-b border-b-borderGrey">
                   <div className="flex items-center justify-between text-xs py-2">
@@ -347,14 +356,14 @@ const ViewPetDetails = () => {
                     >
                       {isLoading ? <Loader size={20} /> : "Post Ad"}
                     </button>
-                  ) : (
+                  ) : bully?.status === "PENDING" ? (
                     <button
                       className="w-full rounded-md py-2 bg-blue text-white capitalize"
                       onClick={goToCart}
                     >
                       Register Pet
                     </button>
-                  )}
+                  ) : null}
                 </div>
 
                 <div className=" border-b border-b-borderGrey grid grid-cols-3 text-xs text-blue text-center cursor-pointer">
@@ -390,6 +399,16 @@ const ViewPetDetails = () => {
           ) : null}
         </div>
       </div>
+
+      <Backdrop open={false}>
+        <Wrapper ref={wrapper}>
+          <Certificate />
+        </Wrapper>
+
+        <Trigger>download</Trigger>
+      </Backdrop>
+      {/* </>
+      )} */}
     </>
   );
 };

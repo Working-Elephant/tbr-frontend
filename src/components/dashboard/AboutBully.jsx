@@ -19,6 +19,7 @@ const AboutBully = () => {
   const MAX_COUNT = 3;
   const {
     register,
+    error,
     handleSubmit,
     formState: { errors },
   } = useForm();
@@ -86,9 +87,12 @@ const AboutBully = () => {
       setFileLimit(true);
     }
   };
+  const onerror = (error) => {
+    console.log(error);
+  };
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit, onerror)}>
         <div className="lg:w-9/12 xl:w-8/12 mx-auto py-3">
           <div className="  flex  items-center my-2">
             {/* <p className="text-sm">Enter Item Category and Location</p> */}

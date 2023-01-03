@@ -17,10 +17,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import useFetchBullies from "../../hooks/useFectchBullies";
 import usePayment from "../../hooks/usePayment";
 import ScreenLoader from "../../components/shared/ScreenLoader";
+import useFetchAds from "../../hooks/useFetchAds";
 const FeaturedBilling = () => {
   //   const navigate = useNavigate();
   const { id } = useParams();
-  const { getSingleBully, bully } = useFetchBullies();
+  const { getSingleAd } = useFetchAds();
   const { submitPayment } = usePayment();
   const [isLoading, setIsLoading] = useState(false);
   const crumbs = [
@@ -36,8 +37,8 @@ const FeaturedBilling = () => {
   ];
   const { cart } = useSelector((state) => state.product);
   useEffect(() => {
-    if (!cart?.bully) {
-      getSingleBully(id);
+    if (!cart?.featured) {
+      getSingleAd(id);
     }
   }, []);
   const imageurl = import.meta.env.VITE_IMAGE_URL;
@@ -86,7 +87,7 @@ const FeaturedBilling = () => {
       setIsLoading(false);
     }
   };
-
+  console.log(cart.featured, "ft");
   return (
     <>
       {isLoading ? (
@@ -126,53 +127,51 @@ const FeaturedBilling = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {cart?.featured?.length
-                        ? cart.items.map((singleItem, index) => (
-                            <tr
-                              className="border-b-.5 border-borderGrey text-center align-top text-xs"
-                              key={index}
-                            >
-                              <td className="p-2 text-center ">{index + 1}</td>
-                              <td className="p-2 text-center">
-                                <div className="w-full h-full ">
-                                  <img
-                                    src={`${imageurl}${singleItem?.postAdImages?.[0]?.url}`}
-                                    alt=""
-                                    className="rounded-xl h-full"
-                                  />
-                                </div>
-                              </td>
-                              <td className="p-2 text-center">
-                                <p className="uppercase font-semibold  mb-4">
-                                  {singleItem?.title}
-                                </p>
-                              </td>
-                              <td className="p-2 text-center">
-                                <p className="uppercase font-semibold  mb-4">
-                                  {singleItem?.category?.categoryName}
-                                </p>
-                              </td>
+                      {cart?.featured ? (
+                        <tr
+                          className="border-b-.5 border-borderGrey text-center align-top text-xs"
+                          key={cart?.featured?.id}
+                        >
+                          <td className="p-2 text-center ">{1}</td>
+                          <td className="p-2 text-center">
+                            <div className="w-full h-full ">
+                              <img
+                                src={`${imageurl}${cart?.featured?.postAdImages?.[0]?.url}`}
+                                alt=""
+                                className="rounded-xl h-full"
+                              />
+                            </div>
+                          </td>
+                          <td className="p-2 text-center">
+                            <p className="uppercase font-semibold  mb-4">
+                              {cart?.featured?.title}
+                            </p>
+                          </td>
+                          <td className="p-2 text-center">
+                            <p className="uppercase font-semibold  mb-4">
+                              {cart?.featured?.category?.categoryName}
+                            </p>
+                          </td>
 
-                              <td className="p-2 text-center">
-                                <p className="text-xs ">
-                                  {singleItem?.description}
-                                </p>
-                              </td>
+                          <td className="p-2 text-center">
+                            <p className="text-xs ">
+                              {cart?.featured?.description}
+                            </p>
+                          </td>
 
-                              {/* <td className="py-4 text-center text-lg ">
+                          {/* <td className="py-4 text-center text-lg ">
                       {cart.quantity}
                     </td> */}
-                              <td className="py-4 text-center ">
-                                ${singleItem?.amount?.toLocaleString()}
-                              </td>
-                              {/* <td className="py-4 text-center ">${cart.tax}</td> */}
-                              {/* <td className="py-4 text-center ">&#163;0</td>
+                          <td className="py-4 text-center ">
+                            ${cart?.featured?.amount?.toLocaleString()}
+                          </td>
+                          {/* <td className="py-4 text-center ">${cart.tax}</td> */}
+                          {/* <td className="py-4 text-center ">&#163;0</td>
                     <td className="py-4 text-center ">
                       &#163;{data.itemDuties.toLocaleString()}
                     </td> */}
-                            </tr>
-                          ))
-                        : null}
+                        </tr>
+                      ) : null}
                     </tbody>
                   </table>
                   <div className=" ml-auto border-b-.5 border-borderGrey  text-end mb-5 ">
@@ -199,7 +198,7 @@ const FeaturedBilling = () => {
                       <div className=" mb-3">
                         <PayPal
                           amount={1}
-                          reference_id={cart?.bully?.bullyRegId}
+                          reference_id={cart?.featured?.id}
                           onApproved={onApproved}
                         />
                       </div>

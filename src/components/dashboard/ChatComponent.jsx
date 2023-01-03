@@ -84,7 +84,7 @@ const ChatComponent = ({
   }, [chat]);
 
   return (
-    <div className="">
+    <>
       <div className=" h-[100vh] grid grid-cols-12 ">
         <div
           className={`${
@@ -122,7 +122,7 @@ const ChatComponent = ({
                 <span className="ml-3 text-xs"> {activeUser?.username}</span>
               </div>
             </div>
-            <div className="  px-4 h-[70%] overflow-auto no-scrollbar">
+            <div className="  px-4 h-[80%] overflow-auto no-scrollbar">
               {chat?.map((chatMessages, i) => (
                 <div
                   key={i}
@@ -169,7 +169,7 @@ const ChatComponent = ({
           </>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -20,6 +20,7 @@
     "react-custom-checkbox": "^2.0.2",
     "react-datepicker": "^4.8.0",
     "react-dom": "^18.2.0",
+    "react-download-svg": "^0.0.4",
     "react-hook-form": "^7.34.2",
     "react-icons": "^4.4.0",
     "react-material-ui-carousel": "^3.4.2",
@@ -59,6 +60,7 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^3.0.0",
     "autoprefixer": "^10.4.8",
+    "create-react-class": "^15.7.0",
     "postcss": "^8.4.14",
     "tailwindcss": "^3.1.7",
     "vite": "^4.0.0",
