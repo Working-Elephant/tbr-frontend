@@ -4,7 +4,7 @@ import { FiSearch } from "react-icons/fi";
 import { FaSearch } from "react-icons/fa";
 import { IoPawOutline, IoLockClosedOutline } from "react-icons/io5";
 import { useForm } from "react-hook-form";
-import { searchCategories, locations } from "../../data";
+import { searchCategories, classList } from "../../data";
 
 const Header = () => {
   const {
@@ -64,10 +64,10 @@ const Header = () => {
                     className="  text-sm  border-none focus:outline-none w-full"
                     {...register("location")}
                   >
-                    <option>Location</option>
-                    {locations.map((location, i) => (
-                      <option key={i} value={location.value}>
-                        {location.value}
+                    <option>Class</option>
+                    {classList.map((item, i) => (
+                      <option key={i} value={item.value}>
+                        {item.value}
                       </option>
                     ))}
                   </select>

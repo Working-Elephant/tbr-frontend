@@ -2,7 +2,7 @@ import { useEffect } from "react";
 //import { errorToast } from "../components/shared";
 //import AuthService from "../services/user";
 // import { Redirect } from "react-router-dom";
-// import moment from "moment";
+import moment from "moment";
 // import AuthService from "../services/auth";
 //import { errorToast } from "../components/toast/toast";
 
@@ -27,7 +27,7 @@ export const checkForm = (formData) => {
   return errorState;
 };
 export const convertDate = (dateInput) => {
-  const date = moment(dateInput).utc().format("DD-MM-YYYY h:mm:ss a");
+  const date = moment(dateInput).utc().format("DD-MM-YYYY");
   return date;
 };
 //Function that calculates the from current date
@@ -48,36 +48,41 @@ export const getDateStructured = (date) => {
 };
 
 // Function to structure date ex: YYYY-MM-DD
-// export const setDateForPicker = (rdate) => {
-//   let d = rdate.getDate();
-//   d < 10 && (d = "0" + d);
-//   let m = rdate.getMonth() + 1;
-//   m < 10 && (m = "0" + m);
-//   let y = rdate.getFullYear();
-//   rdate = y + "-" + m + "-" + d;
+export const setDateForPicker = (rdate) => {
+  let d = rdate.getDate();
+  d < 10 && (d = "0" + d);
+  let m = rdate.getMonth() + 1;
+  m < 10 && (m = "0" + m);
+  let y = rdate.getFullYear();
+  rdate = y + "-" + m + "-" + d;
 
-//   return rdate;
-// };
+  return rdate;
+};
+
+export const checkNewDate = (date) => {
+  const tim = date.getDate();
+  console.log(tim, "tim");
+};
 
 // Set deadlines for projects
-// export const setDeadlineDays = (deadline) => {
-//   var currentDate = new Date();
-//   var difference = deadline.getTime() - currentDate.getTime();
-//   var days = Math.ceil(difference / (1000 * 3600 * 24));
-//   return days;
-// };
+export const setDeadlineDays = (deadline) => {
+  var currentDate = new Date();
+  var difference = deadline.getTime() - currentDate.getTime();
+  var days = Math.ceil(difference / (1000 * 3600 * 24));
+  return days;
+};
 
 //Date formatter function Example : 10-02-2004
-// export const dateFormatterAlt = (date, reverse) => {
-//   let d = date.getDate();
-//   let m = date.getMonth() + 1;
-//   let y = date.getFullYear();
-//   if (d < 10) d = "0" + d;
-//   if (m < 10) m = "0" + m;
+export const dateFormatterAlt = (date, reverse) => {
+  let d = date.getDate();
+  let m = date.getMonth() + 1;
+  let y = date.getFullYear();
+  if (d < 10) d = "0" + d;
+  if (m < 10) m = "0" + m;
 
-//   reverse ? (date = d + "-" + m + "-" + y) : (date = d + "-" + m + "-" + y);
-//   return date;
-// };
+  reverse ? (date = d + "-" + m + "-" + y) : (date = d + "-" + m + "-" + y);
+  return date;
+};
 
 //Date formatter function
 export const dateFormatter = (date, reverse, string) => {

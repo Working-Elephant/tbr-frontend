@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { injectStore } from "./config/axios";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import { AdsContextProvider } from "./context/AdsContext";
 injectStore(store);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const initialOptions = {
@@ -19,18 +20,20 @@ const initialOptions = {
 };
 root.render(
   <Provider store={store}>
-    <PayPalScriptProvider
-      options={{
-        "client-id":
-          "AWslNDZobMrXkcNvoUCkrHrdWM3VlFgDv7X3kEmrTAtfiEyXVUa3vBYWNjmdZanuC-P9jEYcxgtBMo8e",
-        components: "buttons",
-        currency: "USD",
-      }}
-    >
-      <BrowserRouter>
-        <App />
-        <ToastContainer newestOnTop />
-      </BrowserRouter>
-    </PayPalScriptProvider>
+    <AdsContextProvider>
+      <PayPalScriptProvider
+        options={{
+          "client-id":
+            "AWslNDZobMrXkcNvoUCkrHrdWM3VlFgDv7X3kEmrTAtfiEyXVUa3vBYWNjmdZanuC-P9jEYcxgtBMo8e",
+          components: "buttons",
+          currency: "USD",
+        }}
+      >
+        <BrowserRouter>
+          <App />
+          <ToastContainer newestOnTop />
+        </BrowserRouter>
+      </PayPalScriptProvider>
+    </AdsContextProvider>
   </Provider>
 );

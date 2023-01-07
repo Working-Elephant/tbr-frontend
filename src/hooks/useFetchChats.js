@@ -9,6 +9,7 @@ const useFetchChat = () => {
   const [error, setError] = useState(null);
   const [chats, setChats] = useState([]);
   const [singleChat, setSingleChat] = useState([]);
+  const [chatId, setchatId] = useState("");
   const navigate = useNavigate();
 
   const getChats = async () => {
@@ -76,9 +77,13 @@ const useFetchChat = () => {
 
       if (data.error === false) {
         setSingleChat(data.data.chatMessages);
+        setIsLoading(false);
+        const chatId = data.data.id;
+        setchatId(chatId);
         //  success(data.message);
         return data.error;
       } else {
+        setIsLoading(false);
         errorToast(data.message);
       }
     } catch (error) {
@@ -96,6 +101,7 @@ const useFetchChat = () => {
     isLoading,
     sendChat,
     startChat,
+    chatId,
   };
 };
 

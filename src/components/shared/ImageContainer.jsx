@@ -1,6 +1,7 @@
 import React from "react";
 
 const ImageContainer = ({ image, rounded, width, height }) => {
+  console.log(image, "img");
   return (
     <img
       src={image}

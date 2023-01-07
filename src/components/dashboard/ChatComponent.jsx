@@ -19,6 +19,7 @@ const ChatComponent = ({
   setShowMessage,
   activeUser,
 }) => {
+  let baseUrl = import.meta.env.VITE_BASE_URL;
   const { register, handleSubmit, reset } = useForm();
   const { sendChat } = useFetchChat();
   const [chat, setChat] = useState([]);
@@ -27,8 +28,8 @@ const ChatComponent = ({
   const latestChat = useRef(null);
   const bottomRef = useRef(null);
   latestChat.current = chat;
+  const { chatId } = activeUser;
   const onSubmit = async (data) => {
-    const { chatId } = activeUser;
     const obj = { ...data, chatId };
     const status = await sendChat(obj);
     if (!status) reset();
@@ -39,7 +40,7 @@ const ChatComponent = ({
   //establish socket connection
   useEffect(() => {
     const newConnection = new HubConnectionBuilder()
-      .withUrl("https://da16-154-160-9-103.eu.ngrok.io/hubs/chat")
+      .withUrl(`${baseUrl}/hubs/chat`)
       .withAutomaticReconnect()
       .configureLogging(LogLevel.Information)
       .build();
@@ -63,14 +64,13 @@ const ChatComponent = ({
       }
 
       function handleListen() {
-        if (activeUser?.chatId) {
-          connection.on(activeUser?.chatId.toString(), (message) => {
+        if (chatId) {
+          connection.on(chatId.toString(), (message) => {
             const updatedChat = [...latestChat.current];
 
             updatedChat.push(message);
             const newList = new Set([...updatedChat]);
 
-            console.log(newList, "newlist");
             setChat([...newList]);
           });
         }

@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import Avatar1 from "../../assets/images/avatar1.jpeg";
+import Coin from "../../assets/images/coin.png";
 import { dashboardMenu } from "../../data";
 import SellerInfo from "../ads/SellerInfo";
 import AuthService from "../../services/user";
@@ -20,7 +21,7 @@ const DashboardLayout = ({ children }) => {
             <h4 className="font-bold text-2xl mb-4">Your Dashboard</h4>
 
             <SellerInfo
-              image={Avatar1}
+              image={Coin}
               name={loggedInUser?.username?.toUpperCase()}
               rating={4.5}
               status="online"

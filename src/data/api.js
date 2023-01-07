@@ -11,20 +11,13 @@ import Trophy from "../assets/images/trophy.jpeg";
 import People from "../assets/images/peopleTalking.jpeg";
 import janeAvatar from "../assets/images/avatar1.jpeg";
 import User from "../assets/images/avatar2.jpeg";
-import Coin from "../assets/images/coin2.jpeg";
 // categories images
-import Pets from "../assets/images/pets.jpg";
 import Category1 from "../assets/images/category1.jpeg";
 import Category2 from "../assets/images/category2.jpeg";
 import Category3 from "../assets/images/category3.jpeg";
 import Category4 from "../assets/images/category4.jpeg";
 import Category5 from "../assets/images/category5.jpg";
 import Category6 from "../assets/images/category6.jpg";
-import PetToys from "../assets/images/pet_toys.jpg";
-import Equipments from "../assets/images/equipments.jpg";
-import Electronics from "../assets/images/electronics.jpg";
-import Pets2 from "../assets/images/pets2.jpg";
-import PetToys2 from "../assets/images/pet_toys.jpg";
 import PetFood from "../assets/images/petfood.jpg";
 import Random from "../assets/images/random.jpg";
 
@@ -282,57 +275,57 @@ export const carouselImages = [
   { id: 9, img: AdDoggo2 },
 ];
 
-export const categoriesData = [
-  {
-    id: 1,
-    img: Coin,
-    name: "Shop TBR",
-    externalLink: "https://texasbullyregistrystore.threadless.com/",
-  },
-  {
-    id: 2,
-    img: Pets,
-    name: "Bullys",
-    link: "/categories/pets",
-  },
-  {
-    id: 3,
-    img: PetToys,
-    name: "Toys",
-    link: "/categories/pets",
-  },
-  {
-    id: 4,
-    img: Electronics,
-    name: "Food",
-    link: "/categories/pets",
-  },
-  {
-    id: 5,
-    img: Equipments,
-    name: "Care",
-    link: "/categories/pets",
-  },
-  {
-    id: 6,
-    img: Pets2,
-    name: "Supplies",
-    link: "/categories/pets",
-  },
+// export const categoriesData = [
+//   {
+//     id: 1,
+//     img: Coin,
+//     name: "Shop TBR",
+//     externalLink: "https://texasbullyregistrystore.threadless.com/",
+//   },
+//   {
+//     id: 2,
+//     img: Pets,
+//     name: "Bullys",
+//     link: "/categories/pets",
+//   },
+//   {
+//     id: 3,
+//     img: PetToys,
+//     name: "Toys",
+//     link: "/categories/pets",
+//   },
+//   {
+//     id: 4,
+//     img: Electronics,
+//     name: "Food",
+//     link: "/categories/pets",
+//   },
+//   {
+//     id: 5,
+//     img: Equipments,
+//     name: "Care",
+//     link: "/categories/pets",
+//   },
+//   {
+//     id: 6,
+//     img: Pets2,
+//     name: "Supplies",
+//     link: "/categories/pets",
+//   },
 
-  // {
-  //   id: 7,
-  //   img: PetFood,
-  //   name: "Misc",
-  //   link: "/categories/pets",
-  // },
-  // {
-  //   id: 8,
-  //   img: Random,
-  //   name: "Random",
-  //   link: "/categories/pets",
-  // },
-];
+//   // {
+//   //   id: 7,
+//   //   img: PetFood,
+//   //   name: "Misc",
+//   //   link: "/categories/pets",
+//   // },
+//   // {
+//   //   id: 8,
+//   //   img: Random,
+//   //   name: "Random",
+//   //   link: "/categories/pets",
+//   // },
+// ];
 export const videoData = [
   {
     src: "https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Fthebestmfnbullyshow%2Fvideos%2F679944213010522%2F&show_text=false&width=267&t=0",

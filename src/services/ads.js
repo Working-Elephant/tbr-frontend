@@ -29,6 +29,15 @@ const AdService = {
         return res.data;
       });
   },
+  getAdsByCategories: async (categoryName, limit, page) => {
+    return axios
+      .get(
+        `${baseUrl}/PostAd/category/${categoryName}?limit=${limit}&page=${page}`
+      )
+      .then((res) => {
+        return res.data;
+      });
+  },
 };
 
 export default AdService;

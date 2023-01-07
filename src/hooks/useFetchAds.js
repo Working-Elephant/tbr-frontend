@@ -3,13 +3,17 @@ import AdService from "../services/ads";
 import { warning, errorToast, success } from "../components/shared";
 import { useNavigate } from "react-router-dom";
 import { set } from "react-hook-form";
+import { useAdsContext } from "./useAdsContext";
 const useFetchAds = () => {
+  const { dispatch } = useAdsContext();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [ads, setAds] = useState([]);
   const [singleAds, setSingleAd] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [categoryName, setCategoryName] = useState("");
   const [featuredAds, setFeaturedAds] = useState([]);
+  const [adsByCategory, setAdsByCategory] = useState([]);
   const navigate = useNavigate();
   const getAds = async () => {
     setIsLoading(true);
@@ -37,7 +41,13 @@ const useFetchAds = () => {
       const data = await AdService.getSingleAd(id);
 
       if (data.error === false) {
-        setSingleAd(data.data.postAd);
+        const single = data.data.postAd;
+        setSingleAd(single);
+
+        dispatch({ type: "GET_SINGLE_AD", payload: single });
+        const categoryName = data?.data?.postAd?.category?.categoryName;
+        setCategoryName(categoryName);
+        getAdsByCategories(categoryName);
         navigate(`/ad/view/${id}`);
         setIsLoading(false);
       }
@@ -69,16 +79,20 @@ const useFetchAds = () => {
 
   const getCategories = async () => {
     setError(null);
-
+    setIsLoading(true);
     try {
       const data = await AdService.getCategories();
       console.log(data, "tim");
 
       if (data.error === false) {
         setCategories(data.data);
+        setIsLoading(false);
+      } else {
+        setIsLoading(false);
       }
     } catch (error) {
       setError(error);
+      setIsLoading(false);
       errorToast(error.message);
     }
   };
@@ -99,6 +113,47 @@ const useFetchAds = () => {
       errorToast(error.message);
     }
   };
+  const getAdsByCategories = async (categoryName, limit = 10, page = 1) => {
+    setError(null);
+    setIsLoading(true);
+    try {
+      const data = await AdService.getAdsByCategories(
+        categoryName,
+        limit,
+        page
+      );
+      if (data.error === false) {
+        const ads = data.data;
+        dispatch({ type: "GET_ADS_BY_CATEGORY", payload: ads });
+        setAdsByCategory(data.data);
+        setIsLoading(false);
+      } else {
+        setIsLoading(false);
+      }
+    } catch (error) {
+      setError(error);
+      setIsLoading(false);
+      errorToast(error.message);
+    }
+  };
+
+  // const getSimilarAds = async (id) => {
+  //   setError(null);
+  //   setIsLoading(true);
+  //   try {
+  //     const data = await AdService.getAdsByCategories(id);
+  //     if (data.error === false) {
+  //       setAdsByCategory(data.data);
+  //       setIsLoading(false);
+  //     } else {
+  //       setIsLoading(false);
+  //     }
+  //   } catch (error) {
+  //     setError(error);
+  //     setIsLoading(false);
+  //     errorToast(error.message);
+  //   }
+  // };
 
   return {
     getAds,
@@ -112,6 +167,9 @@ const useFetchAds = () => {
     getFeaturedAds,
     featuredAds,
     categories,
+    getAdsByCategories,
+    adsByCategory,
+    categoryName,
   };
 };
 

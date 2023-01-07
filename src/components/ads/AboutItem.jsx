@@ -12,7 +12,7 @@ const AboutItem = () => {
   const { updateStep1, pet, checkCategory, prevStep, categories } =
     useContext(AdContext);
   const filteredCat = categories.filter(
-    (item) => item.categoryName !== "Pets" && item.categoryName !== "Shop Tbr"
+    (item) =>  item.categoryName !== "Shop Tbr"
   );
 
   const {

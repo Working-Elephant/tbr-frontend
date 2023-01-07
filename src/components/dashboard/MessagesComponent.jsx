@@ -12,6 +12,7 @@ import {
   HubConnectionState,
 } from "@microsoft/signalr";
 import { useSelector } from "react-redux";
+import { Loader } from "../shared";
 
 const MessagesComponent = () => {
   const { getChats, chats, isLoading, getSingleChat, singleChat } =
@@ -56,6 +57,7 @@ const MessagesComponent = () => {
           </div>
           <ul className="">
             <div className="">
+              {isLoading && <Loader />}
               {chats?.length ? (
                 chats?.map(({ chatParticipants, chatMessages }) => (
                   <li

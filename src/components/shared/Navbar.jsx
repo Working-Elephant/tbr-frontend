@@ -9,12 +9,15 @@ import Backdrop from "@mui/material/Backdrop";
 import { useSelector } from "react-redux";
 import UserAvatar from "../../assets/images/avatar2.jpeg";
 import useLogOut from "../../hooks/useLogout";
+import { FaDog } from "react-icons/fa";
 const Navbar = ({ home }) => {
   const [mobileMenu, setMobileMenu] = useState(false);
+  const user = useSelector((state) => state?.auth?.user);
   const isLoggedIn = useSelector((state) => state.auth.isAuthenticated);
   const { logOut } = useLogOut();
   const { cart } = useSelector((state) => state.product);
 
+  const username = user?.user?.username;
   const handleClose = () => {
     setMobileMenu(false);
   };
@@ -109,13 +112,11 @@ const Navbar = ({ home }) => {
               </i>
             </div>
 
-            <div className="h-9 mr-5">
+            <div className="h-9 mr-5 items-center flex">
               <Link to={"/dashboard"} className="mr-2">
-                <img
-                  src={UserAvatar}
-                  alt=""
-                  className="rounded-[50%] max-h-full"
-                />
+                <div className="flex items-center justify-around">
+                  <FaDog /> <span className="ml-2 text-muted">{username}</span>
+                </div>
               </Link>
             </div>
             <Link to={"/dashboard"} className="ml-2 mr-2">

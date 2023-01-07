@@ -16,8 +16,10 @@ import { addBullyToCart } from "../../store/features/productSlice";
 import useFetchBullies from "../../hooks/useFectchBullies";
 import { Certificate } from "../../shared/certificate";
 import { Wrapper, Trigger } from "../../utils/wapper";
-import Backdrop from "@mui/material/Backdrop";
-
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Container from "@mui/material/Container";
+import { checkNewDate, convertDate, setDeadlineDays } from "../../utils/Utils";
 const ViewPetDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -47,7 +49,24 @@ const ViewPetDetails = () => {
       }
     }, speed);
   };
-
+  const style = {
+    visibility: "hidden",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "100%",
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
+  const openDoc = () => {
+    setShowCert(true);
+  };
+  const handleDocClose = () => {
+    setShowCert(false);
+  };
   const setImage = (i) => {
     setImageInView(i);
   };
@@ -262,7 +281,7 @@ const ViewPetDetails = () => {
                     </i>
                     <div
                       className="flex overflow-auto scroll-m-4 mx-4"
-                      style={{ webkitScrollBar: "none" }}
+                      style={{ WebkitScrollBar: "none" }}
                     >
                       {bully?.bullyImages?.map((item, i) => {
                         return (
@@ -299,11 +318,11 @@ const ViewPetDetails = () => {
 
                 <div className="border-b border-b-borderGrey">
                   <div className="flex items-center justify-between text-xs py-2">
-                    <span className="uppercase">BULLY AGE</span>
+                    <span className="uppercase">BULLY DOB</span>
                     {/* <i>
                           <BsPlus />
                         </i> */}
-                    {bully?.dob}
+                    {convertDate(bully?.dob)}
                   </div>
                 </div>
                 <div className="border-b border-b-borderGrey">
@@ -318,12 +337,14 @@ const ViewPetDetails = () => {
                   <div className="grid grid-cols-2 gap-4 py-3">
                     <div>
                       {" "}
-                      <button
-                        onClick={trigger}
-                        className="w-full rounded-md py-2 border border-blue text-blue whitespace-nowrap"
-                      >
-                        View Bully Certificate
-                      </button>
+                      <Trigger>
+                        <button
+                          onClick={trigger}
+                          className="w-full rounded-md py-2 border border-blue text-blue whitespace-nowrap"
+                        >
+                          View Bully Certificate
+                        </button>
+                      </Trigger>
                     </div>
                     <div>
                       <button className="w-full rounded-md py-2 border border-blue text-blue">
@@ -399,14 +420,13 @@ const ViewPetDetails = () => {
           ) : null}
         </div>
       </div>
-
-      <Backdrop open={false}>
-        <Wrapper ref={wrapper}>
-          <Certificate />
-        </Wrapper>
-
-        <Trigger>download</Trigger>
-      </Backdrop>
+      <>
+        <Box sx={style}>
+          <Wrapper ref={wrapper}>
+            <Certificate bully={bully} />
+          </Wrapper>
+        </Box>
+      </>
       {/* </>
       )} */}
     </>

@@ -3,6 +3,7 @@ import { BsStar } from "react-icons/bs";
 import { IoIosArrowDown } from "react-icons/io";
 import { GoPrimitiveDot } from "react-icons/go";
 import UserAvatar from "../shared/UserAvatar";
+import { Loader } from "../shared";
 
 const SellerInfo = (props) => {
   return (
@@ -52,14 +53,14 @@ const SellerInfo = (props) => {
           {props.blackBtnIcon ? (
             <i className="mx-3">{props.blackBtnIcon}</i>
           ) : null}{" "}
-          {props.blackBtnText}
+          {props.isLoading ? <Loader /> : props.blackBtnText}
         </button>
       </div>
-      <div className="my-3">
+      {/* <div className="my-3">
         <button className="p-3 w-full bg-white text-dark text-sm rounded-md">
           {props.whiteBtnText}
         </button>
-      </div>
+      </div> */}
       {/* </div> */}
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/shared/Header";
 import BullyNewsCard from "../components/home/BullyNewsCard";
 import IndicatorIcon from "../components/home/IndicatorIcon";
@@ -13,6 +13,9 @@ import HIW3 from "../assets/images/howitworks3.svg";
 import Sponsor1 from "../assets/images/sponsor1.png";
 import Sponsor2 from "../assets/images/sponsor2.png";
 import Sponsor3 from "../assets/images/sponsor3.png";
+import Sponsor11 from "../assets/images/sponsor11.jpeg";
+import Sponsor12 from "../assets/images/sponsor12.jpeg";
+import Sponsor13 from "../assets/images/sponsor13.jpeg";
 import Sponsor4 from "../assets/images/sponsor4.png";
 import dreams from "../assets/images/dreams.jpg";
 import tides from "../assets/images/tide.png";
@@ -22,7 +25,6 @@ import "react-multi-carousel/lib/styles.css";
 import FeaturedAdsCard from "../components/home/FeaturedAdsCard";
 import {
   featuredAdsData,
-  categoriesData,
   bullyNewsData,
   testimonialData,
   previewData,
@@ -31,7 +33,9 @@ import {
 import { Link } from "react-router-dom";
 import { NoEncryption } from "@material-ui/icons";
 import { Container } from "@material-ui/core";
-
+import useFetchAds from "../hooks/useFetchAds";
+import { Loader } from "../components/shared";
+import ScreenLoader from "../components/shared/ScreenLoader";
 const Home = () => {
   const responsive = {
     desktop: {
@@ -94,19 +98,21 @@ const Home = () => {
       partialVisibilityGutter: 0, // this is needed to tell the amount of px that should be visible.
     },
   };
+  const { getCategories, categories, isLoading } = useFetchAds();
 
+  useEffect(() => {
+    getCategories();
+  }, []);
   const [preview, setPreview] = useState(0);
   const [video, setVideo] = useState(previewData[0]);
   return (
     <div className="bg-white m-0">
       <Header />
       {/* sponsors */}
+
       <div className="w-full bg-[#fff]  text-center px-5 mt-6">
         <span className="text-textMuted text-lg">Sponsors</span>
-        <div className="grid grid-cols-7 md:grid-cols-7 mx-auto lg:w-4/6 items-center gap-[2.75rem]">
-          <div className="col-span-1">
-            <img src={Sponsor4} alt="sponsor" className="" />
-          </div>
+        <div className="grid grid-cols-9 md:grid-cols-9 mx-auto lg:w-4/6 items-center gap-[2.75rem]">
           <div className="col-span-1">
             <img src={Sponsor2} alt="sponsor" className="" />
           </div>
@@ -115,6 +121,15 @@ const Home = () => {
           </div>
           <div className="col-span-1">
             <img src={Sponsor3} alt="sponsor" className="" />
+          </div>
+          <div className="col-span-1">
+            <img src={Sponsor11} alt="sponsor" className="" />
+          </div>
+          <div className="col-span-1">
+            <img src={Sponsor12} alt="sponsor" className="" />
+          </div>
+          <div className="col-span-1">
+            <img src={Sponsor13} alt="sponsor" className="" />
           </div>
 
           <div className="col-span-1">
@@ -148,37 +163,43 @@ const Home = () => {
               </i>
             </Link>
           </div>
-          <div className="relative ">
-            <Carousel
-              swipeable={true}
-              draggable={true}
-              showDots
-              customDot={<IndicatorIcon data={categoriesData} />}
-              arrows={false}
-              responsive={responsive}
-              partialVisible={true}
-              infinite={true}
-              keyBoardControl={true}
-              customTransition="all .5"
-              transitionDuration={500}
-              containerClass="pb-10 "
-              sliderClass=""
-              dotListClass=""
-              itemClass="carousel-item-padding-40-px"
-              renderDotsOutside={true}
-            >
-              {categoriesData.map((item, i) => (
-                <div key={i} className="mx-4 rounded-[60px] relative ">
-                  <Link to={`${item.link}`}>
-                    <ImageContainer image={item.img} rounded="rounded-[3rem]" />
-                    <p className="absolute bottom-4 left-8 uppercase text-white  text-xl">
-                      {item.name}
-                    </p>
-                  </Link>
-                </div>
-              ))}
-            </Carousel>
-          </div>
+          {categories && (
+            <div className="relative ">
+              {isLoading && <Loader />}
+              <Carousel
+                swipeable={true}
+                draggable={true}
+                showDots
+                customDot={<IndicatorIcon data={categories.length} />}
+                arrows={false}
+                responsive={responsive}
+                partialVisible={true}
+                infinite={true}
+                keyBoardControl={true}
+                customTransition="all .5"
+                transitionDuration={500}
+                containerClass="pb-10 "
+                sliderClass=""
+                dotListClass=""
+                itemClass="carousel-item-padding-40-px"
+                renderDotsOutside={true}
+              >
+                {categories.map((item, i) => (
+                  <div key={i} className="mx-4 rounded-[60px] relative ">
+                    <Link to={`/categories/${item.categoryName}`}>
+                      <ImageContainer
+                        image={`../assets/images/${item.categoryName}.jpg`}
+                        rounded="rounded-[3rem]"
+                      />
+                      <p className="absolute bottom-4 left-8 uppercase text-white  text-xl">
+                        {item.categoryName}
+                      </p>
+                    </Link>
+                  </div>
+                ))}
+              </Carousel>
+            </div>
+          )}
         </div>
       </section>
       {/* Featured Sellers section */}
@@ -202,6 +223,7 @@ const Home = () => {
             </Link>
           </div>
           <div className="grid grid-cols-2 gap-3 lg:grid-cols-3   ">
+            {isLoading && <Loader />}
             <FeaturedAdsCard />;
           </div>
         </div>
@@ -360,7 +382,7 @@ const Home = () => {
               swipeable={true}
               draggable={true}
               showDots={true}
-              customDot={<IndicatorIcon data={categoriesData} />}
+              //  customDot={<IndicatorIcon />}
               arrows={false}
               responsive={newsResponsive}
               partialVisbile={true}

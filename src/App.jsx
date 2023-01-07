@@ -21,7 +21,6 @@ import Ads from "./pages/dashboard/Ads";
 import Messages from "./pages/dashboard/Messages";
 import Registration from "./pages/dashboard/Registration";
 import Categories from "./pages/Categories";
-import Pets from "./pages/Pets";
 import Search from "./pages/Search";
 import AboutUs from "./pages/AboutUs";
 import Founders from "./pages/Founders";
@@ -33,6 +32,7 @@ import BullyRegistration from "./components/dashboard/BullyRegistration";
 import ViewPetDetails from "./pages/pets/ViewPetDetails";
 import BullyBilling from "./pages/shop/BullyBilling";
 import FeaturedBilling from "./pages/shop/FeaturedBilling";
+import SingleCategory from "./pages/SingleCategory";
 
 const Wrapper = ({ children }) => {
   const location = useLocation();
@@ -108,7 +108,7 @@ const App = () => {
               </ProtectedRoutes>
             }
           />
-          <Route path="/categories/pets" element={<Pets />} />
+          <Route path="/categories/:category" element={<SingleCategory />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/search" element={<Search />} />
           <Route

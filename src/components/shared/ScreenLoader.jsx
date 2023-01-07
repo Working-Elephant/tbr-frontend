@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const ScreenLoader = () => {
   return (
-    <section class="bg-blue-900 relative place-items-center grid h-[50vh] w-screen gap-4">
+    <section class="bg-blue-900 relative place-items-center grid h-[100vh] w-screen gap-4">
       <div class="bg-blue-500 w-48 h-48  absolute animate-ping rounded-full delay-5s shadow-xl"></div>
 
       <div class="bg-yellow-400 w-32 h-32 absolute animate-ping rounded-full shadow-xl"></div>

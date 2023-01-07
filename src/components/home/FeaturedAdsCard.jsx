@@ -85,6 +85,11 @@ const FeaturedAdsCard = () => {
       ) : (
         <h3>No Featured Ads</h3>
       )}
+      {/* <div className="mt-10 text-center flex justify-center">
+        <button className="py-3 px-5  bg-black text-white text-sm rounded-md">
+          Load More Featured Sellers
+        </button>
+      </div> */}
     </>
   );
 };

@@ -66,13 +66,7 @@ const AboutBully = () => {
     const chosenFiles = Array.prototype.slice.call(e.target.files);
     handleUploadFiles(chosenFiles);
   };
-  // const watermarkImage = (upload) => {
-  //   // load a url and file object
 
-  //   return watermark([upload, "../../assets/images/coin.png"])
-  //     .image(watermark.image.lowerLeft(0.5))
-  //     .then((img) => document.getElementById("container").appendChild(img));
-  // };
   const previewImage = (file) => {
     const objectUrl = URL.createObjectURL(file);
     return objectUrl;
@@ -123,7 +117,7 @@ const AboutBully = () => {
                   defaultOption="Breed Type"
                   {...register("BreedTypeId", {
                     required: {
-                      value: true,
+                      value: false,
                       message: " This field is required",
                     },
                   })}
@@ -160,7 +154,7 @@ const AboutBully = () => {
                   defaultOption="Dog Class"
                   {...register("DogClass", {
                     required: {
-                      value: true,
+                      value: false,
                       message: " This field is required",
                     },
                   })}

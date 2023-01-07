@@ -91,15 +91,21 @@ export const titles = [
     value: "Master",
   },
 ];
-export const locations = [
+export const classList = [
   {
-    value: "Texas",
+    value: "Pocket",
   },
   {
-    value: "Vales",
+    value: "Standard",
   },
   {
-    value: "Missouri",
+    value: "Classic",
+  },
+  {
+    value: "Extreme",
+  },
+  {
+    value: "XL",
   },
 ];
 export const searchCategories = [

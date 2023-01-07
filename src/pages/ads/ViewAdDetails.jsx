@@ -14,6 +14,8 @@ import {
   BsArrowRightShort,
 } from "react-icons/bs";
 import Backdrop from "@mui/material/Backdrop";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
 import { MdClose } from "react-icons/md";
 import { FaCamera, FaBorderAll, FaArrowLeft } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
@@ -22,12 +24,28 @@ import AuthService from "../../services/user";
 import ChatComponent from "../../components/dashboard/ChatComponent";
 import useFetchChat from "../../hooks/useFetchChats";
 import { success } from "../../components/shared";
+import ScreenLoader from "../../components/shared/ScreenLoader";
+import { useAdsContext } from "../../hooks/useAdsContext";
 
 const ViewAdDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { getSingleAd, singleAds } = useFetchAds();
-  const { startChat, isLoading, singleChat } = useFetchChat();
+  const { getSingleAd, categoryName } = useFetchAds();
+  const { startChat, isLoading, singleChat, chatId } = useFetchChat();
+  const { singleAds, adsByCategory } = useAdsContext();
+  const similarAds = adsByCategory?.items?.filter((item) => +item.id !== +id);
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
   // const { getUser } = AuthService;
   // const user = getUser();
   // const userID = user ? user.user.id : null;
@@ -72,7 +90,7 @@ const ViewAdDetails = () => {
     setShowChat(false);
   };
   const activeUser = {
-    chatId: singleAds?.userId,
+    chatId: chatId,
   };
   const openChat = async () => {
     if (userID) {
@@ -90,7 +108,6 @@ const ViewAdDetails = () => {
     if (!singleAds) return;
     success("Item Added to Cart");
     dispatch(addToCart(singleAds));
-    console.log("here");
   };
   const goToCart = () => {
     if (!singleAds) return;
@@ -102,6 +119,12 @@ const ViewAdDetails = () => {
     if (!singleAds) return;
     dispatch(addFeatured(singleAds));
     navigate(`/featured/billing/${id}`);
+  };
+
+  const login = () => {
+    if (!singleAds) return;
+
+    navigate(`/login`);
   };
 
   return (
@@ -181,7 +204,7 @@ const ViewAdDetails = () => {
                     </i>
                     <div
                       className="flex overflow-auto scroll-m-4 mx-4"
-                      style={{ webkitScrollBar: "none" }}
+                      style={{ WebkitScrollBar: "none" }}
                     >
                       {singleAds?.postAdImages?.map((item, i) => {
                         return (
@@ -280,7 +303,14 @@ const ViewAdDetails = () => {
                         >
                           Make Featured
                         </button>
-                      ) : null}
+                      ) : (
+                        <button
+                          className="w-full rounded-md py-2 bg-blue text-white capitalize"
+                          onClick={login}
+                        >
+                          Login To Purchase
+                        </button>
+                      )}
                     </>
                   )}
                 </div>
@@ -314,12 +344,16 @@ const ViewAdDetails = () => {
                 blackBtnText="Message Seller"
                 whiteBtnText="View Merchant Profile"
                 openChat={openChat}
+                isLoading={isLoading}
               />
             </div>
           ) : null}
         </div>
         <div className=" my-6">
-          <SimilarProducts />
+          <SimilarProducts
+            adsByCategory={similarAds}
+            categoryName={categoryName}
+          />
         </div>
         <div>
           <RecentlyViewed />
@@ -327,24 +361,22 @@ const ViewAdDetails = () => {
       </div>
       {showChat && (
         <>
-          <Backdrop
+          <Modal
+            keepMounted
+            onClose={handleChatClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
             // sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-            open={true}
+            open={openChat}
           >
-            {isLoading ? <Loader /> : null}
-            <div className="absolute top-4 bg-white p-4 w-[50%] max-h-[90vh] rounded-lg">
-              <div className="flex items-center justify-end">
-                <i className="text-xl text-end p-4" onClick={handleChatClose}>
-                  <MdClose />
-                </i>
-              </div>
+            <Box sx={style}>
               <ChatComponent
                 singleChat={singleChat}
                 activeUser={activeUser}
                 showMessage={true}
               />
-            </div>
-          </Backdrop>
+            </Box>
+          </Modal>
         </>
       )}
     </>

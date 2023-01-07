@@ -186,7 +186,7 @@ const Cart = () => {
         ) : (
           <div className="w-full text-center mt-12 py-5">
             <p className="my-8 ">No item found in the cart</p>
-            <Link to="/categories/pets" className="bg-yellow p-4">
+            <Link to="/categories" className="bg-yellow p-4">
               Go back to shop
             </Link>
           </div>
