@@ -16,6 +16,17 @@ export const adsReducer = (state, action) => {
         adsByCategory: action.payload,
       };
 
+    case "GET_FEATURED_ADS":
+      return {
+        ...state,
+        featuredAds: action.payload,
+      };
+    case "GET_ORDER_ID":
+      return {
+        ...state,
+        orderId: action.payload,
+      };
+
     default:
       return state;
   }

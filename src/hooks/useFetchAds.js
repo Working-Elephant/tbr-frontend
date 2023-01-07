@@ -82,7 +82,6 @@ const useFetchAds = () => {
     setIsLoading(true);
     try {
       const data = await AdService.getCategories();
-      console.log(data, "tim");
 
       if (data.error === false) {
         setCategories(data.data);
@@ -96,7 +95,7 @@ const useFetchAds = () => {
       errorToast(error.message);
     }
   };
-  const getFeaturedAds = async () => {
+  const getFeaturedAds = async (limit = 10, page = 1) => {
     setIsLoading(true);
     setError(null);
 
@@ -104,7 +103,9 @@ const useFetchAds = () => {
       const data = await AdService.getFeaturedAds();
 
       if (data.error === false) {
-        setFeaturedAds(data.data.items);
+        const featured = data.data.items;
+        dispatch({ type: "GET_FEATURED_ADS", payload: featured });
+        setFeaturedAds(featured);
         setIsLoading(false);
       }
     } catch (error) {

@@ -355,9 +355,9 @@ const ViewAdDetails = () => {
             categoryName={categoryName}
           />
         </div>
-        <div>
+        {/* <div>
           <RecentlyViewed />
-        </div>
+        </div> */}
       </div>
       {showChat && (
         <>

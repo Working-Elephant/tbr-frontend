@@ -33,6 +33,7 @@ import ViewPetDetails from "./pages/pets/ViewPetDetails";
 import BullyBilling from "./pages/shop/BullyBilling";
 import FeaturedBilling from "./pages/shop/FeaturedBilling";
 import SingleCategory from "./pages/SingleCategory";
+import FeaturedAds from "./pages/FeaturedAds";
 
 const Wrapper = ({ children }) => {
   const location = useLocation();
@@ -109,6 +110,7 @@ const App = () => {
             }
           />
           <Route path="/categories/:category" element={<SingleCategory />} />
+          <Route path="/featured" element={<FeaturedAds />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/search" element={<Search />} />
           <Route

@@ -72,7 +72,7 @@ const SingleCategory = () => {
       >
         <div className=" m-auto">
           <h2 className="text-3xl md:text-5xl font-bold text-white">
-            {categoryName}
+            {category}
           </h2>
         </div>
       </div>
@@ -81,7 +81,7 @@ const SingleCategory = () => {
       </div>
       <div className="p-5  w-full lg:w-11/12 xl:w-10/12 mx-auto lg:grid lg:grid-cols-12 lg:gap-6">
         <div className=" lg:block lg:col-span-2">
-          <Filter showCategory={false} />
+          <Filter showCategory={false} type={category} />
         </div>
         <div className=" lg:col-span-10 lg:mt-4">
           <div className="flex justify-end">

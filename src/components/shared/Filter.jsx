@@ -5,7 +5,7 @@ import { CustomCheckbox, CustomColorFilter } from ".";
 import { MdClose } from "react-icons/md";
 import Backdrop from "@mui/material/Backdrop";
 
-const Filter = ({ showCategory }) => {
+const Filter = ({ showCategory, type }) => {
   const [filterView, setFilterView] = useState({
     prices: true,
     colors: true,
@@ -101,7 +101,7 @@ const Filter = ({ showCategory }) => {
                   <div className="pr-2">
                     <CustomCheckbox />
                   </div>
-                  <span>Under $50</span>
+                  <span>Under $5000</span>
                 </div>
               </li>
               <li className="mb-3">
@@ -109,143 +109,113 @@ const Filter = ({ showCategory }) => {
                   <div className="pr-2">
                     <CustomCheckbox />
                   </div>
-                  <span> $50 - $100</span>
-                </div>
-              </li>
-              <li className="mb-3">
-                <div className="flex items-center ">
-                  <div className="pr-2">
-                    <CustomCheckbox />
-                  </div>
-                  <span> $100 - $200</span>
-                </div>
-              </li>
-              <li className="mb-3">
-                <div className="flex items-center ">
-                  <div className="pr-2">
-                    <CustomCheckbox />
-                  </div>
-                  <span> $300 - $400</span>
-                </div>
-              </li>
-              <li className="mb-3">
-                <div className="flex items-center ">
-                  <div className="pr-2">
-                    <CustomCheckbox />
-                  </div>
-                  <span> $400 - $600</span>
-                </div>
-              </li>
-              <li className="mb-3">
-                <div className="flex items-center ">
-                  {/* <input
-              className=" p-1  mr-2 rounded  border border-borderGrey   focus:outline-none "
-              type="checkbox"
-            /> */}
-                  <div className="pr-2">
-                    <CustomCheckbox />
-                  </div>
-                  <span> $600 - $1000</span>
+                  <span>Over $5000</span>
                 </div>
               </li>
             </ul>
           )}
         </div>
-        <div className="mb-3">
-          <div className="flex items-center justify-between border-b border-b-borderGrey">
-            <h6 className="font-semibold  ">COLORS</h6>
-            <i className="text-xs" onClick={toggleColorView}>
-              <BsDash />
-            </i>
+        {type === "Pets" && (
+          <div className="mb-3">
+            <div className="flex items-center justify-between border-b border-b-borderGrey">
+              <h6 className="font-semibold  ">COLORS</h6>
+              <i className="text-xs" onClick={toggleColorView}>
+                <BsDash />
+              </i>
+            </div>
+            {colors && (
+              <ul className="list-none my-4 text-xs flex">
+                {filterColors.map((color, i) => {
+                  return (
+                    <li key={i} className="m-1">
+                      <CustomColorFilter
+                        className={`bg-[${color}]`}
+                        color={color}
+                        style={{ backgroundColor: `${color}` }}
+                      />
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
           </div>
-          {colors && (
-            <ul className="list-none my-4 text-xs flex">
-              {filterColors.map((color, i) => {
-                return (
-                  <li key={i} className="m-1">
-                    <CustomColorFilter
-                      className={`bg-[${color}]`}
-                      color={color}
-                      style={{ backgroundColor: `${color}` }}
-                    />
-                  </li>
-                );
-              })}
-            </ul>
-          )}
-        </div>
-        <div className="mb-3">
-          <div className="flex items-center justify-between border-b border-b-borderGrey">
-            <h6 className="font-semibold  ">GENDER</h6>
-            <i className="text-xs" onClick={toggleGenderView}>
-              <BsDash />
-            </i>
+        )}
+        {type === "Pets" && (
+          <div className="mb-3">
+            <div className="flex items-center justify-between border-b border-b-borderGrey">
+              <h6 className="font-semibold  ">GENDER</h6>
+              <i className="text-xs" onClick={toggleGenderView}>
+                <BsDash />
+              </i>
+            </div>
+            {gender && (
+              <ul className="list-none my-4 text-xs">
+                <li className="mb-3">
+                  <div className="flex items-center ">
+                    <div className="pr-2">
+                      <CustomCheckbox />
+                    </div>
+                    <span>Male</span>
+                  </div>
+                </li>
+                <li className="mb-3">
+                  <div className="flex items-center ">
+                    <div className="pr-2">
+                      <CustomCheckbox />
+                    </div>
+                    <span>Female</span>
+                  </div>
+                </li>
+              </ul>
+            )}
           </div>
-          {gender && (
-            <ul className="list-none my-4 text-xs">
-              <li className="mb-3">
-                <div className="flex items-center ">
-                  <div className="pr-2">
-                    <CustomCheckbox />
+        )}
+        {type === "Pets" && (
+          <div className="mb-3">
+            <div className="flex items-center justify-between border-b border-b-borderGrey">
+              <h6 className="font-semibold  ">AGE</h6>
+              <i className="text-xs" onClick={toggleAgeView}>
+                <BsDash />
+              </i>
+            </div>
+            {age && (
+              <ul className="list-none my-4 text-xs">
+                <li className="mb-3">
+                  <div className="flex items-center ">
+                    <div className="pr-2">
+                      <CustomCheckbox />
+                    </div>
+                    <span>0 - 3 Months</span>
                   </div>
-                  <span>Male</span>
-                </div>
-              </li>
-              <li className="mb-3">
-                <div className="flex items-center ">
-                  <div className="pr-2">
-                    <CustomCheckbox />
+                </li>
+                <li className="mb-3">
+                  <div className="flex items-center ">
+                    <div className="pr-2">
+                      <CustomCheckbox />
+                    </div>
+                    <span>3 - 6 Months</span>{" "}
                   </div>
-                  <span>Female</span>
-                </div>
-              </li>
-            </ul>
-          )}
-        </div>
-        <div className="mb-3">
-          <div className="flex items-center justify-between border-b border-b-borderGrey">
-            <h6 className="font-semibold  ">AGE</h6>
-            <i className="text-xs" onClick={toggleAgeView}>
-              <BsDash />
-            </i>
+                </li>
+                <li className="mb-3">
+                  <div className="flex items-center ">
+                    <div className="pr-2">
+                      <CustomCheckbox />
+                    </div>
+                    <span>6 - 12 Months</span>{" "}
+                  </div>
+                </li>
+                <li className="mb-3">
+                  <div className="flex items-center ">
+                    <div className="pr-2">
+                      <CustomCheckbox />
+                    </div>
+                    <span>1 - 3 Years</span>{" "}
+                  </div>
+                </li>
+              </ul>
+            )}
           </div>
-          {age && (
-            <ul className="list-none my-4 text-xs">
-              <li className="mb-3">
-                <div className="flex items-center ">
-                  <div className="pr-2">
-                    <CustomCheckbox />
-                  </div>
-                  <span>0 - 3 Months</span>
-                </div>
-              </li>
-              <li className="mb-3">
-                <div className="flex items-center ">
-                  <div className="pr-2">
-                    <CustomCheckbox />
-                  </div>
-                  <span>3 - 6 Months</span>{" "}
-                </div>
-              </li>
-              <li className="mb-3">
-                <div className="flex items-center ">
-                  <div className="pr-2">
-                    <CustomCheckbox />
-                  </div>
-                  <span>6 - 12 Months</span>{" "}
-                </div>
-              </li>
-              <li className="mb-3">
-                <div className="flex items-center ">
-                  <div className="pr-2">
-                    <CustomCheckbox />
-                  </div>
-                  <span>1 - 3 Years</span>{" "}
-                </div>
-              </li>
-            </ul>
-          )}
-        </div>
+        )}
       </div>
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -306,7 +276,7 @@ const Filter = ({ showCategory }) => {
                         <div className="pr-2">
                           <CustomCheckbox />
                         </div>
-                        <span>Under $50</span>
+                        <span>Under $5000</span>
                       </div>
                     </li>
                     <li className="mb-3">
@@ -314,143 +284,114 @@ const Filter = ({ showCategory }) => {
                         <div className="pr-2">
                           <CustomCheckbox />
                         </div>
-                        <span> $50 - $100</span>
-                      </div>
-                    </li>
-                    <li className="mb-3">
-                      <div className="flex items-center ">
-                        <div className="pr-2">
-                          <CustomCheckbox />
-                        </div>
-                        <span> $100 - $200</span>
-                      </div>
-                    </li>
-                    <li className="mb-3">
-                      <div className="flex items-center ">
-                        <div className="pr-2">
-                          <CustomCheckbox />
-                        </div>
-                        <span> $300 - $400</span>
-                      </div>
-                    </li>
-                    <li className="mb-3">
-                      <div className="flex items-center ">
-                        <div className="pr-2">
-                          <CustomCheckbox />
-                        </div>
-                        <span> $400 - $600</span>
-                      </div>
-                    </li>
-                    <li className="mb-3">
-                      <div className="flex items-center ">
-                        {/* <input
-              className=" p-1  mr-2 rounded  border border-borderGrey   focus:outline-none "
-              type="checkbox"
-            /> */}
-                        <div className="pr-2">
-                          <CustomCheckbox />
-                        </div>
-                        <span> $600 - $1000</span>
+                        <span>Over $5000</span>
                       </div>
                     </li>
                   </ul>
                 )}
               </div>
-              <div className="mb-3">
-                <div className="flex items-center justify-between border-b border-b-borderGrey">
-                  <h6 className="font-semibold  ">COLORS</h6>
-                  <i className="text-xs" onClick={toggleColorView}>
-                    <BsDash />
-                  </i>
+              {type === "Pets" && (
+                <div className="mb-3">
+                  <div className="flex items-center justify-between border-b border-b-borderGrey">
+                    <h6 className="font-semibold  ">COLORS</h6>
+                    <i className="text-xs" onClick={toggleColorView}>
+                      <BsDash />
+                    </i>
+                  </div>
+                  {colors && (
+                    <ul className="list-none my-4 text-xs flex">
+                      {filterColors.map((color, i) => {
+                        return (
+                          <li key={i} className="m-1">
+                            <CustomColorFilter
+                              className={`bg-[${color}]`}
+                              color={color}
+                              style={{ backgroundColor: `${color}` }}
+                            />
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
                 </div>
-                {colors && (
-                  <ul className="list-none my-4 text-xs flex">
-                    {filterColors.map((color, i) => {
-                      return (
-                        <li key={i} className="m-1">
-                          <CustomColorFilter
-                            className={`bg-[${color}]`}
-                            color={color}
-                            style={{ backgroundColor: `${color}` }}
-                          />
-                        </li>
-                      );
-                    })}
-                  </ul>
-                )}
-              </div>
-              <div className="mb-3">
-                <div className="flex items-center justify-between border-b border-b-borderGrey">
-                  <h6 className="font-semibold  ">GENDER</h6>
-                  <i className="text-xs" onClick={toggleGenderView}>
-                    <BsDash />
-                  </i>
+              )}
+
+              {type === "Pets" && (
+                <div className="mb-3">
+                  <div className="flex items-center justify-between border-b border-b-borderGrey">
+                    <h6 className="font-semibold  ">GENDER</h6>
+                    <i className="text-xs" onClick={toggleGenderView}>
+                      <BsDash />
+                    </i>
+                  </div>
+                  {gender && (
+                    <ul className="list-none my-4 text-xs">
+                      <li className="mb-3">
+                        <div className="flex items-center ">
+                          <div className="pr-2">
+                            <CustomCheckbox />
+                          </div>
+                          <span>Male</span>
+                        </div>
+                      </li>
+                      <li className="mb-3">
+                        <div className="flex items-center ">
+                          <div className="pr-2">
+                            <CustomCheckbox />
+                          </div>
+                          <span>Female</span>
+                        </div>
+                      </li>
+                    </ul>
+                  )}
                 </div>
-                {gender && (
-                  <ul className="list-none my-4 text-xs">
-                    <li className="mb-3">
-                      <div className="flex items-center ">
-                        <div className="pr-2">
-                          <CustomCheckbox />
+              )}
+              {type === "Pets" && (
+                <div className="mb-3">
+                  <div className="flex items-center justify-between border-b border-b-borderGrey">
+                    <h6 className="font-semibold  ">AGE</h6>
+                    <i className="text-xs" onClick={toggleAgeView}>
+                      <BsDash />
+                    </i>
+                  </div>
+                  {age && (
+                    <ul className="list-none my-4 text-xs">
+                      <li className="mb-3">
+                        <div className="flex items-center ">
+                          <div className="pr-2">
+                            <CustomCheckbox />
+                          </div>
+                          <span>0 - 3 Months</span>
                         </div>
-                        <span>Male</span>
-                      </div>
-                    </li>
-                    <li className="mb-3">
-                      <div className="flex items-center ">
-                        <div className="pr-2">
-                          <CustomCheckbox />
+                      </li>
+                      <li className="mb-3">
+                        <div className="flex items-center ">
+                          <div className="pr-2">
+                            <CustomCheckbox />
+                          </div>
+                          <span>3 - 6 Months</span>{" "}
                         </div>
-                        <span>Female</span>
-                      </div>
-                    </li>
-                  </ul>
-                )}
-              </div>
-              <div className="mb-3">
-                <div className="flex items-center justify-between border-b border-b-borderGrey">
-                  <h6 className="font-semibold  ">AGE</h6>
-                  <i className="text-xs" onClick={toggleAgeView}>
-                    <BsDash />
-                  </i>
+                      </li>
+                      <li className="mb-3">
+                        <div className="flex items-center ">
+                          <div className="pr-2">
+                            <CustomCheckbox />
+                          </div>
+                          <span>6 - 12 Months</span>{" "}
+                        </div>
+                      </li>
+                      <li className="mb-3">
+                        <div className="flex items-center ">
+                          <div className="pr-2">
+                            <CustomCheckbox />
+                          </div>
+                          <span>1 - 3 Years</span>{" "}
+                        </div>
+                      </li>
+                    </ul>
+                  )}
                 </div>
-                {age && (
-                  <ul className="list-none my-4 text-xs">
-                    <li className="mb-3">
-                      <div className="flex items-center ">
-                        <div className="pr-2">
-                          <CustomCheckbox />
-                        </div>
-                        <span>0 - 3 Months</span>
-                      </div>
-                    </li>
-                    <li className="mb-3">
-                      <div className="flex items-center ">
-                        <div className="pr-2">
-                          <CustomCheckbox />
-                        </div>
-                        <span>3 - 6 Months</span>{" "}
-                      </div>
-                    </li>
-                    <li className="mb-3">
-                      <div className="flex items-center ">
-                        <div className="pr-2">
-                          <CustomCheckbox />
-                        </div>
-                        <span>6 - 12 Months</span>{" "}
-                      </div>
-                    </li>
-                    <li className="mb-3">
-                      <div className="flex items-center ">
-                        <div className="pr-2">
-                          <CustomCheckbox />
-                        </div>
-                        <span>1 - 3 Years</span>{" "}
-                      </div>
-                    </li>
-                  </ul>
-                )}
-              </div>
+              )}
             </div>
           </div>
         </div>

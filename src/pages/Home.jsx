@@ -213,7 +213,7 @@ const Home = () => {
               </p>
             </div>
             <Link
-              to="/categories/pets"
+              to="/featured"
               className="text-blue flex items-center text-sm md:text-base"
             >
               <span className="">View More</span>

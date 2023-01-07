@@ -7,6 +7,11 @@ const PaymentService = {
       return res.data;
     });
   },
+  createOrder: async (data) => {
+    return axios.post(`${baseUrl}/Order/create`, data).then((res) => {
+      return res.data;
+    });
+  },
 };
 
 export default PaymentService;

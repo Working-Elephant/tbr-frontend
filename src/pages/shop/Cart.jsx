@@ -10,9 +10,11 @@ import {
   removeFromCart,
 } from "../../store/features/productSlice";
 import { FaTimes } from "react-icons/fa";
-
+import usePayment from "../../hooks/usePayment";
+import { Loader } from "../../components/shared";
 const Cart = () => {
   const imageurl = import.meta.env.VITE_IMAGE_URL;
+  const { createOrder, isLoading } = usePayment();
   const crumbs = [
     {
       name: "Home",
@@ -39,8 +41,22 @@ const Cart = () => {
     }
   };
   const removeItem = (id) => {
-    console.log(id, "id");
     dispatch(removeFromCart(id));
+  };
+  const generateOrderId = () => {
+    const cart = [];
+    product.items.map((item) => {
+      const obj = {
+        postAdId: item.id,
+        quantity: 1,
+        total: item.amount,
+      };
+      cart.push(obj);
+    });
+    const obj = {
+      cart: cart,
+    };
+    createOrder(obj);
   };
   // item
   // :
@@ -212,14 +228,17 @@ const Cart = () => {
               </span>
             </div>
             <div className="my-3 flex items-center justify-end pr-3">
-              <Link to="/cart/shipping">
-                <button className="bg-yellow flex items-center ">
-                  <i className="bg-lightGrey py-4 px-4 text-lg">
-                    <BuyNow />
-                  </i>
-                  <span className="px-7 font-semibold">BUY NOW</span>
-                </button>
-              </Link>
+              <button
+                className="bg-yellow flex items-center "
+                onClick={generateOrderId}
+              >
+                <i className="bg-lightGrey py-4 px-4 text-lg">
+                  <BuyNow />
+                </i>
+                <span className="px-7 font-semibold">
+                  BUY NOW <i>{isLoading && <Loader />}</i>
+                </span>
+              </button>
             </div>
           </div>
         ) : null}

@@ -19,48 +19,23 @@ import { useAdsContext } from "../hooks/useAdsContext";
 // import { isResponseSuccess } from "../utils";
 
 const FeaturedAds = () => {
-  const dispatch = useDispatch();
-  const { category } = useParams();
-  const location = useLocation();
-  const navigate = useNavigate();
-  const { categoryName } = location?.state || {};
-  const { adsByCategory } = useAdsContext();
-  const { isLoading, getAdsByCategories } = useFetchAds();
-  // useEffect(() => {
-  //   dispatch(fetchPostsSlice());
-  // }, [dispatch]);
+  const { featuredAds } = useAdsContext();
+  const { isLoading, getFeaturedAds } = useFetchAds();
 
   useEffect(() => {
-    if (!category) return navigate("/categories");
-    getAdsByCategories(category);
+    if (!featuredAds) {
+      getFeaturedAds();
+    }
   }, []);
-  const { loading, products } = useSelector((state) => state.product);
   const crumbs = [
     {
       name: "Home",
       link: "",
     },
     {
-      name: category ?? "Category",
+      name: "Featured",
     },
   ];
-  // const [perPage] = useState(6);
-  // const [firstIndex, setFirstIndex] = useState(0);
-  // const [currentData, setCurrentData] = useState([]);
-  // const [selected, setSelected] = useState(0);
-  // const total = Math.ceil(products.length / perPage);
-
-  // useEffect(() => {
-  //   const lastIndex = firstIndex + perPage;
-  //   setCurrentData(products.slice(firstIndex, lastIndex));
-  // }, [products, perPage, firstIndex]);
-
-  // const paginate = (ev) => {
-  //   console.log(ev.selected, "selected");
-  //   let newOffSet = (ev.selected * perPage) % products.length;
-  //   setFirstIndex(newOffSet);
-  //   setSelected(ev.selected);
-  // };
 
   return (
     <div className="">
@@ -72,7 +47,7 @@ const FeaturedAds = () => {
       >
         <div className=" m-auto">
           <h2 className="text-3xl md:text-5xl font-bold text-white">
-            {categoryName}
+            Featured Ads
           </h2>
         </div>
       </div>
@@ -94,8 +69,8 @@ const FeaturedAds = () => {
           </div>
           <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
             {isLoading && <Loader />}
-            {adsByCategory?.items?.length ? (
-              adsByCategory?.items?.map((item, i) => {
+            {featuredAds?.length ? (
+              featuredAds?.map((item, i) => {
                 return <AdCard key={i} item={item} showLike />;
               })
             ) : (
