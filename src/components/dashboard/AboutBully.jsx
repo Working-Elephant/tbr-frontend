@@ -84,6 +84,28 @@ const AboutBully = () => {
   const onerror = (error) => {
     console.log(error);
   };
+  const classList = [
+    {
+      label: "Pocket",
+      value: "Pocket",
+    },
+    {
+      label: "Standard",
+      value: "Standard",
+    },
+    {
+      label: "Classic",
+      value: "Classic",
+    },
+    {
+      label: "Extreme",
+      value: "Extreme",
+    },
+    {
+      label: "XL",
+      value: "XL",
+    },
+  ];
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit, onerror)}>
@@ -149,8 +171,7 @@ const AboutBully = () => {
               <div className="w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
                 <SelectInput
                   border="border-0"
-                  options={breedType}
-                  read={"BreedTypeId"}
+                  options={classList}
                   defaultOption="Dog Class"
                   {...register("DogClass", {
                     required: {
@@ -168,17 +189,6 @@ const AboutBully = () => {
         </div>
         <div className="flex justify-center">
           <div className=" w-[50%] bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit">
-            {/* <Input
-                  type="color"
-                  border="border-0"
-                  placeholder={"Color"}
-                  {...register("Color", {
-                    required: {
-                      value: true,
-                      message: " This field is required",
-                    },
-                  })}
-                /> */}
             <div className="flex justify-evenly">
               <div className="flex items-center justify-between">
                 <span className="text-xs mr-2">Dog Color 1</span>

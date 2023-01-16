@@ -67,11 +67,11 @@ export const dashboardMenu = [
     name: "My Orders",
     link: "/dashboard/orders",
   },
-  {
-    icon: OrdersIcon,
-    name: "Documents",
-    link: "/dashboard/orders",
-  },
+  // {
+  //   icon: OrdersIcon,
+  //   name: "Documents",
+  //   link: "/dashboard/orders",
+  // },
 ];
 export const adsData = [
   {

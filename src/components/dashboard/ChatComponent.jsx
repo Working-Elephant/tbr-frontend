@@ -1,13 +1,12 @@
 import React, { useState, useRef } from "react";
 
-import { RiSearchLine } from "react-icons/ri";
-import { GrAttachment } from "react-icons/gr";
 import { FaChevronLeft } from "react-icons/fa";
 import UserAvatar from "../shared/UserAvatar";
 import useFetchChat from "../../hooks/useFetchChats";
 import { useEffect } from "react";
 import { findUpper } from "../../utils/Utils";
 import { useForm } from "react-hook-form";
+import DropZone from "./Dropzone";
 import {
   HubConnectionBuilder,
   LogLevel,
@@ -20,19 +19,42 @@ const ChatComponent = ({
   activeUser,
 }) => {
   let baseUrl = import.meta.env.VITE_BASE_URL;
+  const chaturl = import.meta.env.VITE_CHAT_URL;
   const { register, handleSubmit, reset } = useForm();
   const { sendChat } = useFetchChat();
   const [chat, setChat] = useState([]);
+  const [isDisabled, setDisabled] = useState(false);
   const [connection, setConnection] = useState(null);
-  const [chatObject, setChatObject] = useState(null);
+  const [files, setFiles] = useState([]);
   const latestChat = useRef(null);
   const bottomRef = useRef(null);
   latestChat.current = chat;
   const { chatId } = activeUser;
   const onSubmit = async (data) => {
-    const obj = { ...data, chatId };
-    const status = await sendChat(obj);
-    if (!status) reset();
+    const { message } = data;
+    setDisabled(true);
+
+    const formdata = new FormData();
+    if (files.length) {
+      for (var i = 0; i < files.length; i++) {
+        console.log([files[i]], "tim");
+        formdata.append("images", files[i]);
+      }
+    }
+
+    formdata.append("chatId", chatId);
+    formdata.append("message", message);
+
+    const status = await sendChat(formdata);
+    if (!status) {
+      resetForm();
+    }
+  };
+
+  const resetForm = () => {
+    setDisabled(false);
+    setFiles([]);
+    reset();
   };
   useEffect(() => {
     setChat(singleChat);
@@ -65,9 +87,8 @@ const ChatComponent = ({
 
       function handleListen() {
         if (chatId) {
-          connection.on(chatId.toString(), (message) => {
+          connection.on(`${chatId.toString()}_chat_channel`, (message) => {
             const updatedChat = [...latestChat.current];
-
             updatedChat.push(message);
             const newList = new Set([...updatedChat]);
 
@@ -78,6 +99,9 @@ const ChatComponent = ({
     }
   }, [connection]);
 
+  const onerror = (data) => {
+    console.log(data);
+  };
   // 👇️ scroll to bottom every time messages change
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -122,7 +146,7 @@ const ChatComponent = ({
                 <span className="ml-3 text-xs"> {activeUser?.username}</span>
               </div>
             </div>
-            <div className="  px-4 h-[80%] overflow-auto no-scrollbar">
+            <div className="  px-4 h-[75%] overflow-auto no-scrollbar">
               {chat?.map((chatMessages, i) => (
                 <div
                   key={i}
@@ -132,15 +156,30 @@ const ChatComponent = ({
                       : "bg-[#FFFCF2] mr-auto"
                   } `}
                 >
-                  <p className="text-xs text-textMuted leading-6">
-                    {chatMessages?.message}
-                  </p>
+                  {chatMessages?.message ? (
+                    <p className="text-xs text-textMuted leading-6">
+                      {chatMessages?.message}
+                    </p>
+                  ) : null}
+
+                  {chatMessages?.chatMessageImages?.length ? (
+                    <img
+                      src={`${chaturl}${chatMessages?.chatMessageImages?.[0]?.url}`}
+                      //style={img}
+                      // Revoke data uri after image is loaded
+                      onLoad={() => {
+                        URL.revokeObjectURL(
+                          `${chaturl}${chatMessages?.chatMessageImages?.[0]?.url}`
+                        );
+                      }}
+                    />
+                  ) : null}
                 </div>
               ))}
               <div ref={bottomRef} />
             </div>
             <div className="border-.5 border-borderGrey rounded p-3  absolute bottom-0 left-0 right-0">
-              <form onSubmit={handleSubmit(onSubmit)}>
+              <form onSubmit={handleSubmit(onSubmit, onerror)}>
                 <div className="w-[70%]">
                   <textarea
                     className="w-full text-xs text-textMuted resize-none max-h-[5rem] focus:outline-none placeholder:text-xs "
@@ -155,11 +194,12 @@ const ChatComponent = ({
                 </div>
                 <div className="flex items-center  ">
                   <i className="mr-5">
-                    <GrAttachment />
+                    <DropZone setFiles={setFiles} files={files} />
                   </i>
                   <button
-                    className=" bg-yellow px-6 py-2 rounded-3xl text-xs "
+                    className=" bg-yellow px-6 py-2 rounded-3xl text-xs   "
                     type="submit"
+                    disabled={isDisabled}
                   >
                     Send
                   </button>

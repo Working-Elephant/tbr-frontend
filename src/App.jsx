@@ -26,6 +26,7 @@ import AboutUs from "./pages/AboutUs";
 import Founders from "./pages/Founders";
 import Favorite from "./components/dashboard/Favorites";
 import Orders from "./components/dashboard/Orders";
+import OrdersPage from "../src/pages/dashboard/Orders";
 import { useMatch } from "react-router-dom";
 import { useLayoutEffect } from "react";
 import BullyRegistration from "./components/dashboard/BullyRegistration";
@@ -34,6 +35,7 @@ import BullyBilling from "./pages/shop/BullyBilling";
 import FeaturedBilling from "./pages/shop/FeaturedBilling";
 import SingleCategory from "./pages/SingleCategory";
 import FeaturedAds from "./pages/FeaturedAds";
+import AllOrders from "./pages/Orders";
 
 const Wrapper = ({ children }) => {
   const location = useLocation();
@@ -105,7 +107,15 @@ const App = () => {
             path="/dashboard/orders"
             element={
               <ProtectedRoutes>
-                <Orders />
+                <OrdersPage />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="orders/:id"
+            element={
+              <ProtectedRoutes>
+                <AllOrders />
               </ProtectedRoutes>
             }
           />

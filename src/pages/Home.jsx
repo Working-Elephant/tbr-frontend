@@ -112,7 +112,7 @@ const Home = () => {
 
       <div className="w-full bg-[#fff]  text-center px-5 mt-6">
         <span className="text-textMuted text-lg">Sponsors</span>
-        <div className="grid grid-cols-9 md:grid-cols-9 mx-auto lg:w-4/6 items-center gap-[2.75rem]">
+        <div className="grid grid-cols-3 md:grid-cols-9 mx-auto lg:w-4/6 items-center gap-[2.75rem]">
           <div className="col-span-1">
             <img src={Sponsor2} alt="sponsor" className="" />
           </div>

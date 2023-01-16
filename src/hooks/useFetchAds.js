@@ -9,7 +9,8 @@ const useFetchAds = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [ads, setAds] = useState([]);
-  const [singleAds, setSingleAd] = useState([]);
+  const [singleAds, setSingleAd] = useState();
+  const [sellersReviews, setSellersReviews] = useState([]);
   const [categories, setCategories] = useState([]);
   const [categoryName, setCategoryName] = useState("");
   const [featuredAds, setFeaturedAds] = useState([]);
@@ -42,12 +43,16 @@ const useFetchAds = () => {
 
       if (data.error === false) {
         const single = data.data.postAd;
-        setSingleAd(single);
+        const seller = data.data.user;
+        console.log(seller, "seller");
 
+        setSingleAd(single);
+        dispatch({ type: "GET_SELLER", payload: seller });
         dispatch({ type: "GET_SINGLE_AD", payload: single });
         const categoryName = data?.data?.postAd?.category?.categoryName;
         setCategoryName(categoryName);
         getAdsByCategories(categoryName);
+        getSellersReviews(seller?.id);
         navigate(`/ad/view/${id}`);
         setIsLoading(false);
       }
@@ -137,24 +142,40 @@ const useFetchAds = () => {
       errorToast(error.message);
     }
   };
+  const getSellersReviews = async (id, limit = 10, page = 1) => {
+    setIsLoading(true);
+    setError(null);
 
-  // const getSimilarAds = async (id) => {
-  //   setError(null);
-  //   setIsLoading(true);
-  //   try {
-  //     const data = await AdService.getAdsByCategories(id);
-  //     if (data.error === false) {
-  //       setAdsByCategory(data.data);
-  //       setIsLoading(false);
-  //     } else {
-  //       setIsLoading(false);
-  //     }
-  //   } catch (error) {
-  //     setError(error);
-  //     setIsLoading(false);
-  //     errorToast(error.message);
-  //   }
-  // };
+    try {
+      const data = await AdService.getReviews(id, limit, page);
+
+      if (data.error === false) {
+        setSellersReviews(data.data.items);
+        setIsLoading(false);
+      }
+    } catch (error) {
+      setIsLoading(false);
+      setError(error);
+      errorToast(error.message);
+    }
+  };
+  const favouriteAd = async (obj) => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const data = await AdService.favouriteAd(obj);
+
+      if (data.error === false) {
+        setIsLoading(false);
+        return data.error;
+      }
+    } catch (error) {
+      setIsLoading(false);
+      setError(error);
+      errorToast(error.message);
+    }
+  };
 
   return {
     getAds,
@@ -171,6 +192,9 @@ const useFetchAds = () => {
     getAdsByCategories,
     adsByCategory,
     categoryName,
+    sellersReviews,
+    getSellersReviews,
+    favouriteAd,
   };
 };
 

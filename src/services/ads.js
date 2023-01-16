@@ -38,6 +38,18 @@ const AdService = {
         return res.data;
       });
   },
+  getReviews: async (id, limit, page) => {
+    return axios
+      .get(`${baseUrl}/Review/user/${id}?limit=${limit}&page=${page}`)
+      .then((res) => {
+        return res.data;
+      });
+  },
+  favouriteAd: async (obj) => {
+    return axios.post(`${baseUrl}/PostAd/user/favourite`, obj).then((res) => {
+      return res.data;
+    });
+  },
 };
 
 export default AdService;

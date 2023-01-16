@@ -6,7 +6,7 @@ import { get } from "react-hook-form";
 import { BsHeart, BsFillHeartFill } from "react-icons/bs";
 const AdCard = ({ item, showLike = false }) => {
   const imageurl = import.meta.env.VITE_IMAGE_URL;
-  const { getSingleAd } = useFetchAds();
+  const { getSingleAd, favouriteAd } = useFetchAds();
   const [liked, setLiked] = useState(false);
   const viewAd = (id) => {
     getSingleAd(id);
@@ -21,10 +21,17 @@ const AdCard = ({ item, showLike = false }) => {
     id,
     featured,
   } = item;
-  const toggleLike = (evt) => {
+  const toggleLike = async (evt) => {
     // alert('fired')
-    evt.stopPropagation();
-    setLiked(!liked);
+    const obj = {
+      postAdId: id,
+      action: "ADD",
+    };
+    const status = await favouriteAd(obj);
+    if (!status) {
+      setLiked(!liked);
+    }
+    // evt.stopPropagation();
   };
   return (
     <div

@@ -7,3 +7,15 @@
   color: #f9cb40;
   cursor: pointer;
 }
+.button-rating {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.on {
+  color: #000;
+}
+.off {
+  color: #ccc;
+}

@@ -89,8 +89,24 @@ const StepIndicator = () => {
         </div>
         <hr className="grow h-4 text-borderGrey mt-4" />
         <div
+          className={`text-sm rounded-3xl py-2 px-5 md:px-8 flex items-center ${
+            step > 2 && step < 4 ? "bg-yellow" : "bg-borderGrey"
+          }
+           `}
+        >
+          <span className="flex items-center text-xs md:text-base whitespace-nowrap">
+            Pedigree
+            {step > 3 ? (
+              <i className="pl-3 text-end">
+                <FaCheckCircle />
+              </i>
+            ) : null}
+          </span>
+        </div>
+        <hr className="grow h-4 text-borderGrey mt-4" />
+        <div
           className={`text-sm rounded-3xl py-2 px-5 md:px-8 ${
-            step >= 3 ? "bg-yellow" : "bg-borderGrey"
+            step >= 4 ? "bg-yellow" : "bg-borderGrey"
           }`}
         >
           <span className="flex items-center text-xs  md:text-base whitespace-nowrap">

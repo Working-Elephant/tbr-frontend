@@ -56,11 +56,14 @@ const SellerInfo = (props) => {
           {props.isLoading ? <Loader /> : props.blackBtnText}
         </button>
       </div>
-      {/* <div className="my-3">
-        <button className="p-3 w-full bg-white text-dark text-sm rounded-md">
+      <div className="my-3">
+        <button
+          className="p-3 w-full bg-white text-dark text-sm rounded-md"
+          onClick={() => props.openProfile()}
+        >
           {props.whiteBtnText}
         </button>
-      </div> */}
+      </div>
       {/* </div> */}
     </div>
   );

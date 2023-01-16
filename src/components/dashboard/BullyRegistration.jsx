@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 // import { toast, Slide } from "react-toastify";
 import useFetchBullies from "../../hooks/useFectchBullies";
 import isResponseSuccess from "../../utils/successResponse";
+import PedigreePage from "./PedigreePage";
 
 export const BullyRegistrationContext = createContext();
 
@@ -24,9 +25,17 @@ const BullyRegistration = () => {
     setadData(data);
     nextStep();
   };
-  const updateStep2 = async (data) => {
+
+  const updateStep2 = (data) => {
+    const obj = { ...adData, ...data };
+    setadData(obj);
+    nextStep();
+  };
+
+  const updateStep3 = async (data) => {
     console.log(adData, "adData");
     const obj = { ...adData, ...data };
+    console.log(obj, "obj");
     const formdata = new FormData();
     for (var i = 0; i < obj.images.length; i++) {
       formdata.append("Images", obj.images[i]);
@@ -50,17 +59,17 @@ const BullyRegistration = () => {
 
     formdata.append("Description", obj.Description);
     formdata.append("Telephone", obj.Telephone);
-    formdata.append("Pedigrees", obj.Pedigree);
+    formdata.append("Pedigrees", [obj.Pedigree[0]]);
 
     const status = await registerBully(formdata);
 
     if (status === false) {
-      setStep(3);
+      setStep(4);
     }
   };
 
   const nextStep = () => {
-    if (step >= 3) {
+    if (step >= 4) {
       return;
     } else {
       setStep(step + 1);
@@ -86,6 +95,7 @@ const BullyRegistration = () => {
           prevStep,
           updateStep1,
           updateStep2,
+          updateStep3,
         }}
       >
         <div className="w-full p-4 md:w-5/6 xl:w-4/6 mx-auto">
@@ -97,7 +107,8 @@ const BullyRegistration = () => {
             <StepIndicator />
             {step === 1 && <AboutBully />}
             {step === 2 && <BullyDetails />}
-            {step === 3 && <AdConfirm />}
+            {step === 3 && <PedigreePage />}
+            {step === 4 && <AdConfirm />}
           </div>
         </div>
       </BullyRegistrationContext.Provider>

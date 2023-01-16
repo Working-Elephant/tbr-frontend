@@ -3,9 +3,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ImageModal, Loader } from "../../components/shared";
 import SellerInfo from "../../components/ads/SellerInfo";
 import SimilarProducts from "../../components/ads/SimilarProducts";
-import RecentlyViewed from "../../components/ads/RecentlyViewed";
-import SellerAvatar1 from "../../assets/images/avatar1.jpeg";
-// import { carouselImages } from "../../mockData/mockData";
+
+import Coin from "../../assets/images/coin.png";
+
 import useFetchAds from "../../hooks/useFetchAds";
 import {
   BsChatText,
@@ -26,13 +26,14 @@ import useFetchChat from "../../hooks/useFetchChats";
 import { success } from "../../components/shared";
 import ScreenLoader from "../../components/shared/ScreenLoader";
 import { useAdsContext } from "../../hooks/useAdsContext";
+import Profile from "../../components/dashboard/Profile";
 
 const ViewAdDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { getSingleAd, categoryName } = useFetchAds();
+  const { getSingleAd, categoryName, sellersReviews } = useFetchAds();
   const { startChat, isLoading, singleChat, chatId } = useFetchChat();
-  const { singleAds, adsByCategory } = useAdsContext();
+  const { singleAds, adsByCategory, seller } = useAdsContext();
   const similarAds = adsByCategory?.items?.filter((item) => +item.id !== +id);
 
   const style = {
@@ -46,9 +47,15 @@ const ViewAdDetails = () => {
     boxShadow: 24,
     p: 4,
   };
-  // const { getUser } = AuthService;
-  // const user = getUser();
-  // const userID = user ? user.user.id : null;
+  const style1 = {
+    position: "fixed",
+    top: "25%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "50%",
+    height: "100%",
+    p: 4,
+  };
 
   const user = useSelector((state) => state?.auth?.user);
   const userID = user?.user?.id;
@@ -56,6 +63,7 @@ const ViewAdDetails = () => {
   const thumbnailsContainer = useRef(null);
   const [ImageInView, setImageInView] = useState(0);
   const [showChat, setShowChat] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     if (!singleAds.length) {
@@ -81,7 +89,6 @@ const ViewAdDetails = () => {
     navigate(-1);
   };
   const [fullImage, setFullImage] = useState(false);
-  // const [viewAge, setViewAge] = useState(false);
 
   const handleClose = () => {
     setFullImage(!fullImage);
@@ -89,8 +96,14 @@ const ViewAdDetails = () => {
   const handleChatClose = () => {
     setShowChat(false);
   };
+  const handleProfileClose = () => {
+    setShowProfile(false);
+  };
   const activeUser = {
     chatId: chatId,
+  };
+  const openProfile = () => {
+    setShowProfile(true);
   };
   const openChat = async () => {
     if (userID) {
@@ -270,14 +283,7 @@ const ViewAdDetails = () => {
                     </div>
                   </>
                 )}
-                {/* <div className="border-b border-b-borderGrey">
-                  <div className="flex items-center justify-between text-xs py-2">
-                    <span className="uppercase">DELIVERY & RETURNS</span>
-                    <i>
-                      <BsPlus />
-                    </i>
-                  </div>
-                </div> */}
+
                 <div className="py-3 border-b border-b-borderGrey">
                   {userID && userID !== singleAds?.userId ? (
                     <>
@@ -336,15 +342,17 @@ const ViewAdDetails = () => {
           {userID && userID !== singleAds?.userId ? (
             <div className="col-span-12 md:col-span-6    xl:col-span-3 ">
               <SellerInfo
-                image={SellerAvatar1}
-                name="Max Bill"
                 rating={4.5}
+                image={Coin}
+                name={seller?.username.toUpperCase()}
                 status="online"
                 blackBtnIcon={<BsChatText />}
                 blackBtnText="Message Seller"
                 whiteBtnText="View Merchant Profile"
                 openChat={openChat}
+                openProfile={openProfile}
                 isLoading={isLoading}
+                seller={seller}
               />
             </div>
           ) : null}
@@ -375,6 +383,22 @@ const ViewAdDetails = () => {
                 activeUser={activeUser}
                 showMessage={true}
               />
+            </Box>
+          </Modal>
+        </>
+      )}
+      {showProfile && (
+        <>
+          <Modal
+            keepMounted
+            onClose={handleProfileClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+            // sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            open={openProfile}
+          >
+            <Box sx={style1}>
+              <Profile seller={seller} sellerReviews={sellersReviews} />
             </Box>
           </Modal>
         </>

@@ -10,14 +10,26 @@ import { useSelector } from "react-redux";
 import UserAvatar from "../../assets/images/avatar2.jpeg";
 import useLogOut from "../../hooks/useLogout";
 import { FaDog } from "react-icons/fa";
+import { useEffect } from "react";
+import {
+  HubConnectionBuilder,
+  LogLevel,
+  HubConnectionState,
+} from "@microsoft/signalr";
+import { useNavigate } from "react-router-dom";
 const Navbar = ({ home }) => {
+  let baseUrl = import.meta.env.VITE_BASE_URL;
+  const chaturl = import.meta.env.VITE_CHAT_URL;
+  const navigate = useNavigate();
   const [mobileMenu, setMobileMenu] = useState(false);
   const user = useSelector((state) => state?.auth?.user);
   const isLoggedIn = useSelector((state) => state.auth.isAuthenticated);
   const { logOut } = useLogOut();
   const { cart } = useSelector((state) => state.product);
-
+  const [connection, setConnection] = useState(null);
+  const [newMessage, setNewMessage] = useState(false);
   const username = user?.user?.username;
+  const userId = user?.user?.id;
   const handleClose = () => {
     setMobileMenu(false);
   };
@@ -30,6 +42,71 @@ const Navbar = ({ home }) => {
     logOut();
   };
 
+  // useEffect(() => {
+  //   const intervalId = setInterval(() => {
+  //     console.log("reading here");
+  //     //assign interval to a variable to clear it.
+  //     if (userId) {
+  //       connection.on(
+  //         `${userId.toString()}_message_notification`,
+  //         (message) => {
+  //           setNewMessage(true);
+  //           console.log(message);
+  //         }
+  //       );
+  //     }
+  //   }, 5000);
+
+  //   return () => clearInterval(intervalId); //This is important
+  // }, [newMessage, useState]);
+
+  //establish socket connection
+  useEffect(() => {
+    const newConnection = new HubConnectionBuilder()
+      .withUrl(`${baseUrl}/hubs/chat`)
+      .withAutomaticReconnect()
+      .configureLogging(LogLevel.Information)
+      .build();
+
+    setConnection(newConnection);
+  }, []);
+
+  //check connection and reestablish
+  useEffect(() => {
+    if (connection) {
+      if (connection.state === HubConnectionState.Disconnected) {
+        connection
+          .start()
+          .then((result) => {
+            handleListen();
+          })
+          .catch((e) => console.log("Connection failed: ", e));
+      } else {
+        console.log("Connected!");
+        handleListen();
+      }
+
+      function handleListen() {
+        // const intervalId = setInterval(() => {
+        //assign interval to a variable to clear it.
+        if (userId) {
+          console.log("listeing");
+
+          connection.on(`${userId.toString()}_message_notification`, (data) => {
+            setNewMessage(true);
+            console.log(data, "message");
+          });
+        }
+        //  }, 5000);
+
+        // return () => clearInterval(intervalId);
+      }
+    }
+  }, [connection]);
+  const gotoMessage = () => {
+    setNewMessage(false);
+    navigate("/dashboard/messages");
+  };
   return (
     <nav
       className={`w-full bg-transparent  px-6 pb-4 pt-6 md:pt-8    ${
@@ -64,7 +141,7 @@ const Navbar = ({ home }) => {
           </li>
         </ul>
         {/* Search */}
-        {home ? null : (
+        {/* {home ? null : (
           <div className="hidden px-2 md:block text-xs  xl:text-sm">
             <div className="bg-lightGrey w-full flex items-center justify-between py-3 px-5 rounded-xl ">
               <input
@@ -76,7 +153,7 @@ const Navbar = ({ home }) => {
               </i>
             </div>
           </div>
-        )}
+        )} */}
         {/* cart */}
 
         <div className=" hidden lg:flex items-center whitespace-nowrap">
@@ -106,10 +183,23 @@ const Navbar = ({ home }) => {
         {/* login and sign up buttons */}
         {isLoggedIn ? (
           <div className=" hidden lg:flex items-center whitespace-nowrap">
-            <div className="bg-black p-2 rounded-[50%] mr-3">
-              <i className="text-lg text-yellow">
-                <FaBell />
-              </i>
+            <div
+              className="bg-black p-1 rounded-[50%] mr-3 relative cursor-pointer"
+              onClick={gotoMessage}
+            >
+              <div className=" inline-flex items-center p-2 text-sm font-medium text-center text-black  rounded-lg ">
+                <div className="">
+                  <i className="text-lg text-yellow">
+                    <FaBell />
+                  </i>
+                </div>
+                {newMessage && (
+                  <div
+                    title="New Message"
+                    class="absolute inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-error border-2 border-white rounded-full -top-2 -right-2 "
+                  ></div>
+                )}
+              </div>
             </div>
 
             <div className="h-9 mr-5 items-center flex">

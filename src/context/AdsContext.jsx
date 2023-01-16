@@ -27,6 +27,17 @@ export const adsReducer = (state, action) => {
         orderId: action.payload,
       };
 
+    case "GET_ORDERS":
+      return {
+        ...state,
+        orders: action.payload,
+      };
+    case "GET_SELLER":
+      return {
+        ...state,
+        seller: action.payload,
+      };
+
     default:
       return state;
   }
