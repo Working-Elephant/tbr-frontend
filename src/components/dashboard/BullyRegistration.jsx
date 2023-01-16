@@ -41,11 +41,10 @@ const BullyRegistration = () => {
       formdata.append("Images", obj.images[i]);
     }
 
-    //formdata.append("Images", ...obj.images);
     formdata.append("BreedTypeId", obj.BreedTypeId);
     formdata.append("Breed", obj.Breed);
     formdata.append("DogRegisterName", obj.DogRegisterName);
-    formdata.append("Dob", obj.Dob);
+    formdata.append("Dob", obj.Dob.toString());
 
     formdata.append("Sex", obj.Sex);
     formdata.append("DogOwnerName", obj.DogOwnerName);
@@ -59,8 +58,44 @@ const BullyRegistration = () => {
 
     formdata.append("Description", obj.Description);
     formdata.append("Telephone", obj.Telephone);
-    formdata.append("Pedigrees", [obj.Pedigree[0]]);
+    const tim = [
+      {
+        femaleParentBreed: "xffghdf",
+        femaleParentColor: "xghgfdhf",
+        femaleParentDob:
+          "Mon Jan 02 2023 00:00:00 GMT+0100 (West Africa Standard Time) {}",
+        femaleParentGender: "Male",
+        femaleParentName: "bdcb",
+        maleParentBreed: "xbfbdf",
+        maleParentColor: "fdfvds",
+        maleParentDob:
+          "Mon Jan 02 2023 00:00:00 GMT+0100 (West Africa Standard Time) {}",
+        maleParentGender: "Male",
+        maleParentName: "ngfghfg",
+        pedigreeGeneration: "1",
+      },
+      {
+        femaleParentBreed: "xffghdf",
+        femaleParentColor: "xghgfdhf",
+        femaleParentDob:
+          "Mon Jan 02 2023 00:00:00 GMT+0100 (West Africa Standard Time) {}",
+        femaleParentGender: "Male",
+        femaleParentName: "bdcb",
+        maleParentBreed: "xbfbdf",
+        maleParentColor: "fdfvds",
+        maleParentDob:
+          "Mon Jan 02 2023 00:00:00 GMT+0100 (West Africa Standard Time) {}",
+        maleParentGender: "Male",
+        maleParentName: "ngfghfg",
+        pedigreeGeneration: "1",
+      },
+    ];
 
+    formdata.append("Pedigrees", JSON.stringify(obj.Pedigree));
+    // Display the key/value pairs
+    // for (var pair of formdata.entries()) {
+    //   console.log(pair[0] + ", " + pair[1]);
+    // }
     const status = await registerBully(formdata);
 
     if (status === false) {

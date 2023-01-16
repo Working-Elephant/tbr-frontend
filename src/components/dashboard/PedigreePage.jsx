@@ -36,90 +36,97 @@ const PedigreePage = () => {
     defaultValues: {
       first: [
         {
+          pedigreeGeneration: "1",
           maleParentName: "",
           maleParentDob: "",
-          maleParentBreed: "",
+          maleBreed: "",
           maleParentGender: "",
           maleParentColor: "",
           femaleParentName: "",
           femaleParentDob: "",
-          femaleParentBreed: "",
+          femaleBreed: "",
           femaleParentGender: "",
           femaleParentColor: "",
         },
       ],
       second: [
         {
+          pedigreeGeneration: "2",
           maleParentName: "",
           maleParentDob: "",
-          maleParentBreed: "",
+          maleBreed: "",
           maleParentGender: "",
           maleParentColor: "",
           femaleParentName: "",
           femaleParentDob: "",
-          femaleParentBreed: "",
+          femaleBreed: "",
           femaleParentGender: "",
           femaleParentColor: "",
         },
         {
+          pedigreeGeneration: "2",
           maleParentName: "",
           maleParentDob: "",
-          maleParentBreed: "",
+          maleBreed: "",
           maleParentGender: "",
           maleParentColor: "",
           femaleParentName: "",
           femaleParentDob: "",
-          femaleParentBreed: "",
+          femaleBreed: "",
           femaleParentGender: "",
           femaleParentColor: "",
         },
       ],
       third: [
         {
+          pedigreeGeneration: "3",
           maleParentName: "",
           maleParentDob: "",
-          maleParentBreed: "",
+          maleBreed: "",
           maleParentGender: "",
           maleParentColor: "",
           femaleParentName: "",
           femaleParentDob: "",
-          femaleParentBreed: "",
+          femaleBreed: "",
           femaleParentGender: "",
           femaleParentColor: "",
         },
         {
+          pedigreeGeneration: "3",
           maleParentName: "",
           maleParentDob: "",
-          maleParentBreed: "",
+          maleBreed: "",
           maleParentGender: "",
           maleParentColor: "",
           femaleParentName: "",
           femaleParentDob: "",
-          femaleParentBreed: "",
+          femaleBreed: "",
           femaleParentGender: "",
           femaleParentColor: "",
         },
         {
+          pedigreeGeneration: "3",
           maleParentName: "",
           maleParentDob: "",
-          maleParentBreed: "",
+          maleBreed: "",
           maleParentGender: "",
           maleParentColor: "",
           femaleParentName: "",
           femaleParentDob: "",
-          femaleParentBreed: "",
+          femaleBreed: "",
           femaleParentGender: "",
           femaleParentColor: "",
         },
         {
+          pedigreeGeneration: "3",
           maleParentName: "",
           maleParentDob: "",
-          maleParentBreed: "",
+          maleBreed: "",
           maleParentGender: "",
           maleParentColor: "",
           femaleParentName: "",
           femaleParentDob: "",
-          femaleParentBreed: "",
+          femaleBreed: "",
           femaleParentGender: "",
           femaleParentColor: "",
         },
@@ -132,8 +139,9 @@ const PedigreePage = () => {
 
   // function to submit form
   const onSubmit = (data) => {
-    let submitData = {
-      Pedigree: [data],
+    const { first, second, third } = data;
+    const submitData = {
+      Pedigree: [...first, ...second, ...third],
     };
 
     updateStep3(submitData);
@@ -285,7 +293,7 @@ const PedigreePage = () => {
                           <Input
                             border="border-0"
                             placeholder={"Breed"}
-                            {...register(`first.${index}.maleParentBreed`, {
+                            {...register(`first.${index}.maleBreed`, {
                               required: true,
                             })}
                           />
@@ -363,7 +371,7 @@ const PedigreePage = () => {
                           <Input
                             border="border-0"
                             placeholder={"Breed"}
-                            {...register(`first.${index}.femaleParentBreed`, {
+                            {...register(`first.${index}.femaleBreed`, {
                               required: true,
                             })}
                           />
@@ -469,7 +477,7 @@ const PedigreePage = () => {
                             <Input
                               border="border-0"
                               placeholder={"Breed"}
-                              {...register(`second.${index}.maleParentBreed`, {
+                              {...register(`second.${index}.maleBreed`, {
                                 required: true,
                               })}
                             />
@@ -547,12 +555,9 @@ const PedigreePage = () => {
                             <Input
                               border="border-0"
                               placeholder={"Breed"}
-                              {...register(
-                                `second.${index}.femaleParentBreed`,
-                                {
-                                  required: true,
-                                }
-                              )}
+                              {...register(`second.${index}.femaleBreed`, {
+                                required: true,
+                              })}
                             />
                           </div>
                         </div>
@@ -663,7 +668,7 @@ const PedigreePage = () => {
                             <Input
                               border="border-0"
                               placeholder={"Breed"}
-                              {...register(`third.${index}.maleParentBreed`, {
+                              {...register(`third.${index}.maleBreed`, {
                                 required: true,
                               })}
                             />
@@ -741,7 +746,7 @@ const PedigreePage = () => {
                             <Input
                               border="border-0"
                               placeholder={"Breed"}
-                              {...register(`third.${index}.femaleParentBreed`, {
+                              {...register(`third.${index}.femaleBreed`, {
                                 required: true,
                               })}
                             />

@@ -23,7 +23,7 @@ const useFetchAds = () => {
     try {
       const data = await AdService.getAds();
 
-      if (data.error === false) {
+      if (data?.error === false) {
         setAds(data.data.items);
         setIsLoading(false);
       }
@@ -41,7 +41,7 @@ const useFetchAds = () => {
     try {
       const data = await AdService.getSingleAd(id);
 
-      if (data.error === false) {
+      if (data?.error === false) {
         const single = data.data.postAd;
         const seller = data.data.user;
         console.log(seller, "seller");
@@ -69,11 +69,9 @@ const useFetchAds = () => {
     try {
       const data = await AdService.postAd(ad);
       console.log(data);
-      if (data.error === false) {
+      if (data?.error === false) {
         success(data.message);
         return data.error;
-      } else {
-        errorToast(data.message);
       }
     } catch (error) {
       setIsLoading(false);
@@ -88,7 +86,7 @@ const useFetchAds = () => {
     try {
       const data = await AdService.getCategories();
 
-      if (data.error === false) {
+      if (data?.error === false) {
         setCategories(data.data);
         setIsLoading(false);
       } else {
@@ -107,7 +105,7 @@ const useFetchAds = () => {
     try {
       const data = await AdService.getFeaturedAds();
 
-      if (data.error === false) {
+      if (data?.error === false) {
         const featured = data.data.items;
         dispatch({ type: "GET_FEATURED_ADS", payload: featured });
         setFeaturedAds(featured);
@@ -128,7 +126,7 @@ const useFetchAds = () => {
         limit,
         page
       );
-      if (data.error === false) {
+      if (data?.error === false) {
         const ads = data.data;
         dispatch({ type: "GET_ADS_BY_CATEGORY", payload: ads });
         setAdsByCategory(data.data);
@@ -149,7 +147,7 @@ const useFetchAds = () => {
     try {
       const data = await AdService.getReviews(id, limit, page);
 
-      if (data.error === false) {
+      if (data?.error === false) {
         setSellersReviews(data.data.items);
         setIsLoading(false);
       }
@@ -166,13 +164,14 @@ const useFetchAds = () => {
     try {
       const data = await AdService.favouriteAd(obj);
 
-      if (data.error === false) {
+      if (data?.error === false) {
         setIsLoading(false);
         return data.error;
       }
     } catch (error) {
       setIsLoading(false);
       setError(error);
+      console.log(error, "e");
       errorToast(error.message);
     }
   };

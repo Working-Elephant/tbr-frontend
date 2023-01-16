@@ -6,10 +6,11 @@ import {
   BreadCrumb,
   CustomCheckbox,
   success,
+  errorToast,
 } from "../../components/shared";
 import { useForm } from "react-hook-form";
 import { months, year } from "../../data";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PayPal from "./PayPal";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
@@ -17,12 +18,22 @@ import { useNavigate, useParams } from "react-router-dom";
 import useFetchBullies from "../../hooks/useFectchBullies";
 import usePayment from "../../hooks/usePayment";
 import ScreenLoader from "../../components/shared/ScreenLoader";
+import { applyCoupon } from "../../store/features/productSlice";
 const BullyBilling = () => {
   //   const navigate = useNavigate();
   const { id } = useParams();
   const { getSingleBully, bully } = useFetchBullies();
   const { submitPayment } = usePayment();
   const [isLoading, setIsLoading] = useState(false);
+  const [showCoupon, setShowCoupon] = useState(false);
+  const [removeCoupon, setRemoveCoupon] = useState(false);
+  const dispatch = useDispatch();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   const crumbs = [
     {
       name: "Home",
@@ -86,7 +97,26 @@ const BullyBilling = () => {
       setIsLoading(false);
     }
   };
+  useEffect(() => {
+    if (cart?.coupon) {
+      remove();
+    }
+  }, [cart]);
+  const remove = () => {
+    setRemoveCoupon(true);
+    success("Coupon Applied");
+  };
+  const onSubmit = async (data) => {
+    dispatch(applyCoupon(data.coupon));
 
+    if (!cart?.coupon || cart?.coupon === null) {
+      errorToast("Invalid Coupon");
+    } else if (typeof cart?.coupon === "string") {
+      remove();
+    } else {
+      return;
+    }
+  };
   return (
     <>
       {isLoading ? (
@@ -97,7 +127,7 @@ const BullyBilling = () => {
             <BreadCrumb crumbs={crumbs} />
           </div>
           {cart?.bully ? (
-            <form>
+            <div>
               <div className="">
                 {/* order summary */}
                 <div className=" pb-8">
@@ -195,16 +225,91 @@ const BullyBilling = () => {
                   </table>
                   <div className=" ml-auto border-b-.5 border-borderGrey  text-end mb-5 ">
                     <div className="border-b-.5 border-borderGrey flex items-center justify-between text-xs py-5 pr-3">
-                      <span className="uppercase text-xs underline">
-                        ADD A GIFT CARD OR PROMOTION CODE
-                      </span>
-                      <div>
-                        <span className="mr-15 font-semibold">TOTAL</span>
-                        <span className="font-semibold text-lg">
-                          ${cart?.total}
-                        </span>
-                        <span> (with taxes)</span>
-                      </div>
+                      {!removeCoupon ? (
+                        <>
+                          {showCoupon ? (
+                            <form onSubmit={handleSubmit(onSubmit)}>
+                              <div className="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+                                <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
+                                  <label for="coupon" className="sr-only">
+                                    Your Coupon
+                                  </label>
+                                  <input
+                                    id="coupon"
+                                    rows="4"
+                                    className="w-full px-0 text-sm text-black bg-white border-0  focus:outline-0 focus:ring-0 "
+                                    placeholder="Coupon Code..."
+                                    {...register("coupon", {
+                                      required: {
+                                        value: true,
+                                        message: "Coupon is Required",
+                                      },
+                                    })}
+                                  ></input>
+                                </div>
+                              </div>
+                              <div className="flex items-center justify-between px-3 py-2 ">
+                                <button
+                                  type="submit"
+                                  className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-black bg-yellow rounded-lg"
+                                >
+                                  Apply
+                                </button>
+                                <button
+                                  onClick={() => setShowCoupon(false)}
+                                  className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-yellow  bg-white rounded-lg   "
+                                >
+                                  Cancel
+                                </button>
+                              </div>
+                            </form>
+                          ) : (
+                            <span
+                              className="uppercase text-xs underline cursor-pointer"
+                              onClick={() => setShowCoupon(true)}
+                            >
+                              ADD A GIFT CARD OR PROMOTION CODE
+                            </span>
+                          )}
+                        </>
+                      ) : null}
+
+                      {cart?.coupon ? (
+                        <>
+                          <div>
+                            <span className="mr-15 font-semibold">
+                              Discount
+                            </span>
+                            <span className="font-semibold text-lg">
+                              {cart?.coupon}
+                            </span>
+                          </div>
+                          <div>
+                            <span className="mr-15 font-semibold">
+                              SUBTOTAL
+                            </span>
+                            <span className="font-semibold text-lg">
+                              ${cart?.total}
+                            </span>
+                            <span> (with taxes)</span>
+                          </div>
+                          <div>
+                            <span className="mr-15 font-semibold">TOTAL</span>
+                            <span className="font-semibold text-lg">
+                              ${cart?.final}
+                            </span>
+                            <span> (with taxes)</span>
+                          </div>
+                        </>
+                      ) : (
+                        <div>
+                          <span className="mr-15 font-semibold">TOTAL</span>
+                          <span className="font-semibold text-lg">
+                            ${cart?.total}
+                          </span>
+                          <span> (with taxes)</span>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -225,15 +330,7 @@ const BullyBilling = () => {
                   </div>
                 </div>
               </div>
-              {/* <div className="text-end mt-10">
-            <button
-              className="bg-yellow py-4 px-15 rounded font-semibold text-sm "
-              type="submit"
-            >
-              COMPLETE PURCHASE
-            </button>
-          </div> */}
-            </form>
+            </div>
           ) : (
             <div className="w-full text-center mt-12 py-5">
               <p className="my-8 ">No bully to Register</p>

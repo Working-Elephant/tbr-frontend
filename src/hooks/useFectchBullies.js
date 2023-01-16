@@ -20,14 +20,13 @@ const useFetchBullies = () => {
       const res = await BullyService.getRegisteredBullies();
 
       const response = await res;
-      console.log("response", response);
 
-      if (response.error === false) {
+      if (response?.error === false) {
         // success(data)
         setBullies(response.data.items);
         setIsLoading(false);
       } else {
-        errorToast(response.message || `Unable to fetch registered Bullies`);
+        // errorToast(response.message || `Unable to fetch registered Bullies`);
         setIsLoading(false);
       }
     } catch (error) {
@@ -45,13 +44,13 @@ const useFetchBullies = () => {
 
       const response = await res;
 
-      if (response.error === false) {
+      if (response?.error === false) {
         setBully(response.data);
 
         navigate(`/pet/view/${id}`);
         setIsLoading(false);
       } else {
-        errorToast(response.message || `Unable to fetch registered Bully`);
+        // errorToast(response.message || `Unable to fetch registered Bully`);
         setIsLoading(false);
       }
     } catch (error) {
@@ -68,11 +67,10 @@ const useFetchBullies = () => {
       const res = await BullyService.getBreedType();
       if (res) {
         const response = await res;
-        console.log("response", response);
 
-        if (response.error === false) {
+        if (response?.error === false) {
           // success(data)
-          // console.log(response.data, "tim");
+
           setBullyType(response.data);
           setIsLoading(false);
         } else {
@@ -86,7 +84,6 @@ const useFetchBullies = () => {
     }
   };
   const registerBully = async (obj) => {
-    console.log(obj, "object");
     setIsLoading(true);
     setError(null);
 
@@ -95,7 +92,7 @@ const useFetchBullies = () => {
       if (res) {
         const response = await res;
 
-        if (response.error === false) {
+        if (response?.error === false) {
           success(response.message);
           setIsLoading(false);
           return response.error;
@@ -120,7 +117,7 @@ const useFetchBullies = () => {
       if (res) {
         const response = await res;
 
-        if (response.error === false) {
+        if (response?.error === false) {
           success(response.message);
           setIsLoading(false);
           navigate("/categories/pets");

@@ -25,19 +25,18 @@ const AdCard = ({ item, showLike = false }) => {
     // alert('fired')
     const obj = {
       postAdId: id,
-      action: "ADD",
+      action: liked ? "REMOVE" : "ADD",
     };
     const status = await favouriteAd(obj);
-    if (!status) {
+    if (status === false) {
       setLiked(!liked);
+    } else {
+      return;
     }
     // evt.stopPropagation();
   };
   return (
-    <div
-      className="p-2 flex flex-col  cursor-pointer relative"
-      onClick={() => viewAd(id)}
-    >
+    <div className="p-2 flex flex-col  cursor-pointer relative">
       <div class="inline-flex absolute mt-2 -top-2 -right-2 justify-center items-center w-6 h-6 text-xs font-bold   rounded-full">
         {!showLike &&
           (featured === false ? (
@@ -58,14 +57,17 @@ const AdCard = ({ item, showLike = false }) => {
           {liked ? <BsFillHeartFill color="red" /> : <BsHeart color="white" />}
         </i>
       )}
-      <div className="w-full">
+      <div className="w-full" onClick={() => viewAd(id)}>
         <img
           src={`${imageurl}${postAdImages?.[0].url}`}
           alt=""
           className="w-full h-36 rounded-2xl"
         />
       </div>
-      <div className="flex items-center justify-between mt-3">
+      <div
+        className="flex items-center justify-between mt-3"
+        onClick={() => viewAd(id)}
+      >
         <div className="text-xs mr-8">
           <p className="mb-1">{title}</p>
           <div className="flex items-center text-grey ">

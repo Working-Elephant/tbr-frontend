@@ -51,6 +51,8 @@ const initialState = {
     duties: 0,
     tax: 0.025,
     total: 0,
+    final: null,
+    coupon: null,
     shippingInfo: null,
   },
   //   single: null,
@@ -88,16 +90,13 @@ const slice = createSlice({
       cart.bully = payload;
       cart.duties = 35;
       cart.subTotal = cart.bully.price;
+      cart.coupon = null;
       cart.tax = cart.subTotal * 0.025;
       cart.total = +cart.subTotal + +cart.duties + +cart.tax;
     },
     addFeatured: (state, { payload }) => {
       let cart = state.cart;
       cart.featured = payload;
-      //  const amountArray = cart.items.map(({ amount }) => {
-      //    let value = +amount;
-      //    return value;
-      //  });
       cart.subTotal = 100;
       cart.tax = cart.subTotal * 0.025;
       cart.total = cart.subTotal + cart.shipping + cart.tax;
@@ -107,16 +106,20 @@ const slice = createSlice({
       let filtered = cart.items.filter((item) => item.id !== payload);
       cart.items = filtered;
     },
-    increaseQuantity: (state, { payload }) => {
-      state.cart.quantity += 1;
-
-      console.log(state, "updated state");
-      return state;
-    },
-    decreaseQuantity: (state, { payload }) => {
-      if (state.cart.quantity > 1) {
-        state.cart.quantity -= 1;
-        return state;
+    applyCoupon: (state, { payload }) => {
+      let cart = state.cart;
+      if (payload === "BULLY50") {
+        cart.coupon = "50%";
+        cart.final = (cart.total / 2).toFixed(3);
+      } else if (payload === "NEWMEMBER15") {
+        cart.coupon = "100%";
+        cart.final = 0;
+      } else if (payload === "TBR15") {
+        cart.coupon = "15%";
+        cart.final = ((cart.total / 15) * 100).toFixed(3);
+      } else {
+        cart.coupon = null;
+        cart.final = 0;
       }
     },
   },
@@ -159,5 +162,6 @@ export const {
   addBullyToCart,
   removeFromCart,
   addFeatured,
+  applyCoupon,
 } = slice.actions;
 export default slice.reducer;
