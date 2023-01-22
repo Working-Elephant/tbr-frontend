@@ -38,6 +38,12 @@ export const adsReducer = (state, action) => {
         seller: action.payload,
       };
 
+    case "GET_SELLER_REVIEWS":
+      return {
+        ...state,
+        sellerReviews: action.payload,
+      };
+
     default:
       return state;
   }

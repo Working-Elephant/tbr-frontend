@@ -1,12 +1,24 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import FormBody from "../../components/auth/FormBody";
-import { Input, ErrorMessage, Loader } from "../../components/shared";
+import {
+  Input,
+  ErrorMessage,
+  Loader,
+  success,
+  errorToast,
+} from "../../components/shared";
 import useSignIn from "../../hooks/useSignIn";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 const Login = () => {
+  const location = useLocation();
+  const message = new URLSearchParams(location.search).get("message");
+
   const { isLoading, signIn } = useSignIn();
+  console.log(message, "message");
 
   const {
     register,
@@ -14,6 +26,13 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
+  useEffect(() => {
+    if (message === "Account verified successfully") {
+      success(message);
+    } else {
+      errorToast(message);
+    }
+  }, []);
   // function to submit form
   const onSubmit = (data) => {
     signIn(data);
@@ -45,7 +64,7 @@ const Login = () => {
 
             <div className=" mb-5 w-full">
               <Input
-              type='password'
+                type="password"
                 placeholder={"Password"}
                 {...register("password", {
                   required: { value: true, message: "Password is required" },

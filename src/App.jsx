@@ -24,7 +24,7 @@ import Categories from "./pages/Categories";
 import Search from "./pages/Search";
 import AboutUs from "./pages/AboutUs";
 import Founders from "./pages/Founders";
-import Favorite from "./components/dashboard/Favorites";
+import FavoritePage from "./pages/dashboard/Favorites";
 import Orders from "./components/dashboard/Orders";
 import OrdersPage from "../src/pages/dashboard/Orders";
 import { useMatch } from "react-router-dom";
@@ -36,6 +36,8 @@ import FeaturedBilling from "./pages/shop/FeaturedBilling";
 import SingleCategory from "./pages/SingleCategory";
 import FeaturedAds from "./pages/FeaturedAds";
 import AllOrders from "./pages/Orders";
+import DashboardHome from "./pages/dashboard/DashboardHome";
+import ChangePassword from "./pages/dashboard/ChangePassword";
 
 const Wrapper = ({ children }) => {
   const location = useLocation();
@@ -55,14 +57,17 @@ const App = () => {
         <Navbar home={isHome} />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login/:message?" element={<Login />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/founders" element={<Founders />} />
 
-          <Route path="/dashboard" element={<Navigate to="/dashboard/ads" />} />
+          <Route
+            path="/dashboard"
+            element={<Navigate to="/dashboard/home" />}
+          />
           <Route
             path="/dashboard/ads"
             element={
@@ -99,7 +104,15 @@ const App = () => {
             path="/dashboard/favorites"
             element={
               <ProtectedRoutes>
-                <Favorite />
+                <FavoritePage />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/dashboard/home"
+            element={
+              <ProtectedRoutes>
+                <DashboardHome />
               </ProtectedRoutes>
             }
           />
@@ -189,6 +202,14 @@ const App = () => {
             element={
               <ProtectedRoutes>
                 <FeaturedBilling />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/dashboard/change-password"
+            element={
+              <ProtectedRoutes>
+                <ChangePassword />
               </ProtectedRoutes>
             }
           />

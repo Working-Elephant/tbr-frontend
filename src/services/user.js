@@ -42,12 +42,10 @@ const AuthService = {
       return res.data;
     });
   },
-  resetPassword: async (username) => {
-    return await axios
-      .post(`${baseUrl}/Password/reset`, { username })
-      .then((res) => {
-        return res.data;
-      });
+  resetPassword: async (data) => {
+    return await axios.post(`${baseUrl}/Password/reset`, data).then((res) => {
+      return res.data;
+    });
   },
 };
 

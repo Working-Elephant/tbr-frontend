@@ -50,6 +50,23 @@ const AdService = {
       return res.data;
     });
   },
+  getfavouriteAds: async (obj = { action: "Get" }) => {
+    return axios.post(`${baseUrl}/PostAd/user/favourite`, obj).then((res) => {
+      return res.data;
+    });
+  },
+  addDescription: async (description) => {
+    return await axios
+      .post(`${baseUrl}/Profile/description`, { description })
+      .then((res) => {
+        return res.data;
+      });
+  },
+  changePassword: async (obj) => {
+    return await axios.post(`${baseUrl}/Password/change`, obj).then((res) => {
+      return res.data;
+    });
+  },
 };
 
 export default AdService;

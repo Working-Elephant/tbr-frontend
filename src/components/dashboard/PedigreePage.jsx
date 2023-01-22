@@ -209,14 +209,14 @@ const PedigreePage = () => {
       <div className=" lg:w-5/6 xl:w-4/6 mx-auto py-3">
         <div className="flex justify-evenly">
           <i
-            className="text-md bg-yellow p-[2px] rounded-full"
+            className="text-md bg-yellow p-[6px] rounded-full"
             onClick={addPedigree}
           >
             <GoPlus />
           </i>
           Add Generation
           <i
-            className="text-md bg-yellow p-[2px] rounded-full"
+            className="text-md bg-yellow p-[6px] rounded-full"
             onClick={removePedigree}
           >
             <GoDash />

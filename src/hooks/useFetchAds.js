@@ -14,6 +14,7 @@ const useFetchAds = () => {
   const [categories, setCategories] = useState([]);
   const [categoryName, setCategoryName] = useState("");
   const [featuredAds, setFeaturedAds] = useState([]);
+  const [favouriteAds, setFavouriteAds] = useState([]);
   const [adsByCategory, setAdsByCategory] = useState([]);
   const navigate = useNavigate();
   const getAds = async () => {
@@ -148,7 +149,8 @@ const useFetchAds = () => {
       const data = await AdService.getReviews(id, limit, page);
 
       if (data?.error === false) {
-        setSellersReviews(data.data.items);
+        const reviews = data.data.items;
+        dispatch({ type: "GET_SELLER_REVIEWS", payload: reviews });
         setIsLoading(false);
       }
     } catch (error) {
@@ -166,6 +168,27 @@ const useFetchAds = () => {
 
       if (data?.error === false) {
         setIsLoading(false);
+        return data.error;
+      }
+    } catch (error) {
+      setIsLoading(false);
+      setError(error);
+      console.log(error, "e");
+      errorToast(error.message);
+    }
+  };
+  const getfavouriteAds = async () => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const data = await AdService.getfavouriteAds();
+
+      if (data?.error === false) {
+        setIsLoading(false);
+        const fav = data?.data?.posts;
+        console.log(fav, "fav");
+        setFavouriteAds(fav);
         return data.error;
       }
     } catch (error) {
@@ -194,6 +217,8 @@ const useFetchAds = () => {
     sellersReviews,
     getSellersReviews,
     favouriteAd,
+    getfavouriteAds,
+    favouriteAds,
   };
 };
 

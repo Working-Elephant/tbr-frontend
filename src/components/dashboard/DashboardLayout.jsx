@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import Avatar1 from "../../assets/images/avatar1.jpeg";
 import Coin from "../../assets/images/coin.png";
@@ -10,9 +10,12 @@ import { useSelector } from "react-redux";
 const DashboardLayout = ({ children }) => {
   //const { getUser } = AuthService;
   // const user = getUser();
+  const navigate = useNavigate();
   const user = useSelector((state) => state?.auth?.user);
   const loggedInUser = user?.user;
-
+  const gotoPage = () => {
+    navigate("/dashboard/change-password");
+  };
   return (
     <div className="px-5 pt-5 lg:py-5 lg:px-5 h-[90vh] ">
       <div className=" grid  md:grid-cols-8 md:gap-3 lg:gap-4">
@@ -23,10 +26,10 @@ const DashboardLayout = ({ children }) => {
             <SellerInfo
               image={Coin}
               name={loggedInUser?.username?.toUpperCase()}
-              rating={4.5}
+              // rating={4.5}
               status="online"
-              blackBtnText="Edit Profile"
-              whiteBtnText="Settings"
+              blackBtnText="Change Password"
+              action1={gotoPage}
             />
             <div>
               <ul className="list-none my-4 text-sm">

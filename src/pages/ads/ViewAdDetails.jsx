@@ -31,11 +31,11 @@ import Profile from "../../components/dashboard/Profile";
 const ViewAdDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { getSingleAd, categoryName, sellersReviews } = useFetchAds();
+  const { getSingleAd, categoryName } = useFetchAds();
   const { startChat, isLoading, singleChat, chatId } = useFetchChat();
-  const { singleAds, adsByCategory, seller } = useAdsContext();
+  const { singleAds, adsByCategory, seller, sellerReviews } = useAdsContext();
   const similarAds = adsByCategory?.items?.filter((item) => +item.id !== +id);
-
+  console.log(sellerReviews, "tim");
   const style = {
     position: "absolute",
     top: "50%",
@@ -349,8 +349,8 @@ const ViewAdDetails = () => {
                 blackBtnIcon={<BsChatText />}
                 blackBtnText="Message Seller"
                 whiteBtnText="View Merchant Profile"
-                openChat={openChat}
-                openProfile={openProfile}
+                action1={openChat}
+                action2={openProfile}
                 isLoading={isLoading}
                 seller={seller}
               />
@@ -398,7 +398,7 @@ const ViewAdDetails = () => {
             open={openProfile}
           >
             <Box sx={style1}>
-              <Profile seller={seller} sellerReviews={sellersReviews} />
+              <Profile seller={seller} sellerReviews={sellerReviews} />
             </Box>
           </Modal>
         </>

@@ -77,7 +77,7 @@ const slice = createSlice({
       });
       cart.subTotal = amountArray.reduce((partialSum, a) => partialSum + a, 0);
       cart.tax = cart.subTotal * 0.025;
-      cart.total = cart.subTotal + cart.shipping + cart.tax;
+      cart.total = (cart.subTotal + cart.shipping + cart.tax).toFixed();
     },
 
     addShipping: (state, { payload }) => {
@@ -92,14 +92,14 @@ const slice = createSlice({
       cart.subTotal = cart.bully.price;
       cart.coupon = null;
       cart.tax = cart.subTotal * 0.025;
-      cart.total = +cart.subTotal + +cart.duties + +cart.tax;
+      cart.total = (+cart.subTotal + +cart.duties + +cart.tax).toFixed();
     },
     addFeatured: (state, { payload }) => {
       let cart = state.cart;
       cart.featured = payload;
       cart.subTotal = 100;
       cart.tax = cart.subTotal * 0.025;
-      cart.total = cart.subTotal + cart.shipping + cart.tax;
+      cart.total = (cart.subTotal + cart.shipping + cart.tax).toFixed();
     },
     removeFromCart: (state, { payload }) => {
       let cart = state.cart;
@@ -110,13 +110,13 @@ const slice = createSlice({
       let cart = state.cart;
       if (payload === "BULLY50") {
         cart.coupon = "50%";
-        cart.final = (cart.total / 2).toFixed(3);
+        cart.final = (cart.total / 2).toFixed();
       } else if (payload === "NEWMEMBER15") {
         cart.coupon = "100%";
         cart.final = 0;
       } else if (payload === "TBR15") {
         cart.coupon = "15%";
-        cart.final = ((cart.total / 15) * 100).toFixed(3);
+        cart.final = ((cart.total / 15) * 100).toFixed();
       } else {
         cart.coupon = null;
         cart.final = 0;

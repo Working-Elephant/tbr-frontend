@@ -12,7 +12,7 @@ const AboutItem = () => {
   const { updateStep1, pet, checkCategory, prevStep, categories } =
     useContext(AdContext);
   const filteredCat = categories.filter(
-    (item) =>  item.categoryName !== "Shop Tbr"
+    (item) => item.categoryName !== "Shop Tbr"
   );
 
   const {
@@ -45,8 +45,7 @@ const AboutItem = () => {
   ];
   const handleUploadFiles = (files) => {
     const uploaded = [...uploadedFiles];
-    const waterImage = watermarkImage(uploaded);
-    console.log(waterImage, "waterimage");
+
     let limitExceeded = false;
     files.some((file) => {
       if (uploaded.findIndex((f) => f.name === file.name) === -1) {
@@ -67,17 +66,12 @@ const AboutItem = () => {
     const chosenFiles = Array.prototype.slice.call(e.target.files);
     handleUploadFiles(chosenFiles);
   };
+
   const previewImage = (file) => {
     const objectUrl = URL.createObjectURL(file);
     return objectUrl;
   };
-  const watermarkImage = (upload) => {
-    // load a url and file object
 
-    watermark([upload, "../../assets/images/coin.png"])
-      .image(watermark.image.lowerLeft(0.5))
-      .then((img) => document.getElementById("container").appendChild(img));
-  };
   const deleteImage = (image) => {
     const filteredList = uploadedFiles.filter((file) => file != image);
     setUploadedFiles(filteredList);
@@ -179,16 +173,11 @@ const AboutItem = () => {
             {uploadedFiles &&
               uploadedFiles.map((file, index) => (
                 <div className=" mx-3 h-20 w-22 ">
-                  {/* <img
-                    src={previewImage(file)}
-                    alt=""
-                    className="w-full h-full"
-                  /> */}
                   <div
                     className="flex justify-center cursor-pointer"
                     onClick={() => deleteImage(file)}
                   >
-                    <FaTimes />
+                    <FaTimes key={index} />
                   </div>
                   <img
                     key={index}

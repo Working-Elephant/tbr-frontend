@@ -20,6 +20,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Container from "@mui/material/Container";
 import { checkNewDate, convertDate, setDeadlineDays } from "../../utils/Utils";
+import Pedigree from "../../shared/pedigree";
 const ViewPetDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -199,10 +200,10 @@ const ViewPetDetails = () => {
     csId.current.focus();
   };
 
-  const trigger = () => {
-    console.log("here");
-    setShowCert((prev) => !prev);
-  };
+  // const trigger = () => {
+  //   console.log("here");
+  //   setShowCert((prev) => !prev);
+  // };
 
   return (
     <>
@@ -335,21 +336,22 @@ const ViewPetDetails = () => {
                 </div>
                 {bully?.status !== "PENDING" && (
                   <div className="grid grid-cols-2 gap-4 py-3">
-                    <div>
+                    <div className="w-full">
                       {" "}
-                      <Trigger>
-                        <button
-                          onClick={trigger}
-                          className="w-full rounded-md py-2 border border-blue text-blue whitespace-nowrap"
-                        >
-                          View Bully Certificate
-                        </button>
+                      <Trigger
+                        eventName={"Certificate"}
+                        className="w-full rounded-md py-2 border border-blue text-blue whitespace-nowrap"
+                      >
+                        View Bully Certificate
                       </Trigger>
                     </div>
                     <div>
-                      <button className="w-full rounded-md py-2 border border-blue text-blue">
+                      <Trigger
+                        eventName={"Pedigree"}
+                        className="w-full rounded-md py-2 border border-blue text-blue whitespace-nowrap"
+                      >
                         View Pedigree Chart
-                      </button>
+                      </Trigger>
                     </div>
                   </div>
                 )}
@@ -422,8 +424,11 @@ const ViewPetDetails = () => {
       </div>
       <>
         <Box sx={style}>
-          <Wrapper ref={wrapper}>
+          <Wrapper listenFor={"Certificate"}>
             <Certificate bully={bully} />
+          </Wrapper>
+          <Wrapper listenFor={"Pedigree"}>
+            <Pedigree bully={bully} />
           </Wrapper>
         </Box>
       </>

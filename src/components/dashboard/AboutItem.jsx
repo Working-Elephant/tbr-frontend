@@ -6,8 +6,11 @@ import { selectCategories, breed } from "../../data";
 import { useForm } from "react-hook-form";
 
 const AboutItem = () => {
-  const [images, setImages] = useState("");
   const { updateStep1 } = useContext(BullyRegistrationContext);
+  const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [fileLimit, setFileLimit] = useState();
+
+  const MAX_COUNT = 3;
   const {
     register,
     handleSubmit,
@@ -18,9 +21,9 @@ const AboutItem = () => {
   const onSubmit = (data) => {
     let submitData = {
       ...data,
-      pictureUrl: images,
+      pictureUrl: [...uploadedFiles],
     };
-    console.log(submitData);
+
     updateStep1(submitData);
     // nextStep();
   };
@@ -30,42 +33,42 @@ const AboutItem = () => {
       message: " This field is required",
     },
   });
-  const getBase64 = (file) => {
-    return new Promise((resolve) => {
-      //   let fileInfo;
-      let baseURL = "";
-      // Make new FileReader
-      let reader = new FileReader();
+  const handleUploadFiles = (files) => {
+    const uploaded = [...uploadedFiles];
 
-      // Convert the file to base64 text
-      reader.readAsDataURL(file);
+    let limitExceeded = false;
+    files.some((file) => {
+      if (uploaded.findIndex((f) => f.name === file.name) === -1) {
+        uploaded.push(file);
 
-      // on reader load somthing...
-      reader.onload = () => {
-        // Make a fileInfo Object
-        console.log("Called", reader);
-        baseURL = reader.result;
-        console.log(baseURL);
-        resolve(baseURL);
-      };
-      //   console.log(fileInfo);
+        if (uploaded.length === MAX_COUNT) setFileLimit(true);
+        if (uploaded.length > MAX_COUNT) {
+          alert(`You can only add a maximum of ${MAX_COUNT} files`);
+          setFileLimit(false);
+          limitExceeded = true;
+          return true;
+        }
+      }
     });
+    if (!limitExceeded) setUploadedFiles(uploaded);
+  };
+  const handleFileEvent = (e) => {
+    const chosenFiles = Array.prototype.slice.call(e.target.files);
+    handleUploadFiles(chosenFiles);
   };
 
-  const handleImageUpload = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      let uploadedimage = e.target.files[0];
-      // formDataImage.append("file", uploadedimage);
-      getBase64(uploadedimage)
-        .then((result) => {
-          uploadedimage["base64"] = result;
-          setImages(uploadedimage.base64);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+  const previewImage = (file) => {
+    const objectUrl = URL.createObjectURL(file);
+    return objectUrl;
+  };
+
+  const deleteImage = (image) => {
+    const filteredList = uploadedFiles.filter((file) => file != image);
+    setUploadedFiles(filteredList);
+    if (uploadedFiles.length < MAX_COUNT) {
+      setFileLimit(false);
     } else {
-      return;
+      setFileLimit(true);
     }
   };
   return (
@@ -179,19 +182,31 @@ const AboutItem = () => {
                 id="AdImageInput"
                 className="hidden "
                 type="file"
+                multiple
                 accept="image/png, image/jpg, image/jpeg"
                 {...productImageRegister}
-                onChange={(e) => {
-                  productImageRegister.onChange(e);
-                  handleImageUpload(e);
-                }}
+                onChange={handleFileEvent}
+                disabled={fileLimit}
               />
             </label>
-            {images ? (
-              <div className=" mx-3 h-20 w-22 bg-success">
-                <img src={images} alt="" className="w-full h-full" />
-              </div>
-            ) : null}
+
+            {uploadedFiles &&
+              uploadedFiles.map((file, index) => (
+                <div className=" mx-3 h-20 w-22 ">
+                  <div
+                    className="flex justify-center cursor-pointer"
+                    onClick={() => deleteImage(file)}
+                  >
+                    <FaTimes key={index} />
+                  </div>
+                  <img
+                    key={index}
+                    src={previewImage(file)}
+                    alt=""
+                    className="w-full h-full"
+                  />
+                </div>
+              ))}
           </div>
           {errors.pictureUrl && (
             <ErrorMessage message={errors.pictureUrl?.message} />

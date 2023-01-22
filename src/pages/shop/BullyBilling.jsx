@@ -98,24 +98,20 @@ const BullyBilling = () => {
     }
   };
   useEffect(() => {
-    if (cart?.coupon) {
-      remove();
-    }
+    if (cart?.coupon) remove();
   }, [cart]);
   const remove = () => {
     setRemoveCoupon(true);
-    success("Coupon Applied");
+    // success("Coupon Applied");
   };
   const onSubmit = async (data) => {
     dispatch(applyCoupon(data.coupon));
-
-    if (!cart?.coupon || cart?.coupon === null) {
-      errorToast("Invalid Coupon");
+    if (!cart?.coupon) {
+      // errorToast("Invalid Coupon");
     } else if (typeof cart?.coupon === "string") {
       remove();
-    } else {
-      return;
     }
+    return;
   };
   return (
     <>
@@ -321,7 +317,7 @@ const BullyBilling = () => {
                     <div className="text-sm p-4">
                       <div className=" mb-3">
                         <PayPal
-                          amount={1}
+                          amount={cart?.final ? cart?.final : cart?.total}
                           reference_id={cart?.bully?.bullyRegId}
                           onApproved={onApproved}
                         />

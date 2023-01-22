@@ -3,7 +3,7 @@ import FormBody from "../../components/auth/FormBody";
 import { useForm } from "react-hook-form";
 import { Input, ErrorMessage } from "../../components/shared";
 import { useLocation } from "react-router-dom";
-
+import useResetPassword from "../../hooks/useResetPassword";
 const ResetPassword = () => {
   const {
     register,
@@ -11,13 +11,19 @@ const ResetPassword = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const { resetPassword } = useResetPassword();
   const search = useLocation().search;
   const token = new URLSearchParams(search).get("token");
-  const email = new URLSearchParams(search).get("email");
-  console.log(token, email, "wandy");
+  // token = token.replaceAll(" ", "+");
+  const username = new URLSearchParams(search).get("email");
+
   // function to submit form
-  const onSubmit = (data) => {
-    const obj = { ...data, token, email };
+  const onSubmit = async (data) => {
+    const { password } = data;
+
+    const obj = { password, token, username };
+    const status = await resetPassword(obj);
+    console.log(status);
     console.log(obj, "obj");
     // navigate("/dashboard");
   };

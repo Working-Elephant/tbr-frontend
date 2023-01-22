@@ -14,7 +14,7 @@ const useForgotPassword = () => {
     try {
       const res = await AuthService.forgotPassword(Data);
       const data = res;
-      console.log(data, "data");
+
       if (data.error === false) {
         success(data.message);
         setIsLoading(false);

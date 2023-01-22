@@ -46,23 +46,27 @@ const SellerInfo = (props) => {
       </div>
       {/* <div className="grid grid-cols-1 md:grid-cols-2 md:gap-3 lg:grid-cols-1"> */}
       <div className="my-3">
-        <button
-          className="p-3 w-full bg-black text-white text-sm rounded-md flex items-center justify-center"
-          onClick={() => props.openChat()}
-        >
-          {props.blackBtnIcon ? (
-            <i className="mx-3">{props.blackBtnIcon}</i>
-          ) : null}{" "}
-          {props.isLoading ? <Loader /> : props.blackBtnText}
-        </button>
+        {props?.blackBtnText ? (
+          <button
+            className="p-3 w-full bg-black text-white text-sm rounded-md flex items-center justify-center"
+            onClick={() => props.action1()}
+          >
+            {props.blackBtnIcon ? (
+              <i className="mx-3">{props.blackBtnIcon}</i>
+            ) : null}{" "}
+            {props.isLoading ? <Loader /> : props.blackBtnText}
+          </button>
+        ) : null}
       </div>
       <div className="my-3">
-        <button
-          className="p-3 w-full bg-white text-dark text-sm rounded-md"
-          onClick={() => props.openProfile()}
-        >
-          {props.whiteBtnText}
-        </button>
+        {props?.whiteBtnText ? (
+          <button
+            className="p-3 w-full bg-white text-dark text-sm rounded-md"
+            onClick={() => props.action2()}
+          >
+            {props.whiteBtnText}
+          </button>
+        ) : null}
       </div>
       {/* </div> */}
     </div>

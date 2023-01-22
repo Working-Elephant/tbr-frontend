@@ -24,7 +24,7 @@ import Random from "../assets/images/random.jpg";
 // dashboard menu icons
 import AdsIcon from "../assets/images/adsIcon.svg";
 import MessagesIcon from "../assets/images/mesaages.svg";
-// import MembershipIcon from "../assets/images/membership.svg";
+import MembershipIcon from "../assets/images/membership.svg";
 import FavouritesIcon from "../assets/images/favourites.svg";
 import OrdersIcon from "../assets/images/orders.svg";
 import CustomerCareIcon from "../assets/images/customer_care.svg";
@@ -43,6 +43,11 @@ export const CartData = [
 
 export const dashboardMenu = [
   {
+    icon: MembershipIcon,
+    name: "Home",
+    link: "/dashboard/home",
+  },
+  {
     icon: AdsIcon,
     name: "Your Ads",
     link: "/dashboard/ads",
@@ -60,7 +65,7 @@ export const dashboardMenu = [
   {
     icon: FavouritesIcon,
     name: "Favorites",
-    link: "/dashboard/favourites",
+    link: "/dashboard/favorites",
   },
   {
     icon: OrdersIcon,
