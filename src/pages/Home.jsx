@@ -341,6 +341,7 @@ const Home = () => {
                       width={120}
                       height={80}
                       alt="bully shows"
+                      cors
                       snapshotAtTime={5}
                     />
                     {/* <ImageContainer
