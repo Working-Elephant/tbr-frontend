@@ -388,66 +388,29 @@ export const testimonialData = [
   {
     id: 1,
     image: Doggo1,
-    name: "Caviar Scent",
+
     status: "Customer",
     testimony:
-      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita.",
+      " The best mfm bully show was lit bunch of bad azz dogs but ain't nobody like this boy Future Hndrx ",
   },
+
   {
+    name: "Angelo Cerda",
     id: 2,
-    image: janeAvatar,
-    name: "Benny Cave",
+    image: Doggo2,
+
     status: "Customer",
     testimony:
-      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita.",
+      "I had a great time at The Best MF'N Bully Show, It was an honor to be a guest judge ......",
   },
   {
+    name: "Texascutthroatbullies",
     id: 3,
     image: Doggo3,
-    name: "Caviar Tory",
+
     status: "Customer",
     testimony:
-      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita.",
-  },
-  {
-    id: 4,
-    image: Doggo2,
-    name: "Globus Tania",
-    status: "Customer",
-    testimony:
-      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita.",
-  },
-  {
-    id: 5,
-    image: janeAvatar,
-    name: "Globus Tania",
-    status: "Customer",
-    testimony:
-      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita.",
-  },
-  {
-    id: 6,
-    image: AdDoggo1,
-    name: "Verizon Tania",
-    status: "Customer",
-    testimony:
-      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita.",
-  },
-  {
-    id: 7,
-    image: AdDoggo3,
-    name: "Jane Doe",
-    status: "Customer",
-    testimony:
-      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita.",
-  },
-  {
-    id: 8,
-    image: Doggo1,
-    name: "Jane Doe",
-    status: "Customer",
-    testimony:
-      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita.",
+      "We want to thank Andre Fletcher for inviting us out and throwing a great first show ...... It was an honor to show case our pups infront of June Williams",
   },
 ];
 
@@ -455,207 +418,36 @@ export const userMessages = [
   {
     id: "f7fha",
     image: User,
-    name: "Tyler Gibson",
+    name: "Cory Jones",
     messages: [
       {
         sent: false,
         message:
-          "Lorem ipsum dolor sit amet,consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua.At vero eos et accusam et justo duo dolores et ea rebum.Stet clita kasd gubergren,no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet",
-      },
-      {
-        sent: true,
-        message: "lorem ipsum dsvanb cjafgjca",
-      },
-      {
-        sent: false,
-        message:
-          "Lorem ipsum dolor sit amet,consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua.At vero eos et accusam et justo duo dolores et ea rebum.Stet clita kasd gubergren,no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet",
-      },
-      {
-        sent: true,
-        message: "lorem ipsum dsvanb cjafgjca",
-      },
-      {
-        sent: true,
-        message: "lorem ipsum dsvanb cjafgjca",
-      },
-      {
-        sent: true,
-        message: "lorem ipsum dsvanb cjafgjca",
+          "The best mfm bully show was lit bunch of bad azz dogs but ain't nobody like this boy Future Hndrx ",
       },
     ],
   },
   {
     id: "f7fhb",
     image: User,
-    name: "Tyler Meridan",
+    name: "Angelo Cerda",
     messages: [
       {
         sent: true,
         message:
-          "Lorem ipsum dolor sit ainvidunt ut labore et dolore magna aliquyam erat,sed diam voluptua.At vero eos et accusam et justo duo dolores et",
-      },
-      {
-        sent: true,
-        message: "lorem ipsum dsvanb cjafgjca",
-      },
-      {
-        sent: false,
-        message:
-          "Lorem ipsulores et ea rebum.Stet clita kasd gubergren,no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet",
-      },
-      {
-        sent: true,
-        message: "lorem ipsum dsvanb cjafgjca",
+          "I had a great time at The Best MF'N Bully Show, It was an honor to be a guest judge ......",
       },
     ],
   },
   {
     id: "g7fhb",
     image: User,
-    name: "Vera green",
+    name: "Texascutthroatbullies",
     messages: [
       {
         sent: true,
-        message: "Lorem ipsum dolor sit amet",
-      },
-      {
-        sent: true,
-        message: "lorem ipsum dsvanb cjafgjca",
-      },
-      {
-        sent: false,
         message:
-          "Lorem ipsum dojusto duo dolores et ea rebum.Stet clita kasd gubergren,no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet",
-      },
-      {
-        sent: false,
-        message: "lorem ipsum dsvanb cjafgjca",
-      },
-    ],
-  },
-  {
-    id: "f3fhb",
-    image: User,
-    name: "Olu Forth",
-    messages: [
-      {
-        sent: false,
-        message:
-          "Lorem cing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua.At vero eos et accusam et justo duo dolores et ea rebum.Stet clita kasd gubergren,no sea takpsum dolor sit amet.Lorem ipsum dolor sit amet",
-      },
-      {
-        sent: true,
-        message: "lorem ipsum dsvanb cjafgjca",
-      },
-      {
-        sent: true,
-        message:
-          "Lorem ipsum dolor sit amet,consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua.At vero eos et accusam et justo duo dolores et ea rebum.Stet clita kasd gubergren,no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet",
-      },
-      {
-        sent: true,
-        message: "lorem ipsum dsvanb cjafgjca",
-      },
-    ],
-  },
-  {
-    id: "f75hc",
-    image: User,
-    name: "Jane Doe",
-    messages: [
-      {
-        sent: false,
-        message:
-          "Lorem ipsum dolor sit amet,consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt utm et justo duo dolores et ea rebum.Stet clita kasd gubergren,no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet",
-      },
-      {
-        sent: true,
-        message: "lorem ipsum dsvanb cjafgjca",
-      },
-      {
-        sent: false,
-        message:
-          "Lorem ipsum dolor sit amet,consetetur sadipscing ey eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua.At vero eos et accusam et justo duo dolores et ea rebum.Stet clita kasd gubergren,no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet",
-      },
-      {
-        sent: true,
-        message: "lorem ipsum dsvanb cjafgjca",
-      },
-    ],
-  },
-  {
-    id: "f7fyb",
-    image: User,
-    name: "Selah Gison",
-    messages: [
-      {
-        sent: false,
-        message:
-          "Lorem ipsum dolor sit amet,consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua.At vero eos et accusam et justo duo dolores et ea rebum.Stet clita kasd gubergren,no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet",
-      },
-      {
-        sent: true,
-        message: "lorem ipsum dsvanb cjafgjca",
-      },
-      {
-        sent: false,
-        message:
-          "Lorem ipsum dolor sit amet,consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua.At vero eos et accusam et justo duo dolores et ea rebum.Stet clita kasd gubergren,no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet",
-      },
-      {
-        sent: true,
-        message: "lorem ipsum dsvanb cjafgjca",
-      },
-    ],
-  },
-  {
-    id: "f2fhg",
-    image: User,
-    name: "Selah Giwrson",
-    messages: [
-      {
-        sent: false,
-        message:
-          "Lorem ipsum dolor sit amet,consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua.At vero eos et accusam et justo duo dolores et ea rebum.Stet clita kasd gubergren,no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet",
-      },
-      {
-        sent: true,
-        message: "lorem ipsum dsvanb cjafgjca",
-      },
-      {
-        sent: false,
-        message:
-          "Lorem ipsum dolor sit amet,consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua.At vero eos et accusam et justo duo dolores et ea rebum.Stet clita kasd gubergren,no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet",
-      },
-      {
-        sent: true,
-        message: "lorem ipsum dsvanb cjafgjca",
-      },
-    ],
-  },
-  {
-    id: "f7fhg",
-    image: User,
-    name: "Selah Gibson",
-    messages: [
-      {
-        sent: false,
-        message:
-          "Lorem ipsum dolor sit amet,consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua.At vero eos et accusam et justo duo dolores et ea rebum.Stet clita kasd gubergren,no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet",
-      },
-      {
-        sent: true,
-        message: "lorem ipsum dsvanb cjafgjca",
-      },
-      {
-        sent: false,
-        message:
-          "Lorem ipsum dolor sit amet,consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,sed diam voluptua.At vero eos et accusam et justo duo dolores et ea rebum.Stet clita kasd gubergren,no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet",
-      },
-      {
-        sent: true,
-        message: "lorem ipsum dsvanb cjafgjca",
+          "We want to thank Andre Fletcher for inviting us out and throwing a great first show ...... It was an honor to show case our pups infront of June Williams",
       },
     ],
   },
