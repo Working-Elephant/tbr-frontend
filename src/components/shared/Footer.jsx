@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/images/logo2x.png";
 import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
-
+import { version } from "../../../package.json";
 const Footer = () => {
   return (
     <footer className="bg-black w-full px-6  py-12 lg:px-12 mt-6 ">
@@ -24,6 +24,7 @@ const Footer = () => {
                   Website for buying, selling, and registering Bullies,
                   Frenchie, and Bulldogs
                 </p>
+                <p className="text-sm">{version}</p>
               </div>
             </div>
           </div>
