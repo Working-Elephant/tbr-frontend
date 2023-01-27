@@ -36,6 +36,7 @@ import { Container } from "@material-ui/core";
 import useFetchAds from "../hooks/useFetchAds";
 import { Loader } from "../components/shared";
 import ScreenLoader from "../components/shared/ScreenLoader";
+import VideoImageThumbnail from "react-video-thumbnail-image";
 const Home = () => {
   const responsive = {
     desktop: {
@@ -330,12 +331,24 @@ const Home = () => {
                       setVideo(item);
                     }}
                   >
-                    <ImageContainer
+                    <VideoImageThumbnail
+                      videoUrl={
+                        "https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Fthebestmfnbullyshow%2Fvideos%2F679944213010522%2F&show_text=false&width=267&t=0"
+                      }
+                      thumbnailHandler={(thumbnail) =>
+                        console.log("thumb", thumbnail)
+                      }
+                      width={120}
+                      height={80}
+                      alt="bully shows"
+                      snapshotAtTime={5}
+                    />
+                    {/* <ImageContainer
                       key={i}
                       image={item.image}
                       fullHeight={false}
                       width="min-w-[144px]"
-                    />
+                    /> */}
                   </div>
                 ))}
               </div>

@@ -130,9 +130,9 @@ const Navbar = ({ home }) => {
           {/* <li className="mx-3">
             <Link to="/">Services</Link>
           </li> */}
-          <li className="mx-3">
+          {/* <li className="mx-3">
             <Link to="/blog">Bully News</Link>
-          </li>
+          </li> */}
           <li className="mx-3">
             <Link to="/about-us">About Us </Link>
           </li>
