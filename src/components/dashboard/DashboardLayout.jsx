@@ -12,7 +12,8 @@ const DashboardLayout = ({ children }) => {
   // const user = getUser();
   const navigate = useNavigate();
   const user = useSelector((state) => state?.auth?.user);
-  const loggedInUser = user?.user;
+  const loggedInUser = user?.user?.username;
+
   const gotoPage = () => {
     navigate("/dashboard/change-password");
   };
@@ -25,8 +26,8 @@ const DashboardLayout = ({ children }) => {
 
             <SellerInfo
               image={Coin}
-              name={loggedInUser?.username?.toUpperCase()}
-              // rating={4.5}
+              name={loggedInUser?.toUpperCase()}
+              rating={4.5}
               status="online"
               blackBtnText="Change Password"
               action1={gotoPage}

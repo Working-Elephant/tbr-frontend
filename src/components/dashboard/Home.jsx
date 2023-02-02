@@ -75,12 +75,18 @@ const Home = ({ reviews, user, submitData, showEdit, setShowEdit }) => {
                           })}
                         ></textarea>
                       </div>
-                      <div className="flex items-center justify-between px-3 py-2 ">
+                      <div className="flex items-center justify-start px-3 py-2 ">
                         <button
                           type="submit"
                           className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-black bg-yellow rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
                         >
                           {isLoading ? <Loader /> : "Edit Bio"}
+                        </button>
+                        <button
+                          onClick={() => setShowEdit(false)}
+                          className=" ml-3 inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-black bg-yellow rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
+                        >
+                          Cancel
                         </button>
                       </div>
                     </div>
@@ -88,7 +94,9 @@ const Home = ({ reviews, user, submitData, showEdit, setShowEdit }) => {
                     <div>
                       <span className="text-sm">Bio</span>
                       <div className="mb-4 w-full bg-[#FEFCFC] px-3 rounded-lg border border-borderGrey h-fit flex justify-between items-center ">
-                        <Input border="border-0" value={user?.description} />{" "}
+                        <div className="w-full">
+                          <Input border="border-0" value={user?.description} />{" "}
+                        </div>
                         <FaEdit
                           className="cursor-pointer"
                           onClick={() => setShowEdit(true)}

@@ -1,0 +1,19 @@
+{
+  "ignoreUnresolved": [
+    "./index.css?inline"
+  ],
+  "ignoreUnused": [
+    "@testing-library/jest-dom",
+    "@testing-library/react",
+    "@testing-library/user-event",
+    "flowbite",
+    "react-download-svg",
+    "react-editable-svg-label",
+    "react-inlinesvg",
+    "react-material-ui-carousel",
+    "react-svg",
+    "vite-plugin-env-compatible",
+    "web-vitals"
+  ],
+  "ignoreUnimported": []
+}

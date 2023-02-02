@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
-import { FiSearch } from "react-icons/fi";
-import { FaBell, FaCartPlus } from "react-icons/fa";
+import { FaBell, FaEnvelope, FaCartPlus } from "react-icons/fa";
 import Logo from "../../assets/images/logo.png";
 import Backdrop from "@mui/material/Backdrop";
 import { useSelector } from "react-redux";
-import UserAvatar from "../../assets/images/avatar2.jpeg";
 import useLogOut from "../../hooks/useLogout";
 import { FaDog } from "react-icons/fa";
 import { useEffect } from "react";
@@ -15,6 +13,7 @@ import {
   HubConnectionBuilder,
   LogLevel,
   HubConnectionState,
+  HttpTransportType,
 } from "@microsoft/signalr";
 import { useNavigate } from "react-router-dom";
 const Navbar = ({ home }) => {
@@ -42,32 +41,18 @@ const Navbar = ({ home }) => {
     logOut();
   };
 
-  // useEffect(() => {
-  //   const intervalId = setInterval(() => {
-  //     console.log("reading here");
-  //     //assign interval to a variable to clear it.
-  //     if (userId) {
-  //       connection.on(
-  //         `${userId.toString()}_message_notification`,
-  //         (message) => {
-  //           setNewMessage(true);
-  //           console.log(message);
-  //         }
-  //       );
-  //     }
-  //   }, 5000);
-
-  //   return () => clearInterval(intervalId); //This is important
-  // }, [newMessage, useState]);
-
   //establish socket connection
   useEffect(() => {
     const newConnection = new HubConnectionBuilder()
-      .withUrl(`${baseUrl}/hubs/chat`)
+      .withUrl(`${baseUrl}/hubs/chat`, {
+        skipNegotiation: true,
+        transport: HttpTransportType.WebSockets,
+      })
       .withAutomaticReconnect()
       .configureLogging(LogLevel.Information)
       .build();
 
+    console.log(newConnection, "new connection");
     setConnection(newConnection);
   }, []);
 
@@ -78,6 +63,7 @@ const Navbar = ({ home }) => {
         connection
           .start()
           .then((result) => {
+            console.log("Connected!");
             handleListen();
           })
           .catch((e) => console.log("Connection failed: ", e));
@@ -103,6 +89,7 @@ const Navbar = ({ home }) => {
       }
     }
   }, [connection]);
+
   const gotoMessage = () => {
     setNewMessage(false);
     navigate("/dashboard/messages");
@@ -190,7 +177,7 @@ const Navbar = ({ home }) => {
               <div className=" inline-flex items-center p-2 text-sm font-medium text-center text-black  rounded-lg ">
                 <div className="">
                   <i className="text-lg text-yellow">
-                    <FaBell />
+                    <FaEnvelope />
                   </i>
                 </div>
                 {newMessage && (

@@ -30,9 +30,9 @@ const SellerInfo = (props) => {
               >
                 {props.status}
               </span>
-              <i className="text-dark">
+              {/* <i className="text-dark">
                 <IoIosArrowDown />
-              </i>
+              </i> */}
             </div>
           </div>
           <div className="flex text-xs ">
@@ -41,7 +41,7 @@ const SellerInfo = (props) => {
             </i>
             <span> {props.rating}</span>
           </div>
-          <p className="text-xxs text-blue ">View Full Ratings and Reviews</p>
+          {/* <p className="text-xxs text-blue ">View Full Ratings and Reviews</p> */}
         </div>
       </div>
       {/* <div className="grid grid-cols-1 md:grid-cols-2 md:gap-3 lg:grid-cols-1"> */}

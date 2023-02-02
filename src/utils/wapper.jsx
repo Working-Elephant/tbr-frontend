@@ -4,6 +4,7 @@ import EventEmitter from "wolfy87-eventemitter";
 import PropTypes from "prop-types";
 const ee = new EventEmitter();
 import createReactClass from "create-react-class";
+import ScreenLoader from "../components/shared/ScreenLoader";
 
 const Trigger = createReactClass({
   displayName: "DownloadSvgTrigger",
@@ -16,6 +17,7 @@ const Trigger = createReactClass({
   },
 
   getDefaultProps: function () {
+    // 3513 × 1953
     return {
       filename: null,
       width: 1365,
@@ -51,6 +53,7 @@ const Wrapper = createReactClass({
   propTypes: {
     filename: PropTypes.string,
     listenFor: PropTypes.string,
+    callStop: PropTypes.any,
   },
 
   getInitialState: function () {
@@ -66,6 +69,7 @@ const Wrapper = createReactClass({
     return {
       filename: "untitled.png",
       listenFor: "downloadSvg",
+      callStop: null,
     };
   },
 
@@ -127,7 +131,11 @@ const Wrapper = createReactClass({
       a.click();
     };
 
-    img.setAttribute("src", "data:image/svg+xml;base64," + btoa(svgData));
+    img.setAttribute(
+      "src",
+      "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svgData)))
+    );
+    this.props.callStop();
   },
 
   /**

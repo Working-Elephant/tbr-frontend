@@ -20,7 +20,8 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Container from "@mui/material/Container";
 import { checkNewDate, convertDate, setDeadlineDays } from "../../utils/Utils";
-import Pedigree from "../../shared/pedigree";
+import { Pedigree } from "../../shared/pedigree";
+import ScreenLoader from "../../components/shared/ScreenLoader";
 const ViewPetDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ const ViewPetDetails = () => {
   const [ImageInView, setImageInView] = useState(0);
   const [showChat, setShowChat] = useState(false);
   const [showCert, setShowCert] = useState(false);
+  const [isScreenLoader, setIsScreenLoader] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     if (!bully.length) {
@@ -52,7 +54,7 @@ const ViewPetDetails = () => {
   };
   const style = {
     visibility: "hidden",
-    position: "absolute",
+    position: "fixed",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
@@ -199,6 +201,9 @@ const ViewPetDetails = () => {
     console.log(csId.current);
     csId.current.focus();
   };
+  const callStop = () => {
+    setIsScreenLoader(false);
+  };
 
   // const trigger = () => {
   //   console.log("here");
@@ -207,6 +212,7 @@ const ViewPetDetails = () => {
 
   return (
     <>
+      {isScreenLoader && <ScreenLoader />}
       <div className="p-5  lg:py-10 lg:px-12">
         <div className="px-6 mb-4">
           {/* <BreadCrumb crumbs={crumbs} /> */}
@@ -339,6 +345,7 @@ const ViewPetDetails = () => {
                     <div className="w-full">
                       {" "}
                       <Trigger
+                        onClick={() => setIsScreenLoader(true)}
                         eventName={"Certificate"}
                         className="w-full rounded-md py-2 border border-blue text-blue whitespace-nowrap"
                       >
@@ -347,6 +354,9 @@ const ViewPetDetails = () => {
                     </div>
                     <div>
                       <Trigger
+                        onClick={() => setIsScreenLoader(true)}
+                        width={3513}
+                        height={1953}
                         eventName={"Pedigree"}
                         className="w-full rounded-md py-2 border border-blue text-blue whitespace-nowrap"
                       >
@@ -424,10 +434,18 @@ const ViewPetDetails = () => {
       </div>
       <>
         <Box sx={style}>
-          <Wrapper listenFor={"Certificate"}>
+          <Wrapper
+            listenFor={"Certificate"}
+            callStop={callStop}
+            filename={"Tbr Certificate"}
+          >
             <Certificate bully={bully} />
           </Wrapper>
-          <Wrapper listenFor={"Pedigree"}>
+          <Wrapper
+            listenFor={"Pedigree"}
+            callStop={callStop}
+            filename={"Tbr Pedigree"}
+          >
             <Pedigree bully={bully} />
           </Wrapper>
         </Box>

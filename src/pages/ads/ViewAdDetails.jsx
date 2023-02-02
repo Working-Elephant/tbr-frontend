@@ -345,7 +345,6 @@ const ViewAdDetails = () => {
                 rating={4.5}
                 image={Coin}
                 name={seller?.username.toUpperCase()}
-                status="online"
                 blackBtnIcon={<BsChatText />}
                 blackBtnText="Message Seller"
                 whiteBtnText="View Merchant Profile"

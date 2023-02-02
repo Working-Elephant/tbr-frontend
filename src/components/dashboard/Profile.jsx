@@ -26,15 +26,15 @@ const Profile = ({ sellerReviews, seller }) => {
                 <p>
                   <span></span>
                 </p>
-                <div class="my-5 px-6">
+                {/* <div class="my-5 px-6">
                   <a
                     href="#"
-                    class="text-gray-200 block rounded-lg text-center font-medium leading-6 px-6 py-3 bg-gray-900 hover:bg-black hover:text-white"
+                    class=" block rounded-lg text-center font-medium leading-6 px-6 py-3  bg-black text-white"
                   >
                     Connect with{" "}
                     <span class="font-bold">@{seller?.username}</span>
                   </a>
-                </div>
+                </div> */}
 
                 <div class="w-full">
                   <h3 class="font-medium text-gray-900 text-left px-6">

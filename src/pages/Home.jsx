@@ -37,6 +37,8 @@ import useFetchAds from "../hooks/useFetchAds";
 import { Loader } from "../components/shared";
 import ScreenLoader from "../components/shared/ScreenLoader";
 import VideoImageThumbnail from "react-video-thumbnail-image";
+import VideoPlayer from "simple-react-video-thumbnail";
+import VideoThumbnail from "react-video-thumbnail";
 const Home = () => {
   const responsive = {
     desktop: {
@@ -331,7 +333,16 @@ const Home = () => {
                       setVideo(item);
                     }}
                   >
-                    <VideoImageThumbnail
+                    <VideoThumbnail
+                      videoUrl={item.link}
+                      thumbnailHandler={(thumbnail) => console.log(thumbnail)}
+                      width={120}
+                      height={80}
+                      cors
+                    />
+                    {/* <VideoPlayer videoUrl={item.link} snapshotAt={10} /> */}
+
+                    {/* <VideoImageThumbnail
                       videoUrl={
                         "https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Fthebestmfnbullyshow%2Fvideos%2F679944213010522%2F&show_text=false&width=267&t=0"
                       }
@@ -343,7 +354,7 @@ const Home = () => {
                       alt="bully shows"
                       cors
                       snapshotAtTime={5}
-                    />
+                    /> */}
                     {/* <ImageContainer
                       key={i}
                       image={item.image}

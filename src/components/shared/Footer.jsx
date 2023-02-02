@@ -108,8 +108,14 @@ const Footer = () => {
             <div></div>
           </div>
         </div>
-        <div className="text-white opacity-20 text-start pl-12">
-          <p className="ml-12">POWERED BY WORKING ELEPHANT</p>
+        <div className="text-white  text-start pl-12">
+          <a
+            href="https://workingelephant.com"
+            target="_blank"
+            className="ml-12 opacity-20 hover:opacity-100  "
+          >
+            POWERED BY WORKING ELEPHANT
+          </a>
         </div>
       </div>
     </footer>

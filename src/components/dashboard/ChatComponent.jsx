@@ -62,7 +62,10 @@ const ChatComponent = ({
   //establish socket connection
   useEffect(() => {
     const newConnection = new HubConnectionBuilder()
-      .withUrl(`${baseUrl}/hubs/chat`)
+      .withUrl(`${baseUrl}/hubs/chat`, {
+        skipNegotiation: true,
+        transport: HttpTransportType.WebSockets,
+      })
       .withAutomaticReconnect()
       .configureLogging(LogLevel.Information)
       .build();

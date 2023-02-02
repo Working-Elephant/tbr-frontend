@@ -317,6 +317,7 @@ const BullyBilling = () => {
                     <div className="text-sm p-4">
                       <div className=" mb-3">
                         <PayPal
+                          // amount={1}
                           amount={cart?.final ? cart?.final : cart?.total}
                           reference_id={cart?.bully?.bullyRegId}
                           onApproved={onApproved}
