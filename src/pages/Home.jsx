@@ -189,7 +189,41 @@ const Home = () => {
               >
                 {categories.map((item, i) => (
                   <div key={i} className="mx-4 rounded-[60px] relative ">
-                    <Link to={`/categories/${item.categoryName}`}>
+                    {item.categoryName === "Shop Tbr" ? (
+                      <a
+                        href="https://texasbullyregistrystore.threadless.com/"
+                        target="_blank"
+                      >
+                        {
+                          <ImageContainer
+                            image={`../assets/images/${item.categoryName}.jpg`}
+                            rounded="rounded-[3rem]"
+                          />
+                        }
+
+                        <p className="absolute bottom-4 left-8 uppercase text-white  text-xl">
+                          {item.categoryName}
+                        </p>
+                      </a>
+                    ) : (
+                      <Link
+                        key={i}
+                        to={`/categories/${item.categoryName}`}
+                        state={{ categoryName: item.categoryName }}
+                      >
+                        {
+                          <ImageContainer
+                            image={`../assets/images/${item.categoryName}.jpg`}
+                            rounded="rounded-[3rem]"
+                          />
+                        }
+
+                        <p className="absolute bottom-4 left-8 uppercase text-white  text-xl">
+                          {item.categoryName}
+                        </p>
+                      </Link>
+                    )}
+                    {/* <Link to={`/categories/${item.categoryName}`}>
                       <ImageContainer
                         image={`../assets/images/${item.categoryName}.jpg`}
                         rounded="rounded-[3rem]"
@@ -197,7 +231,7 @@ const Home = () => {
                       <p className="absolute bottom-4 left-8 uppercase text-white  text-xl">
                         {item.categoryName}
                       </p>
-                    </Link>
+                    </Link> */}
                   </div>
                 ))}
               </Carousel>
