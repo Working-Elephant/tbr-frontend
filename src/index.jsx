@@ -11,20 +11,14 @@ import { injectStore } from "./config/axios";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { AdsContextProvider } from "./context/AdsContext";
 injectStore(store);
+const testClientID = import.meta.env.VITE_PAYPAL_TEST_CLIENT_ID;
 const root = ReactDOM.createRoot(document.getElementById("root"));
-const initialOptions = {
-  "client-id": "test",
-  currency: "USD",
-  intent: "capture",
-  "data-client-token": "abc123xyz==",
-};
 root.render(
   <Provider store={store}>
     <AdsContextProvider>
       <PayPalScriptProvider
         options={{
-          "client-id":
-            "AWslNDZobMrXkcNvoUCkrHrdWM3VlFgDv7X3kEmrTAtfiEyXVUa3vBYWNjmdZanuC-P9jEYcxgtBMo8e",
+          "client-id": { testClientID },
           components: "buttons",
           currency: "USD",
         }}

@@ -39,7 +39,6 @@ const ButtonWrapper = ({
         forceReRender={[amount, currency, style]}
         fundingSource={undefined}
         createOrder={(data, actions) => {
-          console.log(data, "create order data");
           return actions.order
             .create({
               purchase_units: [

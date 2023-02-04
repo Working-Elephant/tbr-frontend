@@ -50,7 +50,7 @@ const Footer = () => {
               <h4>TEXAS BULLY REGISTRY</h4>
               <ul className="opacity-50 text-xs ">
                 <li className="my-3">
-                  <Link to="/">Founders</Link>
+                  <Link to="/founders">Founders</Link>
                 </li>
                 {/* <li className="my-3">
                   <Link to="/">Bully News</Link>
@@ -108,7 +108,7 @@ const Footer = () => {
             <div></div>
           </div>
         </div>
-        <div className="text-white  text-start pl-12">
+        {/* <div className="text-white  text-start pl-12">
           <a
             href="https://workingelephant.com"
             target="_blank"
@@ -116,7 +116,7 @@ const Footer = () => {
           >
             POWERED BY WORKING ELEPHANT
           </a>
-        </div>
+        </div> */}
       </div>
     </footer>
   );
