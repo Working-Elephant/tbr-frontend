@@ -23,6 +23,7 @@ import Coin from "../assets/images/coin.png";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import FeaturedAdsCard from "../components/home/FeaturedAdsCard";
+import CookieConsent from "react-cookie-consent";
 import {
   featuredAdsData,
   bullyNewsData,
@@ -30,6 +31,7 @@ import {
   previewData,
   videoData,
 } from "../data/api";
+
 import { Link } from "react-router-dom";
 import { NoEncryption } from "@material-ui/icons";
 import { Container } from "@material-ui/core";
@@ -110,7 +112,7 @@ const Home = () => {
   const [video, setVideo] = useState(previewData[0]);
   return (
     <div className="bg-white m-0">
-      <Header />
+      <Header categories={categories} />
       {/* sponsors */}
 
       <div className="w-full bg-[#fff]  text-center px-5 mt-6">
@@ -259,16 +261,16 @@ const Home = () => {
               </i>
             </Link>
           </div>
-          <div className="grid grid-cols-2 gap-3 lg:grid-cols-3   ">
+          <div className="grid grid-cols-2 gap-3 lg:grid-cols-3">
             {isLoading && <Loader />}
-            <FeaturedAdsCard />;
+            <FeaturedAdsCard />
           </div>
         </div>
-        <div className="mt-10 text-center">
+        {/* <div className="mt-10 text-center">
           <button className="py-3 px-5  bg-black text-white text-sm rounded-md">
             Load More Featured Sellers
           </button>
-        </div>
+        </div> */}
       </section>
       {/* how it works section */}
       <section className="my-10">
@@ -536,6 +538,20 @@ const Home = () => {
           </div>
         </div>
       </section>
+      <CookieConsent
+        location="bottom"
+        buttonText="I Understand!!"
+        cookieName="myAwesomeCookieName2"
+        style={{ background: "#2B373B" }}
+        buttonStyle={{
+          color: "#4e503b",
+          fontSize: "15px",
+          marginRight: "20px",
+        }}
+        expires={150}
+      >
+        This website uses cookies to enhance the user experience.{" "}
+      </CookieConsent>
     </div>
   );
 };

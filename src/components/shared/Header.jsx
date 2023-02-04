@@ -6,7 +6,7 @@ import { IoPawOutline, IoLockClosedOutline } from "react-icons/io5";
 import { useForm } from "react-hook-form";
 import { searchCategories, classList } from "../../data";
 
-const Header = () => {
+const Header = ({ categories }) => {
   const {
     register,
     handleSubmit,
@@ -16,6 +16,7 @@ const Header = () => {
   const onSubmit = (data) => {
     console.log(data);
   };
+  const list = categories?.filter((items) => items.categoryName !== "Shop Tbr");
   return (
     <div className="min-h-[80vh] h-[100vh]  md:h-[80vh] lg:h-[65vh]">
       <div
@@ -41,9 +42,9 @@ const Header = () => {
                     {...register("category")}
                   >
                     <option>Category</option>
-                    {searchCategories.map((category, i) => (
-                      <option key={i} value={category.value}>
-                        {category.value}
+                    {list.map((category, i) => (
+                      <option key={i} value={category.id}>
+                        {category.categoryName}
                       </option>
                     ))}
                   </select>

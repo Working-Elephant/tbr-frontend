@@ -70,23 +70,16 @@ const FeaturedAds = () => {
           <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
             {isLoading && <Loader />}
             {featuredAds?.length ? (
-              featuredAds?.map((item, i) => {
-                return <AdCard key={i} item={item} showLike />;
-              })
+              featuredAds?.map((item, i) => (
+                <AdCard key={i} item={item} showLike />
+              ))
             ) : (
               <p>No Data Available</p>
             )}
           </div>
         </div>
       </div>
-      <div className="flex items-center justify-center my-3">
-        {/* <Pagination
-          total={total}
-          perPage={perPage}
-          paginate={paginate}
-          selected={selected}
-        /> */}
-      </div>
+      <div className="flex items-center justify-center my-3"></div>
     </div>
   );
 };
