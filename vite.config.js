@@ -10,11 +10,11 @@ export default ({ command, mode }) => {
   // Set the third parameter to '' to load all env regardless of the `VITE_` prefix.
   return defineConfig({
     // vite config
-    server: {
-      fs: {
-        allow: [".."],
-      },
-    },
+    // server: {
+    //   fs: {
+    //     allow: [".."],
+    //   },
+    // },
     plugins: [
       react({
         jsxRuntime: "automatic",
@@ -29,5 +29,13 @@ export default ({ command, mode }) => {
         },
       }),
     ],
+    server: {
+      watch: {
+        usePolling: true,
+      },
+      host: true, // needed for the Docker Container port mapping to work
+      strictPort: true,
+      port: 5173, // you can replace this port with any port
+    },
   });
 };
