@@ -365,6 +365,10 @@ export const previewData = [
     image: AdDoggo2,
     link: "https://www.facebook.com/plugins/video.php?height=317&href=https%3A%2F%2Fwww.facebook.com%2Fthebestmfnbullyshow%2Fvideos%2F915745462641412%2F&show_text=false&width=267&t=0",
   },
+  {
+    image: AdDoggo1,
+    link: "https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Fthebestmfnbullyshow%2Fvideos%2F679944213010522%2F&show_text=false&width=267&t=0",
+  },
 ];
 
 export const bullyNewsData = [

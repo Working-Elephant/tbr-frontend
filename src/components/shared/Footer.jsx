@@ -24,7 +24,7 @@ const Footer = () => {
                   Website for buying, selling, and registering Bullies,
                   Frenchie, and Bulldogs
                 </p>
-                <p className="text-sm">{version}</p>
+                {/* <p className="text-sm">{version}</p> */}
               </div>
             </div>
           </div>
@@ -36,13 +36,10 @@ const Footer = () => {
                   <Link to="/">Home</Link>
                 </li>
                 <li className="my-3">
-                  <Link to="/">Listings</Link>
+                  <Link to="/categories">Listings</Link>
                 </li>
                 <li className="my-3">
                   <Link to="/about-us">About Us</Link>
-                </li>
-                <li className="my-3">
-                  <Link to="/categories">Categories</Link>
                 </li>
               </ul>
             </div>
@@ -61,12 +58,12 @@ const Footer = () => {
               </ul>
             </div>
             <div className="text-left ">
-              <h4>CONTACT US</h4>
-              <ul className="opacity-50 text-xs">
+              {/* <h4>CONTACT US</h4> */}
+              {/* <ul className="opacity-50 text-xs">
                 <li className="my-2">
                   Email Us: <span className="">support@texasregistry.com</span>
                 </li>
-              </ul>
+              </ul> */}
               <div className="flex justify-start my-2 mt-10">
                 <span className="pr-2">
                   <a

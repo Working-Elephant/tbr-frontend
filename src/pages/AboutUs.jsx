@@ -28,9 +28,9 @@ const AboutUs = () => {
               propel dogs and owners into the future of breeding.
             </p>
             <div className="my-3">
-              <button className="bg-yellow py-2 font-semibold text-md rounded w-full md:w-1/2">
+              {/* <button className="bg-yellow py-2 font-semibold text-md rounded w-full md:w-1/2">
                 CONTACT US
-              </button>
+              </button> */}
             </div>
           </div>
         </div>

@@ -34,7 +34,7 @@ const Founders = () => {
   ];
   return (
     <div className="p-5">
-      <h1 className="text-center font-bold text-lg">Founders</h1>
+      <h1 className="text-center font-bold text-lg">Meet our Founders</h1>
       {data.map((item) => (
         <>
           <div className="mt-5 mb-5 h-full ">
@@ -43,13 +43,13 @@ const Founders = () => {
                 <img
                   src={item.image}
                   alt="..."
-                  class=" max-w-full h-auto  border-none"
+                  class=" max-w-full h-[500px]  border-none"
                 />
               </div>
             </div>
 
             <div className="w-full mt-5 px-4  ">
-              <p className="font-bold text-sm text-justify whitespace-pre-line">
+              <p className=" text-sm text-justify whitespace-pre-line">
                 {item.description}
               </p>
             </div>

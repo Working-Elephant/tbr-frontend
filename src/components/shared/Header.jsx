@@ -60,7 +60,7 @@ const Header = ({ categories }) => {
                   />
                 </div>
 
-                <div className="bg-white border border-borderGrey lg:mx-1 mb-4 rounded p-3 md:mb-2 md:col-span-1">
+                {/* <div className="bg-white border border-borderGrey lg:mx-1 mb-4 rounded p-3 md:mb-2 md:col-span-1">
                   <select
                     className="  text-sm  border-none focus:outline-none w-full"
                     {...register("location")}
@@ -72,7 +72,7 @@ const Header = ({ categories }) => {
                       </option>
                     ))}
                   </select>
-                </div>
+                </div> */}
                 <div className="md:col-span-1 mb-4  md:mb-2 lg:mx-1">
                   <button
                     className=" bg-yellow py-4  rounded text-sm w-full"
@@ -128,7 +128,7 @@ const Header = ({ categories }) => {
                   <div className="flex flex-col ml-2 text-start text-white">
                     <p className="text-sm font-semibold mb-2">Secure Payment</p>
                     <p className="text-xxs md:text-xs font-light">
-                      Secure payment
+                      Visa, Credit, Paypal
                     </p>
                   </div>
                 </div>

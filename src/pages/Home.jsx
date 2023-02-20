@@ -41,6 +41,8 @@ import ScreenLoader from "../components/shared/ScreenLoader";
 import VideoImageThumbnail from "react-video-thumbnail-image";
 import VideoPlayer from "simple-react-video-thumbnail";
 import VideoThumbnail from "react-video-thumbnail";
+import Popup from "../utils/popup";
+import PopupModal from "../utils/popup";
 const Home = () => {
   const responsive = {
     desktop: {
@@ -402,9 +404,14 @@ const Home = () => {
               </div>
 
               <div className="my-5">
-                <button className="bg-yellow py-3 w-1/2 text-dark font-semibold">
-                  Learn More
-                </button>
+                <a
+                  href="https://www.facebook.com/texasbullyregistry/"
+                  target="_blank"
+                >
+                  <button className="bg-yellow py-3 w-1/2 text-dark font-semibold">
+                    Learn More
+                  </button>
+                </a>
               </div>
             </div>
             <div className=" col-span-1 lg:col-span-5">
@@ -524,7 +531,7 @@ const Home = () => {
             Subscribe to Our Newsletter
           </h4>
           <p className=" w-5/6 mx-auto md:w-4/6 lg:w-5/12 text-base">
-            Sign up to receive Texas Registry emails, first dibs on new
+            Sign up to receive Texas Bully Registry emails, first dibs on new
             arrivals, sales, exclusive content, events and more!
           </p>
           <div className="bg-white border-.5 border-borderGrey flex items-center justify-between py-3 px-5 rounded-xl w-5/6 mx-auto my-4 md:w-4/6 lg:w-5/12">
@@ -552,6 +559,7 @@ const Home = () => {
       >
         This website uses cookies to enhance the user experience.{" "}
       </CookieConsent>
+      <PopupModal />
     </div>
   );
 };
