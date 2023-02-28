@@ -10,7 +10,7 @@ import { ToastContainer } from "react-toastify";
 import { injectStore } from "./config/axios";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { AdsContextProvider } from "./context/AdsContext";
-
+import "reactjs-popup/dist/index.css";
 injectStore(store);
 const testClientID = import.meta.env.VITE_PAYPAL_TEST_CLIENT_ID;
 const root = ReactDOM.createRoot(document.getElementById("root"));

@@ -1,12 +1,21 @@
 import React from "react";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
+
 import "./popup.css";
 const PopupModal = () => {
+  const check = localStorage.getItem("agreement") ? false : true;
+  console.log(check, "tim");
+
+  const setCheck = () => {
+    localStorage.setItem("agreement", "accepted");
+  };
   return (
     <Popup
       modal
-      defaultOpen
+      nested
+      defaultOpen={check}
+      closeOnDocumentClick={false}
       trigger={<button></button>}
       position="center center"
     >
@@ -112,11 +121,17 @@ const PopupModal = () => {
                 </p>
               </div>
               <div class="container__nav">
-                <small>
+                <p>
                   By clicking 'Accept' you are agreeing to our terms and
                   conditions.
-                </small>
-                <a class="button cursor-pointer bg-yellow" onClick={close}>
+                </p>
+                <a
+                  class="button cursor-pointer bg-yellow"
+                  onClick={() => {
+                    setCheck();
+                    close();
+                  }}
+                >
                   Accept
                 </a>
               </div>

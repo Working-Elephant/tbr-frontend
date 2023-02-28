@@ -4,6 +4,7 @@ import { warning, errorToast, success } from "../components/shared";
 import { useNavigate } from "react-router-dom";
 import { set } from "react-hook-form";
 import { useAdsContext } from "./useAdsContext";
+import _ from "lodash";
 const useFetchAds = () => {
   const { dispatch } = useAdsContext();
   const [isLoading, setIsLoading] = useState(false);
@@ -88,7 +89,14 @@ const useFetchAds = () => {
       const data = await AdService.getCategories();
 
       if (data?.error === false) {
-        setCategories(data.data);
+        const rawCategories = data.data;
+        const sortedCategories = _.sortBy(rawCategories, [
+          (category) => category.categoryName === "Shop Tbr",
+          (category) => category.categoryName === "Pets",
+          (category) => category.categoryName,
+        ]).reverse();
+
+        setCategories(sortedCategories);
         setIsLoading(false);
       } else {
         setIsLoading(false);

@@ -11,6 +11,10 @@ import Trophy from "../assets/images/trophy.jpeg";
 import People from "../assets/images/peopleTalking.jpeg";
 import janeAvatar from "../assets/images/avatar1.jpeg";
 import User from "../assets/images/avatar2.jpeg";
+
+import sc1 from "../assets/images/sc1.png";
+import sc2 from "../assets/images/sc2.png";
+import sc3 from "../assets/images/sc3.png";
 // categories images
 import Category1 from "../assets/images/category1.jpeg";
 import Category2 from "../assets/images/category2.jpeg";
@@ -350,23 +354,16 @@ export const videoData = [
 ];
 export const previewData = [
   {
-    image: AdDoggo1,
-    link: "https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Fthebestmfnbullyshow%2Fvideos%2F679944213010522%2F&show_text=false&width=267&t=0",
+    image: sc1,
+    link: "https://www.facebook.com/plugins/video.php?height=317&href=https%3A%2F%2Fwww.facebook.com%2Fthebestmfnbullyshow%2Fvideos%2F915745462641412%2F&show_text=false&width=267&t=0",
   },
+
   {
-    image: AdDoggo3,
+    image: sc2,
     link: "https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Fthebestmfnbullyshow%2Fvideos%2F1268869750255730%2F&show_text=false&width=267&t=0",
   },
   {
-    image: AdDoggo5,
-    link: "https://www.facebook.com/plugins/video.php?height=317&href=https%3A%2F%2Fwww.facebook.com%2Fthebestmfnbullyshow%2Fvideos%2F915745462641412%2F&show_text=false&width=267&t=0",
-  },
-  {
-    image: AdDoggo2,
-    link: "https://www.facebook.com/plugins/video.php?height=317&href=https%3A%2F%2Fwww.facebook.com%2Fthebestmfnbullyshow%2Fvideos%2F915745462641412%2F&show_text=false&width=267&t=0",
-  },
-  {
-    image: AdDoggo1,
+    image: sc3,
     link: "https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Fthebestmfnbullyshow%2Fvideos%2F679944213010522%2F&show_text=false&width=267&t=0",
   },
 ];

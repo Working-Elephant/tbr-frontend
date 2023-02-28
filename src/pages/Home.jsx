@@ -6,7 +6,7 @@ import ImageContainer from "../components/shared/ImageContainer";
 import TestimonialCard from "../components/home/TestimonialCard";
 import { HiUser } from "react-icons/hi";
 import { IoIosArrowForward } from "react-icons/io";
-import AdImage from "../assets/images/home_ad.jpg";
+import AdImage from "../assets/images/category1.jpeg";
 import HIW1 from "../assets/images/howitworks1.svg";
 import HIW2 from "../assets/images/howitworks2.svg";
 import HIW3 from "../assets/images/howitworks3.svg";
@@ -227,15 +227,6 @@ const Home = () => {
                         </p>
                       </Link>
                     )}
-                    {/* <Link to={`/categories/${item.categoryName}`}>
-                      <ImageContainer
-                        image={`../assets/images/${item.categoryName}.jpg`}
-                        rounded="rounded-[3rem]"
-                      />
-                      <p className="absolute bottom-4 left-8 uppercase text-white  text-xl">
-                        {item.categoryName}
-                      </p>
-                    </Link> */}
                   </div>
                 ))}
               </Carousel>
@@ -371,13 +362,13 @@ const Home = () => {
                       setVideo(item);
                     }}
                   >
-                    <VideoThumbnail
+                    {/* <VideoThumbnail
                       videoUrl={item.link}
                       thumbnailHandler={(thumbnail) => console.log(thumbnail)}
                       width={120}
                       height={80}
                       cors
-                    />
+                    /> */}
                     {/* <VideoPlayer videoUrl={item.link} snapshotAt={10} /> */}
 
                     {/* <VideoImageThumbnail
@@ -393,12 +384,13 @@ const Home = () => {
                       cors
                       snapshotAtTime={5}
                     /> */}
-                    {/* <ImageContainer
+                    <ImageContainer
                       key={i}
                       image={item.image}
                       fullHeight={false}
                       width="min-w-[144px]"
-                    /> */}
+                      height={"auto"}
+                    />
                   </div>
                 ))}
               </div>
@@ -439,7 +431,7 @@ const Home = () => {
         </div>
       </section>
       {/* bully new section */}
-      <section className="py-10 px-5">
+      {/* <section className="py-10 px-5">
         <div className=" md:w-5/6  mx-auto text-center">
           <div className="mb-8">
             <h6 className=" text-lg md:text-xl my-1">Bully News</h6>
@@ -474,7 +466,7 @@ const Home = () => {
             </Carousel>
           </div>
         </div>
-      </section>
+      </section> */}
       {/* testimonial section */}
       <section className="py-6 lg:py-12 px-5">
         <div>

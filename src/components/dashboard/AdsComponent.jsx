@@ -16,7 +16,7 @@ const AdsComponent = () => {
   return (
     <>
       <div className="flex items-center justify-between mb-3 px-5">
-        <h6>Your Ads({ads?.length})</h6>
+        <h6>My Ads({ads?.length})</h6>
         <Link to="/ad/post-ad">
           {" "}
           <div className="p-3 bg-black text-white text-sm rounded-md flex items-center">

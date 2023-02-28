@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import { FaBell, FaEnvelope, FaCartPlus } from "react-icons/fa";
-import Logo from "../../assets/images/logo.png";
+import Logo from "../../assets/images/logo2x.png";
 import Backdrop from "@mui/material/Backdrop";
 import { useSelector } from "react-redux";
 import useLogOut from "../../hooks/useLogout";
@@ -103,7 +103,7 @@ const Navbar = ({ home }) => {
       <div className=" md:w-10/12  lg:w-11/12 xl:w-10/12  mx-auto flex justify-between items-center  text-xs  md:text-sm lg:text-xs xl:text-sm ">
         <div className="">
           <Link className="flex items-center  " to="/">
-            <img src={Logo} alt="logo" className="w-5/6" />
+            <img src={Logo} alt="logo" className="w-1/3" />
           </Link>
         </div>
         {/* nav items */}
